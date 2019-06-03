@@ -31,10 +31,13 @@
     
     // Rounded corners and border color for Textfield
     
-    _idTextfield.layer.borderColor = [UIColor whiteColor].CGColor;
-    _idTextfield.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.10f];
-    _idTextfield.layer.borderWidth = 1.0f;
-    [_idTextfield.layer setCornerRadius:10.0f];
+//    _idTextfield.layer.borderColor = [UIColor whiteColor].CGColor;
+//    _idTextfield.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.10f];
+//    _idTextfield.layer.borderWidth = 1.0f;
+//    [_idTextfield.layer setCornerRadius:10.0f];
+    
+    _frwdBtnOtlet.layer.cornerRadius = 2.0f;
+    _frwdBtnOtlet.clipsToBounds = YES;
 
     [self.navigationController setNavigationBarHidden:YES];
     

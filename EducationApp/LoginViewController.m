@@ -39,17 +39,17 @@
     registered_id = [[NSMutableArray alloc]init];
     sec_name = [[NSMutableArray alloc]init];
 
-    _username.layer.borderColor = [UIColor colorWithRed:102/255.0f green:51/255.0f blue:102/255.0f alpha:1.0].CGColor;
-    _username.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
-    _username.layer.borderWidth = 1.0f;
-    [_username.layer setCornerRadius:10.0f];
+//    _username.layer.borderColor = [UIColor colorWithRed:102/255.0f green:51/255.0f blue:102/255.0f alpha:1.0].CGColor;
+//    _username.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
+//    _username.layer.borderWidth = 1.0f;
+//    [_username.layer setCornerRadius:10.0f];
+//
+//    _password.layer.borderColor = [UIColor colorWithRed:102/255.0f green:51/255.0f blue:102/255.0f alpha:1.0].CGColor;
+//    _password.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
+//    _password.layer.borderWidth = 1.0f;
+//    [_password.layer setCornerRadius:10.0f];
     
-    _password.layer.borderColor = [UIColor colorWithRed:102/255.0f green:51/255.0f blue:102/255.0f alpha:1.0].CGColor;
-    _password.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
-    _password.layer.borderWidth = 1.0f;
-    [_password.layer setCornerRadius:10.0f];
-    
-    _signInOtlet.layer.cornerRadius = 20; // this value vary as per your desire
+    _signInOtlet.layer.cornerRadius = 2.0f; // this value vary as per your desire
     _signInOtlet.clipsToBounds = YES;
 
     self.schoolname.text = [[NSUserDefaults standardUserDefaults]objectForKey:@"institute_name_Key"];

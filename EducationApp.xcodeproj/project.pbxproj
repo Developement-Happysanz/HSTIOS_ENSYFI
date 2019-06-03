@@ -141,7 +141,6 @@
 		68EC60731F8E08CB00F77A7B /* TeacherExamDetailViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EC60721F8E08CB00F77A7B /* TeacherExamDetailViewCell.m */; };
 		68F051EC1F03CEC10024C238 /* UIImage+animatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F051EB1F03CEC10024C238 /* UIImage+animatedGIF.m */; };
 		68F051F41F03D8B10024C238 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F051F31F03D8B10024C238 /* ImageIO.framework */; };
-		68F379891F04DD2400151F1C /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68F379881F04DD2400151F1C /* Launch Screen.storyboard */; };
 		68F3798C1F04DDD700151F1C /* GIFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F3798B1F04DDD700151F1C /* GIFViewController.m */; };
 		68F4BA1D1F220C82008E6E58 /* AdminClassesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F4BA1C1F220C82008E6E58 /* AdminClassesViewController.m */; };
 		68F4BA201F220CA9008E6E58 /* AdminClassesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F4BA1F1F220CA9008E6E58 /* AdminClassesTableViewCell.m */; };
@@ -295,6 +294,13 @@
 		6B5E06DE22A5079A00F1A663 /* Red@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5E06DD22A5079A00F1A663 /* Red@3x.png */; };
 		6B5E06E022A507C100F1A663 /* Red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5E06DF22A507C100F1A663 /* Red@2x.png */; };
 		6B5E06E222A507CC00F1A663 /* Red@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5E06E122A507CC00F1A663 /* Red@1x.png */; };
+		6B5E06EA22A51FBF00F1A663 /* 2048 x 2732.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5E06E922A51FBE00F1A663 /* 2048 x 2732.png */; };
+		6B5E06EC22A523B000F1A663 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B5E06EB22A523B000F1A663 /* Images.xcassets */; };
+		6B5E06EE22A5291300F1A663 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B5E06ED22A5291300F1A663 /* Launch Screen.storyboard */; };
+		6B5E06F222A531C800F1A663 /* right arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5E06EF22A531C600F1A663 /* right arrow@2x.png */; };
+		6B5E06F322A531C800F1A663 /* right arrow@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5E06F022A531C700F1A663 /* right arrow@1x.png */; };
+		6B5E06F422A531C800F1A663 /* right arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5E06F122A531C700F1A663 /* right arrow@3x.png */; };
+		6B5E06F622A532F800F1A663 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5E06F522A532F800F1A663 /* logo.png */; };
 		6BA9E70B2057B11E00F745CC /* ENSIFY.db in Resources */ = {isa = PBXBuildFile; fileRef = 6BA9E70A2057B11E00F745CC /* ENSIFY.db */; };
 		6BAEE7AF2029881100D08550 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEE7AD2029881100D08550 /* FMDatabase.m */; };
 		6BAEE7B22029882000D08550 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEE7B12029882000D08550 /* FMDatabaseAdditions.m */; };
@@ -563,7 +569,6 @@
 		68F051EA1F03CEC10024C238 /* UIImage+animatedGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+animatedGIF.h"; sourceTree = "<group>"; };
 		68F051EB1F03CEC10024C238 /* UIImage+animatedGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+animatedGIF.m"; sourceTree = "<group>"; };
 		68F051F31F03D8B10024C238 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
-		68F379881F04DD2400151F1C /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		68F3798A1F04DDD700151F1C /* GIFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIFViewController.h; sourceTree = "<group>"; };
 		68F3798B1F04DDD700151F1C /* GIFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIFViewController.m; sourceTree = "<group>"; };
 		68F4BA1B1F220C82008E6E58 /* AdminClassesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdminClassesViewController.h; sourceTree = "<group>"; };
@@ -773,6 +778,13 @@
 		6B5E06DD22A5079A00F1A663 /* Red@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Red@3x.png"; sourceTree = "<group>"; };
 		6B5E06DF22A507C100F1A663 /* Red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Red@2x.png"; sourceTree = "<group>"; };
 		6B5E06E122A507CC00F1A663 /* Red@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Red@1x.png"; sourceTree = "<group>"; };
+		6B5E06E922A51FBE00F1A663 /* 2048 x 2732.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2048 x 2732.png"; sourceTree = "<group>"; };
+		6B5E06EB22A523B000F1A663 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		6B5E06ED22A5291300F1A663 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		6B5E06EF22A531C600F1A663 /* right arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right arrow@2x.png"; sourceTree = "<group>"; };
+		6B5E06F022A531C700F1A663 /* right arrow@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right arrow@1x.png"; sourceTree = "<group>"; };
+		6B5E06F122A531C700F1A663 /* right arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right arrow@3x.png"; sourceTree = "<group>"; };
+		6B5E06F522A532F800F1A663 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		6BA9E70A2057B11E00F745CC /* ENSIFY.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = ENSIFY.db; sourceTree = "<group>"; };
 		6BAEE7AD2029881100D08550 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		6BAEE7AE2029881100D08550 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
@@ -1138,10 +1150,11 @@
 				6828B11D1F0A54B4006AF3AF /* ParentsModule */,
 				6809DB191F28BB2F00C63789 /* TeachersModule */,
 				68FF15471F1C8C1D001BD881 /* AdminModule */,
-				68F379881F04DD2400151F1C /* Launch Screen.storyboard */,
+				6B5E06ED22A5291300F1A663 /* Launch Screen.storyboard */,
 				688FDD5D1E922E2900762CF4 /* Assets.xcassets */,
 				688FDD621E922E2900762CF4 /* Info.plist */,
 				688FDD5A1E922E2900762CF4 /* EducationApp.xcdatamodeld */,
+				6B5E06EB22A523B000F1A663 /* Images.xcassets */,
 				688FDD4E1E922E2900762CF4 /* Supporting Files */,
 			);
 			path = EducationApp;
@@ -1324,6 +1337,11 @@
 		6B5E042B22A4DCD100F1A663 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				6B5E06F522A532F800F1A663 /* logo.png */,
+				6B5E06F022A531C700F1A663 /* right arrow@1x.png */,
+				6B5E06EF22A531C600F1A663 /* right arrow@2x.png */,
+				6B5E06F122A531C700F1A663 /* right arrow@3x.png */,
+				6B5E06E922A51FBE00F1A663 /* 2048 x 2732.png */,
 				6B5E06E122A507CC00F1A663 /* Red@1x.png */,
 				6B5E06DF22A507C100F1A663 /* Red@2x.png */,
 				6B5E06DD22A5079A00F1A663 /* Red@3x.png */,
@@ -1578,9 +1596,11 @@
 				6B5E06CB22A503E200F1A663 /* Teacher@2x.png in Resources */,
 				6B5E06CA22A503E200F1A663 /* Teacher@3x.png in Resources */,
 				6B5E04B022A4DCEB00F1A663 /* Parents.png in Resources */,
+				6B5E06EE22A5291300F1A663 /* Launch Screen.storyboard in Resources */,
 				6B5E049922A4DCEB00F1A663 /* eventcalender-01.png in Resources */,
 				6B5E04C222A4DCEB00F1A663 /* viewattendance@2x.png in Resources */,
 				6B5E04D422A4DCEB00F1A663 /* ensyfi logo.png in Resources */,
+				6B5E06EC22A523B000F1A663 /* Images.xcassets in Resources */,
 				6B5E04A122A4DCEB00F1A663 /* Parents-01.png in Resources */,
 				6B5E06B522A4FC0600F1A663 /* sendTel.png in Resources */,
 				6B5E048922A4DCEB00F1A663 /* Orange@1x.png in Resources */,
@@ -1594,11 +1614,11 @@
 				6B5E06CC22A503E200F1A663 /* Teacher@1x.png in Resources */,
 				6B5E065322A4DDB500F1A663 /* teachers.storyboard in Resources */,
 				6B5E06E222A507CC00F1A663 /* Red@1x.png in Resources */,
+				6B5E06F222A531C800F1A663 /* right arrow@2x.png in Resources */,
 				6B5E04B922A4DCEB00F1A663 /* edit-icon.png in Resources */,
 				6B5E048C22A4DCEB00F1A663 /* ensyfi message screen icons-01.png in Resources */,
 				6B5E048122A4DCEB00F1A663 /* ensyfi- profile icons-02.png in Resources */,
 				6B5E06DC22A5077400F1A663 /* Untitled-3-01 (1).png in Resources */,
-				68F379891F04DD2400151F1C /* Launch Screen.storyboard in Resources */,
 				6B5E049822A4DCEB00F1A663 /* close-01.png in Resources */,
 				689C09531E93BD9000B45B4E /* roboto.bold.ttf in Resources */,
 				6B5E04A622A4DCEB00F1A663 /* ensyfi od screen icons-01.png in Resources */,
@@ -1608,6 +1628,8 @@
 				6B5E06D522A505A000F1A663 /* students@3x.png in Resources */,
 				6B5E049422A4DCEB00F1A663 /* classtest-01.png in Resources */,
 				6B5E04CB22A4DCEB00F1A663 /* od calender-01.png in Resources */,
+				6B5E06EA22A51FBF00F1A663 /* 2048 x 2732.png in Resources */,
+				6B5E06F322A531C800F1A663 /* right arrow@1x.png in Resources */,
 				6B5E06E022A507C100F1A663 /* Red@2x.png in Resources */,
 				6B5E049622A4DCEB00F1A663 /* send@3x.png in Resources */,
 				6B5E049C22A4DCEB00F1A663 /* ensyfi message screen icons-02.png in Resources */,
@@ -1619,6 +1641,7 @@
 				6B5E04AF22A4DCEB00F1A663 /* message_sent.png in Resources */,
 				6B5E04D322A4DCEB00F1A663 /* ensyfi flash screen ios-5.gif in Resources */,
 				689C09551E93BD9000B45B4E /* roboto.regular.ttf in Resources */,
+				6B5E06F422A531C800F1A663 /* right arrow@3x.png in Resources */,
 				6B5E04AA22A4DCEB00F1A663 /* add_send.png in Resources */,
 				6B5E048522A4DCEB00F1A663 /* send.png in Resources */,
 				6B5E04BC22A4DCEB00F1A663 /* back-01.png in Resources */,
@@ -1627,6 +1650,7 @@
 				6B5E04CD22A4DCEB00F1A663 /* ensyfi od screen icons-07.png in Resources */,
 				6B5E04A222A4DCEB00F1A663 /* select_all.png in Resources */,
 				6B5E048422A4DCEB00F1A663 /* ensyfi- profile icons-03.png in Resources */,
+				6B5E06F622A532F800F1A663 /* logo.png in Resources */,
 				6B5E049322A4DCEB00F1A663 /* Green@1x.png in Resources */,
 				6B5E04D522A4DCEB00F1A663 /* select.png in Resources */,
 				6B5E048822A4DCEB00F1A663 /* calender icon-android-01.png in Resources */,
