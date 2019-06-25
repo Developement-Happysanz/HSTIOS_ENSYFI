@@ -18,6 +18,8 @@
     NSString *selectSms;
     NSString *selectMail;
     NSString *selectNotification;
+    
+    NSMutableArray *values;
 
 }
 @end
@@ -31,12 +33,23 @@
     
     self.popupView.layer.cornerRadius = 12.0;
     self.popupView.clipsToBounds = YES;
+    
+    values = [[NSMutableArray alloc]init];
+    
     smsFlag = @"0";
     mailFlag = @"0";
     notificationFlag = @"0";
     
     _sendOutlet.layer.cornerRadius = 5.0;
     _sendOutlet.clipsToBounds = YES;
+    
+    
+    selectSms = @"NO";
+    selectMail = @"NO";
+    selectNotification = @"NO";
+    
+    [values removeAllObjects];
+    
 }
 - (void)didReceiveMemoryWarning
 {
@@ -59,27 +72,43 @@
 }
 - (IBAction)sendBtn:(id)sender
 {
-    if ([selectSms isEqualToString:@""])
+    NSLog(@"%@%@%@",selectSms,selectMail,selectNotification);
+    
+    if ([selectSms isEqualToString:@"NO"])
     {
-        
+
     }
-    else if ([selectMail isEqualToString:@""])
+    else
     {
-        
+        [values addObject:selectSms];
     }
-    else if ([selectNotification isEqualToString:@""])
+    if ([selectMail isEqualToString:@"NO"])
     {
         
     }
     else
     {
+        [values addObject:selectMail];
+
+    }
+    if ([selectNotification isEqualToString:@"NO"])
+    {
+    }
+    else
+    {
+        [values addObject:selectNotification];
+    }
+    
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSString *atten_id = [[NSUserDefaults standardUserDefaults]objectForKey:@"ctView_attendId"];
-    NSString *msg_Type = [NSString stringWithFormat:@"%@,%@,%@",selectSms,selectMail,selectNotification];
+    NSArray *myArray = [[NSArray alloc] initWithObjects:values, nil];
+    NSString *greeting = [myArray componentsJoinedByString:@" "];
+    NSLog(@"%@",greeting);
+//    NSString *msg_Type = [NSString stringWithFormat:@"%@,%@,%@",selectSms,selectMail,selectNotification];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
     [parameters setObject:atten_id forKey:@"attend_id"];
-    [parameters setObject:msg_Type forKey:@"msg_type"];
+    [parameters setObject:greeting forKey:@"msg_type"];
 
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -88,7 +117,7 @@
     
     
     /* concordanate with baseurl */
-    NSString *send_attendance_parents = @"/apiteacher/send_attendance_parents";
+    NSString *send_attendance_parents = @"/apiteacher/send_attendance_parents/";
     NSArray *components = [NSArray arrayWithObjects:baseUrl,appDel.institute_code,send_attendance_parents, nil];
     NSString *api = [NSString pathWithComponents:components];
     
@@ -123,21 +152,20 @@
      {
          NSLog(@"error: %@", error);
      }];
-    }
 }
 - (IBAction)notificationBtn:(id)sender
 {
     if ([notificationFlag isEqualToString:@"0"])
     {
         notificationFlag = @"1";
-        self.notificationImageView.image = [UIImage imageNamed:@"ensyfi message screen icons-01.png"];
+        self.notificationImageView.image = [UIImage imageNamed:@"notification1.png"];
         selectNotification = @"Notification";
     }
     else
     {
         notificationFlag = @"0";
-        self.notificationImageView.image = [UIImage imageNamed:@"ensyfi message screen icons-03.png"];
-        selectNotification = @"";
+        self.notificationImageView.image = [UIImage imageNamed:@"notification.png"];
+        selectNotification = @"NO";
     }
 }
 
@@ -146,15 +174,15 @@
     if ([mailFlag isEqualToString:@"0"])
     {
         mailFlag = @"1";
-        self.mail_ImageView.image = [UIImage imageNamed:@"ensyfi message screen icons-01.png"];
+        self.mail_ImageView.image = [UIImage imageNamed:@"mail1.png"];
         selectMail = @"Mail";
 
     }
     else
     {
         mailFlag = @"0";
-        self.mail_ImageView.image = [UIImage imageNamed:@"ensyfi message screen icons-03.png"];
-        selectMail = @"";
+        self.mail_ImageView.image = [UIImage imageNamed:@"mail.png"];
+        selectMail = @"NO";
 
     }
 }
@@ -164,14 +192,14 @@
     if ([smsFlag isEqualToString:@"0"])
     {
         smsFlag = @"1";
-        self.smsImageView.image = [UIImage imageNamed:@"ensyfi message screen icons-01.png"];
+        self.smsImageView.image = [UIImage imageNamed:@"sms1.png"];
         selectSms = @"SMS";
     }
     else
     {
         smsFlag = @"0";
-        self.smsImageView.image = [UIImage imageNamed:@"ensyfi message screen icons-03.png"];
-        selectSms = @"";
+        self.smsImageView.image = [UIImage imageNamed:@"sms.png"];
+        selectSms = @"NO";
     }
 }
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender

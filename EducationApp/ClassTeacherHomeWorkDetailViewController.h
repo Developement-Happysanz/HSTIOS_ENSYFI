@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ClassTeacherHomeWorkDetailViewController : UIViewController
+@interface ClassTeacherHomeWorkDetailViewController : UIViewController<UIPopoverControllerDelegate>
 - (IBAction)backBtn:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextView *descripitionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *typeLabel;
@@ -25,5 +25,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *smsImageView;
 - (IBAction)closeBtn:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *popupView;
+- (IBAction)sendBtn:(id)sender;
 
 @end

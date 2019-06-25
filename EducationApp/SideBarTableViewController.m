@@ -36,7 +36,10 @@
     [self.tableView registerClass:[SideTableViewCell class] forCellReuseIdentifier:@"SideTableViewCell"];
 
 }
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.tableview reloadData];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -111,7 +114,6 @@
         else if([appDel.user_type isEqualToString:@"4"])
         {
             appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
-            
             // customization
             NSArray *components = [NSArray arrayWithObjects:baseUrl,appDel.institute_code,parents_profile,appDel.user_picture, nil];
             NSString *fullpath= [NSString pathWithComponents:components];
@@ -165,57 +167,57 @@
     
     if (indexPath.row == 0)
     {
-        SideTableViewCell *cell = [self.tableview dequeueReusableCellWithIdentifier:@"username" forIndexPath:indexPath];
+     //   SideTableViewCell *cell = [self.tableview dequeueReusableCellWithIdentifier:@"username" forIndexPath:indexPath];
 
-        UIAlertController* alert = [UIAlertController
-                                    alertControllerWithTitle:nil
-                                    message:nil
-                                    preferredStyle:UIAlertControllerStyleActionSheet];
-        
-        UIAlertAction* button0 = [UIAlertAction
-                                  actionWithTitle:@"Cancel"
-                                  style:UIAlertActionStyleCancel
-                                  handler:^(UIAlertAction * action)
-                                  {
-                                  }];
-        
-        UIAlertAction* button1 = [UIAlertAction
-                                  actionWithTitle:@"Take photo"
-                                  style:UIAlertActionStyleDefault
-                                  handler:^(UIAlertAction * action)
-                                  {
-                                      [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                                      
-                                      UIImagePickerController *imagePickerController= [[UIImagePickerController alloc] init];
-                                      imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-                                      imagePickerController.delegate = self;
-                                      alert.popoverPresentationController.sourceView = cell.imageView;
-                                      [self presentViewController:imagePickerController animated:YES completion:^{}];
-                                      [MBProgressHUD hideHUDForView:self.view animated:YES];
-                                      
-                                  }];
-        
-        UIAlertAction* button2 = [UIAlertAction
-                                  actionWithTitle:@"Choose From Gallery"
-                                  style:UIAlertActionStyleDefault
-                                  handler:^(UIAlertAction * action)
-                                  {
-                                      [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                                      
-                                      UIImagePickerController *imagePickerController= [[UIImagePickerController alloc] init];
-                                      imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-                                      imagePickerController.delegate = self;
-                                      alert.popoverPresentationController.sourceView = cell.imageView;
-                                      [self presentViewController:imagePickerController animated:YES completion:^{}];
-                                      [MBProgressHUD hideHUDForView:self.view animated:YES];
-                                      
-                                  }];
-        
-        [alert addAction:button0];
-        [alert addAction:button1];
-        [alert addAction:button2];
-        alert.popoverPresentationController.sourceView = cell.imageView;
-        [self presentViewController:alert animated:YES completion:nil];
+//        UIAlertController* alert = [UIAlertController
+//                                    alertControllerWithTitle:nil
+//                                    message:nil
+//                                    preferredStyle:UIAlertControllerStyleActionSheet];
+//
+//        UIAlertAction* button0 = [UIAlertAction
+//                                  actionWithTitle:@"Cancel"
+//                                  style:UIAlertActionStyleCancel
+//                                  handler:^(UIAlertAction * action)
+//                                  {
+//                                  }];
+//
+//        UIAlertAction* button1 = [UIAlertAction
+//                                  actionWithTitle:@"Take photo"
+//                                  style:UIAlertActionStyleDefault
+//                                  handler:^(UIAlertAction * action)
+//                                  {
+//                                      [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//
+//                                      UIImagePickerController *imagePickerController= [[UIImagePickerController alloc] init];
+//                                      imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+//                                      imagePickerController.delegate = self;
+//                                      alert.popoverPresentationController.sourceView = cell.imageView;
+//                                      [self presentViewController:imagePickerController animated:YES completion:^{}];
+//                                      [MBProgressHUD hideHUDForView:self.view animated:YES];
+//
+//                                  }];
+//
+//        UIAlertAction* button2 = [UIAlertAction
+//                                  actionWithTitle:@"Choose From Gallery"
+//                                  style:UIAlertActionStyleDefault
+//                                  handler:^(UIAlertAction * action)
+//                                  {
+//                                      [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//
+//                                      UIImagePickerController *imagePickerController= [[UIImagePickerController alloc] init];
+//                                      imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+//                                      imagePickerController.delegate = self;
+//                                      alert.popoverPresentationController.sourceView = cell.imageView;
+//                                      [self presentViewController:imagePickerController animated:YES completion:^{}];
+//                                      [MBProgressHUD hideHUDForView:self.view animated:YES];
+//
+//                                  }];
+//
+//        [alert addAction:button0];
+//        [alert addAction:button1];
+//        [alert addAction:button2];
+//        alert.popoverPresentationController.sourceView = cell.imageView;
+//        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -229,20 +231,39 @@
     
     if ([segue.identifier isEqualToString:@"profile"])
     {
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
         UINavigationController *navController = segue.destinationViewController;
         ProfileViewController *profile = [navController childViewControllers].firstObject;
         NSLog(@"%@",profile);
 
     }
+    else if ([segue.identifier isEqualToString:@"profile"])
+    {
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
+        UINavigationController *navController = segue.destinationViewController;
+        ProfileViewController *profileViewController = [navController childViewControllers].firstObject;
+        NSLog(@"%@",profileViewController);
+        
+    }
     else if ([segue.identifier isEqualToString:@"home"])
     {
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
         UINavigationController *navController = segue.destinationViewController;
         SideBarTableViewController *sidebartableView = [navController childViewControllers].firstObject;
         NSLog(@"%@",sidebartableView);
         
     }
+    else if ([segue.identifier isEqualToString:@"exam"])
+    {
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
+        UINavigationController *navController = segue.destinationViewController;
+        ExamsViewController *examsViewController = [navController childViewControllers].firstObject;
+        NSLog(@"%@",examsViewController);
+        
+    }
     else if ([segue.identifier isEqualToString:@"classTest"])
     {
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
         UINavigationController *navController = segue.destinationViewController;
         ClassTestViewController *classtest = [navController childViewControllers].firstObject;
         NSLog(@"%@",classtest);
@@ -250,13 +271,15 @@
     }
     else if ([segue.identifier isEqualToString:@"timetable"])
     {
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
         UINavigationController *navController = segue.destinationViewController;
-        TimeTableViewController *time = [navController childViewControllers].firstObject;
+        NewTimeTableViewcontroller *time = [navController childViewControllers].firstObject;
         NSLog(@"%@",time);
         
     }
     else if ([segue.identifier isEqualToString:@"event"])
     {
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
         UINavigationController *navController = segue.destinationViewController;
         EventViewController *event = [navController childViewControllers].firstObject;
         NSLog(@"%@",event);
@@ -264,6 +287,7 @@
     }
     else if ([segue.identifier isEqualToString:@"communication"])
     {
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
         UINavigationController *navController = segue.destinationViewController;
         CommunicationViewController *communication = [navController childViewControllers].firstObject;
         NSLog(@"%@",communication);
@@ -271,82 +295,81 @@
     }
     else if ([segue.identifier isEqualToString:@"attendance"])
     {
-        appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        
-        NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
-        [parameters setObject:appDel.class_id forKey:@"class_id"];
-        [parameters setObject:appDel.student_id forKey:@"stud_id"];
-        
-        AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-        manager.requestSerializer = [AFJSONRequestSerializer serializer];
-        [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
-        
-        
-        /* concordanate with baseurl */
-        NSString *forAttendance = @"/apistudent/disp_Attendence/";
-        NSArray *components = [NSArray arrayWithObjects:baseUrl,appDel.institute_code,forAttendance, nil];
-        NSString *api = [NSString pathWithComponents:components];
-        
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        
-        [manager POST:api parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-         {
-             
-             NSLog(@"%@",responseObject);
-             
-             NSArray *arr_Attendance = [responseObject objectForKey:@"attendenceDetails"];
-             NSString *msg = [responseObject objectForKey:@"msg"];
-             
-             if ([msg isEqualToString:@"View Attendence"])
-             {
-                 
-                 NSArray *attendenceHistory = [responseObject objectForKey:@"attendenceHistory"];
-                 NSString *absent_days = [attendenceHistory valueForKey:@"absent_days"];
-                 NSString *leave_days = [attendenceHistory valueForKey:@"leave_days"];
-                 NSString *od_days = [attendenceHistory valueForKey:@"od_days"];
-                 NSString *present_days = [attendenceHistory valueForKey:@"present_days"];
-                 NSString *total_working_days = [attendenceHistory valueForKey:@"total_working_days"];
-                 
-                 
-                 for (int i = 0; i < [arr_Attendance count]; i++)
-                 {
-                     NSDictionary *dict = [arr_Attendance objectAtIndex:i];
-                     NSString *leaveDate = [dict valueForKey:@"abs_date"];
-                     
-                     [abs_date addObject:leaveDate];
-                 }
-                 
-                 
-                 [[NSUserDefaults standardUserDefaults] setObject:abs_date forKey:@"abs_date_Key"];
-                 [[NSUserDefaults standardUserDefaults] setObject:absent_days forKey:@"absent_days_Key"];
-                 [[NSUserDefaults standardUserDefaults] setObject:leave_days forKey:@"leave_days_Key"];
-                 [[NSUserDefaults standardUserDefaults] setObject:od_days forKey:@"od_days_Key"];
-                 [[NSUserDefaults standardUserDefaults] setObject:present_days forKey:@"present_days_Key"];
-                 [[NSUserDefaults standardUserDefaults] setObject:total_working_days forKey:@"total_working_days_Key"];
-        
-                 [[NSUserDefaults standardUserDefaults] setObject:msg forKey:@"msg_attendance_Key"];
-
-                 
+//        appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
+//
+//        NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
+//        [parameters setObject:appDel.class_id forKey:@"class_id"];
+//        [parameters setObject:appDel.student_id forKey:@"stud_id"];
+//
+//        AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+//        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+//        [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+//        manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+//
+//
+//        /* concordanate with baseurl */
+//        NSString *forAttendance = @"/apistudent/disp_Attendence/";
+//        NSArray *components = [NSArray arrayWithObjects:baseUrl,appDel.institute_code,forAttendance, nil];
+//        NSString *api = [NSString pathWithComponents:components];
+//
+//        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//
+//        [manager POST:api parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+//         {
+//
+//             NSLog(@"%@",responseObject);
+//
+//             NSArray *arr_Attendance = [responseObject objectForKey:@"attendenceDetails"];
+//             NSString *msg = [responseObject objectForKey:@"msg"];
+//
+//             if ([msg isEqualToString:@"View Attendence"])
+//             {
+//
+//                 NSArray *attendenceHistory = [responseObject objectForKey:@"attendenceHistory"];
+//                 NSString *absent_days = [attendenceHistory valueForKey:@"absent_days"];
+//                 NSString *leave_days = [attendenceHistory valueForKey:@"leave_days"];
+//                 NSString *od_days = [attendenceHistory valueForKey:@"od_days"];
+//                 NSString *present_days = [attendenceHistory valueForKey:@"present_days"];
+//                 NSString *total_working_days = [attendenceHistory valueForKey:@"total_working_days"];
+//
+//
+//                 for (int i = 0; i < [arr_Attendance count]; i++)
+//                 {
+//                     NSDictionary *dict = [arr_Attendance objectAtIndex:i];
+//                     NSString *leaveDate = [dict valueForKey:@"abs_date"];
+//
+//                     [abs_date addObject:leaveDate];
+//                 }
+//
+//
+//                 [[NSUserDefaults standardUserDefaults] setObject:abs_date forKey:@"abs_date_Key"];
+//                 [[NSUserDefaults standardUserDefaults] setObject:absent_days forKey:@"absent_days_Key"];
+//                 [[NSUserDefaults standardUserDefaults] setObject:leave_days forKey:@"leave_days_Key"];
+//                 [[NSUserDefaults standardUserDefaults] setObject:od_days forKey:@"od_days_Key"];
+//                 [[NSUserDefaults standardUserDefaults] setObject:present_days forKey:@"present_days_Key"];
+//                 [[NSUserDefaults standardUserDefaults] setObject:total_working_days forKey:@"total_working_days_Key"];
+//
+//                 [[NSUserDefaults standardUserDefaults] setObject:msg forKey:@"msg_attendance_Key"];
+                [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
                  UINavigationController *navController = segue.destinationViewController;
                  AttendanceViewController *attendance = [navController childViewControllers].firstObject;
                  NSLog(@"%@",attendance);
-                 
-                 [MBProgressHUD hideHUDForView:self.view animated:YES];
-                 
-             }
-             
-
-             
-         }
-              failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-         {
-             NSLog(@"error: %@", error);
-         }];
+        
+//                 [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+//             }
+//
+//
+//
+//         }
+//              failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+//         {
+//             NSLog(@"error: %@", error);
+//         }];
     }
     else if ([segue.identifier isEqualToString:@"settings"])
     {
-        
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
         UINavigationController *navController = segue.destinationViewController;
         SettingsViewController *settings = [navController childViewControllers].firstObject;
         NSLog(@"%@",settings);
@@ -354,7 +377,7 @@
     }
     else if ([segue.identifier isEqualToString:@"studentinfo"])
     {
-        
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
         UINavigationController *navController = segue.destinationViewController;
         StudentinfoViewController *info = [navController childViewControllers].firstObject;
         NSLog(@"%@",info);
@@ -363,7 +386,7 @@
     
     else if ([segue.identifier isEqualToString:@"onduty"])
     {
-        
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
         [[NSUserDefaults standardUserDefaults]setObject:@" " forKey:@"msgKey"];
         UINavigationController *navController = segue.destinationViewController;
         OnDutyTableViewController *onduty = [navController childViewControllers].firstObject;
@@ -372,7 +395,7 @@
     }
     else if ([segue.identifier isEqualToString:@"signout"])
     {
-        
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
         [[NSUserDefaults standardUserDefaults]setObject:@" " forKey:@"msgKey"];
         UINavigationController *navController = segue.destinationViewController;
         ViewController *View = [navController childViewControllers].firstObject;

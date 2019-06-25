@@ -28,10 +28,12 @@
     name = [[NSMutableArray alloc]init];
     user_type_name = [[NSMutableArray alloc]init];
     _id = [[NSMutableArray alloc]init];
+    
+    NSString *g_Id = [[NSUserDefaults standardUserDefaults]objectForKey:@"GN_StrGroup_id"];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
-    [parameters setObject:@"1" forKey:@"group_id"];
+    [parameters setObject:g_Id forKey:@"group_id"];
     
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -53,6 +55,11 @@
          NSArray *dataArray = [responseObject objectForKey:@"memberList"];
          if ([msg isEqualToString:@"Group Member Details"])
          {
+             
+             [_id removeAllObjects];
+             [user_type_name removeAllObjects];
+             [name removeAllObjects];
+             
              for (int i = 0;i < [dataArray count]; i++)
              {
                  NSArray *Data = [dataArray objectAtIndex:i];

@@ -26,5 +26,6 @@
 - (IBAction)selectBtn:(id)sender;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 - (IBAction)plusBtn:(id)sender;
+@property (strong, nonatomic) IBOutlet UIView *mainView;
 
 @end

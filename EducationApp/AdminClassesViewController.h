@@ -24,5 +24,7 @@
 - (IBAction)sectionBtn:(id)sender;
 - (IBAction)classBTn:(id)sender;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
+@property (strong, nonatomic) IBOutlet UIView *mainView;
+@property (strong, nonatomic) IBOutlet UIView *tableTitleView;
 
 @end

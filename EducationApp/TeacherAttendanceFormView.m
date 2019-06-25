@@ -51,6 +51,19 @@
     name = [[NSMutableArray alloc]init];
     sub_result = [[NSMutableArray alloc]init];
     tablearray=[NSMutableArray new];
+    
+    self.mainView.layer.cornerRadius = 8.0f;
+    self.mainView.clipsToBounds = YES;
+    
+    _mainView.layer.shadowRadius  = 5.5f;
+    _mainView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    _mainView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    _mainView.layer.shadowOpacity = 0.6f;
+    _mainView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(_mainView.bounds, shadowInsets)];
+    _mainView.layer.shadowPath    = shadowPath.CGPath;
 
     attendanceType = @[@"",@"Present",@"Absent",@"Leave",@"OD"];
     
@@ -74,8 +87,8 @@
     }
     [database close];
     
-    _selectBtnOtlet.layer.borderColor = [UIColor colorWithRed:102/255.0f green:51/255.0f blue:102/255.0f alpha:1.0].CGColor;
-    _selectBtnOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
+    _selectBtnOtlet.layer.borderColor = [UIColor colorWithRed:66/255.0f green:66/255.0f blue:66/255.0f alpha:1.0].CGColor;
+//    _selectBtnOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
     _selectBtnOtlet.layer.borderWidth = 1.0f;
     [_selectBtnOtlet.layer setCornerRadius:10.0f];
     
@@ -500,8 +513,8 @@
 {
     if(dropDown == nil)
     {
-        CGFloat f = 100;
-        dropDown = [[NIDropDown alloc]showDropDown:sender :&f :classNameArr :nil :@"down"];
+        CGFloat f = 300;
+        dropDown = [[NIDropDown alloc]showDropDown:sender :&f :classNameArr :nil :@"down" :self.view];
         [[NSUserDefaults standardUserDefaults]setObject:@"teacher_attendance" forKey:@"teacher_attendanceKey"];
         _selectBtnOtlet.titleLabel.textColor = [UIColor colorWithRed:102/255.0f green:52/255.0f blue:102/255.0f alpha:1.0];
         dropDown.delegate = self;

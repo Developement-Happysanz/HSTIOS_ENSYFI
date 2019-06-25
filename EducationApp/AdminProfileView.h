@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PECropViewController.h"
 
-@interface AdminProfileView : UIViewController<UIGestureRecognizerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate,UIActionSheetDelegate>
+
+@interface AdminProfileView : UIViewController<UIGestureRecognizerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate,UIActionSheetDelegate,PECropViewControllerDelegate>
+@property (strong, nonatomic) IBOutlet UIButton *changePasswordOutlet;
 - (IBAction)imageBtn:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *imageBtnOtlet;
 - (IBAction)changePaswrdBTn:(id)sender;

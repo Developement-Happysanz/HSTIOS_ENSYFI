@@ -36,13 +36,43 @@
     
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
-    SWRevealViewController *revealViewController = self.revealViewController;
-    if ( revealViewController )
+    NSString *str = [[NSUserDefaults standardUserDefaults]objectForKey:@"view_selection"];
+    
+    if ([str isEqualToString:@"mainMenu"])
     {
-        [self.sidebarBtn setTarget: self.revealViewController];
-        [self.sidebarBtn setAction: @selector( revealToggle: )];
-        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+        UIBarButtonItem *button2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back-01.png"] style:UIBarButtonItemStylePlain target:self action:@selector(backBtn:)];
+        button2.tintColor = UIColor.whiteColor;
+        self.navigationItem.leftBarButtonItem = button2;
     }
+    else
+    {
+        SWRevealViewController *revealViewController = self.revealViewController;
+        if (revealViewController)
+        {
+            [self.sidebarBtn setTarget: self.revealViewController];
+            [self.sidebarBtn setAction: @selector( revealToggle: )];
+            [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+        }
+        
+        SWRevealViewController *revealController = [self revealViewController];
+        UITapGestureRecognizer *tap = [revealController tapGestureRecognizer];
+        tap.delegate = self;
+        [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
+    }
+    
+    self.mainView.layer.cornerRadius = 8.0f;
+    self.mainView.clipsToBounds = YES;
+    
+    _mainView.layer.shadowRadius  = 5.5f;
+    _mainView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    _mainView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    _mainView.layer.shadowOpacity = 0.6f;
+    _mainView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(_mainView.bounds, shadowInsets)];
+    _mainView.layer.shadowPath    = shadowPath.CGPath;
+    
     sec_id = [[NSMutableArray alloc]init];
     sec_name = [[NSMutableArray alloc]init];
     
@@ -55,18 +85,18 @@
     exam_year = [[NSMutableArray alloc]init];
     is_internal_external = [[NSMutableArray alloc]init];
 
-    SWRevealViewController *revealController = [self revealViewController];
-    UITapGestureRecognizer *tap = [revealController tapGestureRecognizer];
-    tap.delegate = self;
-    [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
+//    SWRevealViewController *revealController = [self revealViewController];
+//    UITapGestureRecognizer *tap = [revealController tapGestureRecognizer];
+//    tap.delegate = self;
+//    [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
     
-    _classOtlet.layer.borderColor = [UIColor colorWithRed:102/255.0f green:51/255.0f blue:102/255.0f alpha:1.0].CGColor;
-    _classOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
+    _classOtlet.layer.borderColor = [UIColor colorWithRed:64/255.0f green:64/255.0f blue:64/255.0f alpha:1.0].CGColor;
+  //  _classOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
     _classOtlet.layer.borderWidth = 1.0f;
     [_classOtlet.layer setCornerRadius:10.0f];
     
-    _sectionOtlet.layer.borderColor = [UIColor colorWithRed:102/255.0f green:51/255.0f blue:102/255.0f alpha:1.0].CGColor;
-    _sectionOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
+    _sectionOtlet.layer.borderColor = [UIColor colorWithRed:64/255.0f green:64/255.0f blue:64/255.0f alpha:1.0].CGColor;
+  //  _sectionOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
     _sectionOtlet.layer.borderWidth = 1.0f;
     [_sectionOtlet.layer setCornerRadius:10.0f];
     
@@ -75,6 +105,11 @@
     [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"selected_Class_Value"];
     [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"selected_Section_Value"];
 
+}
+
+- (IBAction)backBtn:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -112,20 +147,12 @@
     if (![selected_class_name isEqualToString:@""])
     {
         NSArray *class_name = [[NSUserDefaults standardUserDefaults]objectForKey:@"admin_class_name"];
-        
         NSUInteger fooIndex = [class_name indexOfObject:selected_class_name];
-        
         NSArray *admin_class_id = [[NSUserDefaults standardUserDefaults]objectForKey:@"admin_class_id"];
         tmpString1 = admin_class_id[fooIndex];
-        
         [[NSUserDefaults standardUserDefaults]setObject:tmpString1 forKey:@"selected_class_id"];
-        
-        
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        
-        
         appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        
         NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
         [parameters setObject:tmpString1 forKey:@"class_id"];
         
@@ -172,8 +199,8 @@
                  
                  if(dropdown == nil)
                  {
-                     CGFloat f = 100;
-                     dropdown = [[NIDropDown alloc]showDropDown:sender :&f :sec_name :nil :@"down"];
+                     CGFloat f = 300;
+                     dropdown = [[NIDropDown alloc]showDropDown:sender :&f :sec_name :nil :@"down" :self.view];
                      dropdown.delegate = self;
                      
                  }
@@ -252,8 +279,8 @@
         
         [self.tableView reloadData];
         
-        CGFloat f = 200;
-        dropdown = [[NIDropDown alloc]showDropDown:sender :&f :class_name :nil :@"down"];
+        CGFloat f = 300;
+        dropdown = [[NIDropDown alloc]showDropDown:sender :&f :class_name :nil :@"down" :self.view];
         [_sectionOtlet setTitle:@"Section" forState:UIControlStateNormal];
         _sectionOtlet.titleLabel.textColor = [UIColor colorWithRed:102/255.0f green:52/255.0f blue:102/255.0f alpha:1.0];
         dropdown.delegate = self;
@@ -418,8 +445,8 @@
     // Configure the cell.....
     
     cell.titleLabel.text = [exam_name objectAtIndex:indexPath.row];
-    cell.fromLabel.text = [Fromdate objectAtIndex:indexPath.row];
-    cell.toLabel.text = [Todate objectAtIndex:indexPath.row];
+    cell.fromLabel.text =  [NSString stringWithFormat:@"%@ %@ %@",[Fromdate objectAtIndex:indexPath.row],@"to",[Todate objectAtIndex:indexPath.row]];
+//    cell.toLabel.text = ;
     cell.examId.text = [exam_id objectAtIndex:indexPath.row];
     
     if ([cell.fromLabel.text isEqualToString:@""])
@@ -427,9 +454,19 @@
         cell.calenderImg.hidden = YES;
         cell.seprateLabel.hidden = YES;
     }
-    cell.cellView.layer.borderWidth = 1.0f;
-    cell.cellView.layer.borderColor = [UIColor clearColor].CGColor;
-    cell.cellView.layer.cornerRadius = 6.0f;
+    
+    cell.cellView.layer.cornerRadius = 8.0f;
+    cell.cellView.clipsToBounds = YES;
+    
+    cell.cellView.layer.shadowRadius  = 5.5f;
+    cell.cellView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    cell.cellView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    cell.cellView.layer.shadowOpacity = 0.6f;
+    cell.cellView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(cell.cellView.bounds, shadowInsets)];
+    cell.cellView.layer.shadowPath    = shadowPath.CGPath;
 
     return cell;
 }

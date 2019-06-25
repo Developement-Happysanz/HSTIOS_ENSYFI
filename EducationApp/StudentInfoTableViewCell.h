@@ -15,5 +15,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *studentidLabel;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UIView *mainView;
+@property (strong, nonatomic) IBOutlet UIButton *continueOutlet;
+@property (strong, nonatomic) IBOutlet UIView *cellView;
 
 @end

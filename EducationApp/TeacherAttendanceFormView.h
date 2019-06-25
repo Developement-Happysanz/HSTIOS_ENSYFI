@@ -20,5 +20,6 @@
 - (IBAction)selectBtn:(id)sender;
 @property (strong, nonatomic) IBOutlet UILabel *dateLabel;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UIView *mainView;
 
 @end

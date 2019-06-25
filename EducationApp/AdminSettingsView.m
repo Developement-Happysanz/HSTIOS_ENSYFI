@@ -35,20 +35,20 @@
     tap.delegate = self;
     [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
     
-    _username.layer.borderColor = [UIColor colorWithRed:120/255.0f green:67/255.0f blue:154/255.0f alpha:1.0].CGColor;
-    _username.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
-    _username.layer.borderWidth = 1.0f;
-    [_username.layer setCornerRadius:10.0f];
+//    _username.layer.borderColor = [UIColor colorWithRed:120/255.0f green:67/255.0f blue:154/255.0f alpha:1.0].CGColor;
+//    _username.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
+//    _username.layer.borderWidth = 1.0f;
+//    [_username.layer setCornerRadius:10.0f];
     
-    _password.layer.borderColor = [UIColor colorWithRed:120/255.0f green:67/255.0f blue:154/255.0f alpha:1.0].CGColor;
-    _password.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
-    _password.layer.borderWidth = 1.0f;
-    [_password.layer setCornerRadius:10.0f];
-    
-    _conformPaswrd.layer.borderColor = [UIColor colorWithRed:120/255.0f green:67/255.0f blue:154/255.0f alpha:1.0].CGColor;
-    _conformPaswrd.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
-    _conformPaswrd.layer.borderWidth = 1.0f;
-    [_conformPaswrd.layer setCornerRadius:10.0f];
+//    _password.layer.borderColor = [UIColor colorWithRed:120/255.0f green:67/255.0f blue:154/255.0f alpha:1.0].CGColor;
+//    _password.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
+//    _password.layer.borderWidth = 1.0f;
+//    [_password.layer setCornerRadius:10.0f];
+//    
+//    _conformPaswrd.layer.borderColor = [UIColor colorWithRed:120/255.0f green:67/255.0f blue:154/255.0f alpha:1.0].CGColor;
+//    _conformPaswrd.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
+//    _conformPaswrd.layer.borderWidth = 1.0f;
+//    [_conformPaswrd.layer setCornerRadius:10.0f];
     
     _updateOutlet.layer.cornerRadius = 10;
     _updateOutlet.clipsToBounds = YES;

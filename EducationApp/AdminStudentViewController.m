@@ -43,26 +43,52 @@
     sex = [[NSMutableArray alloc]init];
     class_id_Arr = [[NSMutableArray alloc]init];
     
-    SWRevealViewController *revealViewController = self.revealViewController;
-    if ( revealViewController )
+    self.mainView.layer.cornerRadius = 8.0f;
+    self.mainView.clipsToBounds = YES;
+    
+    _mainView.layer.shadowRadius  = 5.5f;
+    _mainView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    _mainView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    _mainView.layer.shadowOpacity = 0.6f;
+    _mainView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(_mainView.bounds, shadowInsets)];
+    _mainView.layer.shadowPath    = shadowPath.CGPath;
+    
+    
+    NSString *str = [[NSUserDefaults standardUserDefaults]objectForKey:@"view_selection"];
+    
+    if ([str isEqualToString:@"mainMenu"])
     {
-        [self.sidebarButton setTarget: self.revealViewController];
-        [self.sidebarButton setAction: @selector( revealToggle: )];
-        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+        UIBarButtonItem *button2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back-01.png"] style:UIBarButtonItemStylePlain target:self action:@selector(backBtn:)];
+        button2.tintColor = UIColor.whiteColor;
+        self.navigationItem.leftBarButtonItem = button2;
+    }
+    else
+    {
+        SWRevealViewController *revealViewController = self.revealViewController;
+        if (revealViewController)
+        {
+            [self.sidebarButton setTarget: self.revealViewController];
+            [self.sidebarButton setAction: @selector( revealToggle: )];
+            [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+        }
+        
+        SWRevealViewController *revealController = [self revealViewController];
+        UITapGestureRecognizer *tap = [revealController tapGestureRecognizer];
+        tap.delegate = self;
+        [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
     }
     
-    SWRevealViewController *revealController = [self revealViewController];
-    UITapGestureRecognizer *tap = [revealController tapGestureRecognizer];
-    tap.delegate = self;
-    [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
     
-    _classBtnOtlet.layer.borderColor = [UIColor colorWithRed:102/255.0f green:51/255.0f blue:102/255.0f alpha:1.0].CGColor;
-    _classBtnOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
+    _classBtnOtlet.layer.borderColor = [UIColor colorWithRed:66/255.0f green:66/255.0f blue:66/255.0f alpha:1.0].CGColor;
+   //[_classBtnOtlet setBackgroundColor:[UIColor colorWithRed:154/255.0f green:154/255.0f blue:154/255.0f alpha:1.0]];
     _classBtnOtlet.layer.borderWidth = 1.0f;
     [_classBtnOtlet.layer setCornerRadius:10.0f];
     
-    _sectionBtnOtlet.layer.borderColor = [UIColor colorWithRed:102/255.0f green:51/255.0f blue:102/255.0f alpha:1.0].CGColor;
-    _sectionBtnOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
+    _sectionBtnOtlet.layer.borderColor = [UIColor colorWithRed:66/255.0f green:66/255.0f blue:66/255.0f alpha:1.0].CGColor;
+  //  [_sectionBtnOtlet setBackgroundColor:[UIColor colorWithRed:154/255.0f green:154/255.0f blue:154/255.0f alpha:1.0]];
     _sectionBtnOtlet.layer.borderWidth = 1.0f;
     [_sectionBtnOtlet.layer setCornerRadius:10.0f];
     
@@ -71,6 +97,7 @@
     [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"selected_Section_Value"];
 
     self.tableView.hidden = YES;
+    self.tableTitleView.hidden = YES;
 
 }
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -81,15 +108,15 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+- (IBAction)backBtn:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+// In a storyboard-based application, you will often want to do a little preparation before navigati
+
 
 - (IBAction)sectionBtn:(id)sender
 {
@@ -163,8 +190,8 @@
                      
                      if(dropDown == nil)
                      {
-                         CGFloat f = 100;
-                         dropDown = [[NIDropDown alloc]showDropDown:sender :&f :sec_name :nil :@"down"];
+                         CGFloat f = 300;
+                         dropDown = [[NIDropDown alloc]showDropDown:sender :&f :sec_name :nil :@"down" :self.view];
                          dropDown.delegate = self;
                      }
                      else {
@@ -227,11 +254,8 @@
 }
 - (IBAction)classBtn:(id)sender
 {
-
     [[NSUserDefaults standardUserDefaults]setObject:@"Class" forKey:@"sec_class"];
-
     [[NSUserDefaults standardUserDefaults]setObject:@"YES" forKey:@"class_btn_tapped"];
-    
     NSArray *class_name = [[NSUserDefaults standardUserDefaults]objectForKey:@"admin_class_name"];
     if(dropDown == nil)
     {
@@ -242,10 +266,11 @@
         [sex removeAllObjects];
         [class_id_Arr removeAllObjects];
         
-        [self.tableView reloadData];
+       // self.tableTitleView.hidden = YES;
+       // [self.tableView reloadData];
         
-        CGFloat f = 200;
-        dropDown = [[NIDropDown alloc]showDropDown:sender :&f :class_name :nil :@"down"];
+        CGFloat f = 300;
+        dropDown = [[NIDropDown alloc]showDropDown:sender :&f :class_name :nil :@"down" :self.view];
         [_sectionBtnOtlet setTitle:@"Section" forState:UIControlStateNormal];
         _sectionBtnOtlet.titleLabel.textColor = [UIColor colorWithRed:102/255.0f green:52/255.0f blue:102/255.0f alpha:1.0];
         dropDown.delegate = self;
@@ -360,6 +385,7 @@
              dropDown = nil;
              
              self.tableView.hidden = NO;
+             self.tableTitleView.hidden = NO;
              
              [self.tableView reloadData];
              
@@ -367,6 +393,7 @@
          }
          if ([data count]== 0)
          {
+             self.tableTitleView.hidden = YES;
              UIAlertController *alert= [UIAlertController
                                         alertControllerWithTitle:@"ENSYFI"
                                         message:@"No data"
@@ -377,7 +404,7 @@
                                   style:UIAlertActionStyleDefault
                                   handler:^(UIAlertAction * action)
                                   {
-                                      
+                                     
                                   }];
              
              [alert addAction:ok];

@@ -25,5 +25,6 @@
 @property (strong, nonatomic) IBOutlet UIImageView *guardianImg;
 @property (strong, nonatomic) IBOutlet UIImageView *motherImg;
 @property (strong, nonatomic) IBOutlet UIImageView *fatherImg;
+@property (strong, nonatomic) IBOutlet UIButton *viewstudentOutlet;
 
 @end

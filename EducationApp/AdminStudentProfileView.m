@@ -27,6 +27,31 @@
     
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
+    self.mainView.layer.cornerRadius = 8.0f;
+    self.mainView.clipsToBounds = YES;
+    
+    self.mainView.layer.shadowRadius  = 5.5f;
+    self.mainView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    self.mainView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    self.mainView.layer.shadowOpacity = 0.6f;
+    self.mainView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(self.mainView.bounds, shadowInsets)];
+    self.mainView.layer.shadowPath    = shadowPath.CGPath;
+    
+    _classtestOutlet.layer.cornerRadius = 2.0f; // this value vary as per your desire
+    _classtestOutlet.clipsToBounds = YES;
+    
+    _feeOutlet.layer.cornerRadius = 2.0f; // this value vary as per your desire
+    _feeOutlet.clipsToBounds = YES;
+    
+    _attendanceOutlet.layer.cornerRadius = 2.0f; // this value vary as per your desire
+    _attendanceOutlet.clipsToBounds = YES;
+    
+    _examOutlet.layer.cornerRadius = 2.0f; // this value vary as per your desire
+    _examOutlet.clipsToBounds = YES;
+    
     appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
@@ -246,9 +271,10 @@
     {
         [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"ClassView"];
         
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"admin" bundle:nil];
-            AdminClassesViewController *adminClassesViewController = (AdminClassesViewController *)[storyboard instantiateViewControllerWithIdentifier:@"AdminClassesViewController"];
-            [self.navigationController pushViewController:adminClassesViewController animated:YES];
+//            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"admin" bundle:nil];
+//            AdminClassesViewController *adminClassesViewController = (AdminClassesViewController *)[storyboard instantiateViewControllerWithIdentifier:@"AdminClassesViewController"];
+//            [self.navigationController pushViewController:adminClassesViewController animated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
         
     }
     else

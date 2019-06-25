@@ -7,6 +7,7 @@
 //
 
 #import "AdminProfileView.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface AdminProfileView ()
 {
@@ -15,6 +16,9 @@
     NSData *image;
 
 }
+
+@property (nonatomic) UIPopoverController *popover;
+
 @end
 
 @implementation AdminProfileView
@@ -38,9 +42,12 @@
     tap.delegate = self;
     [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
     
-    self.imageView.layer.cornerRadius = 50.0;
-    self.imageView.clipsToBounds = YES;
+//    self.imageView.layer.cornerRadius = 50.0;
+//    self.imageView.clipsToBounds = YES;
     
+    self.changePasswordOutlet.layer.cornerRadius = 2.0f;
+    self.changePasswordOutlet.clipsToBounds = YES;
+
     //setup the page...
     
     appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -61,8 +68,10 @@ NSArray *components = [NSArray arrayWithObjects:baseUrl,[[NSUserDefaults standar
             // Update the UI
             
             self.imageView.image = [UIImage imageWithData:imageData];
-            _imageView.layer.cornerRadius = 50.0;
-            _imageView.clipsToBounds = YES;
+            _imageView.layer.cornerRadius = self.imageView.frame.size.height / 2;
+            _imageView.layer.borderColor = UIColor.whiteColor.CGColor;
+            _imageView.layer.borderWidth = 5.0;
+            _imageView.clipsToBounds = true;
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             
         });
@@ -284,7 +293,25 @@ NSArray *components = [NSArray arrayWithObjects:baseUrl,[[NSUserDefaults standar
 //    UIGraphicsEndImageContext();
     _imageView.layer.cornerRadius = 50.0;
     _imageView.clipsToBounds = YES;
-    [self profile_Pic];
+    
+    UIGraphicsEndImageContext();
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        if (self.popover.isPopoverVisible) {
+            [self.popover dismissPopoverAnimated:NO];
+        }
+        
+        //    [self updateEditButtonEnabled];
+        
+        [self openEditor:nil];
+    } else {
+        [picker dismissViewControllerAnimated:YES completion:^{
+            [self openEditor:nil];
+        }];
+    }
+    
+    
+//    [self profile_Pic];
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 -(void)profile_Pic
@@ -345,5 +372,53 @@ NSArray *components = [NSArray arrayWithObjects:baseUrl,[[NSUserDefaults standar
         
     }
     [MBProgressHUD hideHUDForView:self.view animated:YES];
+}
+- (void)cropViewController:(PECropViewController *)controller didFinishCroppingImage:(UIImage *)croppedImage transform:(CGAffineTransform)transform cropRect:(CGRect)cropRect
+{
+    [controller dismissViewControllerAnimated:YES completion:NULL];
+    //    self.imageView.image = ;
+    
+    chosenImage = croppedImage;
+    self.imageView.image = chosenImage;
+    image = UIImageJPEGRepresentation(chosenImage, 0.1);
+    [self profile_Pic];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        // [self updateEditButtonEnabled];
+    }
+}
+
+- (void)cropViewControllerDidCancel:(PECropViewController *)controller
+{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        //  [self updateEditButtonEnabled];
+    }
+    
+    [controller dismissViewControllerAnimated:YES completion:NULL];
+}
+
+#pragma mark - Action methods
+
+- (IBAction)openEditor:(id)sender
+{
+    PECropViewController *controller = [[PECropViewController alloc] init];
+    controller.delegate = self;
+    controller.image = self.imageView.image;
+    
+    UIImage *image = self.imageView.image;
+    CGFloat width = image.size.width;
+    CGFloat height = image.size.height;
+    CGFloat length = MIN(width, height);
+    controller.imageCropRect = CGRectMake((width - length) / 2,
+                                          (height - length) / 2,
+                                          length,
+                                          length);
+    
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+    }
+    
+    [self presentViewController:navigationController animated:YES completion:NULL];
 }
 @end

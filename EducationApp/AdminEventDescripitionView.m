@@ -31,6 +31,9 @@
     self.eventdescrp.text = eventdiscrp;
     
     self.eventName.text = eventName;
+    
+    self.organiserOutlet.layer.cornerRadius = 2.0f;
+    self.organiserOutlet.clipsToBounds = YES;
 }
 
 - (void)didReceiveMemoryWarning {

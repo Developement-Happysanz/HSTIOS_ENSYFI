@@ -30,16 +30,16 @@
     
     [self.view addGestureRecognizer:tapGesture];
     
-    _username.layer.borderColor = [UIColor colorWithRed:102/255.0f green:51/255.0f blue:102/255.0f alpha:1.0].CGColor;
-    _username.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
-    _username.layer.borderWidth = 1.0f;
-    [_username.layer setCornerRadius:10.0f];
+//    _username.layer.borderColor = [UIColor colorWithRed:102/255.0f green:51/255.0f blue:102/255.0f alpha:1.0].CGColor;
+//    _username.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
+//    _username.layer.borderWidth = 1.0f;
+//    [_username.layer setCornerRadius:10.0f];
     
     _username.delegate = self;
     
-    _conformOutlet.layer.borderColor = [UIColor colorWithRed:102/255.0f green:51/255.0f blue:102/255.0f alpha:1.0].CGColor;
-    _conformOutlet.layer.cornerRadius = 10;
-    _conformOutlet.layer.borderWidth = 1.0f;
+//    _conformOutlet.layer.borderColor = [UIColor colorWithRed:102/255.0f green:51/255.0f blue:102/255.0f alpha:1.0].CGColor;
+    _conformOutlet.layer.cornerRadius = 2.0f;
+//    _conformOutlet.layer.borderWidth = 1.0f;
     _conformOutlet.clipsToBounds = YES;
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]

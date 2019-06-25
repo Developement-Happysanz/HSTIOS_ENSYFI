@@ -31,5 +31,6 @@
 - (IBAction)segmentBtn:(id)sender;
 - (IBAction)backBtn:(id)sender;
 - (IBAction)submitBtn:(id)sender;
+@property (strong, nonatomic) IBOutlet UIView *mainView;
 
 @end

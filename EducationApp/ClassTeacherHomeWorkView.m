@@ -117,8 +117,19 @@
 //        cell.sentLabel.text = @"";
 //        cell.sentImage.hidden = YES;
 //    }
-    cell.classView.layer.cornerRadius = 5.0;
+    
+    cell.classView.layer.cornerRadius = 8.0f;
     cell.classView.clipsToBounds = YES;
+    
+    cell.classView.layer.shadowRadius  = 5.5f;
+    cell.classView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    cell.classView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    cell.classView.layer.shadowOpacity = 0.6f;
+    cell.classView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(cell.classView.bounds, shadowInsets)];
+    cell.classView.layer.shadowPath    = shadowPath.CGPath;
     
     return cell;
 }

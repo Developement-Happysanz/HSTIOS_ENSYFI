@@ -19,8 +19,18 @@
     // Do any additional setup after loading the view.
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
 
-    self.subView.layer.cornerRadius = 8.0;
+    self.subView.layer.cornerRadius = 8.0f;
     self.subView.clipsToBounds = YES;
+    
+    _subView.layer.shadowRadius  = 5.5f;
+    _subView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    _subView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    _subView.layer.shadowOpacity = 0.6f;
+    _subView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(_subView.bounds, shadowInsets)];
+    _subView.layer.shadowPath    = shadowPath.CGPath;
     
     self.dateLabel.text = [NSString stringWithFormat:@"%@%@",@"Date : ",[[NSUserDefaults standardUserDefaults]objectForKey:@"ctView_date"]];
     self.noPresentLabel.text = [NSString stringWithFormat:@"%@%@",@"No. of Present : ",[[NSUserDefaults standardUserDefaults]objectForKey:@"ctView_present"]];

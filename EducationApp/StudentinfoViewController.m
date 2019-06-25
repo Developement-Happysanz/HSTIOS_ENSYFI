@@ -82,15 +82,76 @@
     NSString *class = [className objectAtIndex:indexPath.row];
     NSString *strSection = [section objectAtIndex:indexPath.row];
     NSString *classSection = [NSString stringWithFormat:@"%@ %@", class, strSection];
+    
+    cell.continueOutlet.tag = indexPath.row;
+    cell.continueOutlet.layer.cornerRadius = 3.0f;
+    cell.continueOutlet.clipsToBounds = YES;
+    
+    [cell.continueOutlet addTarget:self action:@selector(yourButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+
 
     cell.classnameLabel.text = classSection;
     cell.classid.text = [classid objectAtIndex:indexPath.row];
     
-    cell.mainView.layer.borderWidth = 1.0f;
-    cell.mainView.layer.borderColor = [UIColor clearColor].CGColor;
-    cell.mainView.layer.cornerRadius = 6.0f;
+//    cell.mainView.layer.borderWidth = 1.0f;
+//    cell.mainView.layer.borderColor = [UIColor clearColor].CGColor;
+//    cell.mainView.layer.cornerRadius = 6.0f;
+    
+    cell.cellView.layer.cornerRadius = 8.0f;
+    cell.cellView.clipsToBounds = YES;
+    
+    cell.cellView.layer.shadowRadius  = 5.5f;
+    cell.cellView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    cell.cellView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    cell.cellView.layer.shadowOpacity = 0.6f;
+    cell.cellView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(cell.cellView.bounds, shadowInsets)];
+    cell.cellView.layer.shadowPath    = shadowPath.CGPath;
     
     return cell;
+}
+
+-(void)yourButtonClicked:(UIButton*)sender
+{
+    if (sender.tag == 0)
+    {
+        StudentInfoTableViewCell *selectedCell;
+        appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
+
+        appDel.class_id = selectedCell.classid.text;
+        
+        NSInteger indexValu = [classid indexOfObject:selectedCell.classid.text];
+        
+        appDel.student_id = studentID[indexValu];
+      //  appDel.student_id = selectedCell.studentidLabel.text;
+
+        NSInteger indexValue = [classid indexOfObject:selectedCell.classid.text];
+
+        appDel.admissionID = admisionID[indexValue];
+
+        NSInteger indexValueSecName = [classid indexOfObject:selectedCell.classid.text];
+
+        NSString *sectionname = section[indexValueSecName];
+
+
+        //    [[NSUserDefaults standardUserDefaults]setObject:stradmission_id forKey:@"admission_id_key"];
+        [[NSUserDefaults standardUserDefaults]setObject:selectedCell.admissionidLabel.text forKey:@"admission_no_Key"];
+        [[NSUserDefaults standardUserDefaults]setObject:selectedCell.classnameLabel.text forKey:@"class_name_key"];
+        [[NSUserDefaults standardUserDefaults]setObject:selectedCell.classid.text forKey:@"class_id_key"];
+        [[NSUserDefaults standardUserDefaults]setObject:selectedCell.nameLabel.text forKey:@"studentname_Key"];
+        [[NSUserDefaults standardUserDefaults]setObject:appDel.student_id forKey:@"registered_id_key"];
+
+
+        [[NSUserDefaults standardUserDefaults]setObject:sectionname forKey:@"sec_name_key"];
+
+
+        //    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        //    SWRevealViewController *exam = (SWRevealViewController *)[storyboard instantiateViewControllerWithIdentifier:@"SWRevealViewController"];
+        //    [self.navigationController pushViewController:exam animated:YES];
+        [self performSegueWithIdentifier:@"SWRevealViewController" sender:self.view];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -101,7 +162,10 @@
     appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     appDel.class_id = selectedCell.classid.text;
-    appDel.student_id = selectedCell.studentidLabel.text;
+   
+    NSInteger indexValu = [classid indexOfObject:selectedCell.classid.text];
+    
+    appDel.student_id = studentID[indexValu];
     
     NSInteger indexValue = [classid indexOfObject:selectedCell.classid.text];
     

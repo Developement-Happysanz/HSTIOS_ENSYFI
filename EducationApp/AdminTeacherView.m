@@ -26,18 +26,29 @@
     
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
-    SWRevealViewController *revealViewController = self.revealViewController;
-    if ( revealViewController )
-    {
-        [self.sidebarButton setTarget: self.revealViewController];
-        [self.sidebarButton setAction: @selector( revealToggle: )];
-        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-    }
+    NSString *str = [[NSUserDefaults standardUserDefaults]objectForKey:@"view_selection"];
     
-    SWRevealViewController *revealController = [self revealViewController];
-    UITapGestureRecognizer *tap = [revealController tapGestureRecognizer];
-    tap.delegate = self;
-    [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
+    if ([str isEqualToString:@"mainMenu"])
+    {
+        UIBarButtonItem *button2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back-01.png"] style:UIBarButtonItemStylePlain target:self action:@selector(backBtn:)];
+        button2.tintColor = UIColor.whiteColor;
+        self.navigationItem.leftBarButtonItem = button2;
+    }
+    else
+    {
+        SWRevealViewController *revealViewController = self.revealViewController;
+        if (revealViewController)
+        {
+            [self.sidebarButton setTarget: self.revealViewController];
+            [self.sidebarButton setAction: @selector( revealToggle: )];
+            [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+        }
+        
+        SWRevealViewController *revealController = [self revealViewController];
+        UITapGestureRecognizer *tap = [revealController tapGestureRecognizer];
+        tap.delegate = self;
+        [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
+    }
     
     self.tableview.hidden = YES;
     
@@ -119,6 +130,11 @@
 
 }
 
+- (IBAction)backBtn:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -162,7 +178,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     AdminStudentTableViewCell *adminteacher = [tableView cellForRowAtIndexPath:indexPath];
-    
+    NSLog(@"%@", adminteacher);
     //NSUInteger index = [subject_name indexOfObject:adminteacher.teacherName.text];
     
     NSString *get_teacher_id = [teacher_id objectAtIndex:indexPath.row];

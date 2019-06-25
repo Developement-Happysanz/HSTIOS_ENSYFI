@@ -33,6 +33,19 @@
     
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
+    _mainView.layer.cornerRadius = 8.0f;
+    _mainView.clipsToBounds = YES;
+    
+    _mainView.layer.shadowRadius  = 5.5f;
+    _mainView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    _mainView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    _mainView.layer.shadowOpacity = 0.6f;
+    _mainView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(_mainView.bounds, shadowInsets)];
+    _mainView.layer.shadowPath    = shadowPath.CGPath;
+    
     NSString *stat_user_type = [[NSUserDefaults standardUserDefaults]objectForKey:@"stat_user_type"];
     
     if ([stat_user_type isEqualToString:@"admin"])
@@ -50,18 +63,30 @@
     }
     else
     {
-        SWRevealViewController *revealViewController = self.revealViewController;
-        if ( revealViewController )
+        NSString *str = [[NSUserDefaults standardUserDefaults]objectForKey:@"view_selection"];
+        
+        if ([str isEqualToString:@"mainMenu"])
         {
-            [self.sidebarButton setTarget: self.revealViewController];
-            [self.sidebarButton setAction: @selector( revealToggle: )];
-            [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+            UIBarButtonItem *button2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back-01.png"] style:UIBarButtonItemStylePlain target:self action:@selector(backBtn:)];
+            button2.tintColor = UIColor.whiteColor;
+            self.navigationItem.leftBarButtonItem = button2;
+        }
+        else
+        {
+            SWRevealViewController *revealViewController = self.revealViewController;
+            if (revealViewController)
+            {
+                [self.sidebarButton setTarget: self.revealViewController];
+                [self.sidebarButton setAction: @selector( revealToggle: )];
+                [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+            }
+            
+            SWRevealViewController *revealController = [self revealViewController];
+            UITapGestureRecognizer *tap = [revealController tapGestureRecognizer];
+            tap.delegate = self;
+            [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
         }
         
-        SWRevealViewController *revealController = [self revealViewController];
-        UITapGestureRecognizer *tap = [revealController tapGestureRecognizer];
-        tap.delegate = self;
-        [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
     }
     
     CGRect frame= _segmentControl.frame;
@@ -152,6 +177,10 @@
     AdminStudentProfileView *adminStudentProfileView = (AdminStudentProfileView *)[storyboard instantiateViewControllerWithIdentifier:@"AdminStudentProfileView"];
     [self.navigationController pushViewController:adminStudentProfileView animated:YES];
 }
+- (IBAction)backBtn:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -195,9 +224,18 @@
     cell.dateLabel.text = [date objectAtIndex:indexPath.row];
     
     NSLog(@"%@%@%@",cell.subjectName.text,cell.subjectTitle.text,cell.dateLabel.text);
-    cell.cellview.layer.borderWidth = 1.0f;
-    cell.cellview.layer.borderColor = [UIColor clearColor].CGColor;
-    cell.cellview.layer.cornerRadius = 6.0f;
+    cell.cellview.layer.cornerRadius = 8.0f;
+    cell.cellview.clipsToBounds = YES;
+    
+    cell.cellview.layer.shadowRadius  = 5.5f;
+    cell.cellview.layer.shadowColor   = UIColor.grayColor.CGColor;
+    cell.cellview.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    cell.cellview.layer.shadowOpacity = 0.6f;
+    cell.cellview.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(cell.cellview.bounds, shadowInsets)];
+    cell.cellview.layer.shadowPath    = shadowPath.CGPath;
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

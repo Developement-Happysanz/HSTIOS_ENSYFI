@@ -34,13 +34,27 @@
     classNameArr = [[NSMutableArray alloc]init];
     subjectNameArr = [[NSMutableArray alloc]init];
     
-    _classSectionOtlet.layer.borderColor = [UIColor colorWithRed:102/255.0f green:51/255.0f blue:102/255.0f alpha:1.0].CGColor;
-    _classSectionOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
+    self.mainView.layer.cornerRadius = 8.0f;
+    self.mainView.clipsToBounds = YES;
+    
+    _mainView.layer.shadowRadius  = 5.5f;
+    _mainView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    _mainView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    _mainView.layer.shadowOpacity = 0.6f;
+    _mainView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(_mainView.bounds, shadowInsets)];
+    _mainView.layer.shadowPath    = shadowPath.CGPath;
+    
+    
+    _classSectionOtlet.layer.borderColor = [UIColor colorWithRed:66/255.0f green:66/255.0f blue:66/255.0f alpha:1.0].CGColor;
+//    _classSectionOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
     _classSectionOtlet.layer.borderWidth = 1.0f;
     [_classSectionOtlet.layer setCornerRadius:10.0f];
     
-    _subjectOtlet.layer.borderColor = [UIColor colorWithRed:102/255.0f green:51/255.0f blue:102/255.0f alpha:1.0].CGColor;
-    _subjectOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
+    _subjectOtlet.layer.borderColor = [UIColor colorWithRed:66/255.0f green:66/255.0f blue:66/255.0f alpha:1.0].CGColor;
+//    _subjectOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
     _subjectOtlet.layer.borderWidth = 1.0f;
     [_subjectOtlet.layer setCornerRadius:10.0f];
     
@@ -98,6 +112,16 @@
 //    [self.view addGestureRecognizer:tap];
     
 }
+
+-(void)viewDidLayoutSubviews
+{
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width,610);
+    [self.topicTxtView setContentOffset:CGPointZero animated:NO];
+    [self.detailtextView setContentOffset:CGPointZero animated:NO];
+    CGRect frame= _segmentOtlet.frame;
+    [_segmentOtlet setFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, 45)];
+    
+}
 //-(void)dismissKeyboard
 //{
 //    [_topicTxtView resignFirstResponder];
@@ -116,12 +140,7 @@
     [self.dateTextfld resignFirstResponder];
     [toolBar removeFromSuperview];
 }
--(void)viewDidLayoutSubviews
-{
-    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width,610);
-    [self.topicTxtView setContentOffset:CGPointZero animated:NO];
-    [self.detailtextView setContentOffset:CGPointZero animated:NO];
-}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -141,8 +160,8 @@
 {
     if(dropDown == nil)
     {
-        CGFloat f = 100;
-        dropDown = [[NIDropDown alloc]showDropDown:sender :&f :classNameArr :nil :@"down"];
+        CGFloat f = 300;
+        dropDown = [[NIDropDown alloc]showDropDown:sender :&f :classNameArr :nil :@"down" :self.view];
         [_subjectOtlet setTitle:@"Subject" forState:UIControlStateNormal];
         [[NSUserDefaults standardUserDefaults]setObject:@"teacher_attendance" forKey:@"teacher_attendanceKey"];
         [[NSUserDefaults standardUserDefaults]setObject:@"class_section" forKey:@"categoery_key"];
@@ -216,8 +235,8 @@
         {
             if(dropDown == nil)
             {
-                CGFloat f = 100;
-                dropDown = [[NIDropDown alloc]showDropDown:sender :&f :subjectNameArr :nil :@"down"];
+                CGFloat f = 300;
+                dropDown = [[NIDropDown alloc]showDropDown:sender :&f :subjectNameArr :nil :@"down" :self.view];
                 [[NSUserDefaults standardUserDefaults]setObject:@"subject_name" forKey:@"subject_name_key"];
                 [[NSUserDefaults standardUserDefaults]setObject:@"subject_btn" forKey:@"subject_btn_key"];
                 dropDown.delegate = self;

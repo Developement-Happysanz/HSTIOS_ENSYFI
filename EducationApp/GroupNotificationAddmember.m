@@ -29,6 +29,7 @@
     NSString *checkBoxFlag;
     NSString *statusFlag;
     NSString *selectAllFlag;
+    NSString *strclass_sec_id;
 
 }
 @end
@@ -52,6 +53,9 @@
     user_type_name = [[NSMutableArray alloc]init];
     Status = [[NSMutableArray alloc]init];
 
+    _studentTxtField.delegate = self;
+    _teacherTxtField.delegate = self;
+    
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
@@ -95,14 +99,17 @@
                  [status addObject:strStatus];
                  [user_type_name addObject:strUser_type_name];
              }
-                 [pickerView reloadAllComponents];
-                 [pickerView selectRow:0 inComponent:0 animated:YES];
+                 [user_type_name insertObject:@"Select the Role" atIndex:0];
+                 [role_id insertObject:@"Select the Role" atIndex:0];
+                 [pickerView reloadComponent:0];
+
          }
      }
           failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
          NSLog(@"error: %@", error);
      }];
+    
     _teacherTxtField.layer.borderColor = [UIColor colorWithRed:102/255.0f green:51/255.0f blue:102/255.0f alpha:1.0].CGColor;
     _teacherTxtField.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
     _teacherTxtField.layer.borderWidth = 1.0f;
@@ -121,6 +128,7 @@
     pickerView = [[UIPickerView alloc]init];
     pickerView.delegate = self;
     pickerView.dataSource = self;
+    [pickerView selectRow:0 inComponent:0 animated:YES];
     toolbar=[[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
     [toolbar setTintColor:[UIColor grayColor]];
     UIBarButtonItem *done=[[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(SelectedTeacherName)];
@@ -174,7 +182,7 @@
              
              if ([msg isEqualToString:@"Records Found"])
              {
-                 NSArray *dataArray = [responseObject valueForKey:@"gnStafflist"];
+                 NSArray *dataArray = [responseObject valueForKey:@"gnMemberlist"];
                  for (int i = 0;i < [dataArray count];i++)
                  {
                      NSArray *Data = [dataArray objectAtIndex:i];
@@ -186,14 +194,15 @@
                      [user_id addObject:strUser_id];
                      [status addObject:strStatus];
                  }
-                    [pickerView reloadAllComponents];
-                    [pickerView selectRow:0 inComponent:0 animated:YES];
+                     [pickerView reloadComponent:0];
                      if ([status containsObject:@"0"])
                      {
                          [self.checkBoxOutlet setEnabled:YES];
                          [self.checkBoxOutlet setTintColor: [UIColor whiteColor]];
                          UIImage *image = [UIImage imageNamed:@"select_all deselect.png"];
                          [_checkBoxOutlet setImage:image];
+                         checkBoxFlag = @"YES";
+//                         selectAllFlag = @"NO";
                      }
                      else
                      {
@@ -201,6 +210,9 @@
                          [self.checkBoxOutlet setTintColor: [UIColor whiteColor]];
                          UIImage *image = [UIImage imageNamed:@"select_all"];
                          [_checkBoxOutlet setImage:image];
+                         checkBoxFlag = @"NO";
+//                         selectAllFlag = @"YES";
+                        
                      }
                     self.tableView.hidden = NO;
                     [self.tableView reloadData];
@@ -278,14 +290,16 @@
                      [user_id addObject:strUser_id];
                      [status addObject:strStatus];
                  }
-                     [pickerView reloadAllComponents];
-                     [pickerView selectRow:0 inComponent:0 animated:YES];
+                 [pickerView reloadComponent:0];
                      if ([status containsObject:@"0"])
                      {
                          [self.checkBoxOutlet setEnabled:YES];
                          [self.checkBoxOutlet setTintColor: [UIColor whiteColor]];
                          UIImage *image = [UIImage imageNamed:@"select_all deselect.png"];
                          [_checkBoxOutlet setImage:image];
+                         checkBoxFlag = @"YES";
+//                         selectAllFlag = @"NO";
+                         
                      }
                      else
                      {
@@ -293,6 +307,10 @@
                          [self.checkBoxOutlet setTintColor: [UIColor whiteColor]];
                          UIImage *image = [UIImage imageNamed:@"select_all"];
                          [_checkBoxOutlet setImage:image];
+                         checkBoxFlag = @"NO";
+//                         selectAllFlag = @"YES";
+                         
+                         
                      }
                      self.tableView.hidden = NO;
                      [self.tableView reloadData];
@@ -325,18 +343,19 @@
     }
     else if ([self.teacherTxtField.text isEqualToString:@"Students"])
     {
+       
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
         NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
         [parameters setObject:@"1" forKey:@"user_id"];
-        
+
         AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
         manager.requestSerializer = [AFJSONRequestSerializer serializer];
         [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
         
         /* concordanate with baseurl */
-        NSString *get_allstudentuserid = @"apiadmin/list_class_section";
+        NSString *get_allstudentuserid = @"apiadmin/list_class_section/";
         NSArray *components = [NSArray arrayWithObjects:baseUrl,appDel.institute_code,get_allstudentuserid, nil];
         NSString *api = [NSString pathWithComponents:components];
         
@@ -347,6 +366,7 @@
              NSLog(@"%@",responseObject);
              [MBProgressHUD hideHUDForView:self.view animated:YES];
              NSString *msg = [responseObject objectForKey:@"msg"];
+             
              [class_sec_id removeAllObjects];
              [class_section removeAllObjects];
              if ([msg isEqualToString:@"Class and Sections"])
@@ -361,9 +381,11 @@
                      [class_sec_id addObject:strClass_sec_id];
                      [class_section addObject:strClass_section];
                  }
+                     self.studentTxtField.text =@"Class";
                      [class_section insertObject:@"Select Your Class" atIndex:0];
-                     [pickerView reloadAllComponents];
-                     [pickerView selectRow:0 inComponent:0 animated:YES];
+                     [class_sec_id insertObject:@"extraValue" atIndex:0];
+                     [pickerView reloadComponent:0];
+                 
              }
              else
              {
@@ -402,7 +424,7 @@
         manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
         
         /* concordanate with baseurl */
-        NSString *get_allstudentuserid = @"apiadmin/list_class_section";
+        NSString *get_allstudentuserid = @"apiadmin/list_class_section/";
         NSArray *components = [NSArray arrayWithObjects:baseUrl,appDel.institute_code,get_allstudentuserid, nil];
         NSString *api = [NSString pathWithComponents:components];
         
@@ -427,9 +449,11 @@
                      [class_sec_id addObject:strClass_sec_id];
                      [class_section addObject:strClass_section];
                  }
+                 self.studentTxtField.text =@"Class";
                  [class_section insertObject:@"Select Your Class" atIndex:0];
-                 [pickerView reloadAllComponents];
-                 [pickerView selectRow:0 inComponent:0 animated:YES];
+                 [class_sec_id insertObject:@"extraValue" atIndex:0];
+                 [pickerView reloadComponent:0];
+
              }
              else
              {
@@ -477,7 +501,7 @@
         manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
         
         /* concordanate with baseurl */
-        NSString *get_allstudentuserid = @"apiadmin/gn_studentlist";
+        NSString *get_allstudentuserid = @"apiadmin/gn_studentlist/";
         NSArray *components = [NSArray arrayWithObjects:baseUrl,appDel.institute_code,get_allstudentuserid, nil];
         NSString *api = [NSString pathWithComponents:components];
         
@@ -496,7 +520,7 @@
 
              if ([msg isEqualToString:@"Records Found"])
              {
-                 NSArray *dataArray = [responseObject valueForKey:@"gnStudentlist"];
+                 NSArray *dataArray = [responseObject valueForKey:@"gnMemberlist"];
                  for (int i = 0;i < [dataArray count];i++)
                  {
                      NSArray *Data = [dataArray objectAtIndex:i];
@@ -509,22 +533,30 @@
                      [status addObject:strStatus];
                      
                  }
-                 [pickerView reloadAllComponents];
-                 [pickerView selectRow:0 inComponent:0 animated:YES];
-                 if ([status containsObject:@"0"])
+                 [pickerView reloadComponent:0];
+                 
+                 for (int i = 0; i <[status count]; i++)
                  {
-                     [self.checkBoxOutlet setEnabled:YES];
-                     [self.checkBoxOutlet setTintColor: [UIColor whiteColor]];
-                     UIImage *image = [UIImage imageNamed:@"select_all deselect.png"];
-                     [_checkBoxOutlet setImage:image];
+                     if ([status containsObject:@"0"])
+                     {
+                         [self.checkBoxOutlet setEnabled:YES];
+                         [self.checkBoxOutlet setTintColor: [UIColor whiteColor]];
+                         UIImage *image = [UIImage imageNamed:@"select_all deselect.png"];
+                         [_checkBoxOutlet setImage:image];
+                         checkBoxFlag = @"YES";
+//                         selectAllFlag = @"NO";
+                     }
+                     else
+                     {
+                         [self.checkBoxOutlet setEnabled:YES];
+                         [self.checkBoxOutlet setTintColor: [UIColor whiteColor]];
+                         UIImage *image = [UIImage imageNamed:@"select_all"];
+                         [_checkBoxOutlet setImage:image];
+                         checkBoxFlag = @"NO";
+//                         selectAllFlag = @"YES";
+                     }
                  }
-                 else
-                 {
-                     [self.checkBoxOutlet setEnabled:YES];
-                     [self.checkBoxOutlet setTintColor: [UIColor whiteColor]];
-                     UIImage *image = [UIImage imageNamed:@"select_all"];
-                     [_checkBoxOutlet setImage:image];
-                 }
+                 
                  self.tableView.hidden = NO;
                  [self.tableView reloadData];
              }
@@ -605,6 +637,7 @@
         else if ([self.studentTxtField isFirstResponder])
         {
             selectorFlag = class_section[row];
+            strclass_sec_id = class_sec_id[row];
         }
     }
 }
@@ -616,7 +649,7 @@
     }
     else if ([self.studentTxtField isFirstResponder])
     {
-        textField.text = [class_section objectAtIndex:[self->pickerView selectedRowInComponent:0]];//component index may differ for u
+        //textField.text = [class_section objectAtIndex:[self->pickerView selectedRowInComponent:0]];//component index may differ for u
 
     }
  }
@@ -756,6 +789,24 @@
             GroupNotificationAddMenberCell* cell = (GroupNotificationAddMenberCell *)[self.tableView cellForRowAtIndexPath:path];
             cell.selectImageView.image =[UIImage imageNamed:@"select.png"];
             [Selected_ids addObject:strIndex];
+            
+            if (name.count == Selected_ids.count)
+            {
+                [self.checkBoxOutlet setEnabled:YES];
+                [self.checkBoxOutlet setTintColor: [UIColor whiteColor]];
+                UIImage *image = [UIImage imageNamed:@"select_all"];
+                [_checkBoxOutlet setImage:image];
+                checkBoxFlag = @"NO";
+            }
+            else
+            {
+                [self.checkBoxOutlet setEnabled:YES];
+                [self.checkBoxOutlet setTintColor: [UIColor whiteColor]];
+                UIImage *image = [UIImage imageNamed:@"select_all deselect.png"];
+                [_checkBoxOutlet setImage:image];
+                checkBoxFlag = @"YES";
+    
+            }
         }
         else
         {
@@ -763,6 +814,28 @@
             GroupNotificationAddMenberCell* cell = (GroupNotificationAddMenberCell *)[self.tableView cellForRowAtIndexPath:path];
             cell.selectImageView.image =[UIImage imageNamed:@"deselect.png"];
             [Selected_ids removeObject:strIndex];
+            
+            if (name.count == Selected_ids.count)
+            {
+                [self.checkBoxOutlet setEnabled:YES];
+                [self.checkBoxOutlet setTintColor: [UIColor whiteColor]];
+                UIImage *image = [UIImage imageNamed:@"select_all"];
+                [_checkBoxOutlet setImage:image];
+                checkBoxFlag = @"NO";
+//                selectAllFlag = @"YES";
+              
+            }
+            else
+            {
+                [self.checkBoxOutlet setEnabled:YES];
+                [self.checkBoxOutlet setTintColor: [UIColor whiteColor]];
+                UIImage *image = [UIImage imageNamed:@"select_all deselect.png"];
+                [_checkBoxOutlet setImage:image];
+                checkBoxFlag = @"YES";
+//                selectAllFlag = @"NO";
+                
+               
+            }
         }
     }
     else
@@ -777,6 +850,28 @@
             GroupNotificationAddMenberCell* cell = (GroupNotificationAddMenberCell *)[self.tableView cellForRowAtIndexPath:path];
             cell.selectImageView.image =[UIImage imageNamed:@"select.png"];
             [Selected_ids addObject:strIndex];
+            
+            if (name.count == Selected_ids.count)
+            {
+                [self.checkBoxOutlet setEnabled:YES];
+                [self.checkBoxOutlet setTintColor: [UIColor whiteColor]];
+                UIImage *image = [UIImage imageNamed:@"select_all"];
+                [_checkBoxOutlet setImage:image];
+                checkBoxFlag = @"NO";
+//                selectAllFlag = @"YES";
+               
+            }
+            else
+            {
+                [self.checkBoxOutlet setEnabled:YES];
+                [self.checkBoxOutlet setTintColor: [UIColor whiteColor]];
+                UIImage *image = [UIImage imageNamed:@"select_all deselect.png"];
+                [_checkBoxOutlet setImage:image];
+                checkBoxFlag = @"YES";
+//                selectAllFlag = @"NO";
+                
+            }
+            
         }
         else
         {
@@ -784,6 +879,27 @@
             GroupNotificationAddMenberCell* cell = (GroupNotificationAddMenberCell *)[self.tableView cellForRowAtIndexPath:path];
             cell.selectImageView.image =[UIImage imageNamed:@"deselect.png"];
             [Selected_ids removeObject:strIndex];
+            
+            if (name.count == Selected_ids.count)
+            {
+                [self.checkBoxOutlet setEnabled:YES];
+                [self.checkBoxOutlet setTintColor: [UIColor whiteColor]];
+                UIImage *image = [UIImage imageNamed:@"select_all"];
+                [_checkBoxOutlet setImage:image];
+                checkBoxFlag = @"NO";
+//                selectAllFlag = @"YES";
+                
+            }
+            else
+            {
+                [self.checkBoxOutlet setEnabled:YES];
+                [self.checkBoxOutlet setTintColor: [UIColor whiteColor]];
+                UIImage *image = [UIImage imageNamed:@"select_all deselect.png"];
+                [_checkBoxOutlet setImage:image];
+                checkBoxFlag = @"YES";
+//                selectAllFlag = @"NO";
+                
+            }
         }
     }
 }
@@ -793,80 +909,107 @@
 }
 - (IBAction)sendButton:(id)sender
 {
-        NSArray *newArr = [user_id copy];
-        NSArray *myArray  = [NSArray arrayWithArray:newArr];
-        NSString *selectedIDs = [myArray componentsJoinedByString:@","];;
-        NSUInteger indexValue = [user_type_name indexOfObject:self.teacherTxtField.text];
-        NSString *strRole_id = role_id[indexValue];
-        appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
-        [parameters setObject:appDel.user_id forKey:@"user_id"];
-        [parameters setObject:group_idFlag forKey:@"group_id"];
-        [parameters setObject:selectedIDs forKey:@"group_member_id"];
-        [parameters setObject:strRole_id forKey:@"group_user_type"];
-        [parameters setObject:statusFlag forKey:@"status"];
+        if([self.teacherTxtField.text isEqualToString:@""])
+        {
+            UIAlertController *alert= [UIAlertController
+                                       alertControllerWithTitle:@"ENSYFI"
+                                       message:@"Please Selecct the role"
+                                       preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *ok = [UIAlertAction
+                                 actionWithTitle:@"OK"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action)
+                                 {
+                                     
+                                 }];
+            
+            [alert addAction:ok];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+        else
+        {
+           // [user_type_name removeObjectAtIndex:0];
+            NSArray *newArr = [Selected_ids copy];
+            NSArray *myArray  = [NSArray arrayWithArray:newArr];
+            NSString *selectedIDs = [myArray componentsJoinedByString:@","];;
+            NSUInteger indexValue = [user_type_name indexOfObject:self.teacherTxtField.text];
+            NSString *strRole_id = role_id[indexValue];
+            appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
+            [parameters setObject:appDel.user_id forKey:@"user_id"];
+            [parameters setObject:group_idFlag forKey:@"group_id"];
+            [parameters setObject:selectedIDs forKey:@"group_member_id"];
+            [parameters setObject:strRole_id forKey:@"group_user_type"];
+            [parameters setObject:statusFlag forKey:@"status"];
+            if ([self.teacherTxtField.text isEqualToString:@"Students"])
+            {
+                [parameters setObject:strclass_sec_id forKey:@"class_sec_id"];
 
-        AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-        manager.requestSerializer = [AFJSONRequestSerializer serializer];
-        [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
-        
-        /* concordanate with baseurl */
-        NSString *add_gn_members = @"apiadmin/add_gn_members";
-        NSArray *components = [NSArray arrayWithObjects:baseUrl,appDel.institute_code,add_gn_members, nil];
-        NSString *api = [NSString pathWithComponents:components];
-        
-        
-        [manager POST:api parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-         {
-             
-             NSLog(@"%@",responseObject);
-             [MBProgressHUD hideHUDForView:self.view animated:YES];
-             NSString *msg = [responseObject objectForKey:@"msg"];
-             if ([msg isEqualToString:@"Group Members Added"])
+            }
+            
+            AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+            manager.requestSerializer = [AFJSONRequestSerializer serializer];
+            [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+            manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+            
+            /* concordanate with baseurl */
+            NSString *add_gn_members = @"apiadmin/add_gn_members";
+            NSArray *components = [NSArray arrayWithObjects:baseUrl,appDel.institute_code,add_gn_members, nil];
+            NSString *api = [NSString pathWithComponents:components];
+            
+            
+            [manager POST:api parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
              {
-                 UIAlertController *alert= [UIAlertController
-                                            alertControllerWithTitle:@"ENSYFI"
-                                            message:msg
-                                            preferredStyle:UIAlertControllerStyleAlert];
                  
-                 UIAlertAction *ok = [UIAlertAction
-                                      actionWithTitle:@"OK"
-                                      style:UIAlertActionStyleDefault
-                                      handler:^(UIAlertAction * action)
-                                      {
-                                          UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"admin" bundle:nil];
-                                          GroupNotificationStatusViewController *groupNotificationStatusViewController = (GroupNotificationStatusViewController *)[storyboard instantiateViewControllerWithIdentifier:@"GroupNotificationStatusViewController"];
-                                          [self.navigationController pushViewController:groupNotificationStatusViewController animated:YES];
-                                      }];
-                 
-                 [alert addAction:ok];
-                 [self presentViewController:alert animated:YES completion:nil];
+                 NSLog(@"%@",responseObject);
+                 [MBProgressHUD hideHUDForView:self.view animated:YES];
+                 NSString *msg = [responseObject objectForKey:@"msg"];
+                 if ([msg isEqualToString:@"Group Members Added"])
+                 {
+                     UIAlertController *alert= [UIAlertController
+                                                alertControllerWithTitle:@"ENSYFI"
+                                                message:msg
+                                                preferredStyle:UIAlertControllerStyleAlert];
+                     
+                     UIAlertAction *ok = [UIAlertAction
+                                          actionWithTitle:@"OK"
+                                          style:UIAlertActionStyleDefault
+                                          handler:^(UIAlertAction * action)
+                                          {
+                                              UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"admin" bundle:nil];
+                                              GroupNotificationStatusViewController *groupNotificationStatusViewController = (GroupNotificationStatusViewController *)[storyboard instantiateViewControllerWithIdentifier:@"GroupNotificationStatusViewController"];
+                                              [self.navigationController pushViewController:groupNotificationStatusViewController animated:YES];
+                                          }];
+                     
+                     [alert addAction:ok];
+                     [self presentViewController:alert animated:YES completion:nil];
+                 }
+                 else
+                 {
+                     UIAlertController *alert= [UIAlertController
+                                                alertControllerWithTitle:@"ENSYFI"
+                                                message:msg
+                                                preferredStyle:UIAlertControllerStyleAlert];
+                     
+                     UIAlertAction *ok = [UIAlertAction
+                                          actionWithTitle:@"OK"
+                                          style:UIAlertActionStyleDefault
+                                          handler:^(UIAlertAction * action)
+                                          {
+                                              
+                                          }];
+                     
+                     [alert addAction:ok];
+                     [self presentViewController:alert animated:YES completion:nil];
+                 }
              }
-             else
+                  failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
              {
-                 UIAlertController *alert= [UIAlertController
-                                            alertControllerWithTitle:@"ENSYFI"
-                                            message:msg
-                                            preferredStyle:UIAlertControllerStyleAlert];
-                 
-                 UIAlertAction *ok = [UIAlertAction
-                                      actionWithTitle:@"OK"
-                                      style:UIAlertActionStyleDefault
-                                      handler:^(UIAlertAction * action)
-                                      {
-                                          
-                                      }];
-                 
-                 [alert addAction:ok];
-                 [self presentViewController:alert animated:YES completion:nil];
-             }
-         }
-              failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-         {
-             NSLog(@"error: %@", error);
-         }];
+                 NSLog(@"error: %@", error);
+             }];
+        }
     }
 - (IBAction)checkBoxButton:(id)sender
 {
@@ -878,7 +1021,12 @@
         selectAllFlag = @"YES";
         [self.tableView reloadData];
         NSArray *array = [[NSArray alloc] initWithArray:user_id];
-        [Selected_ids addObject:array];
+        for (int i = 0; i < [array count]; i++)
+        {
+            NSString *str = [array objectAtIndex:i];
+            [Selected_ids addObject:str];
+        }
+        
     }
     else
     {
@@ -887,7 +1035,7 @@
         [_checkBoxOutlet setImage:image];
         selectAllFlag = @"NO";
         [self.tableView reloadData];
-        [Selected_ids removeObject:user_id];
+        [Selected_ids removeAllObjects];
     }
 }
 @end

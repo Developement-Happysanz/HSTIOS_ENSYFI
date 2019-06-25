@@ -47,6 +47,20 @@
     month_leaves = [[NSMutableArray alloc]init];
     Month_leavedates = [[NSMutableArray alloc]init];
     month_enroll_id = [[NSMutableArray alloc]init];
+    
+    self.mainView.layer.cornerRadius = 8.0f;
+    self.mainView.clipsToBounds = YES;
+    
+    _mainView.layer.shadowRadius  = 5.5f;
+    _mainView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    _mainView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    _mainView.layer.shadowOpacity = 0.6f;
+    _mainView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(_mainView.bounds, shadowInsets)];
+    _mainView.layer.shadowPath    = shadowPath.CGPath;
+    
 
     SWRevealViewController *revealViewController = self.revealViewController;
     if ( revealViewController )
@@ -446,8 +460,8 @@
     if(dropDown == nil)
     {
         
-        CGFloat f = 100;
-        dropDown = [[NIDropDown alloc]showDropDown:sender :&f :classNameArr :nil :@"down"];
+        CGFloat f = 300;
+        dropDown = [[NIDropDown alloc]showDropDown:sender :&f :classNameArr :nil :@"down" :self.view];
         [[NSUserDefaults standardUserDefaults]setObject:@"teacher_attendance" forKey:@"teacher_attendanceKey"];
         [_selectBtnOtlet setTitle:@"Class & Section" forState:UIControlStateNormal];
         _selectBtnOtlet.titleLabel.textColor = [UIColor colorWithRed:102/255.0f green:52/255.0f blue:102/255.0f alpha:1.0];
@@ -500,13 +514,13 @@
         {
             if ([academic_monthsArr count] > 8)
             {
-                f = 200;
+                f = 130;
             }
             else
             {
-                f = 100;
+                f = 130;
             }
-            dropDown = [[NIDropDown alloc]showDropDown:sender :&f :academic_monthsArr :nil :@"down"];
+            dropDown = [[NIDropDown alloc]showDropDown:sender :&f :academic_monthsArr :nil :@"down" :self.view];
             [[NSUserDefaults standardUserDefaults]setObject:@"teacher_attendance" forKey:@"teacher_attendanceKey"];
             [_selectMonthOtlet setTitle:@"Select Month" forState:UIControlStateNormal];
             _selectBtnOtlet.titleLabel.textColor = [UIColor colorWithRed:102/255.0f green:52/255.0f blue:102/255.0f alpha:1.0];

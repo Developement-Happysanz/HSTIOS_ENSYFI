@@ -13,7 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *eventName;
 - (IBAction)backButton:(id)sender;
 - (IBAction)OrganiserButton:(id)sender;
-
 @property (weak, nonatomic) IBOutlet UILabel *eventdiscrpDateLabel;
+@property (weak, nonatomic) IBOutlet UIButton *viewOrganiserOtlet;
 
 @end

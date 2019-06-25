@@ -231,7 +231,7 @@
         NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
         [parameters setObject:appDel.user_id forKey:@"user_id"];
         [parameters setObject:group_idFlag forKey:@"group_id"];
-        [parameters setObject:self.descriptionTextview.text forKey:@"note"];
+        [parameters setObject:self.descriptionTextview.text forKey:@"notes"];
         [parameters setObject:notificationTypeFlag forKey:@"notification_type"];
         
         AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
@@ -265,10 +265,10 @@
                                       style:UIAlertActionStyleDefault
                                       handler:^(UIAlertAction * action)
                                       {
-                                          UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"admin" bundle:nil];
-                                          AdminNotificationTableViewController *adminNotificationTableViewController = (AdminNotificationTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"AdminNotificationTableViewController"];
-                                          [self.navigationController pushViewController:adminNotificationTableViewController animated:YES];
-                                          
+//                                          UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"admin" bundle:nil];
+//                                          AdminNotificationTableViewController *adminNotificationTableViewController = (AdminNotificationTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"AdminNotificationTableViewController"];
+//                                          [self.navigationController pushViewController:adminNotificationTableViewController animated:YES];
+                                          [self dismissViewControllerAnimated:YES completion:nil];
                                       }];
                  
                  [alert addAction:ok];

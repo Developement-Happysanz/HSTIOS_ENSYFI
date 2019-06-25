@@ -21,6 +21,8 @@
 @property (strong, nonatomic) IBOutlet UIButton *sectionBtnOtlet;
 @property (strong, nonatomic) IBOutlet UIButton *classBtnOtlet;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
+@property (strong, nonatomic) IBOutlet UIView *mainView;
+@property (strong, nonatomic) IBOutlet UIView *tableTitleView;
 
 @end
 

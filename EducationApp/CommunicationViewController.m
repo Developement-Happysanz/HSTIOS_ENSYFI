@@ -38,6 +38,7 @@
     circular_title = [[NSMutableArray alloc]init];
     circular_Type = [[NSMutableArray alloc]init];
     
+    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"2048 x 2732.png"]];
     NSString *stat_user_type = [[NSUserDefaults standardUserDefaults]objectForKey:@"stat_user_type"];
     
     if ([stat_user_type isEqualToString:@"admin"])
@@ -110,18 +111,29 @@
     }
     else
     {
-        SWRevealViewController *revealViewController = self.revealViewController;
-        if ( revealViewController )
-        {
-            [self.sidebarButton setTarget: self.revealViewController];
-            [self.sidebarButton setAction: @selector( revealToggle: )];
-            [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-        }
+        NSString *str = [[NSUserDefaults standardUserDefaults]objectForKey:@"view_selection"];
         
-        SWRevealViewController *revealController = [self revealViewController];
-        UITapGestureRecognizer *tap = [revealController tapGestureRecognizer];
-        tap.delegate = self;
-        [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
+        if ([str isEqualToString:@"mainMenu"])
+        {
+            UIBarButtonItem *button2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back-01.png"] style:UIBarButtonItemStylePlain target:self action:@selector(backBtn:)];
+            button2.tintColor = UIColor.whiteColor;
+            self.navigationItem.leftBarButtonItem = button2;
+        }
+        else
+        {
+            SWRevealViewController *revealViewController = self.revealViewController;
+            if (revealViewController)
+            {
+                [self.sidebarButton setTarget: self.revealViewController];
+                [self.sidebarButton setAction: @selector( revealToggle: )];
+                [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+            }
+            
+            SWRevealViewController *revealController = [self revealViewController];
+            UITapGestureRecognizer *tap = [revealController tapGestureRecognizer];
+            tap.delegate = self;
+            [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
+        }
         
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         
@@ -208,6 +220,12 @@
     [self.navigationController pushViewController:adminView animated:YES];
     
 }
+
+- (IBAction)backBtn:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -238,16 +256,25 @@
     
     cell.circularType.text = [circular_Type objectAtIndex:indexPath.row];
     
-    cell.cellView.layer.borderWidth = 1.0f;
-    cell.cellView.layer.borderColor = [UIColor clearColor].CGColor;
-    cell.cellView.layer.cornerRadius = 6.0f;
+    cell.cellView.layer.cornerRadius = 8.0f;
+    cell.cellView.clipsToBounds = YES;
+    
+    cell.cellView.layer.shadowRadius  = 5.5f;
+    cell.cellView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    cell.cellView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    cell.cellView.layer.shadowOpacity = 0.6f;
+    cell.cellView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(cell.cellView.bounds, shadowInsets)];
+    cell.cellView.layer.shadowPath    = shadowPath.CGPath;
     
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 112;
+    return 130;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

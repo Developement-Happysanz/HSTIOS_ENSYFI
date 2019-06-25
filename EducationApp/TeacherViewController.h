@@ -11,5 +11,10 @@
 @interface TeacherViewController : UIViewController<UIGestureRecognizerDelegate>
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *sidebar;
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) IBOutlet UIView *mainView;
+@property (strong, nonatomic) IBOutlet UIButton *classAttendanceOutlet;
+@property (strong, nonatomic) IBOutlet UIButton *classAssignmentOutlet;
+- (IBAction)classAttendanceBtn:(id)sender;
+- (IBAction)classAssignBtn:(id)sender;
 
 @end

@@ -156,8 +156,20 @@
         cell.statusLabel.hidden = NO;
         cell.statusLabel.text = @"Sent";
     }
-        cell.cellView.layer.cornerRadius = 5.0;
-        cell.cellView.clipsToBounds = YES;
+    
+    cell.cellView.layer.cornerRadius = 8.0f;
+    cell.cellView.clipsToBounds = YES;
+    
+    cell.cellView.layer.shadowRadius  = 5.5f;
+    cell.cellView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    cell.cellView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    cell.cellView.layer.shadowOpacity = 0.6f;
+    cell.cellView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(cell.cellView.bounds, shadowInsets)];
+    cell.cellView.layer.shadowPath    = shadowPath.CGPath;
+    
     
     return cell;
 }

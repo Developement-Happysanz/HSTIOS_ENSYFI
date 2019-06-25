@@ -61,10 +61,10 @@
     MailButtonValue = @"0";
     notificationButnValue = @"0";
     
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
-                                   initWithTarget:self
-                                   action:@selector(dismissKeyboard)];
-    [self.view addGestureRecognizer:tap];
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+//                                   initWithTarget:self
+//                                   action:@selector(dismissKeyboard)];
+//    [self.view addGestureRecognizer:tap];
 }
 -(void)dismissKeyboard
 {
@@ -363,8 +363,8 @@
     
     if(dropDown == nil)
     {
-        CGFloat f = 60;
-        dropDown = [[NIDropDown alloc]showDropDown:sender :&f :getValues :nil :@"down"];
+        CGFloat f = 150;
+        dropDown = [[NIDropDown alloc]showDropDown:sender :&f :getValues :nil :@"down" :self.view];
         [[NSUserDefaults standardUserDefaults]setObject:@"notification" forKey:@"notification_key"];
         dropDown.delegate = self;
     }

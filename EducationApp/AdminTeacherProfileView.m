@@ -44,6 +44,19 @@
         self.timetablebtnOtlet.hidden = YES;
     }
     
+    self.mainView.layer.cornerRadius = 8.0f;
+    self.mainView.clipsToBounds = YES;
+    
+    _mainView.layer.shadowRadius  = 5.5f;
+    _mainView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    _mainView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    _mainView.layer.shadowOpacity = 0.6f;
+    _mainView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(_mainView.bounds, shadowInsets)];
+    _mainView.layer.shadowPath    = shadowPath.CGPath;
+    
     class_id = [[NSMutableArray alloc]init];
     class_name = [[NSMutableArray alloc]init];
     day = [[NSMutableArray alloc]init];
@@ -54,7 +67,8 @@
     subject_name = [[NSMutableArray alloc]init];
     table_id = [[NSMutableArray alloc]init];
     teacher_id_arr = [[NSMutableArray alloc]init];
-
+    
+  
     appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     NSString *strteacher_id = [[NSUserDefaults standardUserDefaults]objectForKey:@"admin_teacherid"];
@@ -105,13 +119,26 @@
              }
              
              [[NSUserDefaults standardUserDefaults]setObject:teacherTimeTable forKey:@"ad_teacher_timeTable_key"];
+             
+             [class_id removeAllObjects];
+             [class_name removeAllObjects];
+             [day removeAllObjects];
+             [name_arr removeAllObjects];
+             [period removeAllObjects];
+             [sec_name removeAllObjects];
+             [subject_id removeAllObjects];
+             [subject_name removeAllObjects];
+             [table_id removeAllObjects];
+             [teacher_id_arr removeAllObjects];
+
+             
              for (int i = 0; i < [teacherTimeTable count]; i++)
              {
                  NSDictionary *dictTimeTable = [teacherTimeTable objectAtIndex:i];
                  
                  NSString *strclass_id = [dictTimeTable objectForKey:@"class_id"];
                  NSString *strclass_name = [dictTimeTable objectForKey:@"class_name"];
-                 NSString *strday = [dictTimeTable objectForKey:@"day"];
+                 NSString *strday = [dictTimeTable objectForKey:@"day_id"];
                  NSString *strname = [dictTimeTable objectForKey:@"name"];
                  NSString *strperiod = [dictTimeTable objectForKey:@"period"];
                  NSString *strsec_name = [dictTimeTable objectForKey:@"sec_name"];
@@ -201,9 +228,10 @@
     {
         [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"ClassView"];
         
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"admin" bundle:nil];
-        AdminClassesViewController *adminClassesViewController = (AdminClassesViewController *)[storyboard instantiateViewControllerWithIdentifier:@"AdminClassesViewController"];
-        [self.navigationController pushViewController:adminClassesViewController animated:YES];
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"admin" bundle:nil];
+//        AdminClassesViewController *adminClassesViewController = (AdminClassesViewController *)[storyboard instantiateViewControllerWithIdentifier:@"AdminClassesViewController"];
+//        [self.navigationController pushViewController:adminClassesViewController animated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
         
     }
     else

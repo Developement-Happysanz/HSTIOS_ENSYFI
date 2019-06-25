@@ -20,5 +20,9 @@
 - (IBAction)classTestMarkSyncBtn:(id)sender;
 @property (strong, nonatomic) IBOutlet UIButton *examSync;
 - (IBAction)examSyncBtn:(id)sender;
+@property (strong, nonatomic) IBOutlet UIView *attendanceView;
+@property (strong, nonatomic) IBOutlet UIView *classtestHomeworkView;
+@property (strong, nonatomic) IBOutlet UIView *classtestMarksView;
+@property (strong, nonatomic) IBOutlet UIView *examMarks;
 
 @end

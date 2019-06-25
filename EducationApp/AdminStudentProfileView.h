@@ -45,5 +45,10 @@
 @property (strong, nonatomic) IBOutlet UILabel *comunity_class;
 @property (strong, nonatomic) IBOutlet UILabel *comunity;
 @property (strong, nonatomic) IBOutlet UILabel *admision_id;
+@property (strong, nonatomic) IBOutlet UIView *mainView;
+@property (strong, nonatomic) IBOutlet UIButton *classtestOutlet;
+@property (strong, nonatomic) IBOutlet UIButton *feeOutlet;
+@property (strong, nonatomic) IBOutlet UIButton *attendanceOutlet;
+@property (strong, nonatomic) IBOutlet UIButton *examOutlet;
 
 @end

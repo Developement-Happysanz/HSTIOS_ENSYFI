@@ -55,13 +55,27 @@
     tap.delegate = self;
     [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
     
-    _classOtlet.layer.borderColor = [UIColor colorWithRed:102/255.0f green:51/255.0f blue:102/255.0f alpha:1.0].CGColor;
-    _classOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
+    self.mainView.layer.cornerRadius = 8.0f;
+    self.mainView.clipsToBounds = YES;
+    
+    _mainView.layer.shadowRadius  = 5.5f;
+    _mainView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    _mainView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    _mainView.layer.shadowOpacity = 0.6f;
+    _mainView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(_mainView.bounds, shadowInsets)];
+    _mainView.layer.shadowPath    = shadowPath.CGPath;
+    
+    
+    _classOtlet.layer.borderColor = [UIColor colorWithRed:66/255.0f green:66/255.0f blue:66/255.0f alpha:1.0].CGColor;
+   // _classOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
     _classOtlet.layer.borderWidth = 1.0f;
     [_classOtlet.layer setCornerRadius:10.0f];
     
-    _sectionOtlet.layer.borderColor = [UIColor colorWithRed:102/255.0f green:51/255.0f blue:102/255.0f alpha:1.0].CGColor;
-    _sectionOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
+    _sectionOtlet.layer.borderColor = [UIColor colorWithRed:66/255.0f green:66/255.0f blue:66/255.0f alpha:1.0].CGColor;
+  //  _sectionOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
     _sectionOtlet.layer.borderWidth = 1.0f;
     [_sectionOtlet.layer setCornerRadius:10.0f];
     
@@ -98,8 +112,8 @@
     NSArray *class_name = [[NSUserDefaults standardUserDefaults]objectForKey:@"admin_class_name"];
     if(dropDown == nil)
     {
-        CGFloat f = 200;
-        dropDown = [[NIDropDown alloc]showDropDown:sender :&f :class_name :nil :@"down"];
+        CGFloat f = 300;
+        dropDown = [[NIDropDown alloc]showDropDown:sender :&f :class_name :nil :@"down" :self.view];
         [_sectionOtlet setTitle:@"Section" forState:UIControlStateNormal];
         _sectionOtlet.titleLabel.textColor = [UIColor colorWithRed:102/255.0f green:52/255.0f blue:102/255.0f alpha:1.0];
         dropDown.delegate = self;
@@ -191,8 +205,8 @@
                  
                  if(dropDown == nil)
                  {
-                     CGFloat f = 100;
-                     dropDown = [[NIDropDown alloc]showDropDown:sender :&f :sec_name :nil :@"down"];
+                     CGFloat f = 300;
+                     dropDown = [[NIDropDown alloc]showDropDown:sender :&f :sec_name :nil :@"down" :self.view];
                      dropDown.delegate = self;
                      
                  }
@@ -407,12 +421,18 @@
     cell.termName.text = [term_name objectAtIndex:indexPath.row];
     cell.fromdate.text = [due_date_from objectAtIndex:indexPath.row];
     cell.toDate.text = [due_date_to objectAtIndex:indexPath.row];
-    
     cell.feeID.text = [fees_id objectAtIndex:indexPath.row];
     
-    cell.cellView.layer.borderWidth = 1.0f;
-    cell.cellView.layer.borderColor = [UIColor clearColor].CGColor;
-    cell.cellView.layer.cornerRadius = 6.0f;
+    cell.cellView.layer.cornerRadius = 8.0f;
+    cell.cellView.clipsToBounds = YES;
+    cell.cellView.layer.shadowRadius  = 5.5f;
+    cell.cellView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    cell.cellView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    cell.cellView.layer.shadowOpacity = 0.6f;
+    cell.cellView.layer.masksToBounds = NO;
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(cell.cellView.bounds, shadowInsets)];
+    cell.cellView.layer.shadowPath    = shadowPath.CGPath;
     
     return cell;
 }

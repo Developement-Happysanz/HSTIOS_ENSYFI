@@ -44,6 +44,9 @@
     tap.delegate = self;
     [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
     
+    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"2048 x 2732.png"]];
+
+    
     group_title = [[NSMutableArray alloc]init];
     group_title_id = [[NSMutableArray alloc]init];
     notification_type = [[NSMutableArray alloc]init];
@@ -223,9 +226,18 @@
     cell.notesTxtView.text = [notes objectAtIndex:indexPath.row];
     cell.dateLabel.text = [created_at objectAtIndex:indexPath.row];
 
-    cell.cellView.layer.borderWidth = 1.0f;
-    cell.cellView.layer.borderColor = [UIColor clearColor].CGColor;
-    cell.cellView.layer.cornerRadius = 6.0f;
+    cell.cellView.layer.cornerRadius = 8.0f;
+    cell.cellView.clipsToBounds = YES;
+    
+    cell.cellView.layer.shadowRadius  = 5.5f;
+    cell.cellView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    cell.cellView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    cell.cellView.layer.shadowOpacity = 0.6f;
+    cell.cellView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(cell.cellView.bounds, shadowInsets)];
+    cell.cellView.layer.shadowPath    = shadowPath.CGPath;
     
     return cell;
 }

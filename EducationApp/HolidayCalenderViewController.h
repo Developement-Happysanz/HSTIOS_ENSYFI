@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 - (IBAction)segmentAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentcontrol;
+@property (strong, nonatomic) IBOutlet UIView *mainView;
 
 @end

@@ -15,6 +15,7 @@
 }
 @property(nonatomic, strong) UITableView *table;
 @property(nonatomic, strong) UIButton *btnSender;
+@property(nonatomic, strong) UIView *bgView;
 @property(nonatomic, retain) NSArray *list;
 @property(nonatomic, retain) NSArray *imageList;
 
@@ -27,14 +28,17 @@
 @synthesize imageList;
 @synthesize delegate;
 @synthesize animationDirection;
+@synthesize bgView;
 
-- (id)showDropDown:(UIButton *)b :(CGFloat *)height :(NSArray *)arr :(NSArray *)imgArr :(NSString *)direction {
+- (id)showDropDown:(UIButton *)b :(CGFloat *)height :(NSArray *)arr :(NSArray *)imgArr :(NSString *)direction :(UIView *)view {
     btnSender = b;
     animationDirection = direction;
+    bgView = view;
     self.table = (UITableView *)[super init];
     if (self) {
         // Initialization code
         CGRect btn = b.frame;
+       // CGRect _view = view.frame;
         self.list = [NSArray arrayWithArray:arr];
         self.imageList = [NSArray arrayWithArray:imgArr];
         if ([direction isEqualToString:@"up"]) {
@@ -58,7 +62,7 @@
         table.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         table.separatorColor = [UIColor grayColor];
         
-        [UIView beginAnimations:nil context:nil];
+        //[UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:0.5];
         if ([direction isEqualToString:@"up"]) {
             self.frame = CGRectMake(btn.origin.x, btn.origin.y-*height, btn.size.width, *height);
@@ -69,6 +73,7 @@
         [UIView commitAnimations];
         [b.superview addSubview:self];
         [self addSubview:table];
+
     }
     return self;
 }
@@ -192,6 +197,7 @@
         [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"subject_name_key"];
         [[NSUserDefaults standardUserDefaults]setObject:c.textLabel.text forKey:@"subject_name_resultKey"];
     }
+    
     
     for (UIView *subview in btnSender.subviews) {
         if ([subview isKindOfClass:[UIImageView class]]) {

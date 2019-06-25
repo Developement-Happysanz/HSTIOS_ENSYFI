@@ -19,5 +19,6 @@
 - (IBAction)classBTn:(id)sender;
 @property (strong, nonatomic) IBOutlet UIButton *classOtlet;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
+@property (strong, nonatomic) IBOutlet UIView *mainView;
 
 @end

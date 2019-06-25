@@ -371,6 +371,10 @@
 -(void)total
 {
     self.totalLabel.text =[NSString stringWithFormat:@"%@" ,totalMarks];
+    if ([self.totalLabel.text  isEqual: @"(null)"])
+    {
+        self.totalLabel.text = @"-";
+    }
 
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -420,9 +424,10 @@
     {
         [[NSUserDefaults standardUserDefaults]setObject:@"main" forKey:@"stat_user_type"];
         
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"teachers" bundle:nil];
-        TeacherExamDetailTableController *teacherExamDetailTableController = (TeacherExamDetailTableController *)[storyboard instantiateViewControllerWithIdentifier:@"TeacherExamDetailTableController"];
-        [self.navigationController pushViewController:teacherExamDetailTableController animated:YES];
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"teachers" bundle:nil];
+//        TeacherExamDetailTableController *teacherExamDetailTableController = (TeacherExamDetailTableController *)[storyboard instantiateViewControllerWithIdentifier:@"TeacherExamDetailTableController"];
+//        [self.navigationController pushViewController:teacherExamDetailTableController animated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
         
 //        [self.navigationController popViewControllerAnimated:YES];
 

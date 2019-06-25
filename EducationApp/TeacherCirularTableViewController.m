@@ -31,6 +31,8 @@
     
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
+    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"2048 x 2732.png"]];
+    
     circular_date = [[NSMutableArray alloc]init];
     circular_details = [[NSMutableArray alloc]init];
     circular_title = [[NSMutableArray alloc]init];
@@ -234,16 +236,25 @@
     
     cell.circularType.text = [circular_Type objectAtIndex:indexPath.row];
     
-    cell.cellView.layer.borderWidth = 1.0f;
-    cell.cellView.layer.borderColor = [UIColor clearColor].CGColor;
-    cell.cellView.layer.cornerRadius = 6.0f;
+    cell.cellView.layer.cornerRadius = 8.0f;
+    cell.cellView.clipsToBounds = YES;
+    
+    cell.cellView.layer.shadowRadius  = 5.5f;
+    cell.cellView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    cell.cellView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    cell.cellView.layer.shadowOpacity = 0.6f;
+    cell.cellView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(cell.cellView.bounds, shadowInsets)];
+    cell.cellView.layer.shadowPath    = shadowPath.CGPath;
     
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 112;
+    return 130;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -253,15 +264,11 @@
     NSString *date = [circular_date objectAtIndex:indexPath.row];
     NSString *details = [circular_details objectAtIndex:indexPath.row];
     NSString *type = [circular_Type objectAtIndex:indexPath.row];
-    
+
     [[NSUserDefaults standardUserDefaults]setObject:title forKey:@"title_Key"];
-    
     [[NSUserDefaults standardUserDefaults]setObject:date forKey:@"date_Key"];
-    
     [[NSUserDefaults standardUserDefaults]setObject:details forKey:@"details_Key"];
-    
     [[NSUserDefaults standardUserDefaults]setObject:type forKey:@"type_Key"];
-    
     [self performSegueWithIdentifier:@"to_comunication" sender:self];
 }
 

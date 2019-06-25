@@ -83,8 +83,8 @@
                                   style:UIAlertActionStyleDefault
                                   handler:^(UIAlertAction * action)
                                   {
-                                      [self dismissViewControllerAnimated:YES completion:nil];
-
+                                      //[self performSegueWithIdentifier:@"leavestatusPage" sender:self];
+                                       [self dismissViewControllerAnimated:YES completion:nil];
                                   }];
              
              [alert addAction:ok];
@@ -139,7 +139,7 @@
          
          NSLog(@"%@",responseObject);
          NSString *msg = [responseObject objectForKey:@"msg"];
-         if ([msg isEqualToString:@"leavesfound"])
+         if ([msg isEqualToString:@"Leave Updated"])
          {
              UIAlertController *alert= [UIAlertController
                                         alertControllerWithTitle:@"ENSYFI"
@@ -151,8 +151,8 @@
                                   style:UIAlertActionStyleDefault
                                   handler:^(UIAlertAction * action)
                                   {
+//                                      [self performSegueWithIdentifier:@"leavestatusPage" sender:self];
                                       [self dismissViewControllerAnimated:YES completion:nil];
-
                                   }];
              
              [alert addAction:ok];
@@ -176,7 +176,6 @@
              [alert addAction:ok];
              [self presentViewController:alert animated:YES completion:nil];
          }
-         [MBProgressHUD hideHUDForView:self.view animated:YES];
      }
           failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {

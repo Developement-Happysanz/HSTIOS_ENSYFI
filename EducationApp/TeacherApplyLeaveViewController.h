@@ -13,7 +13,6 @@
     UIDatePicker *datePicker;
     UIDatePicker *timePicker;
     NIDropDown *dropDown;
-
 }
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UIButton *requestOtlet;

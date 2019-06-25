@@ -50,6 +50,9 @@
         
     }
     
+    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"2048 x 2732.png"]];
+
+    
     LeaveTitle = [[NSMutableArray alloc]init];
     frmDate = [[NSMutableArray alloc]init];
     toDte = [[NSMutableArray alloc]init];
@@ -174,19 +177,19 @@
     
     if ([str isEqualToString:@"Approved"])
     {
-        cell.statusImg.image = [UIImage imageNamed:@"ensyfi od screen icons-03.png"];
+        cell.statusImg.image = [UIImage imageNamed:@"approved.png"];
         cell.status.text = str;
         cell.status.textColor = [UIColor colorWithRed:8/255.0f green:159/255.0f blue:73/255.0f alpha:1.0];
     }
     else if ([str isEqualToString:@"Rejected"])
     {
-        cell.statusImg.image = [UIImage imageNamed:@"ensyfi od screen icons-02.png"];
+        cell.statusImg.image = [UIImage imageNamed:@"rejected.png"];
         cell.status.text = str;
         cell.status.textColor = [UIColor colorWithRed:216/255.0f green:91/255.0f blue:74/255.0f alpha:1.0];
     }
     else
     {
-        cell.statusImg.image = [UIImage imageNamed:@"ensyfi od screen icons-04.png"];
+        cell.statusImg.image = [UIImage imageNamed:@"pending.png"];
         cell.status.text = str;
         cell.status.textColor = [UIColor colorWithRed:190/255.0f green:192/255.0f blue:49/255.0f alpha:1.0];
         
@@ -195,9 +198,18 @@
     cell.fromdate.text = [frmDate objectAtIndex:indexPath.row];
     cell.todate.text = [toDte objectAtIndex:indexPath.row];
     
-    cell.cellView.layer.borderWidth = 1.0f;
-    cell.cellView.layer.borderColor = [UIColor clearColor].CGColor;
-    cell.cellView.layer.cornerRadius = 6.0f;
+    cell.cellView.layer.cornerRadius = 8.0f;
+    cell.cellView.clipsToBounds = YES;
+    
+    cell.cellView.layer.shadowRadius  = 5.5f;
+    cell.cellView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    cell.cellView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    cell.cellView.layer.shadowOpacity = 0.6f;
+    cell.cellView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(cell.cellView.bounds, shadowInsets)];
+    cell.cellView.layer.shadowPath    = shadowPath.CGPath;
         
     return cell;
 }

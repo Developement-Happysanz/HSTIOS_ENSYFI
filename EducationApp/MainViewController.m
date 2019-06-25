@@ -29,8 +29,7 @@
     
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
-
-        SWRevealViewController *revealViewController = self.revealViewController;
+    SWRevealViewController *revealViewController = self.revealViewController;
         if ( revealViewController )
         {
             [self.sidebarButton setTarget: self.revealViewController];
@@ -45,7 +44,7 @@
 
     ab_date = [[NSMutableArray alloc]init];
     
-    menuImages = [NSArray arrayWithObjects:@"attendance.png",@"classtest-01.png",@"exam-01.png",@"timetable-01.png",@"Events.png",@"communication-01.png",nil];
+    menuImages = [NSArray arrayWithObjects:@"attendance.png",@"exam.png",@"result.png",@"timetable.png",@"event.png",@"circular.png",nil];
     menuTitles= [NSArray arrayWithObjects:@"ATTENDANCE",@"CLASS TEST & HOMEWORK",@"EXAM & RESULT",@"TIME TABLE",@"EVENTS",@"CIRCULAR", nil];
     
     //...For Tapping cells....
@@ -54,6 +53,20 @@
 }
 - (void)viewWillLayoutSubviews;
 {
+    self.mainView.layer.cornerRadius = 8.0f;
+    self.mainView.clipsToBounds = YES;
+    
+    _mainView.layer.shadowRadius  = 5.5f;
+    _mainView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    _mainView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    _mainView.layer.shadowOpacity = 0.6f;
+    _mainView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(_mainView.bounds, shadowInsets)];
+    _mainView.layer.shadowPath    = shadowPath.CGPath;
+    
+    
     [super viewWillLayoutSubviews];
     UICollectionViewFlowLayout *flowLayout = (id)self.collectionView.collectionViewLayout;
     
@@ -77,14 +90,14 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     MainCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    if ([[UIScreen mainScreen] bounds].size.height == 568)
-    {
-        [cell.imageview setFrame:CGRectMake(38, 25, 130, 130)];
-
-    }
-    cell.cellview.layer.borderWidth = 1.0f;
-    cell.cellview.layer.borderColor = [UIColor grayColor].CGColor;
-    cell.cellview.layer.cornerRadius = 10.0f;
+//    if ([[UIScreen mainScreen] bounds].size.height == 568)
+//    {
+//        [cell.imageview setFrame:CGRectMake(38, 25, 130, 130)];
+//
+//    }
+//    cell.cellview.layer.borderWidth = 1.0f;
+//    cell.cellview.layer.borderColor = [UIColor grayColor].CGColor;
+//    cell.cellview.layer.cornerRadius = 10.0f;
     cell.imageview.image = [UIImage imageNamed:menuImages[indexPath.row]];
     cell.menuTitles.text = [menuTitles objectAtIndex:indexPath.row];
     
@@ -96,6 +109,7 @@
     
     if (indexPath.row == 0)
     {
+        [[NSUserDefaults standardUserDefaults]setObject:@"mainMenu" forKey:@"view_selection"];
 
 //        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 //        appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -183,13 +197,14 @@
     }
     else if (indexPath.row == 1)
     {
+        [[NSUserDefaults standardUserDefaults]setObject:@"mainMenu" forKey:@"view_selection"];
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         ClassTestViewController *classTest = (ClassTestViewController *)[storyboard instantiateViewControllerWithIdentifier:@"ClassTestViewController"];
         [self.navigationController pushViewController:classTest animated:YES];
     }
     else if (indexPath.row == 2)
     {
-        
+        [[NSUserDefaults standardUserDefaults]setObject:@"mainMenu" forKey:@"view_selection"];
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         ExamsViewController *exam = (ExamsViewController *)[storyboard instantiateViewControllerWithIdentifier:@"ExamsViewController"];
         [self.navigationController pushViewController:exam animated:YES];
@@ -197,15 +212,15 @@
     }
     else if (indexPath.row == 3)
     {
-        
+        [[NSUserDefaults standardUserDefaults]setObject:@"mainMenu" forKey:@"view_selection"];
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        TimeTableViewController *exam = (TimeTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"TimeTableViewController"];
+        NewTimeTableViewcontroller *exam = (NewTimeTableViewcontroller *)[storyboard instantiateViewControllerWithIdentifier:@"NewTimeTableViewcontroller"];
         [self.navigationController pushViewController:exam animated:YES];
         
     }
     else if (indexPath.row == 4)
     {
-        
+        [[NSUserDefaults standardUserDefaults]setObject:@"mainMenu" forKey:@"view_selection"];
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         EventViewController *eventView = (EventViewController *)[storyboard instantiateViewControllerWithIdentifier:@"EventViewController"];
         [self.navigationController pushViewController:eventView animated:YES];
@@ -213,7 +228,7 @@
     }
     else if (indexPath.row == 5)
     {
-        
+        [[NSUserDefaults standardUserDefaults]setObject:@"mainMenu" forKey:@"view_selection"];
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         CommunicationViewController *eventView = (CommunicationViewController *)[storyboard instantiateViewControllerWithIdentifier:@"CommunicationViewController"];
         [self.navigationController pushViewController:eventView animated:YES];
@@ -228,18 +243,17 @@
         if (UIInterfaceOrientationIsLandscape(UIApplication.sharedApplication.statusBarOrientation))
         {
             return UIEdgeInsetsMake(60, 30, 60, 30);
-
+            
         }
-     
-        return UIEdgeInsetsMake(40, 50, 40, 50);
-
+        
+        return UIEdgeInsetsMake(0,0,0,0);
+        
     }
     else
     {
-
         
-        return UIEdgeInsetsMake(20, 10, 20, 10);
-
+        return UIEdgeInsetsMake(0, 0, 0, 0);
+        
     }
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
@@ -247,16 +261,31 @@
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
         
-     // The device is an iPad running iOS 3.2 or later.
+        // The device is an iPad running iOS 3.2 or later.
         
-        return 15;
-
+        return 1.0;
+        
     }
     else
     {
         // The device is an iPhone or iPod touch
+        return 1.0;
+    }
+}
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
         
-        return 15;
+        // The device is an iPad running iOS 3.2 or later.
+        
+        return 1.0;
+        
+    }
+    else
+    {
+        // The device is an iPhone or iPod touch
+        return 1.0;
     }
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -265,20 +294,20 @@
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
         // The device is an iPad running iOS 3.2 or later.
-       
-        return CGSizeMake(310.f,310.f);
-
+        
+        return CGSizeMake(349.5f,349.5f);
+        
     }
-
+    
     if ([[UIScreen mainScreen] bounds].size.height == 568)
     {
         
-        return CGSizeMake(140.f, 140.f);
-
+        return CGSizeMake(150.f, 150.f);
+        
     }
     
-    return CGSizeMake(170.f, 170.f);
-
+    return CGSizeMake(153.f, 153.f);
+    
 }
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {

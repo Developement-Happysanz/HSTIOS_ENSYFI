@@ -404,9 +404,9 @@
         }
         else
         {
-            f = 200;
+            f = 300;
         }
-        dropDown = [[NIDropDown alloc]showDropDown:sender :&f :classSection_Name :nil :@"down"];
+        dropDown = [[NIDropDown alloc]showDropDown:sender :&f :classSection_Name :nil :@"down" :self.view];
         [[NSUserDefaults standardUserDefaults]setObject:@"Class" forKey:@"sec_class"];
         dropDown.delegate = self;
     }

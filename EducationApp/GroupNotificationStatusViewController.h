@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GroupNotificationStatusViewController : UIViewController<UITextFieldDelegate>
-- (IBAction)notificationButton:(id)sender;
-- (IBAction)addMemberButton:(id)sender;
+@interface GroupNotificationStatusViewController : UIViewController<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
+- (IBAction)notificationPageBTn:(id)sender;
+- (IBAction)addButton:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *notificationOutlet;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addMemberOutlet;
 @property (weak, nonatomic) IBOutlet UITextField *deactiveLeadLabel;

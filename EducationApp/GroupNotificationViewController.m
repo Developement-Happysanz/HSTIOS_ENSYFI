@@ -167,6 +167,7 @@
     {
         cell.statusView.image = [UIImage imageNamed:@"Red"];
     }
+    
     return cell;
 }
 

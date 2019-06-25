@@ -41,8 +41,13 @@
     else
     {
         self.viewOrganiserOtlet.hidden = NO;
+        
+        self.viewOrganiserOtlet.layer.cornerRadius = 2.0f;
+        self.viewOrganiserOtlet.clipsToBounds = YES;
 
     }
+    
+    
 
 }
 - (void)viewDidLayoutSubviews

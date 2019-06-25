@@ -17,5 +17,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *classTestSwtch;
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
+@property (strong, nonatomic) IBOutlet UIView *mainView;
 
 @end

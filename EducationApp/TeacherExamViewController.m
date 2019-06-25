@@ -46,7 +46,20 @@
     todate = [[NSMutableArray alloc]init];
     markstatus = [[NSMutableArray alloc]init];
     isinternal = [[NSMutableArray alloc]init];
-
+    
+    self.mainView.layer.cornerRadius = 8.0f;
+    self.mainView.clipsToBounds = YES;
+    
+    _mainView.layer.shadowRadius  = 5.5f;
+    _mainView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    _mainView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    _mainView.layer.shadowOpacity = 0.6f;
+    _mainView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(_mainView.bounds, shadowInsets)];
+    _mainView.layer.shadowPath    = shadowPath.CGPath;
+    
     SWRevealViewController *revealViewController = self.revealViewController;
     if ( revealViewController )
     {
@@ -60,13 +73,13 @@
     tap.delegate = self;
     [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
     
-    _classSectionOtlet.layer.borderColor = [UIColor colorWithRed:102/255.0f green:51/255.0f blue:102/255.0f alpha:1.0].CGColor;
-    _classSectionOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
+    _classSectionOtlet.layer.borderColor = [UIColor colorWithRed:66/255.0f green:66/255.0f blue:66/255.0f alpha:1.0].CGColor;
+//    _classSectionOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
     _classSectionOtlet.layer.borderWidth = 1.0f;
     [_classSectionOtlet.layer setCornerRadius:10.0f];
     
-    _subjectOtlet.layer.borderColor = [UIColor colorWithRed:102/255.0f green:51/255.0f blue:102/255.0f alpha:1.0].CGColor;
-    _subjectOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
+    _subjectOtlet.layer.borderColor = [UIColor colorWithRed:66/255.0f green:66/255.0f blue:66/255.0f alpha:1.0].CGColor;
+//    _subjectOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
     _subjectOtlet.layer.borderWidth = 1.0f;
     [_subjectOtlet.layer setCornerRadius:10.0f];
     
@@ -221,13 +234,13 @@
     {
         if (classNameArr.count > 2)
         {
-            f = 200;
+            f = 130;
         }
         else
         {
-           f = 100;
+           f = 130;
         }
-        dropDown = [[NIDropDown alloc]showDropDown:sender :&f :classNameArr :nil :@"down"];
+        dropDown = [[NIDropDown alloc]showDropDown:sender :&f :classNameArr :nil :@"down" :self.view];
         [[NSUserDefaults standardUserDefaults]setObject:@"teacher_attendance" forKey:@"teacher_attendanceKey"];
         [[NSUserDefaults standardUserDefaults]setObject:@"class_section" forKey:@"categoery_key"];
         [_subjectOtlet setTitle:@"Subject" forState:UIControlStateNormal];
@@ -370,13 +383,13 @@
             [database close];
             if (subjectNameArr.count > 2)
             {
-               f = 200;
+               f = 130;
             }
             else
             {
-                f = 100;
+                f = 130;
             }
-            dropDown = [[NIDropDown alloc]showDropDown:sender :&f :subjectNameArr :nil :@"down"];
+            dropDown = [[NIDropDown alloc]showDropDown:sender :&f :subjectNameArr :nil :@"down" :self.view];
             [[NSUserDefaults standardUserDefaults]setObject:@"subject_name" forKey:@"subject_name_key"];
             [[NSUserDefaults standardUserDefaults]setObject:@"subject" forKey:@"categoery_key"];
             dropDown.delegate = self;

@@ -20,5 +20,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *username;
 @property (weak, nonatomic) IBOutlet UIImageView *logoImageView;
 @property (strong, nonatomic) NSString *databasepath;
+@property (strong, nonatomic) IBOutlet UIView *mainView;
+- (IBAction)passwordEyeBtn:(id)sender;
+@property (strong, nonatomic) IBOutlet UIImageView *eyeImage;
 
 @end

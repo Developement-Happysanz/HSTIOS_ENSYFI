@@ -40,5 +40,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *admisionID;
 - (IBAction)backBtn:(id)sender;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet UIView *mainView;
 
 @end

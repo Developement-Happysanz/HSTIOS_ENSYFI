@@ -31,6 +31,9 @@
     
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
+    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"2048 x 2732.png"]];
+    
+
     appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     
@@ -378,9 +381,18 @@
     cell.fromdate.text = [frmDate objectAtIndex:indexPath.row];
     cell.toDate.text = [toDte objectAtIndex:indexPath.row];
     
-    cell.mainView.layer.borderWidth = 1.0f;
-    cell.mainView.layer.borderColor = [UIColor clearColor].CGColor;
-    cell.mainView.layer.cornerRadius = 6.0f;
+    cell.mainView.layer.cornerRadius = 8.0f;
+    cell.mainView.clipsToBounds = YES;
+    
+    cell.mainView.layer.shadowRadius  = 5.5f;
+    cell.mainView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    cell.mainView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    cell.mainView.layer.shadowOpacity = 0.6f;
+    cell.mainView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(cell.mainView.bounds, shadowInsets)];
+    cell.mainView.layer.shadowPath    = shadowPath.CGPath;
     
     return cell;
 }

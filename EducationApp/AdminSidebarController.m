@@ -36,7 +36,7 @@
     class_id = [[NSMutableArray alloc]init];
     class_name = [[NSMutableArray alloc]init];
     
-    menuItems = @[@"samp",@"home",@"profile",@"students",@"teachers", @"parents", @"classes", @"exams", @"results", @"events",@"communication",@"fee",@"onduty",@"leave",@"settings",@"signout"];
+    menuItems = @[@"samp",@"home",@"profile",@"students",@"teachers", @"parents", @"classes", @"exams", @"results", @"events",@"communication",@"fee",@"onduty",@"notification",@"leave",@"settings",@"signout"];
     
     staticMenu = @[@"username"];
     
@@ -44,6 +44,10 @@
 
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.tableview reloadData];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -144,13 +148,11 @@
     }
     else if ([segue.identifier isEqualToString:@"students"])
     {
-        
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        
         appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        
         NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
-        NSLog(@"%@",parameters);
+        [parameters setObject:appDel.user_id forKey:@"user_id"];
         AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
         manager.requestSerializer = [AFJSONRequestSerializer serializer];
         [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -189,11 +191,13 @@
                  [[NSUserDefaults standardUserDefaults]setObject:class_id forKey:@"admin_class_id"];
                  [[NSUserDefaults standardUserDefaults]setObject:class_name forKey:@"admin_class_name"];
                  
-                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"admin" bundle:nil];
-                 AdminStudentViewController *adminStudent = (AdminStudentViewController *)[storyboard instantiateViewControllerWithIdentifier:@"AdminStudentViewController"];
-                 [self.navigationController pushViewController:adminStudent animated:YES];
+//                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"admin" bundle:nil];
+//                 AdminStudentViewController *adminStudent = (AdminStudentViewController *)[storyboard instantiateViewControllerWithIdentifier:@"AdminStudentViewController"];
+//                 [self.navigationController pushViewController:adminStudent animated:YES];
                  
-                 
+                 UINavigationController *navController = segue.destinationViewController;
+                 AdminStudentViewController *adminTeacherView = [navController childViewControllers].firstObject;
+                 NSLog(@"%@",adminTeacherView);
                  [MBProgressHUD hideHUDForView:self.view animated:YES];
              }
              
@@ -209,7 +213,7 @@
     else if ([segue.identifier isEqualToString:@"teachers"])
     {
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
         UINavigationController *navController = segue.destinationViewController;
         AdminTeacherView *adminTeacherView = [navController childViewControllers].firstObject;
         NSLog(@"%@",adminTeacherView);
@@ -220,7 +224,7 @@
     else if ([segue.identifier isEqualToString:@"events"])
     {
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
         UINavigationController *navController = segue.destinationViewController;
         AdminEventTableViewController *adminEventView = [navController childViewControllers].firstObject;
         NSLog(@"%@",adminEventView);
@@ -230,9 +234,8 @@
     else if ([segue.identifier isEqualToString:@"communication"])
     {
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
         [[NSUserDefaults standardUserDefaults]setObject:@"admin" forKey:@"stat_user_type"];
-
         UINavigationController *navController = segue.destinationViewController;
         CommunicationViewController *comunicationView = [navController childViewControllers].firstObject;
         NSLog(@"%@",comunicationView);
@@ -241,10 +244,9 @@
     }
     else if ([segue.identifier isEqualToString:@"classes"])
     {
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        
         appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        
         NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
         [parameters setObject:appDel.user_id forKey:@"user_id"];
         
@@ -303,14 +305,11 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
 
     }
-    else if ([segue.identifier isEqualToString:@"Exams"])
+    else if ([segue.identifier isEqualToString:@"exams"])
     {
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-
         appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
         NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
         [parameters setObject:appDel.user_id forKey:@"user_id"];
         
@@ -367,6 +366,7 @@
     }
     else if ([segue.identifier isEqualToString:@"results"])
     {
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
         NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
@@ -427,9 +427,8 @@
     else if([segue.identifier isEqualToString:@"parents"])
     {
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-
         appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
         NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
         [parameters setObject:appDel.user_id forKey:@"user_id"];
         
@@ -491,7 +490,7 @@
     else if ([segue.identifier isEqualToString:@"onduty"])
     {
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
         UINavigationController *navController = segue.destinationViewController;
         AdminODViewController *adminOdView = [navController childViewControllers].firstObject;
         NSLog(@"%@",adminOdView);
@@ -499,10 +498,18 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
 
     }
+    else if ([segue.identifier isEqualToString:@"notification"])
+    {
+        [[NSUserDefaults standardUserDefaults]setObject:@"admin" forKey:@"stat_user_type"];
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
+        UINavigationController *navController = segue.destinationViewController;
+        GroupNotificationViewController *groupNotificationStatusViewController = [navController childViewControllers].firstObject;
+        NSLog(@"%@",groupNotificationStatusViewController);
+    }
     else if ([segue.identifier isEqualToString:@"leave"])
     {
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
         UINavigationController *navController = segue.destinationViewController;
         AdminLeaveRequestView *adminleaveView = [navController childViewControllers].firstObject;
         NSLog(@"%@",adminleaveView);
@@ -510,8 +517,67 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
 
     }
+    else if ([segue.identifier isEqualToString:@"holidaycalender"])
+    {
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
+        [parameters setObject:appDel.user_id forKey:@"user_id"];
+        
+        AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+        
+        
+        /* concordanate with baseurl */
+        NSString *get_all_classes = @"/apiadmin/get_all_classes/";
+        NSArray *components = [NSArray arrayWithObjects:baseUrl,appDel.institute_code,get_all_classes, nil];
+        NSString *api = [NSString pathWithComponents:components];
+        
+        
+        [manager POST:api parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+         {
+             
+             NSLog(@"%@",responseObject);
+             [MBProgressHUD hideHUDForView:self.view animated:YES];
+             NSString *msg = [responseObject objectForKey:@"msg"];
+             NSArray *data = [responseObject objectForKey:@"data"];
+             
+             [class_id removeAllObjects];
+             [class_name removeAllObjects];
+             
+             if ([msg isEqualToString:@"success"])
+             {
+                 for (int i = 0;i < [data count] ; i++)
+                 {
+                     NSDictionary *dict = [data objectAtIndex:i];
+                     NSString *clas_id = [dict objectForKey:@"class_id"];
+                     NSString *clas_name = [dict objectForKey:@"class_name"];
+                     
+                     [class_id addObject:clas_id];
+                     [class_name addObject:clas_name];
+                 }
+                 
+                 [[NSUserDefaults standardUserDefaults]setObject:class_id forKey:@"admin_class_id"];
+                 [[NSUserDefaults standardUserDefaults]setObject:class_name forKey:@"admin_class_name"];
+                 
+                 UINavigationController *navController = segue.destinationViewController;
+                 AdminHolidayCalenderViewController *adminEventView = [navController childViewControllers].firstObject;
+                 NSLog(@"%@",adminEventView);
+             }
+             
+         }
+              failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+         {
+             NSLog(@"error: %@", error);
+         }];
+        
+    }
     else if ([segue.identifier isEqualToString:@"settings"])
     {
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
         UINavigationController *navController = segue.destinationViewController;
         TeacherSettingsViewController *teacherSettingsViewController = [navController childViewControllers].firstObject;
         NSLog(@"%@",teacherSettingsViewController);
@@ -519,9 +585,8 @@
     else if ([segue.identifier isEqualToString:@"fee"])
     {
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-
         appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
         NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
         [parameters setObject:appDel.user_id forKey:@"user_id"];
         
@@ -575,27 +640,34 @@
          {
              NSLog(@"error: %@", error);
          }];
-        
     }
-    
+    else if ([segue.identifier isEqualToString:@"signout"])
+    {
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
+        [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"admin_class_id"];
+        [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"admin_class_name"];
+        [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"Login_status"];
+        [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"stat_user_type"];
+        [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"view_selection"];
+        UINavigationController *navController = segue.destinationViewController;
+        ViewController *viewController = [navController childViewControllers].firstObject;
+        NSLog(@"%@",viewController);
+    }
     [MBProgressHUD hideHUDForView:self.view animated:YES];
 
 }
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.row == 15)
-    {
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        ViewController *viewController = (ViewController *)[storyboard instantiateViewControllerWithIdentifier:@"ViewController"];
-        [self.navigationController pushViewController:viewController animated:YES];
-        
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-
-    }
-    
-}
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    if (indexPath.row == 16)
+//    {
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//        ViewController *viewController = (ViewController *)[storyboard instantiateViewControllerWithIdentifier:@"ViewController"];
+//        [self.navigationController pushViewController:viewController animated:YES];
+//
+//
+//    }
+//
+//}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

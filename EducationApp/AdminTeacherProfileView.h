@@ -31,5 +31,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *address;
 @property (strong, nonatomic) IBOutlet UIButton *timetablebtnOtlet;
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
+@property (strong, nonatomic) IBOutlet UIView *mainView;
 
 @end

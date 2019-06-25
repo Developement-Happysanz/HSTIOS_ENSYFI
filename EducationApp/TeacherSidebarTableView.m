@@ -204,6 +204,7 @@
     
     if ([segue.identifier isEqualToString:@"profile"])
     {
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
         UINavigationController *navController = segue.destinationViewController;
         TeacherProfileViewController *profile = [navController childViewControllers].firstObject;
         NSLog(@"%@",profile);
@@ -211,6 +212,7 @@
     }
     else if ([segue.identifier isEqualToString:@"home"])
     {
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
         UINavigationController *navController = segue.destinationViewController;
         TeacherSidebarTableView *teachersidebartableView = [navController childViewControllers].firstObject;
         NSLog(@"%@",teachersidebartableView);
@@ -218,6 +220,7 @@
     }
     else if ([segue.identifier isEqualToString:@"classTest"])
     {
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
         UINavigationController *navController = segue.destinationViewController;
         TeacherClasstestHomeWorkView *teacherClasstestHomeWorkView = [navController childViewControllers].firstObject;
         NSLog(@"%@",teacherClasstestHomeWorkView);
@@ -225,6 +228,7 @@
     }
     else if ([segue.identifier isEqualToString:@"circular"])
     {
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
         UINavigationController *navController = segue.destinationViewController;
         TeacherCirularTableViewController *time = [navController childViewControllers].firstObject;
         NSLog(@"%@",time);
@@ -232,6 +236,8 @@
     }
     else if ([segue.identifier isEqualToString:@"attendance"])
     {
+        
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
 //        appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
 //        
 //        NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
@@ -307,7 +313,7 @@
     }
     else if ([segue.identifier isEqualToString:@"exams"])
     {
-        
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
         UINavigationController *navController = segue.destinationViewController;
         TeacherExamViewController *teacherExamViewController = [navController childViewControllers].firstObject;
         NSLog(@"%@",teacherExamViewController);
@@ -315,7 +321,7 @@
     }
     else if ([segue.identifier isEqualToString:@"notification"])
     {
-        
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
         UINavigationController *navController = segue.destinationViewController;
         TeacherNotificationTableViewController *teacherNotificationTableViewController = [navController childViewControllers].firstObject;
         NSLog(@"%@",teacherNotificationTableViewController);
@@ -324,7 +330,7 @@
     
     else if ([segue.identifier isEqualToString:@"onduty"])
     {
-        
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
         UINavigationController *navController = segue.destinationViewController;
         TeacherOndutyViewController *onduty = [navController childViewControllers].firstObject;
         NSLog(@"%@",onduty);
@@ -332,7 +338,7 @@
     }
     else if ([segue.identifier isEqualToString:@"applyLeave"])
     {
-        
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
         UINavigationController *navController = segue.destinationViewController;
         TeacherApplyLeave *teacherApplyLeave = [navController childViewControllers].firstObject;
         NSLog(@"%@",teacherApplyLeave);
@@ -340,7 +346,7 @@
     }
     else if ([segue.identifier isEqualToString:@"timeTable"])
     {
-        
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
         UINavigationController *navController = segue.destinationViewController;
         TeachersTimeTableView *TeachersTimeTableView = [navController childViewControllers].firstObject;
         NSLog(@"%@",TeachersTimeTableView);
@@ -348,7 +354,7 @@
     }
     else if ([segue.identifier isEqualToString:@"sync"])
     {
-
+        [[NSUserDefaults standardUserDefaults]setObject:@"sideMenu" forKey:@"view_selection"];
         UINavigationController *navController = segue.destinationViewController;
         SyncViewController *sync = [navController childViewControllers].firstObject;
         NSLog(@"%@",sync);

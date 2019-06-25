@@ -129,7 +129,7 @@
     date = [dateFormatter dateFromString:dateList];
     // converting into our required date format
     [dateFormatter setDateFormat:@"MMMM dd yyyy"];
-    cell.msgDate.text = [dateFormatter stringFromDate:date];
+    cell.msgDate.text = [NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:date]];
     cell.presentlabel.text = [NSString stringWithFormat:@"%@%@",@"No. of present : ",[no_of_present objectAtIndex:indexPath.row]];
     cell.absentLabel.text = [NSString stringWithFormat:@"%@%@",@"No. of Absent : ",[no_of_absent objectAtIndex:indexPath.row]];
     cell.totalStudentsLabel.text = [NSString stringWithFormat:@"%@%@",@"Total Students : ", [class_total objectAtIndex:indexPath.row]];
@@ -146,8 +146,19 @@
         cell.sentLabel.text = @"";
         cell.sentImage.hidden = YES;
     }
-    cell.cellView.layer.cornerRadius = 5.0;
+    
+    cell.cellView.layer.cornerRadius = 8.0f;
     cell.cellView.clipsToBounds = YES;
+    
+    cell.cellView.layer.shadowRadius  = 5.5f;
+    cell.cellView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    cell.cellView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    cell.cellView.layer.shadowOpacity = 0.6f;
+    cell.cellView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(cell.cellView.bounds, shadowInsets)];
+    cell.cellView.layer.shadowPath    = shadowPath.CGPath;
 
     return cell;
 }

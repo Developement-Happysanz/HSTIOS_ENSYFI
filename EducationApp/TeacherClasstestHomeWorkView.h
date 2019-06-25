@@ -19,6 +19,7 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *sidebar;
 - (IBAction)plusbtn:(id)sender;
 @property (strong, nonatomic) IBOutlet UITableView *tableview;
+@property (strong, nonatomic) IBOutlet UIView *mainView;
 
 
 @end

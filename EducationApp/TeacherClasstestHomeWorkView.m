@@ -45,6 +45,19 @@
     
     server_hw_id = [[NSMutableArray alloc]init];
     
+    self.mainView.layer.cornerRadius = 8.0f;
+    self.mainView.clipsToBounds = YES;
+    
+    _mainView.layer.shadowRadius  = 5.5f;
+    _mainView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    _mainView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    _mainView.layer.shadowOpacity = 0.6f;
+    _mainView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(_mainView.bounds, shadowInsets)];
+    _mainView.layer.shadowPath    = shadowPath.CGPath;
+    
     SWRevealViewController *revealViewController = self.revealViewController;
     if ( revealViewController )
     {
@@ -60,13 +73,13 @@
     tap.delegate = self;
     [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
     
-    _classSectionOtlet.layer.borderColor = [UIColor colorWithRed:102/255.0f green:51/255.0f blue:102/255.0f alpha:1.0].CGColor;
-    _classSectionOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
+    _classSectionOtlet.layer.borderColor = [UIColor colorWithRed:66/255.0f green:66/255.0f blue:66/255.0f alpha:1.0].CGColor;
+ //   _classSectionOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
     _classSectionOtlet.layer.borderWidth = 1.0f;
     [_classSectionOtlet.layer setCornerRadius:10.0f];
     
-    _categoeryOtlet.layer.borderColor = [UIColor colorWithRed:102/255.0f green:51/255.0f blue:102/255.0f alpha:1.0].CGColor;
-    _categoeryOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
+    _categoeryOtlet.layer.borderColor = [UIColor colorWithRed:66/255.0f green:66/255.0f blue:66/255.0f alpha:1.0].CGColor;
+//    _categoeryOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
     _categoeryOtlet.layer.borderWidth = 1.0f;
     [_categoeryOtlet.layer setCornerRadius:10.0f];
     
@@ -119,9 +132,19 @@
         cell.typeLabel.text =@"Home Work";
         cell.homeworkLabel.text = [NSString stringWithFormat:@"%@ : %@",@"Homework Submission Date",[due_date objectAtIndex:indexPath.row]];
     }
-    cell.cellView.layer.borderWidth = 1.0f;
-    cell.cellView.layer.borderColor = [UIColor clearColor].CGColor;
-    cell.cellView.layer.cornerRadius = 6.0f;
+    
+    cell.cellView.layer.cornerRadius = 8.0f;
+    cell.cellView.clipsToBounds = YES;
+    
+    cell.cellView.layer.shadowRadius  = 5.5f;
+    cell.cellView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    cell.cellView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    cell.cellView.layer.shadowOpacity = 0.6f;
+    cell.cellView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(cell.cellView.bounds, shadowInsets)];
+    cell.cellView.layer.shadowPath    = shadowPath.CGPath;
     
     return cell;
 }
@@ -191,13 +214,13 @@
     {
         if (classNameArr.count > 3)
         {
-            f = 200;
+            f = 130;
         }
         else
         {
-            f = 100;
+            f = 130;
         }
-        dropDown = [[NIDropDown alloc]showDropDown:sender :&f :classNameArr :nil :@"down"];
+        dropDown = [[NIDropDown alloc]showDropDown:sender :&f :classNameArr :nil :@"down" :self.view];
         [[NSUserDefaults standardUserDefaults]setObject:@"teacher_attendance" forKey:@"teacher_attendanceKey"];
         [[NSUserDefaults standardUserDefaults]setObject:@"class_section" forKey:@"categoery_key"];
         [_categoeryOtlet setTitle:@"Categoery" forState:UIControlStateNormal];
@@ -302,8 +325,8 @@
     NSArray *arr = @[@"Class Test",@"Home Work"];
     if(dropDown == nil)
     {
-        CGFloat f = 100;
-        dropDown = [[NIDropDown alloc]showDropDown:sender :&f :arr :nil :@"down"];
+        CGFloat f = 300;
+        dropDown = [[NIDropDown alloc]showDropDown:sender :&f :arr :nil :@"down" :self.view];
         [[NSUserDefaults standardUserDefaults]setObject:@"class_test" forKey:@"class_test_Key"];
         [[NSUserDefaults standardUserDefaults]setObject:@"categoery" forKey:@"categoery_key"];
         dropDown.delegate = self;

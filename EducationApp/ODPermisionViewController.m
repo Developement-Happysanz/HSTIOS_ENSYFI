@@ -28,6 +28,26 @@
     _declineOutlet.layer.cornerRadius = 8.0;
     _declineOutlet.clipsToBounds = YES;
     
+    self.decrptionTxtView.layer.cornerRadius = 8.0f;
+    self.decrptionTxtView.clipsToBounds = YES;
+    
+//    _decrptionTxtView.layer.shadowRadius  = 5.5f;
+//    _decrptionTxtView.layer.shadowColor   = UIColor.grayColor.CGColor;
+//    _decrptionTxtView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+//    _decrptionTxtView.layer.shadowOpacity = 0.6f;
+//    _decrptionTxtView.layer.masksToBounds = NO;
+//    
+//    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+//    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(_decrptionTxtView.bounds, shadowInsets)];
+//    _decrptionTxtView.layer.shadowPath    = shadowPath.CGPath;
+    
+    UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc]
+                                           initWithTarget:self
+                                           action:@selector(hideKeyBoard)];
+    
+    [self.view addGestureRecognizer:tapGesture];
+    
+    
     self.nameLabel.text = [[NSUserDefaults standardUserDefaults]objectForKey:@"odName"];
     self.dateLabel.text = [[NSUserDefaults standardUserDefaults]objectForKey:@"oddate"];
     self.decrptionTxtView.text = [[NSUserDefaults standardUserDefaults]objectForKey:@"odStatus"];
@@ -192,6 +212,21 @@
 }
 - (IBAction)backBtn:(id)sender
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+//- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+//
+//    if([text isEqualToString:@"\n"]) {
+//        [textView resignFirstResponder];
+//        return NO;
+//    }
+//
+//    return YES;
+//}
+
+-(void)hideKeyBoard
+{
+    [self.decrptionTxtView resignFirstResponder];
 }
 @end

@@ -42,6 +42,19 @@
     tap.delegate = self;
     [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
     
+    self.mainView.layer.cornerRadius = 8.0f;
+    self.mainView.clipsToBounds = YES;
+    
+    _mainView.layer.shadowRadius  = 5.5f;
+    _mainView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    _mainView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    _mainView.layer.shadowOpacity = 0.6f;
+    _mainView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(_mainView.bounds, shadowInsets)];
+    _mainView.layer.shadowPath    = shadowPath.CGPath;
+    
     leaveTitle = [[NSMutableArray alloc]init];
     leaveReson = [[NSMutableArray alloc]init];
     leaveDate = [[NSMutableArray alloc]init];
@@ -397,13 +410,13 @@
     {
         if(class_name.count < 3)
         {
-           f = 200;
+           f = 300;
         }
         else
         {
             f = 300;
         }
-        dropDown = [[NIDropDown alloc]showDropDown:sender :&f :class_name :nil :@"down"];
+        dropDown = [[NIDropDown alloc]showDropDown:sender :&f :class_name :nil :@"down" :self.view];
         [_sectionOtlet setTitle:@"Section" forState:UIControlStateNormal];
         _sectionOtlet.titleLabel.textColor = [UIColor colorWithRed:102/255.0f green:52/255.0f blue:102/255.0f alpha:1.0];
         dropDown.delegate = self;
@@ -474,13 +487,13 @@
                      CGFloat f;
                      if (sec_name.count < 3)
                      {
-                         f = 200;
+                         f = 130;
                      }
                      else
                      {
-                         f = 300;
+                         f = 130;
                      }
-                     dropDown = [[NIDropDown alloc]showDropDown:sender :&f :sec_name :nil :@"down"];
+                     dropDown = [[NIDropDown alloc]showDropDown:sender :&f :sec_name :nil :@"down" :self.view];
                      [[NSUserDefaults standardUserDefaults]setObject:@"Section" forKey:@"sec_class"];
                      dropDown.delegate = self;
                  }

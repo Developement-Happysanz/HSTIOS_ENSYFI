@@ -20,5 +20,6 @@
 - (IBAction)classBtn:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *sectionOtlet;
 - (IBAction)sectionBtn:(id)sender;
+@property (strong, nonatomic) IBOutlet UIView *mainView;
 
 @end

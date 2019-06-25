@@ -140,20 +140,68 @@
     tap.delegate = self;
     [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
     
-    _attendanceSync.layer.cornerRadius = 5; // this value vary as per your desire
-    _attendanceSync.clipsToBounds = YES;
-    _classtestSync.layer.cornerRadius = 5; // this value vary as per your desire
-    _classtestSync.clipsToBounds = YES;
+//    self.attendanceView.layer.cornerRadius = 8.0f;
+//    self.attendanceView.clipsToBounds = YES;
     
-    _refreshsync.layer.cornerRadius = 5; // this value vary as per your desire
-    _refreshsync.clipsToBounds = YES;
-    _refreshsync.layer.borderWidth = 1.0f;
-    _refreshsync.layer.borderColor = [UIColor blackColor].CGColor;
+    _attendanceView.layer.shadowRadius  = 5.5f;
+    _attendanceView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    _attendanceView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    _attendanceView.layer.shadowOpacity = 0.6f;
+    _attendanceView.layer.masksToBounds = NO;
+    
+//    self.classtestHomeworkView.layer.cornerRadius = 8.0f;
+//    self.classtestHomeworkView.clipsToBounds = YES;
+    
+    _classtestHomeworkView.layer.shadowRadius  = 5.5f;
+    _classtestHomeworkView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    _classtestHomeworkView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    _classtestHomeworkView.layer.shadowOpacity = 0.6f;
+    _classtestHomeworkView.layer.masksToBounds = NO;
+    
+//    self.classtestMarksView.layer.cornerRadius = 8.0f;
+//    self.classtestMarksView.clipsToBounds = YES;
+    
+    _classtestMarksView.layer.shadowRadius  = 5.5f;
+    _classtestMarksView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    _classtestMarksView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    _classtestMarksView.layer.shadowOpacity = 0.6f;
+    _classtestMarksView.layer.masksToBounds = NO;
+    
+//    self.examMarks.layer.cornerRadius = 8.0f;
+//    self.examMarks.clipsToBounds = YES;
+    
+    _examMarks.layer.shadowRadius  = 5.5f;
+    _examMarks.layer.shadowColor   = UIColor.grayColor.CGColor;
+    _examMarks.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    _examMarks.layer.shadowOpacity = 0.6f;
+    _examMarks.layer.masksToBounds = NO;
+    
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath;
+    shadowPath = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(_attendanceView.bounds, shadowInsets)];
+    shadowPath = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(_classtestHomeworkView.bounds, shadowInsets)];
+    shadowPath = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(_classtestMarksView.bounds, shadowInsets)];
+    shadowPath = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(_examMarks.bounds, shadowInsets)];
+    _attendanceView.layer.shadowPath    = shadowPath.CGPath;
+    _classtestHomeworkView.layer.shadowPath    = shadowPath.CGPath;
+    _classtestMarksView.layer.shadowPath    = shadowPath.CGPath;
+    _examMarks.layer.shadowPath    = shadowPath.CGPath;
 
-    _classTestMarkSync.layer.cornerRadius = 5; // this value vary as per your desire
-    _classTestMarkSync.clipsToBounds = YES;
-    _examSync.layer.cornerRadius = 5; // this value vary as per your desire
-    _examSync.clipsToBounds = YES;
+//    _attendanceSync.layer.cornerRadius = 5; // this value vary as per your desire
+//    _attendanceSync.clipsToBounds = YES;
+//    _classtestSync.layer.cornerRadius = 5; // this value vary as per your desire
+//    _classtestSync.clipsToBounds = YES;
+//    
+//    _refreshsync.layer.cornerRadius = 5; // this value vary as per your desire
+//    _refreshsync.clipsToBounds = YES;
+//    _refreshsync.layer.borderWidth = 1.0f;
+//    _refreshsync.layer.borderColor = [UIColor blackColor].CGColor;
+//
+//    _classTestMarkSync.layer.cornerRadius = 5; // this value vary as per your desire
+//    _classTestMarkSync.clipsToBounds = YES;
+//    _examSync.layer.cornerRadius = 5; // this value vary as per your desire
+//    _examSync.clipsToBounds = YES;
 
 }
 

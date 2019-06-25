@@ -22,4 +22,5 @@
 - (IBAction)viewAttendanceBtn:(id)sender;
 - (IBAction)backBtn:(id)sender;
 @property (strong, nonatomic) IBOutlet ShowPopViewController *popupView;
+@property (strong, nonatomic) IBOutlet UIView *mainView;
 @end

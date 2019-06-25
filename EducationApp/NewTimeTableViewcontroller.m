@@ -33,18 +33,30 @@
 {
     [super viewDidLoad];
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
-    SWRevealViewController *revealViewController = self.revealViewController;
-    if ( revealViewController )
-    {
-        [self.sidebarbutton setTarget: self.revealViewController];
-        [self.sidebarbutton setAction: @selector( revealToggle: )];
-        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-    }
     
-    SWRevealViewController *revealController = [self revealViewController];
-    UITapGestureRecognizer *tap = [revealController tapGestureRecognizer];
-    tap.delegate = self;
-    [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
+    NSString *str = [[NSUserDefaults standardUserDefaults]objectForKey:@"view_selection"];
+    
+    if ([str isEqualToString:@"mainMenu"])
+    {
+        UIBarButtonItem *button2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back-01.png"] style:UIBarButtonItemStylePlain target:self action:@selector(backBtn:)];
+        button2.tintColor = UIColor.whiteColor;
+        self.navigationItem.leftBarButtonItem = button2;
+    }
+    else
+    {
+        SWRevealViewController *revealViewController = self.revealViewController;
+        if (revealViewController)
+        {
+            [self.sidebarbutton setTarget: self.revealViewController];
+            [self.sidebarbutton setAction: @selector( revealToggle: )];
+            [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+        }
+        
+        SWRevealViewController *revealController = [self revealViewController];
+        UITapGestureRecognizer *tap = [revealController tapGestureRecognizer];
+        tap.delegate = self;
+        [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
+    }
     
     class_id = [[NSMutableArray alloc]init];
     from_time = [[NSMutableArray alloc]init];
@@ -56,11 +68,12 @@
     day = [[NSMutableArray alloc]init];
     break_name = [[NSMutableArray alloc]init];
 
-    dayArray = [[NSUserDefaults standardUserDefaults]objectForKey:@"timeTable_Days_id"];
-    listday_Array = [[NSUserDefaults standardUserDefaults]objectForKey:@"timeTable_Days"];
+    listday_Array = @[@"Monday",@"Tuesday",@"WednesDay",@"ThursDay",@"Friday",@"SaturDay",@"Sunday"];
+    dayArray = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7"];
     _segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:listday_Array];
     _segmentedControl.frame = CGRectMake(0,0,self.view.bounds.size.width,55);
     _segmentedControl.selectionIndicatorHeight = 4.0f;
+    _segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
     _segmentedControl.backgroundColor = [UIColor colorWithRed:102/255.0f green:51/255.0f blue:102/255.0f alpha:1.0];
     _segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
     _segmentedControl.selectionStyle  = HMSegmentedControlSelectionStyleFullWidthStripe;
@@ -77,7 +90,7 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
-    [parameters setObject:@"1" forKey:@"class_id"];
+    [parameters setObject:appDel.class_id forKey:@"class_id"];
     [parameters setObject:day_id forKey:@"day_id"];
 
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
@@ -156,6 +169,10 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (IBAction)backBtn:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 /*
 #pragma mark - Navigation
 
@@ -195,8 +212,8 @@
         cell.staffName.hidden = YES;
         cell.breakLabel.hidden = NO;
         cell.breakLabel.text = [NSString stringWithFormat:@"%@ - %@",[break_name objectAtIndex:indexPath.row],time];
-        cell.cellView.layer.cornerRadius = 5.0;
-        cell.cellView.clipsToBounds = YES;
+//        cell.cellView.layer.cornerRadius = 5.0;
+//        cell.cellView.clipsToBounds = YES;
         cell.cellView.backgroundColor = [UIColor colorWithRed:231/255.0f green:167/255.0f blue:93/255.0f alpha:1.0];
     }
     else
@@ -210,10 +227,23 @@
         cell.calenderImageview.hidden = NO;
         cell.statPeriodLabel.hidden = NO;
         cell.time.hidden = NO;        
-        cell.cellView.layer.cornerRadius = 5.0;
-        cell.cellView.clipsToBounds = YES;
+//        cell.cellView.layer.cornerRadius = 5.0;
+//        cell.cellView.clipsToBounds = YES;
         cell.cellView.backgroundColor = [UIColor whiteColor];
     }
+    
+    cell.cellView.layer.cornerRadius = 8.0f;
+    cell.cellView.clipsToBounds = YES;
+    
+    cell.cellView.layer.shadowRadius  = 5.5f;
+    cell.cellView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    cell.cellView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    cell.cellView.layer.shadowOpacity = 0.6f;
+    cell.cellView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(cell.cellView.bounds, shadowInsets)];
+    cell.cellView.layer.shadowPath    = shadowPath.CGPath;
         return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -238,7 +268,7 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
-    [parameters setObject:@"2" forKey:@"class_id"];
+    [parameters setObject:appDel.class_id forKey:@"class_id"];
     [parameters setObject:day_id forKey:@"day_id"];
     
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
@@ -290,6 +320,24 @@
                  [to_time addObject:strto_time];
              }
                  [self.tableView reloadData];
+         }
+         else
+         {
+             UIAlertController *alert= [UIAlertController
+                                        alertControllerWithTitle:@"ENSYFI"
+                                        message:@"TimeTable Not Found"
+                                        preferredStyle:UIAlertControllerStyleAlert];
+             
+             UIAlertAction *ok = [UIAlertAction
+                                  actionWithTitle:@"OK"
+                                  style:UIAlertActionStyleDefault
+                                  handler:^(UIAlertAction * action)
+                                  {
+                                      
+                                  }];
+             
+             [alert addAction:ok];
+             [self presentViewController:alert animated:YES completion:nil];
          }
      }
           failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)

@@ -24,6 +24,7 @@
     [super viewDidLoad];
     
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"2048 x 2732.png"]];
     subject_name = [[NSMutableArray alloc]init];
     exam_date = [[NSMutableArray alloc]init];
     times = [[NSMutableArray alloc]init];

@@ -38,7 +38,7 @@
     _LeadName.layer.borderWidth = 1.0f;
     [_LeadName.layer setCornerRadius:10.0f];
     
-    switchFlag = @"Deactive";
+    switchFlag = @"Active";
     pickerView = [[UIPickerView alloc]init];
     pickerView.delegate = self;
     pickerView.dataSource = self;

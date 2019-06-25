@@ -309,6 +309,10 @@
 -(void)total
 {
     self.totalMarks.text =[NSString stringWithFormat:@"%@" ,totalMarksStr];
+    if ([self.totalMarks.text  isEqual: @"(null)"])
+    {
+        self.totalMarks.text = @"-";
+    }
 }
 - (IBAction)backButton:(id)sender
 {
@@ -327,9 +331,10 @@
         }
         else
         {
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            ExamsViewController *examsViewController = (ExamsViewController *)[storyboard instantiateViewControllerWithIdentifier:@"ExamsViewController"];
-            [self.navigationController pushViewController:examsViewController animated:YES];
+//            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//            ExamsViewController *examsViewController = (ExamsViewController *)[storyboard instantiateViewControllerWithIdentifier:@"ExamsViewController"];
+//            [self.navigationController pushViewController:examsViewController animated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
         }
         
         
@@ -345,9 +350,10 @@
     }
     else
     {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        ExamsViewController *examsViewController = (ExamsViewController *)[storyboard instantiateViewControllerWithIdentifier:@"ExamsViewController"];
-        [self.navigationController pushViewController:examsViewController animated:YES];
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//        ExamsViewController *examsViewController = (ExamsViewController *)[storyboard instantiateViewControllerWithIdentifier:@"ExamsViewController"];
+//        [self.navigationController pushViewController:examsViewController animated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 @end

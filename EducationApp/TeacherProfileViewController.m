@@ -14,7 +14,12 @@
     UIImage *chosenImage;
     NSData *image;
 }
+
+@property (nonatomic) UIPopoverController *popover;
+
 @end
+
+
 
 @implementation TeacherProfileViewController
 
@@ -251,21 +256,34 @@
 
     chosenImage = info[UIImagePickerControllerOriginalImage];
     self.userImage.image = chosenImage;
-    chosenImage=[self scaleAndRotateImage:chosenImage];
-    image = UIImageJPEGRepresentation(chosenImage, 0.1);
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-
-    UIGraphicsBeginImageContextWithOptions(self.userImage.bounds.size, NO, [UIScreen mainScreen].scale);
-
-    [[UIBezierPath bezierPathWithRoundedRect:self.userImage.bounds
-                                cornerRadius:50.0] addClip];
-    [chosenImage drawInRect:self.userImage.bounds];
-
-    self.userImage.image = UIGraphicsGetImageFromCurrentImageContext();
-
-    UIGraphicsEndImageContext();
+//    chosenImage=[self scaleAndRotateImage:chosenImage];
+//    image = UIImageJPEGRepresentation(chosenImage, 0.1);
+//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//
+//    UIGraphicsBeginImageContextWithOptions(self.userImage.bounds.size, NO, [UIScreen mainScreen].scale);
+//
+//    [[UIBezierPath bezierPathWithRoundedRect:self.userImage.bounds
+//                                cornerRadius:50.0] addClip];
+//    [chosenImage drawInRect:self.userImage.bounds];
+//
+//    self.userImage.image = UIGraphicsGetImageFromCurrentImageContext();
+//
+//    UIGraphicsEndImageContext();
     
-    [self profile_Pic];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        if (self.popover.isPopoverVisible) {
+            [self.popover dismissPopoverAnimated:NO];
+        }
+        
+        //    [self updateEditButtonEnabled];
+        
+        [self openEditor:nil];
+    } else {
+        [picker dismissViewControllerAnimated:YES completion:^{
+            [self openEditor:nil];
+        }];
+    }
+    
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 -(void)profile_Pic
@@ -324,5 +342,53 @@
 
     }
     
+}
+- (void)cropViewController:(PECropViewController *)controller didFinishCroppingImage:(UIImage *)croppedImage transform:(CGAffineTransform)transform cropRect:(CGRect)cropRect
+{
+    [controller dismissViewControllerAnimated:YES completion:NULL];
+    //    self.imageView.image = ;
+    
+    chosenImage = croppedImage;
+    self.userImage.image = chosenImage;
+    image = UIImageJPEGRepresentation(chosenImage, 0.1);
+    [self profile_Pic];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        // [self updateEditButtonEnabled];
+    }
+}
+
+- (void)cropViewControllerDidCancel:(PECropViewController *)controller
+{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        //  [self updateEditButtonEnabled];
+    }
+    
+    [controller dismissViewControllerAnimated:YES completion:NULL];
+}
+
+#pragma mark - Action methods
+
+- (IBAction)openEditor:(id)sender
+{
+    PECropViewController *controller = [[PECropViewController alloc] init];
+    controller.delegate = self;
+    controller.image = self.userImage.image;
+    
+    UIImage *image = self.userImage.image;
+    CGFloat width = image.size.width;
+    CGFloat height = image.size.height;
+    CGFloat length = MIN(width, height);
+    controller.imageCropRect = CGRectMake((width - length) / 2,
+                                          (height - length) / 2,
+                                          length,
+                                          length);
+    
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+    }
+    
+    [self presentViewController:navigationController animated:YES completion:NULL];
 }
 @end

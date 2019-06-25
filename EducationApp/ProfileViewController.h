@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PECropViewController.h"
 
-@interface ProfileViewController : UIViewController<UIGestureRecognizerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIPopoverPresentationControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate>
+@interface ProfileViewController : UIViewController<UIGestureRecognizerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIPopoverPresentationControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,PECropViewControllerDelegate>
 - (IBAction)changePaswrdBtn:(id)sender;
 - (IBAction)fessBtn:(id)sender;
 - (IBAction)studentBtn:(id)sender;
@@ -24,6 +25,11 @@
 @property (weak) UIViewController *popupController;
 - (IBAction)imageBtn:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *imageBtnOtlet;
+@property (strong, nonatomic) IBOutlet UIView *mainView;
+@property (strong, nonatomic) IBOutlet UIView *parentView;
+@property (strong, nonatomic) IBOutlet UIView *guardianView;
+@property (strong, nonatomic) IBOutlet UIView *studentView;
+@property (strong, nonatomic) IBOutlet UIView *feeView;
 
 
 @end

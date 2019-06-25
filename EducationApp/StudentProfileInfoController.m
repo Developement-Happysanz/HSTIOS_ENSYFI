@@ -23,6 +23,19 @@
     
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
+    self.mainView.layer.cornerRadius = 8.0f;
+    self.mainView.clipsToBounds = YES;
+    
+    self.mainView.layer.shadowRadius  = 5.5f;
+    self.mainView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    self.mainView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    self.mainView.layer.shadowOpacity = 0.6f;
+    self.mainView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(self.mainView.bounds, shadowInsets)];
+    self.mainView.layer.shadowPath    = shadowPath.CGPath;
+    
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -162,7 +175,7 @@
 }
 -(void)viewDidLayoutSubviews
 {
-    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width,967);
+   // self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width,967);
     
 }
 /*

@@ -19,5 +19,6 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 - (IBAction)classSectionBtn:(id)sender;
 - (IBAction)subjectBtn:(id)sender;
+@property (strong, nonatomic) IBOutlet UIView *mainView;
 
 @end

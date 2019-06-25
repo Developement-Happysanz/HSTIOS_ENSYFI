@@ -57,36 +57,75 @@
     tmpString1 = @"";
     tmpString2 = @"";
     
-    SWRevealViewController *revealViewController = self.revealViewController;
-    if ( revealViewController )
+    self.mainView.layer.cornerRadius = 8.0f;
+    self.mainView.clipsToBounds = YES;
+    
+    _mainView.layer.shadowRadius  = 5.5f;
+    _mainView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    _mainView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    _mainView.layer.shadowOpacity = 0.6f;
+    _mainView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(_mainView.bounds, shadowInsets)];
+    _mainView.layer.shadowPath    = shadowPath.CGPath;
+    
+    NSString *str = [[NSUserDefaults standardUserDefaults]objectForKey:@"view_selection"];
+    
+    if ([str isEqualToString:@"mainMenu"])
     {
-        [self.sidebarButton setTarget: self.revealViewController];
-        [self.sidebarButton setAction: @selector( revealToggle: )];
-        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+        UIBarButtonItem *button2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back-01.png"] style:UIBarButtonItemStylePlain target:self action:@selector(backBtn:)];
+        button2.tintColor = UIColor.whiteColor;
+        self.navigationItem.leftBarButtonItem = button2;
+    }
+    else
+    {
+        SWRevealViewController *revealViewController = self.revealViewController;
+        if (revealViewController)
+        {
+            [self.sidebarButton setTarget: self.revealViewController];
+            [self.sidebarButton setAction: @selector( revealToggle: )];
+            [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+        }
+        
+        SWRevealViewController *revealController = [self revealViewController];
+        UITapGestureRecognizer *tap = [revealController tapGestureRecognizer];
+        tap.delegate = self;
+        [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
     }
     
-    SWRevealViewController *revealController = [self revealViewController];
-    UITapGestureRecognizer *tap = [revealController tapGestureRecognizer];
-    tap.delegate = self;
-    [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
-    
-    _classBtnOtlet.layer.borderColor = [UIColor colorWithRed:102/255.0f green:51/255.0f blue:102/255.0f alpha:1.0].CGColor;
-    _classBtnOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
+    _classBtnOtlet.layer.borderColor = [UIColor colorWithRed:154/255.0f green:154/255.0f blue:154/255.0f alpha:1.0].CGColor;
+   // _classBtnOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
     _classBtnOtlet.layer.borderWidth = 1.0f;
     [_classBtnOtlet.layer setCornerRadius:10.0f];
     
-    _sectionBtnOtlet.layer.borderColor = [UIColor colorWithRed:102/255.0f green:51/255.0f blue:102/255.0f alpha:1.0].CGColor;
-    _sectionBtnOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
+    _sectionBtnOtlet.layer.borderColor = [UIColor colorWithRed:154/255.0f green:154/255.0f blue:154/255.0f alpha:1.0].CGColor;
+  //  _sectionBtnOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
     _sectionBtnOtlet.layer.borderWidth = 1.0f;
     [_sectionBtnOtlet.layer setCornerRadius:10.0f];
     
     [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"selected_Class_Value"];
     [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"selected_Section_Value"];
+    
+    self.tableview.hidden = YES;
+    self.tableTitleView.hidden = YES;
+}
+
+- (IBAction)backBtn:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)viewDidLayoutSubviews
+{
+    CGRect frame= _segmentControl.frame;
+    [_segmentControl setFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, 45)];
+    
 }
 
 /*
@@ -176,8 +215,8 @@
                  
                  if(dropDown == nil)
                  {
-                     CGFloat f = 100;
-                     dropDown = [[NIDropDown alloc]showDropDown:sender :&f :sec_name :nil :@"down"];
+                     CGFloat f = 300;
+                     dropDown = [[NIDropDown alloc]showDropDown:sender :&f :sec_name :nil :@"down" :self.view];
                      dropDown.delegate = self;
                      
                  }
@@ -257,10 +296,11 @@
         [subject_name_Array removeAllObjects];
         [Techer_name removeAllObjects];
 
+        self.tableTitleView.hidden = YES;
         [self.tableview reloadData];
         
-        CGFloat f = 200;
-        dropDown = [[NIDropDown alloc]showDropDown:sender :&f :class_name :nil :@"down"];
+        CGFloat f = 300;
+        dropDown = [[NIDropDown alloc]showDropDown:sender :&f :class_name :nil :@"down" :self.view];
         [_sectionBtnOtlet setTitle:@"Section" forState:UIControlStateNormal];
         _sectionBtnOtlet.titleLabel.textColor = [UIColor colorWithRed:102/255.0f green:52/255.0f blue:102/255.0f alpha:1.0];
         dropDown.delegate = self;
@@ -412,10 +452,31 @@
                      dropDown = nil;
 
                      self.tableview.hidden = NO;
+                     self.tableTitleView.hidden = NO;
                      
                      [self.tableview reloadData];
                      
                      [MBProgressHUD hideHUDForView:self.view animated:YES];
+                 }
+                 else
+                 {
+                     self.tableview.hidden = YES;
+                     self.tableTitleView.hidden = YES;
+                     UIAlertController *alert= [UIAlertController
+                                                alertControllerWithTitle:@"ENSYFI"
+                                                message:@"Please Select the Class"
+                                                preferredStyle:UIAlertControllerStyleAlert];
+                     
+                     UIAlertAction *ok = [UIAlertAction
+                                          actionWithTitle:@"OK"
+                                          style:UIAlertActionStyleDefault
+                                          handler:^(UIAlertAction * action)
+                                          {
+                                              
+                                          }];
+                     
+                     [alert addAction:ok];
+                     [self presentViewController:alert animated:YES completion:nil];
                  }
                  
              }
@@ -531,7 +592,7 @@
                  dropDown = nil;
 
                  self.tableview.hidden = NO;
-                 
+                 self.tableTitleView.hidden = NO;
                  [self.tableview reloadData];
                  
                  [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -636,9 +697,10 @@
         
         [[NSUserDefaults standardUserDefaults]setObject:@"classes" forKey:@"ClassView"];
         
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"admin" bundle:nil];
-        AdminStudentProfileView *adminStudentProfile = (AdminStudentProfileView *)[storyboard instantiateViewControllerWithIdentifier:@"AdminStudentProfileView"];
-        [self.navigationController pushViewController:adminStudentProfile animated:YES];
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"admin" bundle:nil];
+//        AdminStudentProfileView *adminStudentProfile = (AdminStudentProfileView *)[storyboard instantiateViewControllerWithIdentifier:@"AdminStudentProfileView"];
+//        [self.navigationController pushViewController:adminStudentProfile animated:YES];
+        [self performSegueWithIdentifier:@"to_adminStudentProfile" sender:self];
     }
     else
     {
@@ -650,9 +712,11 @@
 
         [[NSUserDefaults standardUserDefaults]setObject:teacherid forKey:@"admin_teacherid"];
         
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"admin" bundle:nil];
-        AdminTeacherProfileView *adminTeacherProfile = (AdminTeacherProfileView *)[storyboard instantiateViewControllerWithIdentifier:@"AdminTeacherProfileView"];
-        [self.navigationController pushViewController:adminTeacherProfile animated:YES];
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"admin" bundle:nil];
+//        AdminTeacherProfileView *adminTeacherProfile = (AdminTeacherProfileView *)[storyboard instantiateViewControllerWithIdentifier:@"AdminTeacherProfileView"];
+//        [self.navigationController pushViewController:adminTeacherProfile animated:YES];
+        
+        [self performSegueWithIdentifier:@"to_adminTeacherProfile" sender:self];
     }
 }
 @end

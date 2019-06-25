@@ -16,6 +16,8 @@
 
 }
 
+@property (nonatomic) UIPopoverController *popover;
+
 @end
 
 @implementation ProfileViewController
@@ -38,6 +40,61 @@
     UITapGestureRecognizer *tap = [revealController tapGestureRecognizer];
     tap.delegate = self;
     [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
+    
+    self.mainView.layer.cornerRadius = 8.0f;
+    self.mainView.clipsToBounds = YES;
+    _mainView.layer.shadowRadius  = 5.5f;
+    _mainView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    _mainView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    _mainView.layer.shadowOpacity = 0.6f;
+    _mainView.layer.masksToBounds = NO;
+    
+    self.parentView.layer.cornerRadius = 8.0f;
+    self.parentView.clipsToBounds = YES;
+    _parentView.layer.shadowRadius  = 5.5f;
+    _parentView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    _parentView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    _parentView.layer.shadowOpacity = 0.6f;
+    _parentView.layer.masksToBounds = NO;
+    
+    self.guardianView.layer.cornerRadius = 8.0f;
+    self.guardianView.clipsToBounds = YES;
+    _guardianView.layer.shadowRadius  = 5.5f;
+    _guardianView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    _guardianView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    _guardianView.layer.shadowOpacity = 0.6f;
+    _guardianView.layer.masksToBounds = NO;
+    
+    self.studentView.layer.cornerRadius = 8.0f;
+    self.studentView.clipsToBounds = YES;
+    _studentView.layer.shadowRadius  = 5.5f;
+    _studentView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    _studentView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    _studentView.layer.shadowOpacity = 0.6f;
+    _studentView.layer.masksToBounds = NO;
+    
+    
+    self.feeView.layer.cornerRadius = 8.0f;
+    self.feeView.clipsToBounds = YES;
+    _feeView.layer.shadowRadius  = 5.5f;
+    _feeView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    _feeView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    _feeView.layer.shadowOpacity = 0.6f;
+    _feeView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath;
+    shadowPath = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(_mainView.bounds, shadowInsets)];
+    shadowPath = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(_guardianView.bounds, shadowInsets)];
+    shadowPath = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(_parentView.bounds, shadowInsets)];
+    shadowPath = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(_feeView.bounds, shadowInsets)];
+    shadowPath = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(_studentView.bounds, shadowInsets)];
+    _mainView.layer.shadowPath    = shadowPath.CGPath;
+    _guardianView.layer.shadowPath    = shadowPath.CGPath;
+    _parentView.layer.shadowPath    = shadowPath.CGPath;
+    _feeView.layer.shadowPath    = shadowPath.CGPath;
+    _studentView.layer.shadowPath    = shadowPath.CGPath;
+
     
     self.imageView.layer.cornerRadius = 50.0;
     self.imageView.clipsToBounds = YES;
@@ -319,27 +376,40 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     
-    chosenImage = info[UIImagePickerControllerOriginalImage];
-    self.imageView.image = chosenImage;
-    chosenImage=[self scaleAndRotateImage:chosenImage];
-    image = UIImageJPEGRepresentation(chosenImage, 0.1);
-    
-    UIGraphicsBeginImageContextWithOptions(self.imageView.bounds.size, NO, [UIScreen mainScreen].scale);
-
-    // Add a clip before drawing anything, in the shape of an rounded rect
-    [[UIBezierPath bezierPathWithRoundedRect:self.imageView.bounds
-                                cornerRadius:50.0] addClip];
-    // Draw your image
-    [chosenImage drawInRect:self.imageView.bounds];
-
-    // Get the image, here setting the UIImageView image
-    self.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
+//    chosenImage = info[UIImagePickerControllerOriginalImage];
+//    self.imageView.image = chosenImage;
+//
+//    chosenImage=[self scaleAndRotateImage:chosenImage];
+//    image = UIImageJPEGRepresentation(chosenImage, 0.1);
+//
+//    UIGraphicsBeginImageContextWithOptions(self.imageView.bounds.size, NO, [UIScreen mainScreen].scale);
+//
+//    // Add a clip before drawing anything, in the shape of an rounded rect
+//    [[UIBezierPath bezierPathWithRoundedRect:self.imageView.bounds
+//                                cornerRadius:50.0] addClip];
+//    // Draw your image
+//    [chosenImage drawInRect:self.imageView.bounds];
+//
+//    // Get the image, here setting the UIImageView image
+//    self.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
 
     // Lets forget about that we were drawing
     UIGraphicsEndImageContext();
-  
-    [self ImageUpload];
     
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        if (self.popover.isPopoverVisible) {
+            [self.popover dismissPopoverAnimated:NO];
+        }
+        
+    //    [self updateEditButtonEnabled];
+        
+        [self openEditor:nil];
+    } else {
+        [picker dismissViewControllerAnimated:YES completion:^{
+            [self openEditor:nil];
+        }];
+    }
+  
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 -(void)ImageUpload
@@ -386,5 +456,53 @@
                                           }
                                       }];
     [dataTask resume];
+}
+- (void)cropViewController:(PECropViewController *)controller didFinishCroppingImage:(UIImage *)croppedImage transform:(CGAffineTransform)transform cropRect:(CGRect)cropRect
+{
+    [controller dismissViewControllerAnimated:YES completion:NULL];
+//    self.imageView.image = ;
+    
+    chosenImage = croppedImage;
+    self.imageView.image = chosenImage;
+    image = UIImageJPEGRepresentation(chosenImage, 0.1);
+    [self ImageUpload];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+       // [self updateEditButtonEnabled];
+    }
+}
+
+- (void)cropViewControllerDidCancel:(PECropViewController *)controller
+{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+      //  [self updateEditButtonEnabled];
+    }
+    
+    [controller dismissViewControllerAnimated:YES completion:NULL];
+}
+
+#pragma mark - Action methods
+
+- (IBAction)openEditor:(id)sender
+{
+    PECropViewController *controller = [[PECropViewController alloc] init];
+    controller.delegate = self;
+    controller.image = self.imageView.image;
+    
+    UIImage *image = self.imageView.image;
+    CGFloat width = image.size.width;
+    CGFloat height = image.size.height;
+    CGFloat length = MIN(width, height);
+    controller.imageCropRect = CGRectMake((width - length) / 2,
+                                          (height - length) / 2,
+                                          length,
+                                          length);
+    
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+    }
+    
+    [self presentViewController:navigationController animated:YES completion:NULL];
 }
 @end

@@ -11,5 +11,6 @@
 @interface AdminViewController : UIViewController<UIGestureRecognizerDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *sidebar;
+@property (strong, nonatomic) IBOutlet UIView *mainView;
 
 @end

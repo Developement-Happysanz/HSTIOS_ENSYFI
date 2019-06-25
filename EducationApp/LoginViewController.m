@@ -9,7 +9,7 @@
 
 
 #import "LoginViewController.h"
-
+#import <QuartzCore/QuartzCore.h>
 
 @interface LoginViewController ()
 {
@@ -21,6 +21,8 @@
     NSMutableArray *studentname;
     NSMutableArray *registered_id;
     NSMutableArray *sec_name;
+    
+    NSString *eyeImgeispressed;
 }
 @property(strong) Reachability * googleReach;
 @property(strong) Reachability * localWiFiReach;
@@ -38,6 +40,8 @@
     studentname = [[NSMutableArray alloc]init];
     registered_id = [[NSMutableArray alloc]init];
     sec_name = [[NSMutableArray alloc]init];
+    
+    eyeImgeispressed = @"YES";
 
 //    _username.layer.borderColor = [UIColor colorWithRed:102/255.0f green:51/255.0f blue:102/255.0f alpha:1.0].CGColor;
 //    _username.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
@@ -49,6 +53,19 @@
 //    _password.layer.borderWidth = 1.0f;
 //    [_password.layer setCornerRadius:10.0f];
     
+    _mainView.layer.cornerRadius = 8.0f;
+    _mainView.clipsToBounds = YES;
+    
+    _mainView.layer.shadowRadius  = 5.5f;
+    _mainView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    _mainView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    _mainView.layer.shadowOpacity = 0.6f;
+    _mainView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(_mainView.bounds, shadowInsets)];
+    _mainView.layer.shadowPath    = shadowPath.CGPath;
+        
     _signInOtlet.layer.cornerRadius = 2.0f; // this value vary as per your desire
     _signInOtlet.clipsToBounds = YES;
 
@@ -635,6 +652,7 @@
                      NSArray *datatimeTable = [timeTable valueForKey:@"data"];
                      NSString *year_id = [responseObject objectForKey:@"year_id"];
                      [[NSUserDefaults standardUserDefaults]setObject:year_id forKey:@"Year_Id_key"];
+
                      NSLog(@"%@%@",exam,year_id);
                      
                      for (int i = 0; i < [data count]; i++)
@@ -738,7 +756,7 @@
                          NSString *strteacher_id = [dict objectForKey:@"teacher_id"];
                          
                          [[NSUserDefaults standardUserDefaults]setObject:strteacher_id forKey:@"strteacher_id_key"];
-                         NSLog(@"%@",strteacher_id);
+                         appDel.classTeacher_id = [[NSUserDefaults standardUserDefaults]objectForKey:@"strteacher_id_key"];
                          [[NSUserDefaults standardUserDefaults]setObject:strteacher_id forKey:@"admin_teacherid"];
                          
                          NSArray *docPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -923,18 +941,24 @@
                          NSString *strsubject_name = [dict objectForKey:@"subject_name"];
                          NSString *strteacher_id = [dict objectForKey:@"teacher_id"];
                          NSString *strname = [dict objectForKey:@"name"];
-                         NSString *strday = [dict objectForKey:@"day"];
+//                         NSString *strday = [dict objectForKey:@"day"];
                          NSString *strperiod = [dict objectForKey:@"period"];
                          NSString *strsec_name = [dict objectForKey:@"sec_name"];
                          NSString *strclass_name = [dict objectForKey:@"class_name"];
+                         NSString *strbreak_name = [dict objectForKey:@"break_name"];
+                         NSString *strto_time = [dict objectForKey:@"to_time"];
+                         NSString *stris_break = [dict objectForKey:@"is_break"];
+                         NSString *strfrom_time = [dict objectForKey:@"from_time"];
+                         NSString *strday_id = [dict objectForKey:@"day_id"];
+
 
                          NSArray *docPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
                          NSString *documentsDir = [docPaths objectAtIndex:0];
-                         NSString *dbPath = [documentsDir   stringByAppendingPathComponent:@"ENSIFY.db"];
+                         NSString *dbPath = [documentsDir stringByAppendingPathComponent:@"ENSIFY.db"];
                          FMDatabase *database = [FMDatabase databaseWithPath:dbPath];
                          [database open];
                          
-                         BOOL isInserted=[database executeUpdate:@"INSERT INTO table_create_teacher_timetable (table_id,class_id,subject_id,subject_name,teacher_id,name,day,period,sec_name,class_name) VALUES (?,?,?,?,?,?,?,?,?,?)",strtable_id,strclass_id,strsubject_id,strsubject_name,strteacher_id,strname,strday,strperiod,strsec_name,strclass_name];
+                         BOOL isInserted=[database executeUpdate:@"INSERT INTO table_create_teacher_timetable (table_id,class_id,subject_id,subject_name,teacher_id,name,period,sec_name,class_name,break_name,day_id,from_time,is_break,to_time) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",strtable_id,strclass_id,strsubject_id,strsubject_name,strteacher_id,strname,strperiod,strsec_name,strclass_name,strbreak_name,strday_id,strfrom_time,stris_break,strto_time];
                          
                          [database close];
                          
@@ -1034,5 +1058,20 @@
 {
     [self.username resignFirstResponder];
     [self.password resignFirstResponder];
+}
+- (IBAction)passwordEyeBtn:(id)sender
+{
+    if ([eyeImgeispressed isEqualToString:@"YES"])
+    {
+        _eyeImage.image = [UIImage imageNamed:@"unhide.png"];
+        eyeImgeispressed = @"NO";
+        _password.secureTextEntry = NO;
+    }
+    else
+    {
+        _eyeImage.image = [UIImage imageNamed:@"hide.png"];
+        eyeImgeispressed = @"YES";
+        _password.secureTextEntry = YES;
+    }
 }
 @end

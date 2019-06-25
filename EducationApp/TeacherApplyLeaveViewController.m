@@ -23,6 +23,9 @@
     NSMutableArray *leave_type;
 
     NSMutableArray *leavetypes;
+    
+    NSDate *date1;
+    NSDate *date2;
 }
 @end
 
@@ -47,6 +50,7 @@
     
     datePicker=[[UIDatePicker alloc]init];
     datePicker.datePickerMode=UIDatePickerModeDate;
+    [datePicker setMinimumDate: [NSDate date]];
     
     timePicker=[[UIDatePicker alloc]init];
     timePicker.datePickerMode=UIDatePickerModeTime;
@@ -120,6 +124,9 @@
     _textViewViewOne.layer.cornerRadius = 10.0;
     _textViewViewOne.clipsToBounds = YES;
     
+    _requestOtlet.layer.cornerRadius = 2.0f;
+    _requestOtlet.clipsToBounds = YES;
+
     _viewTwo.hidden = YES;
     _viewOne.hidden = NO;
     
@@ -263,8 +270,8 @@
 {
     if(dropDown == nil)
     {
-        CGFloat f = 150;
-        dropDown = [[NIDropDown alloc]showDropDown:sender :&f :leavetypes :nil :@"down"];
+        CGFloat f = 300;
+        dropDown = [[NIDropDown alloc]showDropDown:sender :&f :leavetypes :nil :@"down" :self.view];
         [[NSUserDefaults standardUserDefaults]setObject:@"applyLeave" forKey:@"applyLeave_key"];
         dropDown.delegate = self;
     }
@@ -315,7 +322,7 @@
 - (IBAction)requestBtn:(id)sender
 {
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    [format setDateFormat:@"YYYY-MM-dd"];
+    [format setDateFormat:@"yyyy-MM-dd"];
     NSDate *dtOne=[format dateFromString:self.startdateTxt.text];
     NSDate *dtTwo=[format dateFromString:self.endDatetxt.text];
     
@@ -530,8 +537,10 @@
 }
 - (IBAction)requestBtnViewOne:(id)sender
 {
+    NSLog(@"%@%@", self.startDateTxtViewOne.text,self.toDateTxtViewOne.text);
+    
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    [format setDateFormat:@"YYYY-MM-dd"];
+    [format setDateFormat:@"yyyy-MM-dd"];
     NSDate *dtOne=[format dateFromString:self.startDateTxtViewOne.text];
     NSDate *dtTwo=[format dateFromString:self.toDateTxtViewOne.text];
     
@@ -623,8 +632,8 @@
         [parameters setObject:appDel.user_id forKey:@"user_id"];
         [parameters setObject:leavemaster_id forKey:@"leave_master_id"];
         [parameters setObject:leave_type_str forKey:@"leave_type"];
-        [parameters setObject:self.startdateTxt.text forKey:@"date_from"];
-        [parameters setObject:self.endDatetxt.text forKey:@"date_to"];
+        [parameters setObject:self.startDateTxtViewOne.text forKey:@"date_from"];
+        [parameters setObject:self.toDateTxtViewOne.text forKey:@"date_to"];
         [parameters setObject:@"" forKey:@"fromTime"];
         [parameters setObject:@"" forKey:@"toTime"];
         [parameters setObject:self.textViewViewOne.text forKey:@"description"];

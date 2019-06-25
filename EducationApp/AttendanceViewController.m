@@ -14,6 +14,12 @@
     AppDelegate *appDel;
     NSMutableArray *ab_date;
     NSMutableArray *attendenceHistory;
+    
+    NSMutableArray *absent_Days;
+    NSMutableArray *LeaveDays;
+    NSMutableArray *odDays;
+
+
 }
 @end
 
@@ -26,6 +32,11 @@
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     ab_date = [[NSMutableArray alloc]init];
     attendenceHistory = [[NSMutableArray alloc]init];
+    
+    absent_Days = [[NSMutableArray alloc]init];
+    LeaveDays = [[NSMutableArray alloc]init];
+    odDays = [[NSMutableArray alloc]init];
+
 
     NSString *stat_user_type = [[NSUserDefaults standardUserDefaults]objectForKey:@"stat_user_type"];
     if ([stat_user_type isEqualToString:@"admin"])
@@ -51,18 +62,30 @@
     }
     else
     {
-        SWRevealViewController *revealViewController = self.revealViewController;
-        if ( revealViewController )
+        NSString *str = [[NSUserDefaults standardUserDefaults]objectForKey:@"view_selection"];
+        
+        if ([str isEqualToString:@"mainMenu"])
         {
-            [self.sidebarButton setTarget: self.revealViewController];
-            [self.sidebarButton setAction: @selector( revealToggle: )];
-            [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+            UIBarButtonItem *button2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back-01.png"] style:UIBarButtonItemStylePlain target:self action:@selector(backBtn:)];
+            button2.tintColor = UIColor.whiteColor;
+            self.navigationItem.leftBarButtonItem = button2;
+        }
+        else
+        {
+            SWRevealViewController *revealViewController = self.revealViewController;
+            if (revealViewController)
+            {
+                [self.sidebarButton setTarget: self.revealViewController];
+                [self.sidebarButton setAction: @selector( revealToggle: )];
+                [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+            }
+            
+            SWRevealViewController *revealController = [self revealViewController];
+            UITapGestureRecognizer *tap = [revealController tapGestureRecognizer];
+            tap.delegate = self;
+            [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
         }
         
-        SWRevealViewController *revealController = [self revealViewController];
-        UITapGestureRecognizer *tap = [revealController tapGestureRecognizer];
-        tap.delegate = self;
-        [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
 
     }
     self.mainView.layer.borderWidth = 1.0f;
@@ -128,10 +151,6 @@
 //        [self createRandomEvents];
 //
 //    }
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-}
--(void)viewWillAppear:(BOOL)animated
-{
     
     appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
@@ -147,7 +166,7 @@
     NSString *forAttendance = @"/apistudent/disp_Attendence/";
     NSArray *components = [NSArray arrayWithObjects:baseUrl,appDel.institute_code,forAttendance, nil];
     NSString *api = [NSString pathWithComponents:components];
-//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [manager POST:api parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
      {
          
@@ -166,36 +185,11 @@
              NSString *present_days = [attendenceHistory valueForKey:@"present_days"];
              NSString *total_working_days = [attendenceHistory valueForKey:@"total_working_days"];
              
-             [ab_date removeAllObjects];
-             
-             for (int i = 0; i < [arr_Attendance count]; i++)
-             {
-                 NSDictionary *dict = [arr_Attendance objectAtIndex:i];
-                 NSLog(@"%@",dict);
-                 NSString *abDate= [dict valueForKey:@"abs_date"];
-                 [ab_date addObject:abDate];
-             }
-             
-             NSArray *abs_date = [NSArray arrayWithArray:ab_date];
-             [[NSUserDefaults standardUserDefaults] setObject:abs_date forKey:@"abs_date_Key"];
-             [[NSUserDefaults standardUserDefaults] setObject:absent_days forKey:@"absent_days_Key"];
-             [[NSUserDefaults standardUserDefaults] setObject:leave_days forKey:@"leave_days_Key"];
-             [[NSUserDefaults standardUserDefaults] setObject:od_days forKey:@"od_days_Key"];
-             [[NSUserDefaults standardUserDefaults] setObject:present_days forKey:@"present_days_Key"];
-             [[NSUserDefaults standardUserDefaults] setObject:total_working_days forKey:@"total_working_days_Key"];
-             
-         }
-         
-         [[NSUserDefaults standardUserDefaults] setObject:msg forKey:@"msg_attendance_Key"];
-         NSString *str = [[NSUserDefaults standardUserDefaults]objectForKey:@"msg_attendance_Key"];
-         if ([str isEqualToString:@"View Attendence"])
-         {
-             [[NSUserDefaults standardUserDefaults]setObject:@" " forKey:@"msg_attendance_Key"];
-             NSString *total_working_Days = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"total_working_days_Key"]];
-             NSString *absentDays= [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"absent_days_Key"]];
-             NSString *odDays = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"od_days_Key"]];
-             NSString *presentDays = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"present_days_Key"]];
-             NSString *leaveDays = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"leave_days_Key"]];
+             NSString *total_working_Days = [NSString stringWithFormat:@"%@",total_working_days];
+             NSString *absentDays= [NSString stringWithFormat:@"%@",absent_days];
+             NSString *odDays = [NSString stringWithFormat:@"%@",od_days];
+             NSString *presentDays = [NSString stringWithFormat:@"%@",present_days];
+             NSString *leaveDays = [NSString stringWithFormat:@"%@",leave_days];
              
              if ([total_working_Days isEqualToString:@"0"] || [total_working_Days isEqualToString:@"1"])
              {
@@ -237,17 +231,55 @@
              {
                  self.leaveDays.text = [NSString stringWithFormat:@"%@ %@",leaveDays,@"Days"];
              }
+             
+             [ab_date removeAllObjects];
+             
+             for (int i = 0; i < [arr_Attendance count]; i++)
+             {
+                 NSDictionary *dict = [arr_Attendance objectAtIndex:i];
+                 NSLog(@"%@",dict);
+                 
+                 NSString *abDate= [dict valueForKey:@"abs_date"];
+                 [ab_date addObject:abDate];
+             }
+             
+             NSArray *abs_date = [NSArray arrayWithArray:ab_date];
+             [[NSUserDefaults standardUserDefaults] setObject:abs_date forKey:@"abs_date_Key"];
+             [[NSUserDefaults standardUserDefaults] setObject:absent_days forKey:@"absent_days_Key"];
+             [[NSUserDefaults standardUserDefaults] setObject:leave_days forKey:@"leave_days_Key"];
+             [[NSUserDefaults standardUserDefaults] setObject:od_days forKey:@"od_days_Key"];
+             [[NSUserDefaults standardUserDefaults] setObject:present_days forKey:@"present_days_Key"];
+             [[NSUserDefaults standardUserDefaults] setObject:total_working_days forKey:@"total_working_days_Key"];
+             
              [self createRandomEvents];
+             
+             [self.calendar reloadData];
+             
+             [MBProgressHUD hideHUDForView:self.view animated:YES];
+
          }
-//         [MBProgressHUD hideHUDForView:self.view animated:YES];
+         
+         //         [[NSUserDefaults standardUserDefaults] setObject:msg forKey:@"msg_attendance_Key"];
+         //         NSString *str = [[NSUserDefaults standardUserDefaults]objectForKey:@"msg_attendance_Key"];
+         //
+         //
+         //         if ([str isEqualToString:@"View Attendence"])
+         //         {
+         //             [[NSUserDefaults standardUserDefaults]setObject:@" " forKey:@"msg_attendance_Key"];
+         
+         //         }
+         //         [MBProgressHUD hideHUDForView:self.view animated:YES];
      }
           failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
          NSLog(@"error: %@", error);
      }];
-    
+}
+-(void)viewWillAppear:(BOOL)animated
+{
 //    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
+
 - (IBAction)Back
 {
     NSString *str = [[NSUserDefaults standardUserDefaults]objectForKey:@"teacher_attendance_key"];
@@ -266,10 +298,14 @@
     
  // ios 6
 }
+- (IBAction)backBtn:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.calendar reloadData]; // Must be call in viewDidAppear
+    // Must be call in viewDidAppear
 }
 // Update the position of calendar when rotate the screen, call `calendarDidLoadPreviousPage` or `calendarDidLoadNextPage`
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation

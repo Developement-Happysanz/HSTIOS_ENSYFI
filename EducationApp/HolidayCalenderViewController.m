@@ -33,6 +33,19 @@
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     }
     
+    self.mainView.layer.cornerRadius = 8.0f;
+    self.mainView.clipsToBounds = YES;
+    
+    _mainView.layer.shadowRadius  = 5.5f;
+    _mainView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    _mainView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    _mainView.layer.shadowOpacity = 0.6f;
+    _mainView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(_mainView.bounds, shadowInsets)];
+    _mainView.layer.shadowPath    = shadowPath.CGPath;
+    
     SWRevealViewController *revealController = [self revealViewController];
     UITapGestureRecognizer *tap = [revealController tapGestureRecognizer];
     tap.delegate = self;
@@ -141,6 +154,13 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void)viewDidLayoutSubviews
+{
+    CGRect frame= _segmentcontrol.frame;
+    [_segmentcontrol setFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, 45)];
+    
+}
 /*
 #pragma mark - Navigation
 
@@ -169,8 +189,18 @@
     cell.leaveTitle.text = [leaveTitle objectAtIndex:indexPath.row];
     cell.LeaveDate.text = [leaveDate objectAtIndex:indexPath.row];
     cell.leaveReson.text = [leaveReson objectAtIndex:indexPath.row];
-    cell.cellView.layer.cornerRadius = 5;
-    cell.cellView.clipsToBounds = YES;
+    
+    
+    cell.cellView.layer.shadowRadius  = 5.5f;
+    cell.cellView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    cell.cellView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    cell.cellView.layer.shadowOpacity = 0.6f;
+    cell.cellView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(cell.cellView.bounds, shadowInsets)];
+    cell.cellView.layer.shadowPath    = shadowPath.CGPath;
+    
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
