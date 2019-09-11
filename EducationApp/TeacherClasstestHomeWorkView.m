@@ -74,12 +74,12 @@
     [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
     
     _classSectionOtlet.layer.borderColor = [UIColor colorWithRed:66/255.0f green:66/255.0f blue:66/255.0f alpha:1.0].CGColor;
- //   _classSectionOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
+//  _classSectionOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
     _classSectionOtlet.layer.borderWidth = 1.0f;
     [_classSectionOtlet.layer setCornerRadius:10.0f];
     
     _categoeryOtlet.layer.borderColor = [UIColor colorWithRed:66/255.0f green:66/255.0f blue:66/255.0f alpha:1.0].CGColor;
-//    _categoeryOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
+//  _categoeryOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
     _categoeryOtlet.layer.borderWidth = 1.0f;
     [_categoeryOtlet.layer setCornerRadius:10.0f];
     
@@ -171,8 +171,8 @@
         [[NSUserDefaults standardUserDefaults]setObject:descp forKey:@"ClassTest_descp_key"];
         [[NSUserDefaults standardUserDefaults]setObject:strclasstest_id forKey:@"localid_key"];
         [[NSUserDefaults standardUserDefaults]setObject:strserver_hw_id forKey:@"server_hw_id_key"];
-
     }
+    
     else
     {
         NSString *sub_name = Cell.subjectName.text;
@@ -206,7 +206,6 @@
     // Pass the selected object to the new view controller.
 }
 */
-
 - (IBAction)classSectionBtn:(id)sender
 {
      CGFloat f;
@@ -220,11 +219,11 @@
         {
             f = 130;
         }
+        
         dropDown = [[NIDropDown alloc]showDropDown:sender :&f :classNameArr :nil :@"down" :self.view];
         [[NSUserDefaults standardUserDefaults]setObject:@"teacher_attendance" forKey:@"teacher_attendanceKey"];
         [[NSUserDefaults standardUserDefaults]setObject:@"class_section" forKey:@"categoery_key"];
         [_categoeryOtlet setTitle:@"Categoery" forState:UIControlStateNormal];
-
         dropDown.delegate = self;
     }
     else

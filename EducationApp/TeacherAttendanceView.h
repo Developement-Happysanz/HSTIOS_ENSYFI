@@ -27,5 +27,6 @@
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 - (IBAction)plusBtn:(id)sender;
 @property (strong, nonatomic) IBOutlet UIView *mainView;
+@property (weak, nonatomic) IBOutlet UIView *dateSubvIew;
 
 @end

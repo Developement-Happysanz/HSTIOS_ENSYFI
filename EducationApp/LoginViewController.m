@@ -608,6 +608,24 @@
                      else
                          NSLog(@"Error occured while inserting");
                      
+                     NSArray *docPathsdeltable_create_attendence_Flag = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                     NSString *documentsDirdeltable_create_attendence_Flag = [docPathsdeltable_create_attendence_Flag objectAtIndex:0];
+                     NSString *dbPathdeltable_create_attendence_Flag = [documentsDirdeltable_create_attendence_Flag   stringByAppendingPathComponent:@"ENSIFY.db"];
+                     
+                     FMDatabase *databasedeldatabasedeltable_create_attendence_Flag = [FMDatabase databaseWithPath:dbPathdeltable_create_attendence_Flag];
+                     [databasedeldatabasedeltable_create_attendence_Flag open];
+                     
+                     BOOL isInserted_student_details = [databasedeldatabasedeltable_create_attendence_Flag executeUpdate:@"DELETE FROM table_create_attendence_Flag"];
+                     
+                     [databasedeldatabasedeltable_create_attendence_Flag close];
+                     
+                     if(isInserted_student_details)
+                         NSLog(@"DELETED table_create_attendence_Flag Successfully");
+                     else
+                         NSLog(@"Error occured while DELETEing");
+                     
+                     [databasedeldatabasedeltable_create_attendence_Flag close];
+                     
                      
                      [[NSUserDefaults standardUserDefaults]setObject:@"LogedIn_Teacher" forKey:@"Login_status"];
                      NSString *name = [userData valueForKey:@"name"];

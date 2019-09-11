@@ -71,6 +71,10 @@
                  [a_status addObject:stra_status];
 
              }
+             
+             [enroll_id insertObject:@"select" atIndex:0];
+             [name insertObject:@"select" atIndex:0];
+             [a_status insertObject:@"select" atIndex:0];
          }
                 [self.tableView reloadData];
      }

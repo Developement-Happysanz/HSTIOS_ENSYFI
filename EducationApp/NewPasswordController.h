@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *cnfrmOutlet;
 @property (weak, nonatomic) IBOutlet UITextField *confrmpswd;
 @property (weak, nonatomic) IBOutlet UITextField *newpswd;
+@property (weak, nonatomic) IBOutlet UIView *mainView;
 
 @end

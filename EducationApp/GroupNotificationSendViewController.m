@@ -311,7 +311,9 @@
 }
 - (IBAction)backBtn:(id)sender
 {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"teachers" bundle:nil];
-    TeacherNotificationTableViewController *teacherNotificationTableViewController = (TeacherNotificationTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"TeacherNotificationTableViewController"];
-    [self.navigationController pushViewController:teacherNotificationTableViewController animated:YES];}
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"teachers" bundle:nil];
+//    TeacherNotificationTableViewController *teacherNotificationTableViewController = (TeacherNotificationTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"TeacherNotificationTableViewController"];
+//    [self.navigationController pushViewController:teacherNotificationTableViewController animated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end

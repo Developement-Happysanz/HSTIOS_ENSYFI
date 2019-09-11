@@ -68,6 +68,18 @@
          NSString *msg = [responseObject objectForKey:@"msg"];
          NSArray *hwDates = [responseObject valueForKey:@"hwdayDetails"];
          
+         [hw_id removeAllObjects];
+         [hw_type removeAllObjects];
+         [title removeAllObjects];
+         [created_at removeAllObjects];
+         [test_date removeAllObjects];
+         [due_date removeAllObjects];
+         [hw_details removeAllObjects];
+         [send_option_status removeAllObjects];
+         [subject_id removeAllObjects];
+         [subject_name removeAllObjects];
+         [name removeAllObjects];
+         
          if ([msg isEqualToString:@"View All Homework - Day"])
          {
              for (int i = 0;i < [hwDates count]; i++)

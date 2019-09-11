@@ -49,7 +49,6 @@
 		681858E71F90C91D00D5C02B /* TeacherTimeTableNotes.m in Sources */ = {isa = PBXBuildFile; fileRef = 681858E61F90C91D00D5C02B /* TeacherTimeTableNotes.m */; };
 		681858EA1F90C96700D5C02B /* TeacherTimeTableNotesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 681858E91F90C96700D5C02B /* TeacherTimeTableNotesCell.m */; };
 		681858ED1F90ED9F00D5C02B /* TeacherTimeTableNotesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 681858EC1F90ED9F00D5C02B /* TeacherTimeTableNotesView.m */; };
-		681C5CAC1F83CC7E004DC9AD /* TeacherAttendanceFormView.m in Sources */ = {isa = PBXBuildFile; fileRef = 681C5CAB1F83CC7B004DC9AD /* TeacherAttendanceFormView.m */; };
 		681C5CAF1F83CD31004DC9AD /* TeacherAttendanceViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 681C5CAE1F83CD31004DC9AD /* TeacherAttendanceViewCell.m */; };
 		68278D981E9EA39600D3F052 /* SideBarTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68278D971E9EA39600D3F052 /* SideBarTableViewController.m */; };
 		6828B11A1F0A5156006AF3AF /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6885ED661F0A283F00DB524E /* libsqlite3.0.tbd */; };
@@ -178,16 +177,14 @@
 		6B0A0E5A22B122D300A60E73 /* change passswordProf@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0A0E5722B122D300A60E73 /* change passswordProf@3x.png */; };
 		6B0A0E6722B1242100A60E73 /* parent@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0A0E5B22B1241D00A60E73 /* parent@1x.png */; };
 		6B0A0E6822B1242100A60E73 /* student@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0A0E5C22B1241D00A60E73 /* student@1x.png */; };
-		6B0A0E6922B1242100A60E73 /* guardian@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0A0E5D22B1241D00A60E73 /* guardian@2x.png */; };
 		6B0A0E6A22B1242100A60E73 /* student@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0A0E5E22B1241E00A60E73 /* student@2x.png */; };
 		6B0A0E6B22B1242100A60E73 /* parent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0A0E5F22B1241E00A60E73 /* parent@3x.png */; };
 		6B0A0E6C22B1242100A60E73 /* parent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0A0E6022B1241E00A60E73 /* parent@2x.png */; };
 		6B0A0E6D22B1242100A60E73 /* student@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0A0E6122B1241F00A60E73 /* student@3x.png */; };
-		6B0A0E6E22B1242100A60E73 /* guardian@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0A0E6222B1241F00A60E73 /* guardian@3x.png */; };
 		6B0A0E6F22B1242100A60E73 /* fees@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0A0E6322B1242000A60E73 /* fees@2x.png */; };
-		6B0A0E7022B1242100A60E73 /* guardian@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0A0E6422B1242000A60E73 /* guardian@1x.png */; };
 		6B0A0E7122B1242100A60E73 /* fees@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0A0E6522B1242000A60E73 /* fees@3x.png */; };
 		6B0A0E7222B1242100A60E73 /* fees@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0A0E6622B1242100A60E73 /* fees@1x.png */; };
+		6B0BF57222C371730019313D /* TeacherAttendanceFormView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BF57122C371730019313D /* TeacherAttendanceFormView.m */; };
 		6B1D63EC22AF82CE0065CFAC /* attendance@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B1D63E622AF82CC0065CFAC /* attendance@3x.png */; };
 		6B1D63ED22AF82CE0065CFAC /* timetable@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B1D63E722AF82CD0065CFAC /* timetable@1x.png */; };
 		6B1D63EE22AF82CE0065CFAC /* timetable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B1D63E822AF82CD0065CFAC /* timetable@2x.png */; };
@@ -203,13 +200,13 @@
 		6B1D640122AFAAA50065CFAC /* presend@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B1D63FE22AFAAA40065CFAC /* presend@1x.png */; };
 		6B1D640222AFAAA50065CFAC /* presend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B1D63FF22AFAAA40065CFAC /* presend@2x.png */; };
 		6B1D640322AFAAA50065CFAC /* presend@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B1D640022AFAAA50065CFAC /* presend@3x.png */; };
-		6B1D640D22AFB50E0065CFAC /* sendnew@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B1D640A22AFB50C0065CFAC /* sendnew@3x.png */; };
-		6B1D640E22AFB50E0065CFAC /* sendnew@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B1D640B22AFB50D0065CFAC /* sendnew@1x.png */; };
-		6B1D640F22AFB50E0065CFAC /* sendnew@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B1D640C22AFB50D0065CFAC /* sendnew@2x.png */; };
 		6B1D641122AFC5210065CFAC /* refresh@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B1D641022AFC5200065CFAC /* refresh@3x.png */; };
 		6B1D641422AFC54B0065CFAC /* refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B1D641222AFC54A0065CFAC /* refresh@2x.png */; };
 		6B1D641522AFC54B0065CFAC /* refresh@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B1D641322AFC54A0065CFAC /* refresh@1x.png */; };
 		6B3D4ACD22C0F9CF0005D307 /* ENSIFY.db in Resources */ = {isa = PBXBuildFile; fileRef = 6B3D4ACC22C0F9CF0005D307 /* ENSIFY.db */; };
+		6B4147AD2327A628001FC25E /* time@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B4147AA2327A627001FC25E /* time@1x.png */; };
+		6B4147AE2327A628001FC25E /* time@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B4147AB2327A627001FC25E /* time@3x.png */; };
+		6B4147AF2327A628001FC25E /* time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B4147AC2327A628001FC25E /* time@2x.png */; };
 		6B42AC9C22B232AD009B0826 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B42AC9B22B232AA009B0826 /* profile.png */; };
 		6B42ACA322B24CD8009B0826 /* father icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B42AC9D22B24CD4009B0826 /* father icon@1x.png */; };
 		6B42ACA422B24CD8009B0826 /* mother icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B42AC9E22B24CD5009B0826 /* mother icon@2x.png */; };
@@ -384,6 +381,12 @@
 		6B61F84422A93C0C00538E81 /* Change password_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B61F84122A93C0A00538E81 /* Change password_2.png */; };
 		6B61F84522A93C0C00538E81 /* Change password_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B61F84222A93C0B00538E81 /* Change password_1.png */; };
 		6B61F84622A93C0C00538E81 /* Change password_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B61F84322A93C0B00538E81 /* Change password_3.png */; };
+		6B7FDA7323041E92006DC41F /* sendnew@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B7FDA7023041E91006DC41F /* sendnew@3x.png */; };
+		6B7FDA7423041E92006DC41F /* sendnew@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B7FDA7123041E91006DC41F /* sendnew@2x.png */; };
+		6B7FDA7523041E92006DC41F /* sendnew@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B7FDA7223041E92006DC41F /* sendnew@1x.png */; };
+		6B7FDA7923041F5D006DC41F /* guardian@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B7FDA7623041F5B006DC41F /* guardian@1x.png */; };
+		6B7FDA7A23041F5D006DC41F /* guardian@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B7FDA7723041F5C006DC41F /* guardian@2x.png */; };
+		6B7FDA7B23041F5D006DC41F /* guardian@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B7FDA7823041F5C006DC41F /* guardian@3x.png */; };
 		6B8193A522BD060F00238D02 /* mail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B81939322BD060600238D02 /* mail@2x.png */; };
 		6B8193A622BD060F00238D02 /* notification1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B81939422BD060700238D02 /* notification1@3x.png */; };
 		6B8193A722BD060F00238D02 /* sms@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B81939522BD060700238D02 /* sms@2x.png */; };
@@ -406,9 +409,6 @@
 		6BAEE7B22029882000D08550 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEE7B12029882000D08550 /* FMDatabaseAdditions.m */; };
 		6BAEE7B52029882B00D08550 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEE7B32029882B00D08550 /* FMResultSet.m */; };
 		6BAEE7B82029892400D08550 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEE7B72029892400D08550 /* FMDatabasePool.m */; };
-		6BC15A6922B8B54A00DFC177 /* view attendance@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC15A6622B8B54900DFC177 /* view attendance@1x.png */; };
-		6BC15A6A22B8B54A00DFC177 /* view attendance@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC15A6722B8B54A00DFC177 /* view attendance@3x.png */; };
-		6BC15A6B22B8B54A00DFC177 /* view attendance@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC15A6822B8B54A00DFC177 /* view attendance@2x.png */; };
 		6BC15A6F22B9056500DFC177 /* email circular @2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC15A6C22B9056300DFC177 /* email circular @2x.png */; };
 		6BC15A7022B9056500DFC177 /* email circular @3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC15A6D22B9056400DFC177 /* email circular @3x.png */; };
 		6BC15A7122B9056500DFC177 /* email circular @1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC15A6E22B9056400DFC177 /* email circular @1x.png */; };
@@ -512,7 +512,6 @@
 		681858EB1F90ED9F00D5C02B /* TeacherTimeTableNotesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeacherTimeTableNotesView.h; sourceTree = "<group>"; };
 		681858EC1F90ED9F00D5C02B /* TeacherTimeTableNotesView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeacherTimeTableNotesView.m; sourceTree = "<group>"; };
 		681C5CAA1F83CC7B004DC9AD /* TeacherAttendanceFormView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeacherAttendanceFormView.h; sourceTree = "<group>"; };
-		681C5CAB1F83CC7B004DC9AD /* TeacherAttendanceFormView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeacherAttendanceFormView.m; sourceTree = "<group>"; };
 		681C5CAD1F83CD31004DC9AD /* TeacherAttendanceViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeacherAttendanceViewCell.h; sourceTree = "<group>"; };
 		681C5CAE1F83CD31004DC9AD /* TeacherAttendanceViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeacherAttendanceViewCell.m; sourceTree = "<group>"; };
 		68278D961E9EA39600D3F052 /* SideBarTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideBarTableViewController.h; sourceTree = "<group>"; };
@@ -747,16 +746,14 @@
 		6B0A0E5722B122D300A60E73 /* change passswordProf@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "change passswordProf@3x.png"; sourceTree = "<group>"; };
 		6B0A0E5B22B1241D00A60E73 /* parent@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "parent@1x.png"; sourceTree = "<group>"; };
 		6B0A0E5C22B1241D00A60E73 /* student@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "student@1x.png"; sourceTree = "<group>"; };
-		6B0A0E5D22B1241D00A60E73 /* guardian@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "guardian@2x.png"; path = "../../../../../Dropbox/ENSYFI Mobile App/3. App Screens/New screens/Icon for iOS/other screen icon/guardian@2x.png"; sourceTree = "<group>"; };
 		6B0A0E5E22B1241E00A60E73 /* student@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "student@2x.png"; sourceTree = "<group>"; };
 		6B0A0E5F22B1241E00A60E73 /* parent@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "parent@3x.png"; sourceTree = "<group>"; };
 		6B0A0E6022B1241E00A60E73 /* parent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "parent@2x.png"; sourceTree = "<group>"; };
 		6B0A0E6122B1241F00A60E73 /* student@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "student@3x.png"; sourceTree = "<group>"; };
-		6B0A0E6222B1241F00A60E73 /* guardian@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "guardian@3x.png"; path = "../../../../../Dropbox/ENSYFI Mobile App/3. App Screens/New screens/Icon for iOS/other screen icon/guardian@3x.png"; sourceTree = "<group>"; };
 		6B0A0E6322B1242000A60E73 /* fees@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fees@2x.png"; sourceTree = "<group>"; };
-		6B0A0E6422B1242000A60E73 /* guardian@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "guardian@1x.png"; path = "../../../../../Dropbox/ENSYFI Mobile App/3. App Screens/New screens/Icon for iOS/other screen icon/guardian@1x.png"; sourceTree = "<group>"; };
 		6B0A0E6522B1242000A60E73 /* fees@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fees@3x.png"; sourceTree = "<group>"; };
 		6B0A0E6622B1242100A60E73 /* fees@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fees@1x.png"; sourceTree = "<group>"; };
+		6B0BF57122C371730019313D /* TeacherAttendanceFormView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeacherAttendanceFormView.m; sourceTree = "<group>"; };
 		6B1D63E622AF82CC0065CFAC /* attendance@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "attendance@3x.png"; sourceTree = "<group>"; };
 		6B1D63E722AF82CD0065CFAC /* timetable@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timetable@1x.png"; sourceTree = "<group>"; };
 		6B1D63E822AF82CD0065CFAC /* timetable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timetable@2x.png"; sourceTree = "<group>"; };
@@ -772,13 +769,13 @@
 		6B1D63FE22AFAAA40065CFAC /* presend@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "presend@1x.png"; sourceTree = "<group>"; };
 		6B1D63FF22AFAAA40065CFAC /* presend@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "presend@2x.png"; sourceTree = "<group>"; };
 		6B1D640022AFAAA50065CFAC /* presend@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "presend@3x.png"; sourceTree = "<group>"; };
-		6B1D640A22AFB50C0065CFAC /* sendnew@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sendnew@3x.png"; path = "../../../../../Dropbox/ENSYFI Mobile App/3. App Screens/New screens/Icon for iOS/other screen icon/sendnew@3x.png"; sourceTree = "<group>"; };
-		6B1D640B22AFB50D0065CFAC /* sendnew@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sendnew@1x.png"; path = "../../../../../Dropbox/ENSYFI Mobile App/3. App Screens/New screens/Icon for iOS/other screen icon/sendnew@1x.png"; sourceTree = "<group>"; };
-		6B1D640C22AFB50D0065CFAC /* sendnew@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sendnew@2x.png"; path = "../../../../../Dropbox/ENSYFI Mobile App/3. App Screens/New screens/Icon for iOS/other screen icon/sendnew@2x.png"; sourceTree = "<group>"; };
 		6B1D641022AFC5200065CFAC /* refresh@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refresh@3x.png"; sourceTree = "<group>"; };
 		6B1D641222AFC54A0065CFAC /* refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refresh@2x.png"; sourceTree = "<group>"; };
 		6B1D641322AFC54A0065CFAC /* refresh@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refresh@1x.png"; sourceTree = "<group>"; };
 		6B3D4ACC22C0F9CF0005D307 /* ENSIFY.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = ENSIFY.db; sourceTree = "<group>"; };
+		6B4147AA2327A627001FC25E /* time@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "time@1x.png"; sourceTree = "<group>"; };
+		6B4147AB2327A627001FC25E /* time@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "time@3x.png"; sourceTree = "<group>"; };
+		6B4147AC2327A628001FC25E /* time@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "time@2x.png"; sourceTree = "<group>"; };
 		6B42AC9B22B232AA009B0826 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
 		6B42AC9D22B24CD4009B0826 /* father icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "father icon@1x.png"; sourceTree = "<group>"; };
 		6B42AC9E22B24CD5009B0826 /* mother icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mother icon@2x.png"; sourceTree = "<group>"; };
@@ -986,6 +983,12 @@
 		6B61F84122A93C0A00538E81 /* Change password_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Change password_2.png"; sourceTree = "<group>"; };
 		6B61F84222A93C0B00538E81 /* Change password_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Change password_1.png"; sourceTree = "<group>"; };
 		6B61F84322A93C0B00538E81 /* Change password_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Change password_3.png"; sourceTree = "<group>"; };
+		6B7FDA7023041E91006DC41F /* sendnew@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sendnew@3x.png"; sourceTree = "<group>"; };
+		6B7FDA7123041E91006DC41F /* sendnew@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sendnew@2x.png"; sourceTree = "<group>"; };
+		6B7FDA7223041E92006DC41F /* sendnew@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sendnew@1x.png"; sourceTree = "<group>"; };
+		6B7FDA7623041F5B006DC41F /* guardian@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guardian@1x.png"; sourceTree = "<group>"; };
+		6B7FDA7723041F5C006DC41F /* guardian@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guardian@2x.png"; sourceTree = "<group>"; };
+		6B7FDA7823041F5C006DC41F /* guardian@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guardian@3x.png"; sourceTree = "<group>"; };
 		6B81939322BD060600238D02 /* mail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mail@2x.png"; sourceTree = "<group>"; };
 		6B81939422BD060700238D02 /* notification1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notification1@3x.png"; sourceTree = "<group>"; };
 		6B81939522BD060700238D02 /* sms@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sms@2x.png"; sourceTree = "<group>"; };
@@ -1012,9 +1015,6 @@
 		6BAEE7B42029882B00D08550 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		6BAEE7B62029892400D08550 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
 		6BAEE7B72029892400D08550 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
-		6BC15A6622B8B54900DFC177 /* view attendance@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "view attendance@1x.png"; path = "../../../../../Dropbox/ENSYFI Mobile App/3. App Screens/New screens/Icon for iOS/other screen icon/view attendance@1x.png"; sourceTree = "<group>"; };
-		6BC15A6722B8B54A00DFC177 /* view attendance@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "view attendance@3x.png"; path = "../../../../../Dropbox/ENSYFI Mobile App/3. App Screens/New screens/Icon for iOS/other screen icon/view attendance@3x.png"; sourceTree = "<group>"; };
-		6BC15A6822B8B54A00DFC177 /* view attendance@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "view attendance@2x.png"; path = "../../../../../Dropbox/ENSYFI Mobile App/3. App Screens/New screens/Icon for iOS/other screen icon/view attendance@2x.png"; sourceTree = "<group>"; };
 		6BC15A6C22B9056300DFC177 /* email circular @2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "email circular @2x.png"; sourceTree = "<group>"; };
 		6BC15A6D22B9056400DFC177 /* email circular @3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "email circular @3x.png"; sourceTree = "<group>"; };
 		6BC15A6E22B9056400DFC177 /* email circular @1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "email circular @1x.png"; sourceTree = "<group>"; };
@@ -1123,7 +1123,7 @@
 				68FD95ED1F766CDB00416A23 /* TeacherAttendanceTableCell.h */,
 				68FD95EE1F766CDB00416A23 /* TeacherAttendanceTableCell.m */,
 				681C5CAA1F83CC7B004DC9AD /* TeacherAttendanceFormView.h */,
-				681C5CAB1F83CC7B004DC9AD /* TeacherAttendanceFormView.m */,
+				6B0BF57122C371730019313D /* TeacherAttendanceFormView.m */,
 				681C5CAD1F83CD31004DC9AD /* TeacherAttendanceViewCell.h */,
 				681C5CAE1F83CD31004DC9AD /* TeacherAttendanceViewCell.m */,
 				68B43C741F84AE4600D8F406 /* AttendanceDateView.h */,
@@ -1587,6 +1587,15 @@
 		6B5E042B22A4DCD100F1A663 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				6B4147AA2327A627001FC25E /* time@1x.png */,
+				6B4147AC2327A628001FC25E /* time@2x.png */,
+				6B4147AB2327A627001FC25E /* time@3x.png */,
+				6B7FDA7623041F5B006DC41F /* guardian@1x.png */,
+				6B7FDA7723041F5C006DC41F /* guardian@2x.png */,
+				6B7FDA7823041F5C006DC41F /* guardian@3x.png */,
+				6B7FDA7223041E92006DC41F /* sendnew@1x.png */,
+				6B7FDA7123041E91006DC41F /* sendnew@2x.png */,
+				6B7FDA7023041E91006DC41F /* sendnew@3x.png */,
 				6BDA51FC22C22108005728EB /* unhide@1x.png */,
 				6BDA51FA22C22108005728EB /* unhide@2x.png */,
 				6BDA51F822C22106005728EB /* unhide@3x.png */,
@@ -1614,9 +1623,6 @@
 				6BC15A6E22B9056400DFC177 /* email circular @1x.png */,
 				6BC15A6C22B9056300DFC177 /* email circular @2x.png */,
 				6BC15A6D22B9056400DFC177 /* email circular @3x.png */,
-				6BC15A6622B8B54900DFC177 /* view attendance@1x.png */,
-				6BC15A6822B8B54A00DFC177 /* view attendance@2x.png */,
-				6BC15A6722B8B54A00DFC177 /* view attendance@3x.png */,
 				6B42AC9D22B24CD4009B0826 /* father icon@1x.png */,
 				6B42ACA222B24CD7009B0826 /* father icon@2x.png */,
 				6B42ACA022B24CD6009B0826 /* father icon@3x.png */,
@@ -1627,9 +1633,6 @@
 				6B0A0E6622B1242100A60E73 /* fees@1x.png */,
 				6B0A0E6322B1242000A60E73 /* fees@2x.png */,
 				6B0A0E6522B1242000A60E73 /* fees@3x.png */,
-				6B0A0E6422B1242000A60E73 /* guardian@1x.png */,
-				6B0A0E5D22B1241D00A60E73 /* guardian@2x.png */,
-				6B0A0E6222B1241F00A60E73 /* guardian@3x.png */,
 				6B0A0E5B22B1241D00A60E73 /* parent@1x.png */,
 				6B0A0E6022B1241E00A60E73 /* parent@2x.png */,
 				6B0A0E5F22B1241E00A60E73 /* parent@3x.png */,
@@ -1642,9 +1645,6 @@
 				6B1D641322AFC54A0065CFAC /* refresh@1x.png */,
 				6B1D641222AFC54A0065CFAC /* refresh@2x.png */,
 				6B1D641022AFC5200065CFAC /* refresh@3x.png */,
-				6B1D640B22AFB50D0065CFAC /* sendnew@1x.png */,
-				6B1D640C22AFB50D0065CFAC /* sendnew@2x.png */,
-				6B1D640A22AFB50C0065CFAC /* sendnew@3x.png */,
 				6B1D63FE22AFAAA40065CFAC /* presend@1x.png */,
 				6B1D63FF22AFAAA40065CFAC /* presend@2x.png */,
 				6B1D640022AFAAA50065CFAC /* presend@3x.png */,
@@ -1904,7 +1904,7 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 6V986NC4N5;
 						LastSwiftMigration = 1020;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -1933,6 +1933,7 @@
 			files = (
 				6B5E04A922A4DCEB00F1A663 /* viewattendance@3x.png in Resources */,
 				6B5E049F22A4DCEB00F1A663 /* close@1x.png in Resources */,
+				6B4147AF2327A628001FC25E /* time@2x.png in Resources */,
 				6B08ABEC22AA31E70084A273 /* rejected@1x.png in Resources */,
 				6B5E04BE22A4DCEB00F1A663 /* Green@2x.png in Resources */,
 				6B5E049022A4DCEB00F1A663 /* ensyfi bg-01 (1).jpg in Resources */,
@@ -1940,11 +1941,11 @@
 				6BDA521522C23A10005728EB /* PEPhotoCropEditor.bundle in Resources */,
 				6B5E04BB22A4DCEB00F1A663 /* 1.gif in Resources */,
 				6B46490E22A696BB00A1EEC0 /* exam@1x.png in Resources */,
+				6B7FDA7523041E92006DC41F /* sendnew@1x.png in Resources */,
 				6B5E04B722A4DCEB00F1A663 /* fees icon.png in Resources */,
 				6B1D63F522AFAA660065CFAC /* class strength@3x.png in Resources */,
 				6B5E04B822A4DCEB00F1A663 /* deselect.png in Resources */,
 				6B5E06D422A505A000F1A663 /* students@1x.png in Resources */,
-				6B0A0E6922B1242100A60E73 /* guardian@2x.png in Resources */,
 				6B4648F222A6587F00A1EEC0 /* Forgot password_3.png in Resources */,
 				6B5E04AD22A4DCEB00F1A663 /* Events.png in Resources */,
 				6B5E048E22A4DCEB00F1A663 /* ensyfi od screen icons-06.png in Resources */,
@@ -1962,6 +1963,7 @@
 				6B0A0E5922B122D300A60E73 /* change passswordProf@2x.png in Resources */,
 				6B61F83F22A92B1200538E81 /* select button@1x.png in Resources */,
 				6B8193AA22BD060F00238D02 /* sms1@2x.png in Resources */,
+				6B7FDA7A23041F5D006DC41F /* guardian@2x.png in Resources */,
 				6B5E04C522A4DCEB00F1A663 /* ensyfi od screen icons-03.png in Resources */,
 				6B46490722A696BB00A1EEC0 /* event@1x.png in Resources */,
 				6B4648F422A6587F00A1EEC0 /* Forgot password_2.png in Resources */,
@@ -1970,7 +1972,6 @@
 				6B5E06DA22A5065D00F1A663 /* profile_pic.png in Resources */,
 				6B5E04CA22A4DCEB00F1A663 /* next icon.png in Resources */,
 				6B42ACA722B24CD8009B0826 /* mother icon@3x.png in Resources */,
-				6BC15A6B22B8B54A00DFC177 /* view attendance@2x.png in Resources */,
 				6B08ABF022AA31E70084A273 /* pending@2x.png in Resources */,
 				6BDA51FD22C22109005728EB /* unhide@3x.png in Resources */,
 				6BC15A7022B9056500DFC177 /* email circular @3x.png in Resources */,
@@ -1979,7 +1980,6 @@
 				6B5E048D22A4DCEB00F1A663 /* Class.png in Resources */,
 				6BDA520222C22109005728EB /* hide@1x.png in Resources */,
 				6B5E04D222A4DCEB00F1A663 /* add_member.png in Resources */,
-				6B0A0E7022B1242100A60E73 /* guardian@1x.png in Resources */,
 				6B5E06DE22A5079A00F1A663 /* Red@3x.png in Resources */,
 				6B5E049E22A4DCEB00F1A663 /* exam.png in Resources */,
 				6B8193B622BD060F00238D02 /* sms@1x.png in Resources */,
@@ -1994,7 +1994,6 @@
 				6B5E04C322A4DCEB00F1A663 /* close@3x.png in Resources */,
 				6B0A0E6B22B1242100A60E73 /* parent@3x.png in Resources */,
 				6BDA51FF22C22109005728EB /* unhide@1x.png in Resources */,
-				6B0A0E6E22B1242100A60E73 /* guardian@3x.png in Resources */,
 				6B61F83822A92A2900538E81 /* calender@3x.png in Resources */,
 				6B0A0E6D22B1242100A60E73 /* student@3x.png in Resources */,
 				6B46491022A696BB00A1EEC0 /* circular@3x.png in Resources */,
@@ -2002,13 +2001,10 @@
 				6B0A0E7122B1242100A60E73 /* fees@3x.png in Resources */,
 				688FDD5E1E922E2900762CF4 /* Assets.xcassets in Resources */,
 				6B5E049D22A4DCEB00F1A663 /* Orange@3x.png in Resources */,
-				6B1D640F22AFB50E0065CFAC /* sendnew@2x.png in Resources */,
 				6B8193B022BD060F00238D02 /* mail1@3x.png in Resources */,
 				6BDA520122C22109005728EB /* hide@3x.png in Resources */,
 				6B61F83E22A92B1200538E81 /* select button@3x.png in Resources */,
-				6B1D640E22AFB50E0065CFAC /* sendnew@1x.png in Resources */,
 				6B5E04AB22A4DCEB00F1A663 /* menu .png in Resources */,
-				6BC15A6A22B8B54A00DFC177 /* view attendance@3x.png in Resources */,
 				6B5E04BD22A4DCEB00F1A663 /* ensyfi od screen icons-02.png in Resources */,
 				6B08ABF122AA31E70084A273 /* pending@3x.png in Resources */,
 				6B8193A622BD060F00238D02 /* notification1@3x.png in Resources */,
@@ -2059,6 +2055,7 @@
 				6B5E06BE22A4FEEC00F1A663 /* view icon -ios-01.png in Resources */,
 				6B5E04C422A4DCEB00F1A663 /* exam-01.png in Resources */,
 				6B1D640122AFAAA50065CFAC /* presend@1x.png in Resources */,
+				6B4147AD2327A628001FC25E /* time@1x.png in Resources */,
 				6B08ABEE22AA31E70084A273 /* rejected@3x.png in Resources */,
 				6B5E04B322A4DCEB00F1A663 /* viewattendance@1x.png in Resources */,
 				6B0A0E6C22B1242100A60E73 /* parent@2x.png in Resources */,
@@ -2066,6 +2063,7 @@
 				6B5E06CC22A503E200F1A663 /* Teacher@1x.png in Resources */,
 				6B8193B222BD060F00238D02 /* notification@2x.png in Resources */,
 				6B5E065322A4DDB500F1A663 /* teachers.storyboard in Resources */,
+				6B7FDA7423041E92006DC41F /* sendnew@2x.png in Resources */,
 				6B5E06E222A507CC00F1A663 /* Red@1x.png in Resources */,
 				6B5E06F222A531C800F1A663 /* right arrow@2x.png in Resources */,
 				6B8193A822BD060F00238D02 /* notification1@2x.png in Resources */,
@@ -2092,9 +2090,11 @@
 				6B5E06D522A505A000F1A663 /* students@3x.png in Resources */,
 				6B8193B322BD060F00238D02 /* sms@3x.png in Resources */,
 				6B5E049422A4DCEB00F1A663 /* classtest-01.png in Resources */,
+				6B7FDA7323041E92006DC41F /* sendnew@3x.png in Resources */,
 				6B46491422A696BB00A1EEC0 /* circular@1x.png in Resources */,
 				6B8193B122BD060F00238D02 /* mail1@1x.png in Resources */,
 				6B5E04CB22A4DCEB00F1A663 /* od calender-01.png in Resources */,
+				6B4147AE2327A628001FC25E /* time@3x.png in Resources */,
 				6B46490D22A696BB00A1EEC0 /* result@3x.png in Resources */,
 				6B5E06EA22A51FBF00F1A663 /* 2048 x 2732.png in Resources */,
 				6B1D63FB22AFAA980065CFAC /* absend@3x.png in Resources */,
@@ -2108,7 +2108,6 @@
 				6B5E048322A4DCEB00F1A663 /* ensyfi od screen icons-04.png in Resources */,
 				6B5E06C422A5015D00F1A663 /* user small-01.png in Resources */,
 				6B5E04BA22A4DCEB00F1A663 /* close@2x.png in Resources */,
-				6B1D640D22AFB50E0065CFAC /* sendnew@3x.png in Resources */,
 				6B5E04C922A4DCEB00F1A663 /* date_time.png in Resources */,
 				6B46490B22A696BB00A1EEC0 /* Parents@3x.png in Resources */,
 				6B5E04AF22A4DCEB00F1A663 /* message_sent.png in Resources */,
@@ -2116,11 +2115,11 @@
 				6B5E04D322A4DCEB00F1A663 /* ensyfi flash screen ios-5.gif in Resources */,
 				689C09551E93BD9000B45B4E /* roboto.regular.ttf in Resources */,
 				6BDA520322C22109005728EB /* hide@2x.png in Resources */,
+				6B7FDA7923041F5D006DC41F /* guardian@1x.png in Resources */,
 				6B46490922A696BB00A1EEC0 /* class@1x.png in Resources */,
 				6B46490F22A696BB00A1EEC0 /* exam@2x.png in Resources */,
 				6B42ACA622B24CD8009B0826 /* father icon@3x.png in Resources */,
 				6B4648F322A6587F00A1EEC0 /* Forgot password_1.png in Resources */,
-				6BC15A6922B8B54A00DFC177 /* view attendance@1x.png in Resources */,
 				6B0A0E5A22B122D300A60E73 /* change passswordProf@3x.png in Resources */,
 				6B5E06F422A531C800F1A663 /* right arrow@3x.png in Resources */,
 				6B1D63F722AFAA660065CFAC /* class strength@2x.png in Resources */,
@@ -2135,6 +2134,7 @@
 				6B5E04CF22A4DCEB00F1A663 /* exam-01 (1).png in Resources */,
 				6B3D4ACD22C0F9CF0005D307 /* ENSIFY.db in Resources */,
 				6B5E04CD22A4DCEB00F1A663 /* ensyfi od screen icons-07.png in Resources */,
+				6B7FDA7B23041F5D006DC41F /* guardian@3x.png in Resources */,
 				6B0A0E6F22B1242100A60E73 /* fees@2x.png in Resources */,
 				6B1D63EC22AF82CE0065CFAC /* attendance@3x.png in Resources */,
 				6B5E04A222A4DCEB00F1A663 /* select_all.png in Resources */,
@@ -2237,6 +2237,7 @@
 				6809D1421F2722E1007ABFF8 /* AdminFeeViewCell.m in Sources */,
 				68F4D90F1F2371A70026F7C7 /* AdminResultView.m in Sources */,
 				6B5E06A722A4F54100F1A663 /* ClassTestHomeWorkFirstView.m in Sources */,
+				6B0BF57222C371730019313D /* TeacherAttendanceFormView.m in Sources */,
 				6B08ABF322AA43F30084A273 /* AdminODViewController.m in Sources */,
 				68B7C7CD1F0E76A10017189A /* StudentinfoViewController.m in Sources */,
 				68363D1B1F1E349F003F1C20 /* AdminEventTableViewCell.m in Sources */,
@@ -2246,7 +2247,6 @@
 				680198091F1602850009D0B9 /* FessTableViewCell.m in Sources */,
 				6B5E068622A4EDC700F1A663 /* ExamDutyTableViewCell.m in Sources */,
 				68D531401F6C14EB0047DF11 /* TeacherondutyTableViewCell.m in Sources */,
-				681C5CAC1F83CC7E004DC9AD /* TeacherAttendanceFormView.m in Sources */,
 				681C5CAF1F83CD31004DC9AD /* TeacherAttendanceViewCell.m in Sources */,
 				68C83B941F87603A005D99C5 /* TeacherClasstestHomeWorkView.m in Sources */,
 				68363D211F1E3650003F1C20 /* AdminEventOrganiserTableView.m in Sources */,
@@ -2508,6 +2508,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_MODULES_AUTOLINK = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 6V986NC4N5;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2517,13 +2519,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Edu.pch;
 				INFOPLIST_FILE = EducationApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.palprotech.ENSIFY;
+				PRODUCT_BUNDLE_IDENTIFIER = com.happysanztech.ENSYFI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = ENSYFi_dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "Extension/EducationApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -2538,6 +2541,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_MODULES_AUTOLINK = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 6V986NC4N5;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2547,13 +2552,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Edu.pch;
 				INFOPLIST_FILE = EducationApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.palprotech.ENSIFY;
+				PRODUCT_BUNDLE_IDENTIFIER = com.happysanztech.ENSYFI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = ENSYFI_dis;
 				SWIFT_OBJC_BRIDGING_HEADER = "Extension/EducationApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VALID_ARCHS = "armv6 armv7 armv7s arm64";

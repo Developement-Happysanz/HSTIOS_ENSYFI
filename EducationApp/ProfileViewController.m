@@ -29,7 +29,7 @@
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
     SWRevealViewController *revealViewController = self.revealViewController;
-    if ( revealViewController )
+    if (revealViewController)
     {
         [self.sidebarButton setTarget: self.revealViewController];
         [self.sidebarButton setAction: @selector( revealToggle: )];
@@ -73,7 +73,6 @@
     _studentView.layer.shadowOpacity = 0.6f;
     _studentView.layer.masksToBounds = NO;
     
-    
     self.feeView.layer.cornerRadius = 8.0f;
     self.feeView.clipsToBounds = YES;
     _feeView.layer.shadowRadius  = 5.5f;
@@ -94,25 +93,18 @@
     _parentView.layer.shadowPath    = shadowPath.CGPath;
     _feeView.layer.shadowPath    = shadowPath.CGPath;
     _studentView.layer.shadowPath    = shadowPath.CGPath;
-
-    
     self.imageView.layer.cornerRadius = 50.0;
     self.imageView.clipsToBounds = YES;
-    
     //setup the page...
-    
     appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    
     self.userName.text =appDel.name;
     self.userTypeName.text = appDel.user_type_name;
     self.username.text = appDel.user_name;
-
     if ([appDel.user_type isEqualToString:@"3"])
     {
         if ([appDel.user_picture isEqualToString:@""])
         {
             self.imageView.image = [UIImage imageNamed:@"user small-01.png"];
-
         }
         else
         {
@@ -153,13 +145,11 @@
             [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
                 NSData *imageData = [NSData dataWithContentsOfURL:url];
-                
                 dispatch_async(dispatch_get_main_queue(), ^{
                     // Update the UI
                     self.imageView.image = [UIImage imageWithData:imageData];
                     _imageView.layer.cornerRadius = 50.0;
                     _imageView.clipsToBounds = YES;
-                    
                     if (self.imageView.image == nil)
                     {
                         self.imageView.image = [UIImage imageNamed:@"user small-01.png"];
@@ -170,19 +160,16 @@
             });
         }
     }
-    
 }
 -(void)viewDidLayoutSubviews
 {
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width,436);
-
 }
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 /*
 #pragma mark - Navigation
 
@@ -192,7 +179,6 @@
     // Pass the selected object to the new view controller.
 }
 */
-
 -(void)viewWillAppear:(BOOL)animated
 {
     [[NSUserDefaults standardUserDefaults]setObject:@" " forKey:@"guardian_Key"];
@@ -216,7 +202,6 @@
     [alert addAction:ok];
     [self presentViewController:alert animated:YES completion:nil];
 }
-
 - (IBAction)fessBtn:(id)sender
 {
     [self performSegueWithIdentifier:@"to_fess" sender:self];
@@ -376,8 +361,8 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     
-//    chosenImage = info[UIImagePickerControllerOriginalImage];
-//    self.imageView.image = chosenImage;
+    chosenImage = info[UIImagePickerControllerOriginalImage];
+    self.imageView.image = chosenImage;
 //
 //    chosenImage=[self scaleAndRotateImage:chosenImage];
 //    image = UIImageJPEGRepresentation(chosenImage, 0.1);
@@ -392,11 +377,11 @@
 //
 //    // Get the image, here setting the UIImageView image
 //    self.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
-
-    // Lets forget about that we were drawing
+//    Lets forget about that we were drawing
     UIGraphicsEndImageContext();
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
         if (self.popover.isPopoverVisible) {
             [self.popover dismissPopoverAnimated:NO];
         }
@@ -404,7 +389,8 @@
     //    [self updateEditButtonEnabled];
         
         [self openEditor:nil];
-    } else {
+    }
+    else {
         [picker dismissViewControllerAnimated:YES completion:^{
             [self openEditor:nil];
         }];
@@ -417,16 +403,12 @@
     NSData *imageData = UIImagePNGRepresentation(chosenImage);
     appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSString *url = [NSString stringWithFormat:@"%@%@%@%@/%@",baseUrl,[[NSUserDefaults standardUserDefaults]objectForKey:@"institute_code_Key"],update_profilePicture,appDel.user_id,appDel.user_type];
-    
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:url]];
     [request setHTTPMethod:@"POST"];
-    
     NSString *boundary = @"---------------------------14737809831466499882746641449";
-    
     NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
     [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
-    
     NSMutableData *body = [NSMutableData data];
     [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[[NSString stringWithString:[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"user_pic\"; filename=\"%@\"\r\n", @"473.png"]] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -434,21 +416,20 @@
     [body appendData:[NSData dataWithData:imageData]];
     [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPBody:body];
-    
     NSURLSession *session = [NSURLSession sharedSession];
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
                                                 completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
                                       {
                                           if (error)
                                           {
-                                              NSLog(@"%@", error);
+                                              NSLog(@"%@",error);
                                           }
                                           else
                                           {
-                                              NSString * text = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
-                                              NSLog(@"%@", text);
+                                              NSString *text = [[NSString alloc] initWithData:data encoding: NSUTF8StringEncoding];
+                                              NSLog(@"%@",text);
                                               NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-                                              NSLog(@"%@", result);
+                                              NSLog(@"%@",result);
                                               NSString *img = result[@"user_picture"];
                                               appDel.user_picture = img;
                                               [[NSUserDefaults standardUserDefaults]setObject:img forKey:@"user_pic_key"];
@@ -461,7 +442,6 @@
 {
     [controller dismissViewControllerAnimated:YES completion:NULL];
 //    self.imageView.image = ;
-    
     chosenImage = croppedImage;
     self.imageView.image = chosenImage;
     image = UIImageJPEGRepresentation(chosenImage, 0.1);
@@ -499,9 +479,9 @@
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
-    }
+//    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+//        navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+//    }
     
     [self presentViewController:navigationController animated:YES completion:NULL];
 }

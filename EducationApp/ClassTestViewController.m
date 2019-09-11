@@ -47,24 +47,17 @@
     _mainView.layer.shadowPath    = shadowPath.CGPath;
     
     NSString *stat_user_type = [[NSUserDefaults standardUserDefaults]objectForKey:@"stat_user_type"];
-    
     if ([stat_user_type isEqualToString:@"admin"])
     {
         [[NSUserDefaults standardUserDefaults]setObject:@" " forKey:@"stat_user_type"];
-        
-        
         UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initWithImage:[UIImage
                                                                              imageNamed:@"back-01.png"] style:UIBarButtonItemStyleDone target:self action:@selector(Back)];
-        
         self.navigationItem.leftBarButtonItem = backButton;
-        
         self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
-        
     }
     else
     {
         NSString *str = [[NSUserDefaults standardUserDefaults]objectForKey:@"view_selection"];
-        
         if ([str isEqualToString:@"mainMenu"])
         {
             UIBarButtonItem *button2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back-01.png"] style:UIBarButtonItemStylePlain target:self action:@selector(backBtn:)];
@@ -86,7 +79,6 @@
             tap.delegate = self;
             [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
         }
-        
     }
     
     CGRect frame= _segmentControl.frame;
@@ -100,19 +92,16 @@
     mark_status = [[NSMutableArray alloc]init];
 
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    //    [subject_name addObject:@"bala"];
+    //[subject_name addObject:@"bala"];
     appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
     [parameters setObject:appDel.class_id forKey:@"class_id"];
     [parameters setObject:@"HT" forKey:@"hw_type"];
     
-    
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
-    
     
     /* concordanate with baseurl */
     NSString *forHomeWork = @"/apistudent/disp_Homework/";
@@ -123,7 +112,6 @@
      {
          
          NSLog(@"%@",responseObject);
-         
          NSArray *array_homeworkDetails = [responseObject objectForKey:@"homeworkDetails"];
          NSString *msg = [responseObject objectForKey:@"msg"];
          if ([msg isEqualToString:@"View Homework Details"])
@@ -167,9 +155,7 @@
      }];
     setValueClasstest = @"0";
     setValueHomeWork = @"0";
-    
     [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"key"];
-
 }
 - (IBAction)Back
 {
@@ -191,22 +177,17 @@
     return [subject_name count];
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     static NSString *simpleTableIdentifier = @"ClassTestTableViewCell";
-    
     ClassTestTableViewCell *cell = [self.tableview dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
     if (cell == nil)
     {
         cell = [[ClassTestTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }    
     //Configure the cell...
-    
     NSString *str = [[NSUserDefaults standardUserDefaults]objectForKey:@"key"];
-    
     if ([str isEqualToString:@"ct"])
     {
         cell.testDateLabel.text = @"Test Date";

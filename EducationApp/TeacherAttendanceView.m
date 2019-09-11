@@ -37,6 +37,11 @@
     
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
+    self.dateSubvIew.layer.borderWidth = 1.0;
+    self.dateSubvIew.layer.borderColor = [UIColor colorWithRed:102/255.0f green:51/255.0f blue:102/255.0f alpha:1.0].CGColor;
+    self.dateSubvIew.layer.cornerRadius = 10.0f;
+    self.dateSubvIew.clipsToBounds = YES;
+    
     classNameArr = [[NSMutableArray alloc]init];
     academic_monthsArr = [[NSMutableArray alloc]init];
     a_status = [[NSMutableArray alloc]init];
@@ -121,6 +126,7 @@
     _selectMonthOtlet.hidden =YES;
     _selectMonthOtlet.enabled =NO;
     self.dayTextfiled.hidden = NO;
+    self.dateSubvIew.hidden = NO;
     self.dayTextfiled.enabled = YES;
     self.selectMonthImg.hidden = YES;
     self.tableview.hidden = YES;
@@ -130,7 +136,7 @@
     [dateFormat setDateFormat:@"dd-MM-YYYY"];
     NSString *dateString = [dateFormat stringFromDate:today];
     NSLog(@"date: %@", dateString);
-    
+
     self.dayTextfiled.text = dateString;
 
     datePicker=[[UIDatePicker alloc]init];
@@ -174,7 +180,7 @@
         [formatter setDateFormat:@"YYYY-MM-dd"];
         NSDateFormatter *formatter2=[[NSDateFormatter alloc]init];
         [formatter2 setDateFormat:@"dd-MM-yyyy"];
-        self.dayTextfiled.text=[NSString stringWithFormat:@"%@",[formatter2 stringFromDate:datePicker.date]];
+        self.dayTextfiled.text = [NSString stringWithFormat:@"%@",[formatter2 stringFromDate:datePicker.date]];
         [self.dayTextfiled resignFirstResponder];
         NSString *selectedDate = [NSString stringWithFormat:@"%@",[formatter stringFromDate:datePicker.date]];
         
@@ -483,6 +489,7 @@
 
         self.dayTextfiled.hidden = NO;
         self.dayTextfiled.enabled = YES;
+        self.dateSubvIew.hidden = NO;
         
         self.calenderImg.hidden = NO;
         
@@ -498,6 +505,7 @@
         _selectMonthImg.hidden = NO;
         self.dayTextfiled.hidden = YES;
         self.dayTextfiled.enabled = YES;
+        self.dateSubvIew.hidden = YES;
         self.calenderImg.hidden = YES;
         
         [self.tableview reloadData];

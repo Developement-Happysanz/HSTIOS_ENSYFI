@@ -184,11 +184,11 @@
     cell.examTitleLabel.text = [examDetails objectAtIndex:indexPath.row];
     cell.examid.text = [examID objectAtIndex:indexPath.row];
     
-    cell.datelabel.text = [Fromdate objectAtIndex:indexPath.item];
+    cell.datelabel.text = [NSString stringWithFormat:@"%@ - %@",[Fromdate objectAtIndex:indexPath.item],[Todate objectAtIndex:indexPath.item]];
     
     NSLog(@"%@",cell.datelabel.text);
     
-    cell.toDateLabel.text = [Todate objectAtIndex:indexPath.item];
+//    cell.toDateLabel.text = [Todate objectAtIndex:indexPath.item];
     
     NSLog(@"%@",cell.toDateLabel.text);
 

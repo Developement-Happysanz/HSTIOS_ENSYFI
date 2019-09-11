@@ -21,16 +21,16 @@
     
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
-//    NSString *mark_status = [[NSUserDefaults standardUserDefaults]objectForKey:@"ClassTestMark_status_key"];
+ //   NSString *mark_status = [[NSUserDefaults standardUserDefaults]objectForKey:@"ClassTestMark_status_key"];
     NSString *strMark_status;
     NSString *class_test_result = [[NSUserDefaults standardUserDefaults]objectForKey:@"class_test_resultKey"];
-    NSString *lastinserted_id = [[NSUserDefaults standardUserDefaults]objectForKey:@"lastId_classTest"];
+    NSString *lastinserted_id = [[NSUserDefaults standardUserDefaults]objectForKey:@"server_hw_id_key"];
     NSArray *docPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDir = [docPaths objectAtIndex:0];
     NSString *dbPath = [documentsDir   stringByAppendingPathComponent:@"ENSIFY.db"];
     FMDatabase *database = [FMDatabase databaseWithPath:dbPath];
     [database open];
-    FMResultSet *rs = [database executeQuery:@"Select distinct mark_status from table_create_homework_class_test where id = ? ",lastinserted_id];
+    FMResultSet *rs = [database executeQuery:@"Select mark_status from table_create_homework_class_test where server_hw_id = ? ",lastinserted_id];
     if(rs)
     {
         while ([rs next])

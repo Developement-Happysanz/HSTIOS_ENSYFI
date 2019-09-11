@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PECropViewController.h"
 
-@interface ProfileViewController : UIViewController<UIGestureRecognizerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIPopoverPresentationControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,PECropViewControllerDelegate>
+@interface ProfileViewController : UIViewController<UIGestureRecognizerDelegate,UIPopoverPresentationControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,PECropViewControllerDelegate>
 - (IBAction)changePaswrdBtn:(id)sender;
 - (IBAction)fessBtn:(id)sender;
 - (IBAction)studentBtn:(id)sender;

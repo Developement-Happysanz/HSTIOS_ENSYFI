@@ -32,6 +32,8 @@
     
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
+    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"2048 x 2732.png"]];
+
     event_details = [[NSMutableArray alloc]init];
     event_name = [[NSMutableArray alloc]init];
     event_date = [[NSMutableArray alloc]init];
@@ -90,11 +92,8 @@
          
          event_details= [arr_Events valueForKey:@"event_details"];
          event_name = [arr_Events valueForKey:@"event_name"];
-         
          event_date = [arr_Events valueForKey:@"event_date"];
-         
          event_ID = [arr_Events valueForKey:@"event_id"];
-         
          [self.tableView reloadData];
          
          [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -156,8 +155,13 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 112;
+    return UITableViewAutomaticDimension;
 }
+-(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return 76.0;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

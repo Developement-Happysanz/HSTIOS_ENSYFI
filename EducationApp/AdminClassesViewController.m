@@ -279,6 +279,7 @@
 
 - (IBAction)classBTn:(id)sender
 {
+    _segmentControl.selectedSegmentIndex = UISegmentedControlNoSegment;
     [[NSUserDefaults standardUserDefaults]setObject:@"Class" forKey:@"sec_class"];
 
     [[NSUserDefaults standardUserDefaults]setObject:@"YES" forKey:@"class_btn_tapped"];
@@ -682,40 +683,28 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
     AdminClassesTableViewCell *adminstudent = [tableView cellForRowAtIndexPath:indexPath];
-
     NSString *str = [[NSUserDefaults standardUserDefaults]objectForKey:@"segment_key"];
-    
     if ([str isEqualToString:@"student"])
     {
         NSUInteger indexstudent_id = [admisn_no indexOfObject:adminstudent.subjectLabel.text];
-        
         appDel.student_id = enroll_id[indexstudent_id];
-        
         NSUInteger index = [name indexOfObject:adminstudent.nameLabel.text];
-        
         appDel.class_id = class_id[index];
-        
         [[NSUserDefaults standardUserDefaults]setObject:@"classes" forKey:@"ClassView"];
-        
-//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"admin" bundle:nil];
-//        AdminStudentProfileView *adminStudentProfile = (AdminStudentProfileView *)[storyboard instantiateViewControllerWithIdentifier:@"AdminStudentProfileView"];
-//        [self.navigationController pushViewController:adminStudentProfile animated:YES];
+//      UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"admin" bundle:nil];
+//      AdminStudentProfileView *adminStudentProfile = (AdminStudentProfileView *)[storyboard instantiateViewControllerWithIdentifier:@"AdminStudentProfileView"];
+//      [self.navigationController pushViewController:adminStudentProfile animated:YES];
         [self performSegueWithIdentifier:@"to_adminStudentProfile" sender:self];
     }
     else
     {
         [[NSUserDefaults standardUserDefaults]setObject:@"classes" forKey:@"ClassView"];
-
         NSUInteger indexteacher_id = [Techer_name indexOfObject:adminstudent.nameLabel.text];
-        
         NSString *teacherid = teacher_id[indexteacher_id];
-
         [[NSUserDefaults standardUserDefaults]setObject:teacherid forKey:@"admin_teacherid"];
-        
-//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"admin" bundle:nil];
-//        AdminTeacherProfileView *adminTeacherProfile = (AdminTeacherProfileView *)[storyboard instantiateViewControllerWithIdentifier:@"AdminTeacherProfileView"];
-//        [self.navigationController pushViewController:adminTeacherProfile animated:YES];
-        
+//      UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"admin" bundle:nil];
+//      AdminTeacherProfileView *adminTeacherProfile = (AdminTeacherProfileView *)[storyboard instantiateViewControllerWithIdentifier:@"AdminTeacherProfileView"];
+//      [self.navigationController pushViewController:adminTeacherProfile animated:YES];
         [self performSegueWithIdentifier:@"to_adminTeacherProfile" sender:self];
     }
 }

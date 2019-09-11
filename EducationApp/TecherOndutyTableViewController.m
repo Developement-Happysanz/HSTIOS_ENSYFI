@@ -360,19 +360,19 @@
     
     if ([str isEqualToString:@"Approved"])
     {
-        cell.statusImg.image = [UIImage imageNamed:@"ensyfi od screen icons-03.png"];
+        cell.statusImg.image = [UIImage imageNamed:@"approved.png"];
         cell.statusLabel.text = str;
         cell.statusLabel.textColor = [UIColor colorWithRed:8/255.0f green:159/255.0f blue:73/255.0f alpha:1.0];
     }
     else if ([str isEqualToString:@"Rejected"])
     {
-        cell.statusImg.image = [UIImage imageNamed:@"ensyfi od screen icons-02.png"];
+        cell.statusImg.image = [UIImage imageNamed:@"rejected.png"];
         cell.statusLabel.text = str;
         cell.statusLabel.textColor = [UIColor colorWithRed:216/255.0f green:91/255.0f blue:74/255.0f alpha:1.0];
     }
     else
     {
-        cell.statusImg.image = [UIImage imageNamed:@"ensyfi od screen icons-04.png"];
+        cell.statusImg.image = [UIImage imageNamed:@"pending.png"];
         cell.statusLabel.text = str;
         cell.statusLabel.textColor = [UIColor colorWithRed:190/255.0f green:192/255.0f blue:49/255.0f alpha:1.0];
         

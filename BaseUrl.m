@@ -18,7 +18,7 @@ NSString *const user_Login_Api = @"/apimain/login/";
 NSString *const admin_profile = @"/assets/admin/profile/";
 NSString *const teacher_profile = @"/assets/teachers/profile/";
 NSString *const parents_profile = @"/assets/parents/profile/";
-NSString *const student_profile = @"/assets/students/profile/";
+NSString *const student_profile = @"/assets/students/profile/"; 
 NSString *const update_profilePicture = @"/apimain/user_profilepic_upload/";
 
 

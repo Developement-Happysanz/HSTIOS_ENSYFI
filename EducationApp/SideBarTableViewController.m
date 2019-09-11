@@ -80,15 +80,15 @@
     {
         // static cell
         
-        NSString *CellIdentifier = [staticMenu objectAtIndex:indexPath.row];
-        SideTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+          NSString *CellIdentifier = [staticMenu objectAtIndex:indexPath.row];
+          SideTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         
         if ([appDel.user_type isEqualToString:@"3"])
         {
             
             NSArray *components = [NSArray arrayWithObjects:baseUrl,appDel.institute_code,student_profile,appDel.user_picture, nil];
             NSString *fullpath= [NSString pathWithComponents:components];
-//            [[NSUserDefaults standardUserDefaults]setObject:fullpath forKey:@"stucentImg_fullpath"];
+//          [[NSUserDefaults standardUserDefaults]setObject:fullpath forKey:@"stucentImg_fullpath"];
             NSURL *url = [NSURL URLWithString:fullpath];
             [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
@@ -104,12 +104,9 @@
                         cell.user_Image.image = [UIImage imageNamed:@"profile_pic.png"];
                     }
                     [MBProgressHUD hideHUDForView:self.view animated:YES];
-
                 });
             });
-            
             cell.username.text = [NSString stringWithFormat:@"%@, %@",@"Hi",appDel.name];
-
         }
         else if([appDel.user_type isEqualToString:@"4"])
         {

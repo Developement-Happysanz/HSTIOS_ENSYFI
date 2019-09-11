@@ -21,6 +21,7 @@
     NSMutableArray *subject_name;
     NSMutableArray *table_id;
     NSMutableArray *teacher_id_arr;
+    NSString *teacherProPic;
 
 }
 @end
@@ -34,6 +35,9 @@
     
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
+    self.timetablebtnOtlet.layer.cornerRadius = 5.0;
+    self.timetablebtnOtlet.clipsToBounds = YES;
+
     NSString *strstat_user_type = [[NSUserDefaults standardUserDefaults]objectForKey:@"stat_user_type"];
     
     self.userImage.layer.cornerRadius = 50.0;
@@ -115,7 +119,7 @@
                  self.subject.text = [dict objectForKey:@"subject"];
                  self.subjectName.text = [dict objectForKey:@"subject_name"];
                  self.teacher_id.text = [dict objectForKey:@"teacher_id"];
-                 appDel.user_picture = [dict objectForKey:@"profile_pic"];
+                 self->teacherProPic = [dict objectForKey:@"profile_pic"];
              }
              
              [[NSUserDefaults standardUserDefaults]setObject:teacherTimeTable forKey:@"ad_teacher_timeTable_key"];
@@ -168,24 +172,29 @@
          NSLog(@"error: %@", error);
      }];
     
-    NSArray *componentsPic = [NSArray arrayWithObjects:baseUrl,appDel.institute_code,teacher_profile,appDel.user_picture, nil];
-    NSString *fullpath= [NSString pathWithComponents:componentsPic];
-    NSURL *url = [NSURL URLWithString:fullpath];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        NSData *imageData = [NSData dataWithContentsOfURL:url];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            // Update the UI
-            self.userImage.image = [UIImage imageWithData:imageData];
-            if (self.userImage.image == nil)
-            {
-                self.userImage.image = [UIImage imageNamed:@"profile_pic.png"];
-
-            }
+    if ([self->teacherProPic isEqualToString:@""])
+    {
+        self.userImage.image = [UIImage imageNamed:@"profile.png"];
+    }
+    else
+    {
+        NSArray *componentsPic = [NSArray arrayWithObjects:baseUrl,appDel.institute_code,teacher_profile,teacherProPic, nil];
+        NSString *fullpath= [NSString pathWithComponents:componentsPic];
+        NSURL *url = [NSURL URLWithString:fullpath];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+            NSData *imageData = [NSData dataWithContentsOfURL:url];
             
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // Update the UI
+                self.userImage.image = [UIImage imageWithData:imageData];
+                if (self.userImage.image == nil)
+                {
+                    self.userImage.image = [UIImage imageNamed:@"profile.png"];
+                }
+                
+            });
         });
-    });
-
+    }
 }
 
 - (void)didReceiveMemoryWarning {

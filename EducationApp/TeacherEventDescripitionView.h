@@ -16,5 +16,8 @@
 - (IBAction)OrganiserButton:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *eventdiscrpDateLabel;
 @property (weak, nonatomic) IBOutlet UIButton *viewOrganiserOtlet;
+@property (weak, nonatomic) IBOutlet UIView *mainView;
+@property (weak, nonatomic) IBOutlet UILabel *eventTime;
+@property (weak, nonatomic) IBOutlet UILabel *eventDate;
 
 @end

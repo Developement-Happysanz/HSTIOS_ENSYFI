@@ -13,6 +13,7 @@
     NSMutableArray *marks;
     NSMutableArray *enroll_id;
     NSInteger lastInserted_id;
+    NSString *lastID;
     NSArray *stat;
 }
 @end
@@ -122,8 +123,9 @@
                 NSString *dbPath = [documentsDir   stringByAppendingPathComponent:@"ENSIFY.db"];
                 FMDatabase *database = [FMDatabase databaseWithPath:dbPath];
                 [database open];
-                BOOL isInserted = [database executeUpdate:@"INSERT INTO table_create_class_test_mark (student_id,local_hw_id,server_hw_id,marks,remarks,status,mark_status,created_by,created_at,updated_by,updated_at,sync_status) VALUES (?,?,?,?,?,?,?,?,?,?,?)",strenroll_id,str_hw_id,server_hw_id,strmarks,@"",@"Active",@"1",appDel.user_id,dateString,appDel.user_id,dateString,@"NS"];
+                BOOL isInserted = [database executeUpdate:@"INSERT INTO table_create_class_test_mark (student_id,local_hw_id,server_hw_id,marks,remarks,status,created_by,created_at,updated_by,updated_at,sync_status) VALUES (?,?,?,?,?,?,?,?,?,?,?)",strenroll_id,str_hw_id,server_hw_id,strmarks,@"Active",@"1",appDel.user_id,dateString,appDel.user_id,dateString,@"NS"];
                 lastInserted_id = [database lastInsertRowId];
+                lastID = [NSString stringWithFormat:@"%ld",lastInserted_id];
                 NSLog(@"%ld",(long)lastInserted_id);
                 if(isInserted)
                 {
@@ -179,7 +181,7 @@
     NSString *dbPath = [documentsDir   stringByAppendingPathComponent:@"ENSIFY.db"];
     FMDatabase *database = [FMDatabase databaseWithPath:dbPath];
     [database open];
-    BOOL isInserted = [database executeUpdate:@"UPDATE table_create_homework_class_test SET mark_status = ? Where id = ? ",@"1",lastInserted_id];
+    BOOL isInserted = [database executeUpdate:@"UPDATE table_create_homework_class_test SET mark_status = ? WHERE id = ?",@"1",lastID];
     if(isInserted)
     {
         NSLog(@"Update Successfully in table_create_homework_class_test");

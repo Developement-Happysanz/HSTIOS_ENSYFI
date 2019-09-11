@@ -75,9 +75,10 @@
     }
     // Configure the cell...
     
-    cell.nameLabel.text = [name objectAtIndex:indexPath.row];
-    cell.studentidLabel.text = [studentID objectAtIndex:indexPath.row];
-    cell.admissionidLabel.text = [admissionnumber objectAtIndex:indexPath.row];
+    cell.nameLabel.text = [NSString stringWithFormat:@"%@ : %@",@"Name",[name objectAtIndex:indexPath.row]];
+    cell.classid.text =  [classid objectAtIndex:indexPath.row];
+    cell.admissionidLabel.text = [NSString stringWithFormat:@"%@ : %@",@"Admission Id",[admissionnumber objectAtIndex:indexPath.row]];
+    NSLog(@"%@", cell.admissionidLabel.text);
     
     NSString *class = [className objectAtIndex:indexPath.row];
     NSString *strSection = [section objectAtIndex:indexPath.row];
@@ -90,7 +91,7 @@
     [cell.continueOutlet addTarget:self action:@selector(yourButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 
 
-    cell.classnameLabel.text = classSection;
+    cell.classnameLabel.text = [NSString stringWithFormat:@"%@ : %@",@"Class",classSection];
     cell.classid.text = [classid objectAtIndex:indexPath.row];
     
 //    cell.mainView.layer.borderWidth = 1.0f;
@@ -125,6 +126,7 @@
         NSInteger indexValu = [classid indexOfObject:selectedCell.classid.text];
         
         appDel.student_id = studentID[indexValu];
+        NSLog(@"%@",appDel.student_id);
       //  appDel.student_id = selectedCell.studentidLabel.text;
 
         NSInteger indexValue = [classid indexOfObject:selectedCell.classid.text];
@@ -139,7 +141,7 @@
         //    [[NSUserDefaults standardUserDefaults]setObject:stradmission_id forKey:@"admission_id_key"];
         [[NSUserDefaults standardUserDefaults]setObject:selectedCell.admissionidLabel.text forKey:@"admission_no_Key"];
         [[NSUserDefaults standardUserDefaults]setObject:selectedCell.classnameLabel.text forKey:@"class_name_key"];
-        [[NSUserDefaults standardUserDefaults]setObject:selectedCell.classid.text forKey:@"class_id_key"];
+        [[NSUserDefaults standardUserDefaults]setObject:appDel.class_id forKey:@"class_id_key"];
         [[NSUserDefaults standardUserDefaults]setObject:selectedCell.nameLabel.text forKey:@"studentname_Key"];
         [[NSUserDefaults standardUserDefaults]setObject:appDel.student_id forKey:@"registered_id_key"];
 
@@ -181,9 +183,7 @@
     [[NSUserDefaults standardUserDefaults]setObject:selectedCell.classnameLabel.text forKey:@"class_name_key"];
     [[NSUserDefaults standardUserDefaults]setObject:selectedCell.classid.text forKey:@"class_id_key"];
     [[NSUserDefaults standardUserDefaults]setObject:selectedCell.nameLabel.text forKey:@"studentname_Key"];
-    [[NSUserDefaults standardUserDefaults]setObject:selectedCell.studentidLabel.text forKey:@"registered_id_key"];
-    
-    
+    [[NSUserDefaults standardUserDefaults]setObject:appDel.student_id  forKey:@"registered_id_key"];
     [[NSUserDefaults standardUserDefaults]setObject:sectionname forKey:@"sec_name_key"];
 
     

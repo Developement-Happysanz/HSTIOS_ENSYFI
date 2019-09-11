@@ -68,12 +68,15 @@
     day = [[NSMutableArray alloc]init];
     break_name = [[NSMutableArray alloc]init];
 
-    listday_Array = @[@"Monday",@"Tuesday",@"WednesDay",@"ThursDay",@"Friday",@"SaturDay",@"Sunday"];
+    listday_Array = @[@"Monday",@"Tuesday",@"Wednesday",@"Thursday",@"Friday",@"Saturday",@"Sunday"];
     dayArray = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7"];
     _segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:listday_Array];
     _segmentedControl.frame = CGRectMake(0,0,self.view.bounds.size.width,55);
     _segmentedControl.selectionIndicatorHeight = 4.0f;
     _segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
+    UIFont *font = [UIFont boldSystemFontOfSize:18.0f];
+    NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
+                                                           forKey:NSFontAttributeName];
     _segmentedControl.backgroundColor = [UIColor colorWithRed:102/255.0f green:51/255.0f blue:102/255.0f alpha:1.0];
     _segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
     _segmentedControl.selectionStyle  = HMSegmentedControlSelectionStyleFullWidthStripe;
@@ -158,6 +161,7 @@
              }
                  [self.tableView reloadData];
          }
+         
      }
           failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
@@ -193,8 +197,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NewTimeTableTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.subjectName.text = [subject_name objectAtIndex:indexPath.row];
-    cell.staffName.text = [name objectAtIndex:indexPath.row];
+    cell.subjectName.text = [NSString stringWithFormat:@"%@ : %@",@"Subject Name",[subject_name objectAtIndex:indexPath.row]];
+    cell.staffName.text = [NSString stringWithFormat:@"%@ : %@",@"Teacher Name",[name objectAtIndex:indexPath.row]];
     NSString *strPeriod = [NSString stringWithFormat:@"%@%@",@"0",[period objectAtIndex:indexPath.row]];
     cell.period.text = strPeriod;
     NSString *time = [NSString stringWithFormat:@"%@ - %@",[from_time objectAtIndex:indexPath.row],[to_time objectAtIndex:indexPath.row]];
@@ -214,7 +218,7 @@
         cell.breakLabel.text = [NSString stringWithFormat:@"%@ - %@",[break_name objectAtIndex:indexPath.row],time];
 //        cell.cellView.layer.cornerRadius = 5.0;
 //        cell.cellView.clipsToBounds = YES;
-        cell.cellView.backgroundColor = [UIColor colorWithRed:231/255.0f green:167/255.0f blue:93/255.0f alpha:1.0];
+        cell.cellView.backgroundColor = [UIColor colorWithRed:247/255.0f green:148/255.0f blue:30/255.0f alpha:1.0];
     }
     else
     {
@@ -297,6 +301,7 @@
          
          if ([msg isEqualToString:@"Timetable Days"])
          {
+             self.tableView.hidden = NO;
              NSArray *dataArray = [responseObject objectForKey:@"timeTable"];
              for (int i = 0;i < [dataArray count];i++)
              {
@@ -323,9 +328,11 @@
          }
          else
          {
+             self.tableView.hidden = YES;
+
              UIAlertController *alert= [UIAlertController
                                         alertControllerWithTitle:@"ENSYFI"
-                                        message:@"TimeTable Not Found"
+                                        message:msg
                                         preferredStyle:UIAlertControllerStyleAlert];
              
              UIAlertAction *ok = [UIAlertAction

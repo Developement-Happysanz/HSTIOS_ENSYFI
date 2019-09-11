@@ -32,6 +32,8 @@
     
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
+    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"2048 x 2732.png"]];
+    
     appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
 
     if ([appDel.user_type isEqualToString:@"2"])
@@ -366,34 +368,56 @@
     
     if ([str isEqualToString:@"Approved"])
     {
-        cell.statusImg.image = [UIImage imageNamed:@"ensyfi od screen icons-03.png"];
+        cell.statusImg.image = [UIImage imageNamed:@"approved.png"];
         cell.statusLabel.text = str;
-        cell.statusLabel.textColor = [UIColor colorWithRed:8/255.0f green:159/255.0f blue:73/255.0f alpha:1.0];
+        cell.statusLabel.textColor = [UIColor colorWithRed:141/255.0f green:198/255.0f blue:63/255.0f alpha:1.0];
+        cell.statusView.backgroundColor = [UIColor colorWithRed:141/255.0f green:198/255.0f blue:63/255.0f alpha:1.0];
+
     }
     else if ([str isEqualToString:@"Rejected"])
     {
-        cell.statusImg.image = [UIImage imageNamed:@"ensyfi od screen icons-02.png"];
+        cell.statusImg.image = [UIImage imageNamed:@"rejected.png"];
         cell.statusLabel.text = str;
-        cell.statusLabel.textColor = [UIColor colorWithRed:216/255.0f green:91/255.0f blue:74/255.0f alpha:1.0];
+        cell.statusLabel.textColor = [UIColor colorWithRed:237/255.0f green:28/255.0f blue:36/255.0f alpha:1.0];
+        cell.statusView.backgroundColor = [UIColor colorWithRed:237/255.0f green:28/255.0f blue:36/255.0f alpha:1.0];
     }
     else
     {
-        cell.statusImg.image = [UIImage imageNamed:@"ensyfi od screen icons-04.png"];
+        cell.statusImg.image = [UIImage imageNamed:@"pending.png"];
         cell.statusLabel.text = str;
-        cell.statusLabel.textColor = [UIColor colorWithRed:190/255.0f green:192/255.0f blue:49/255.0f alpha:1.0];
+        cell.statusLabel.textColor = [UIColor colorWithRed:247/255.0f green:148/255.0f blue:30/255.0f alpha:1.0];
+        cell.statusView.backgroundColor = [UIColor colorWithRed:247/255.0f green:148/255.0f blue:30/255.0f alpha:1.0];
 
     }
     
-    cell.fromdate.text = [frmDate objectAtIndex:indexPath.row];
-    cell.toDate.text = [toDte objectAtIndex:indexPath.row];
+    cell.fromdate.text = [NSString stringWithFormat:@"%@ - %@",[frmDate objectAtIndex:indexPath.row],[toDte objectAtIndex:indexPath.row]] ;
+//    cell.toDate.text = ;
     
-    cell.mainView.layer.borderWidth = 1.0f;
-    cell.mainView.layer.borderColor = [UIColor clearColor].CGColor;
-    cell.mainView.layer.cornerRadius = 6.0f;
+    cell.mainView.layer.cornerRadius = 1.0f;
+    cell.mainView.clipsToBounds = YES;
+    
+    cell.mainView.layer.shadowRadius  = 5.5f;
+    cell.mainView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    cell.mainView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    cell.mainView.layer.shadowOpacity = 0.6f;
+    cell.mainView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(cell.mainView.bounds, shadowInsets)];
+    cell.mainView.layer.shadowPath    = shadowPath.CGPath;
     
     return cell;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewAutomaticDimension;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return 80.0;
+}
 
 /*
 // Override to support conditional editing of the table view.

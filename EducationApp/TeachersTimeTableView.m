@@ -77,7 +77,7 @@
     day_idArr = [[NSMutableArray alloc]init];
     break_name = [[NSMutableArray alloc]init];
     
-    listday_Array = @[@"Monday",@"Tuesday",@"WednesDay",@"ThursDay",@"Friday",@"SaturDay",@"Sunday"];
+    listday_Array = @[@"Monday",@"Tuesday",@"Wednesday",@"Thursday",@"Friday",@"Saturday",@"Sunday"];
     dayArray = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7"];
     _segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:listday_Array];
     _segmentedControl.frame = CGRectMake(0,0,self.view.bounds.size.width,55);

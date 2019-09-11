@@ -88,7 +88,7 @@
     [database close];
     
     _selectBtnOtlet.layer.borderColor = [UIColor colorWithRed:66/255.0f green:66/255.0f blue:66/255.0f alpha:1.0].CGColor;
-//    _selectBtnOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
+//  _selectBtnOtlet.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
     _selectBtnOtlet.layer.borderWidth = 1.0f;
     [_selectBtnOtlet.layer setCornerRadius:10.0f];
     
@@ -99,31 +99,24 @@
     NSLog(@"date: %@", dateString);
     
     self.dateLabel.text = dateString;
-    
     [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"dropdown"];
-    
     tableData = [[NSMutableArray alloc] init];
-    
     [[NSUserDefaults standardUserDefaults]setObject:@"No" forKey:@"atendencePicker_Key"];
     
 //    NSArray *docPathsdel = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 //    NSString *documentsDirdel = [docPathsdel objectAtIndex:0];
-//    NSString *dbPathdel = [documentsDirdel   stringByAppendingPathComponent:@"ENSIFY.db"];
-//    
+//    NSString *dbPathdel = [documentsDirdel stringByAppendingPathComponent:@"ENSIFY.db"];
 //    FMDatabase *databasedel = [FMDatabase databaseWithPath:dbPathdel];
 //    [databasedel open];
-//    
 //    BOOL isInserted_student_details = [databasedel executeUpdate:@"DELETE FROM table_create_attendence_Flag"];
-//    
 //    [databasedel close];
-//    
+    
 //    if(isInserted_student_details)
 //        NSLog(@"DELETED table_create_attendence_Flag Successfully");
 //    else
 //        NSLog(@"Error occured while DELETEing");
 //    
 //    [databasedel close];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -481,7 +474,7 @@
             NSString *dbPath = [documents stringByAppendingPathComponent:@"ENSIFY.db"];
             FMDatabase *database = [FMDatabase databaseWithPath:dbPath];
             [database open];
-            BOOL isInserted=[database executeUpdate:@"INSERT INTO table_create_attendence_history                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        (attend_id,server_attend_id,class_id,student_id,abs_date,a_status,attend_period,a_val,a_taken_by,created_at,updated_by,updated_at,status,sync_status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,? )",lastInsert_id,@"",class_id,student_id,dateTime,a_status,attendance_period,@"0",teacher_id,dateTime,teacher_id,dateTime,@"Active",@"NS"];
+            BOOL isInserted=[database executeUpdate:@"INSERT INTO table_create_attendence_history                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           (attend_id,server_attend_id,class_id,student_id,abs_date,a_status,attend_period,a_val,a_taken_by,created_at,updated_by,updated_at,status,sync_status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,? )",lastInsert_id,@"",class_id,student_id,dateTime,a_status,attendance_period,@"0",teacher_id,dateTime,teacher_id,dateTime,@"Active",@"NS"];
             [database close];
             if(isInserted)
             {

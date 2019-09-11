@@ -36,7 +36,7 @@
     // Do any additional setup after loading the view.
     
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
-    
+
     stat = @[@"1"];
     examName = [[NSMutableArray alloc]init];
     
@@ -412,7 +412,6 @@
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"admin" bundle:nil];
             AdminResultStudentListView *adminResultStudentListView = (AdminResultStudentListView *)[storyboard instantiateViewControllerWithIdentifier:@"AdminResultStudentListView"];
                     [self.navigationController pushViewController:adminResultStudentListView animated:YES];
-            
         }
         else
         {
@@ -425,11 +424,11 @@
         [[NSUserDefaults standardUserDefaults]setObject:@"main" forKey:@"stat_user_type"];
         
 //        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"teachers" bundle:nil];
-//        TeacherExamDetailTableController *teacherExamDetailTableController = (TeacherExamDetailTableController *)[storyboard instantiateViewControllerWithIdentifier:@"TeacherExamDetailTableController"];
+//        TeacherExamDetailTableController *teacherExamDetailTableController = (TeacherExamDetailTableController *)[storyboard     instantiateViewControllerWithIdentifier:@"TeacherExamDetailTableController"];
 //        [self.navigationController pushViewController:teacherExamDetailTableController animated:YES];
-        [self dismissViewControllerAnimated:YES completion:nil];
+       // [self dismissViewControllerAnimated:YES completion:nil];
         
-//        [self.navigationController popViewControllerAnimated:YES];
+        [self.navigationController popViewControllerAnimated:YES];
 
     }
     else

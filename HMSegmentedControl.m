@@ -946,7 +946,7 @@
 
 - (NSDictionary *)resultingTitleTextAttributes {
     NSDictionary *defaults = @{
-        NSFontAttributeName : [UIFont systemFontOfSize:19.0f],
+        NSFontAttributeName : [UIFont fontWithName:@"Roboto-Bold" size:15.0f],
         NSForegroundColorAttributeName : [UIColor blackColor],
     };
     

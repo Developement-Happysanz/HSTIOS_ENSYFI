@@ -15,5 +15,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *toDate;
 @property (strong, nonatomic) IBOutlet UILabel *fromdate;
 @property (strong, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UIView *statusView;
 
 @end
