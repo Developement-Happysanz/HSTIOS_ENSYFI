@@ -68,12 +68,12 @@
          
          if ([msg isEqualToString:@"View Reviews"])
          {
-             [class_section_name removeAllObjects];
-             [subject_name removeAllObjects];
-             [day removeAllObjects];
-             [date_time removeAllObjects];
-             [comments removeAllObjects];
-             [remarks removeAllObjects];
+             [self->class_section_name removeAllObjects];
+             [self->subject_name removeAllObjects];
+             [self->day removeAllObjects];
+             [self->date_time removeAllObjects];
+             [self->comments removeAllObjects];
+             [self->remarks removeAllObjects];
              
              for (int i = 0; i < [reviewDetails count]; i++)
              {
@@ -92,13 +92,13 @@
 
                  NSString *strclass_sec_name = [NSString stringWithFormat:@"%@ -%@",strclass_name,strsec_name];
                  
-                 [class_section_name addObject:strclass_sec_name];
-                 [subject_name addObject:strsubject_name];
-                 [day addObject:strday];
-                 [date_time addObject:strtime_date];
+                 [self->class_section_name addObject:strclass_sec_name];
+                 [self->subject_name addObject:strsubject_name];
+                 [self->day addObject:strday];
+                 [self->date_time addObject:strtime_date];
                  
-                 [comments addObject:strcomments];
-                 [remarks addObject:strremarks];
+                 [self->comments addObject:strcomments];
+                 [self->remarks addObject:strremarks];
 
              }
              [self.tableview reloadData];

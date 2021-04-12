@@ -17,23 +17,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
-    
-//    NSString *eventName = [[NSUserDefaults standardUserDefaults]objectForKey:@"event_NameKey"];
-    
+//  NSString *eventName = [[NSUserDefaults standardUserDefaults]objectForKey:@"event_NameKey"];
     NSString *eventDate = [[NSUserDefaults standardUserDefaults]objectForKey:@"eventDateKey"];
-    
     NSString *eventdiscrp = [[NSUserDefaults standardUserDefaults]objectForKey:@"descripitionKey"];
-    
     self.eventDate.text = [NSString stringWithFormat:@"%@ : %@",@"Date",eventDate];
-    
     self.eventdescrp.text = eventdiscrp;
-    
-//    self.eventName.text = eventName;
+//  self.eventName.text = eventName;
     
     NSString *sub_events = [[NSUserDefaults standardUserDefaults]objectForKey:@"sub_events_Key"];
-    
     if ([sub_events isEqualToString:@"0"])
     {
         self.viewOrganiserOtlet.hidden = YES;
@@ -41,10 +33,8 @@
     else
     {
         self.viewOrganiserOtlet.hidden = NO;
-        
         self.viewOrganiserOtlet.layer.cornerRadius = 5.0f;
         self.viewOrganiserOtlet.clipsToBounds = YES;
-
     }
     
     self.mainView.layer.cornerRadius = 8.0f;

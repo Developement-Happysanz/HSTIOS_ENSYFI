@@ -57,7 +57,8 @@
     self.username.text = appDel.user_name;
     
     
-NSArray *components = [NSArray arrayWithObjects:baseUrl,[[NSUserDefaults standardUserDefaults]objectForKey:@"institute_code_Key"],admin_profile,[[NSUserDefaults standardUserDefaults]objectForKey:@"user_pic_key"], nil];
+//   NSArray *components = [NSArray arrayWithObjects:baseUrl,[[NSUserDefaults standardUserDefaults]objectForKey:@"institute_code_Key"],admin_profile,[[NSUserDefaults standardUserDefaults]objectForKey:@"user_pic_key"], nil];
+    NSArray *components = [NSArray arrayWithObjects:baseUrl,admin_profile,[[NSUserDefaults standardUserDefaults]objectForKey:@"user_pic_key"], nil];
     NSString *institute_logo_url = [NSString pathWithComponents:components];
 
     NSURL *url = [NSURL URLWithString:institute_logo_url];
@@ -68,10 +69,10 @@ NSArray *components = [NSArray arrayWithObjects:baseUrl,[[NSUserDefaults standar
             // Update the UI
             
             self.imageView.image = [UIImage imageWithData:imageData];
-            _imageView.layer.cornerRadius = self.imageView.frame.size.height / 2;
-            _imageView.layer.borderColor = UIColor.whiteColor.CGColor;
-            _imageView.layer.borderWidth = 5.0;
-            _imageView.clipsToBounds = true;
+            self->_imageView.layer.cornerRadius = self.imageView.frame.size.height / 2;
+            self->_imageView.layer.borderColor = UIColor.whiteColor.CGColor;
+            self-> _imageView.layer.borderWidth = 5.0;
+            self->_imageView.clipsToBounds = true;
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             
         });
@@ -329,7 +330,8 @@ NSArray *components = [NSArray arrayWithObjects:baseUrl,[[NSUserDefaults standar
         
         //        NSData *imageData = UIImagePNGRepresentation(chosenImage);
         appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        NSString *url = [NSString stringWithFormat:@"%@%@%@%@/%@",baseUrl,[[NSUserDefaults standardUserDefaults]objectForKey:@"institute_code_Key"],update_profilePicture,appDel.user_id,appDel.user_type];
+//        NSString *url = [NSString stringWithFormat:@"%@%@%@%@/%@",baseUrl,[[NSUserDefaults standardUserDefaults]objectForKey:@"institute_code_Key"],update_profilePicture,appDel.user_id,appDel.user_type];
+        NSString *url = [NSString stringWithFormat:@"%@%@%@/%@",baseUrl,update_profilePicture,appDel.user_id,appDel.user_type];
         
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
         [request setURL:[NSURL URLWithString:url]];

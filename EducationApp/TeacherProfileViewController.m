@@ -298,7 +298,9 @@
     else
     {
         appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        NSString *url = [NSString stringWithFormat:@"%@%@%@%@/%@",baseUrl,[[NSUserDefaults standardUserDefaults]objectForKey:@"institute_code_Key"],update_profilePicture,appDel.user_id,appDel.user_type];
+//        NSString *url = [NSString stringWithFormat:@"%@%@%@%@/%@",baseUrl,[[NSUserDefaults standardUserDefaults]objectForKey:@"institute_code_Key"],update_profilePicture,appDel.user_id,appDel.user_type];
+        
+        NSString *url = [NSString stringWithFormat:@"%@%@%@/%@",baseUrl,update_profilePicture,appDel.user_id,appDel.user_type];
 
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
         [request setURL:[NSURL URLWithString:url]];
@@ -330,9 +332,9 @@
                                                       NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                                                       NSLog(@"%@", result);
                                                       NSString *img = result[@"user_picture"];
-                                                      appDel.user_picture = img;
+                                                      self->appDel.user_picture = img;
                                                       [[NSUserDefaults standardUserDefaults]setObject:img forKey:@"user_pic_key"];
-                                                      NSLog(@"%@%@",result, appDel.user_picture);
+                                                      NSLog(@"%@%@",result, self->appDel.user_picture);
                                                       [MBProgressHUD hideHUDForView:self.view animated:YES];
 
                                                   });

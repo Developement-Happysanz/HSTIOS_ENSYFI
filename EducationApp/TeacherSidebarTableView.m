@@ -95,7 +95,8 @@
         
         if ([appDel.user_type isEqualToString:@"2"])
         {
-            NSArray *components = [NSArray arrayWithObjects:baseUrl,appDel.institute_code,teacher_profile,[[NSUserDefaults standardUserDefaults]objectForKey:@"user_pic_key"], nil];
+//            NSArray *components = [NSArray arrayWithObjects:baseUrl,appDel.institute_code,teacher_profile,[[NSUserDefaults standardUserDefaults]objectForKey:@"user_pic_key"], nil];
+            NSArray *components = [NSArray arrayWithObjects:baseUrl,teacher_profile,[[NSUserDefaults standardUserDefaults]objectForKey:@"user_pic_key"], nil];
             NSLog(@"%@",appDel.user_picture);
             NSString *fullpath= [NSString pathWithComponents:components];
             NSURL *url = [NSURL URLWithString:fullpath];

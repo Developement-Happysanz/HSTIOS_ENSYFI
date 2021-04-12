@@ -112,14 +112,14 @@
          NSLog(@"%@",responseObject);
          [MBProgressHUD hideHUDForView:self.view animated:YES];
          NSString *msg = [responseObject objectForKey:@"msg"];
-         [class_id removeAllObjects];
-         [day removeAllObjects];
-         [from_time removeAllObjects];
-         [is_break removeAllObjects];
-         [name removeAllObjects];
-         [period removeAllObjects];
-         [subject_name removeAllObjects];
-         [to_time removeAllObjects];
+         [self->class_id removeAllObjects];
+         [self->day removeAllObjects];
+         [self->from_time removeAllObjects];
+         [self->is_break removeAllObjects];
+         [self->name removeAllObjects];
+         [self->period removeAllObjects];
+         [self->subject_name removeAllObjects];
+         [self->to_time removeAllObjects];
 
          if ([msg isEqualToString:@"Timetable Days"])
          {
@@ -149,15 +149,15 @@
                  [to_formatHora setDateFormat:@"hh:mm a"];
                  NSString *toTime = [to_formatHora stringFromDate:to_dateHora];
                  
-                 [class_id addObject:strclass_id];
-                 [day addObject:strday];
-                 [from_time addObject:fromTime];
-                 [is_break addObject:stris_break];
-                 [name addObject:strname];
-                 [period addObject:strperiod];
-                 [subject_name addObject:strsubject_name];
-                 [to_time addObject:toTime];
-                 [break_name addObject:strbreak_name];
+                 [self->class_id addObject:strclass_id];
+                 [self->day addObject:strday];
+                 [self->from_time addObject:fromTime];
+                 [self->is_break addObject:stris_break];
+                 [self->name addObject:strname];
+                 [self->period addObject:strperiod];
+                 [self->subject_name addObject:strsubject_name];
+                 [self->to_time addObject:toTime];
+                 [self->break_name addObject:strbreak_name];
              }
                  [self.tableView reloadData];
          }
@@ -290,14 +290,14 @@
          NSLog(@"%@",responseObject);
          [MBProgressHUD hideHUDForView:self.view animated:YES];
          NSString *msg = [responseObject objectForKey:@"msg"];
-         [class_id removeAllObjects];
-         [day removeAllObjects];
-         [from_time removeAllObjects];
-         [is_break removeAllObjects];
-         [name removeAllObjects];
-         [period removeAllObjects];
-         [subject_name removeAllObjects];
-         [to_time removeAllObjects];
+         [self->class_id removeAllObjects];
+         [self->day removeAllObjects];
+         [self->from_time removeAllObjects];
+         [self->is_break removeAllObjects];
+         [self->name removeAllObjects];
+         [self->period removeAllObjects];
+         [self->subject_name removeAllObjects];
+         [self->to_time removeAllObjects];
          
          if ([msg isEqualToString:@"Timetable Days"])
          {
@@ -315,14 +315,14 @@
                  NSString *strsubject_name = [data valueForKey:@"subject_name"];
                  NSString *strto_time = [data valueForKey:@"to_time"];
                  
-                 [class_id addObject:strclass_id];
-                 [day addObject:strday];
-                 [from_time addObject:strfrom_time];
-                 [is_break addObject:stris_break];
-                 [name addObject:strname];
-                 [period addObject:strperiod];
-                 [subject_name addObject:strsubject_name];
-                 [to_time addObject:strto_time];
+                 [self->class_id addObject:strclass_id];
+                 [self->day addObject:strday];
+                 [self->from_time addObject:strfrom_time];
+                 [self->is_break addObject:stris_break];
+                 [self->name addObject:strname];
+                 [self->period addObject:strperiod];
+                 [self->subject_name addObject:strsubject_name];
+                 [self->to_time addObject:strto_time];
              }
                  [self.tableView reloadData];
          }

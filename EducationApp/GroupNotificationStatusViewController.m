@@ -67,8 +67,8 @@
          NSString *msg = [responseObject objectForKey:@"msg"];
          NSArray *data = [responseObject objectForKey:@"teacherList"];
          
-         [groupLead removeAllObjects];
-         [userID removeAllObjects];
+         [self->groupLead removeAllObjects];
+         [self->userID removeAllObjects];
          
          if ([msg isEqualToString:@"Teacher Details"])
          {
@@ -79,11 +79,11 @@
                  NSString *user_id = [dict objectForKey:@"user_id"];
                  
                 
-                 [groupLead addObject:name];
-                 [userID addObject:user_id];
+                 [self->groupLead addObject:name];
+                 [self->userID addObject:user_id];
                  
              }
-              [groupLead insertObject:@"Group Lead Name" atIndex:0];
+              [self->groupLead insertObject:@"Group Lead Name" atIndex:0];
              [MBProgressHUD hideHUDForView:self.view animated:YES];
          }
          else

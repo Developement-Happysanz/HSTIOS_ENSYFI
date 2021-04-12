@@ -68,17 +68,17 @@
          NSString *msg = [responseObject objectForKey:@"msg"];
          NSArray *hwDates = [responseObject valueForKey:@"hwdayDetails"];
          
-         [hw_id removeAllObjects];
-         [hw_type removeAllObjects];
-         [title removeAllObjects];
-         [created_at removeAllObjects];
-         [test_date removeAllObjects];
-         [due_date removeAllObjects];
-         [hw_details removeAllObjects];
-         [send_option_status removeAllObjects];
-         [subject_id removeAllObjects];
-         [subject_name removeAllObjects];
-         [name removeAllObjects];
+         [self->hw_id removeAllObjects];
+         [self->hw_type removeAllObjects];
+         [self->title removeAllObjects];
+         [self->created_at removeAllObjects];
+         [self->test_date removeAllObjects];
+         [self->due_date removeAllObjects];
+         [self->hw_details removeAllObjects];
+         [self->send_option_status removeAllObjects];
+         [self->subject_id removeAllObjects];
+         [self->subject_name removeAllObjects];
+         [self->name removeAllObjects];
          
          if ([msg isEqualToString:@"View All Homework - Day"])
          {
@@ -97,17 +97,17 @@
                  NSString *strsubject_name = [dict objectForKey:@"subject_name"];
                  NSString *strname = [dict objectForKey:@"name"];
                  
-                 [hw_id addObject:strhw_id];
-                 [hw_type addObject:strhw_type];
-                 [title addObject:strtitle];
-                 [created_at addObject:strcreated_at];
-                 [test_date addObject:strtest_date];
-                 [due_date addObject:strdue_date];
-                 [hw_details addObject:strhw_details];
-                 [send_option_status addObject:strsend_option_status];
-                 [subject_id addObject:strsubject_id];
-                 [subject_name addObject:strsubject_name];
-                 [name addObject:strname];
+                 [self->hw_id addObject:strhw_id];
+                 [self->hw_type addObject:strhw_type];
+                 [self->title addObject:strtitle];
+                 [self->created_at addObject:strcreated_at];
+                 [self->test_date addObject:strtest_date];
+                 [self->due_date addObject:strdue_date];
+                 [self->hw_details addObject:strhw_details];
+                 [self->send_option_status addObject:strsend_option_status];
+                 [self->subject_id addObject:strsubject_id];
+                 [self->subject_name addObject:strsubject_name];
+                 [self->name addObject:strname];
 
              }
          }

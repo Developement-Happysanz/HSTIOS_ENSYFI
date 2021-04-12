@@ -166,8 +166,8 @@
                  
                  NSLog(@"%@",responseObject);
                  
-                 [sec_id removeAllObjects];
-                 [sec_name removeAllObjects];
+                 [self->sec_id removeAllObjects];
+                 [self->sec_name removeAllObjects];
                  
                  NSString *msg = [responseObject objectForKey:@"msg"];
                  NSArray *data = [responseObject objectForKey:@"data"];
@@ -180,22 +180,22 @@
                          NSString *se_id = [dict objectForKey:@"sec_id"];
                          NSString *se_name = [dict objectForKey:@"sec_name"];
                          
-                         [sec_id addObject:se_id];
-                         [sec_name addObject:se_name];
+                         [self->sec_id addObject:se_id];
+                         [self->sec_name addObject:se_name];
                      }
                      
-                     [[NSUserDefaults standardUserDefaults]setObject:sec_id forKey:@"admin_sec_id"];
-                     [[NSUserDefaults standardUserDefaults]setObject:sec_name forKey:@"admin_sec_name"];
+                     [[NSUserDefaults standardUserDefaults]setObject:self->sec_id forKey:@"admin_sec_id"];
+                     [[NSUserDefaults standardUserDefaults]setObject:self->sec_name forKey:@"admin_sec_name"];
                      
                      
-                     if(dropDown == nil)
+                     if(self->dropDown == nil)
                      {
                          CGFloat f = 300;
-                         dropDown = [[NIDropDown alloc]showDropDown:sender :&f :sec_name :nil :@"down" :self.view];
-                         dropDown.delegate = self;
+                         self->dropDown = [[NIDropDown alloc]showDropDown:sender :&f :self->sec_name :nil :@"down" :self.view];
+                         self->dropDown.delegate = self;
                      }
                      else {
-                         [dropDown hideDropDown:sender];
+                         [self->dropDown hideDropDown:sender];
                          [[NSUserDefaults standardUserDefaults]setObject:@"hide" forKey:@"dropDownKey"];
                          [self rel];
                      }
@@ -352,12 +352,12 @@
          NSString *msg = [responseObject objectForKey:@"msg"];
          NSArray *data = [responseObject objectForKey:@"data"];
          
-         [admisn_no removeAllObjects];
-         [admisn_year removeAllObjects];
-         [enroll_id removeAllObjects];
-         [name removeAllObjects];
-         [sex removeAllObjects];
-         [class_id_Arr removeAllObjects];
+         [self->admisn_no removeAllObjects];
+         [self->admisn_year removeAllObjects];
+         [self->enroll_id removeAllObjects];
+         [self->name removeAllObjects];
+         [self->sex removeAllObjects];
+         [self->class_id_Arr removeAllObjects];
 
          
          if ([msg isEqualToString:@"success"])
@@ -372,17 +372,17 @@
                  NSString *strsex = [dict objectForKey:@"sex"];
                  NSString *strclassId = [dict objectForKey:@"class_id"];
 
-                 [admisn_no addObject:stradmisn_no];
-                 [admisn_year addObject:stradmisn_year];
-                 [enroll_id addObject:strenroll_id];
-                 [name addObject:strname];
-                 [sex addObject:strsex];
-                 [class_id_Arr addObject:strclassId];
+                 [self->admisn_no addObject:stradmisn_no];
+                 [self->admisn_year addObject:stradmisn_year];
+                 [self->enroll_id addObject:strenroll_id];
+                 [self->name addObject:strname];
+                 [self->sex addObject:strsex];
+                 [self->class_id_Arr addObject:strclassId];
                  
              }
              
              
-             dropDown = nil;
+             self->dropDown = nil;
              
              self.tableView.hidden = NO;
              self.tableTitleView.hidden = NO;

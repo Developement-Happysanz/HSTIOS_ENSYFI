@@ -85,16 +85,16 @@
          NSArray *dataArray = [responseObject objectForKey:@"groupList"];
          if ([msg isEqualToString:@"Group List"])
          {
-             [created_at removeAllObjects];
-             [created_by removeAllObjects];
-             [group_lead_id removeAllObjects];
-             [group_title removeAllObjects];
-             [_id removeAllObjects];
-             [status removeAllObjects];
-             [updated_at removeAllObjects];
-             [updated_by removeAllObjects];
-             [year_id removeAllObjects];
-             [lead_name removeAllObjects];
+             [self->created_at removeAllObjects];
+             [self->created_by removeAllObjects];
+             [self->group_lead_id removeAllObjects];
+             [self->group_title removeAllObjects];
+             [self->_id removeAllObjects];
+             [self->status removeAllObjects];
+             [self->updated_at removeAllObjects];
+             [self->updated_by removeAllObjects];
+             [self->year_id removeAllObjects];
+             [self->lead_name removeAllObjects];
              
              for (int i = 0;i < [dataArray count];i++)
              {
@@ -110,16 +110,16 @@
                  NSString *strYear_id = [data valueForKey:@"year_id"];
                  NSString *strLead_name = [data valueForKey:@"lead_name"];
                  
-                 [created_at addObject:strCreated_at];
-                 [created_by addObject:strCreated_by];
-                 [group_lead_id addObject:strGroup_lead_id];
-                 [group_title addObject:strGroup_title];
-                 [_id addObject:str_id];
-                 [status addObject:strStatus];
-                 [updated_at addObject:strUpdated_at];
-                 [updated_by addObject:strUpdated_by];
-                 [year_id addObject:strYear_id];
-                 [lead_name addObject:strLead_name];
+                 [self->created_at addObject:strCreated_at];
+                 [self->created_by addObject:strCreated_by];
+                 [self->group_lead_id addObject:strGroup_lead_id];
+                 [self->group_title addObject:strGroup_title];
+                 [self->_id addObject:str_id];
+                 [self->status addObject:strStatus];
+                 [self->updated_at addObject:strUpdated_at];
+                 [self->updated_by addObject:strUpdated_by];
+                 [self->year_id addObject:strYear_id];
+                 [self->lead_name addObject:strLead_name];
              }
              [self.tableView reloadData];
          }

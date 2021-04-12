@@ -12,13 +12,20 @@
 
 NSString *const appBaseUrl = @"http://ensyfi.com/admin/admin_api/api.php";
 NSString *const baseUrl = @"http://ensyfi.com/";
+NSString *const module;
+
 //NSString *const appBaseUrl = @"http://happysanz.net/admin/admin_api/api.php";
 //NSString *const baseUrl = @"http://happysanz.net/";
+
+//NSString *const appBaseUrl = @"http://happysanz.in/ensyfi";
+//NSString *const baseUrl = @"https://happysanz.in/ensyfi";
+
+//NSString *const baseUrl = @"https://ensyfi.com/demo_ensyfi";
 NSString *const user_Login_Api = @"/apimain/login/";
 NSString *const admin_profile = @"/assets/admin/profile/";
 NSString *const teacher_profile = @"/assets/teachers/profile/";
 NSString *const parents_profile = @"/assets/parents/profile/";
-NSString *const student_profile = @"/assets/students/profile/"; 
+NSString *const student_profile = @"/assets/students/profile/";
 NSString *const update_profilePicture = @"/apimain/user_profilepic_upload/";
 
 

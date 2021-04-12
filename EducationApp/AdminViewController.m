@@ -56,7 +56,7 @@
 - (void)viewWillLayoutSubviews;
 {
     
-    self.mainView.layer.cornerRadius = 8.0f;
+    self.mainView.layer.cornerRadius = 5.0f;
     self.mainView.clipsToBounds = YES;
     
     
@@ -80,7 +80,7 @@
         flowLayout.sectionInset = UIEdgeInsetsMake(60, 30, 60, 30);
     } else
     {
-        //        flowLayout.itemSize = CGSizeMake(192.f, 192.f);
+        //flowLayout.itemSize = CGSizeMake(192.f, 192.f);
     }
     
     [flowLayout invalidateLayout]; //force the elements to get laid out again with the new size
@@ -148,12 +148,12 @@
                      NSString *clas_id = [dict objectForKey:@"class_id"];
                      NSString *clas_name = [dict objectForKey:@"class_name"];
                      
-                     [class_id addObject:clas_id];
-                     [class_name addObject:clas_name];
+                     [self->class_id addObject:clas_id];
+                     [self->class_name addObject:clas_name];
                  }
                  
-                 [[NSUserDefaults standardUserDefaults]setObject:class_id forKey:@"admin_class_id"];
-                 [[NSUserDefaults standardUserDefaults]setObject:class_name forKey:@"admin_class_name"];
+                 [[NSUserDefaults standardUserDefaults]setObject:self->class_id forKey:@"admin_class_id"];
+                 [[NSUserDefaults standardUserDefaults]setObject:self->class_name forKey:@"admin_class_name"];
                  
                  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"admin" bundle:nil];
                  AdminStudentViewController *adminStudent = (AdminStudentViewController *)[storyboard instantiateViewControllerWithIdentifier:@"AdminStudentViewController"];
@@ -215,12 +215,12 @@
                      NSString *clas_id = [dict objectForKey:@"class_id"];
                      NSString *clas_name = [dict objectForKey:@"class_name"];
                      
-                     [class_id addObject:clas_id];
-                     [class_name addObject:clas_name];
+                     [self->class_id addObject:clas_id];
+                     [self->class_name addObject:clas_name];
                  }
                  
-                 [[NSUserDefaults standardUserDefaults]setObject:class_id forKey:@"admin_class_id"];
-                 [[NSUserDefaults standardUserDefaults]setObject:class_name forKey:@"admin_class_name"];
+                 [[NSUserDefaults standardUserDefaults]setObject:self->class_id forKey:@"admin_class_id"];
+                 [[NSUserDefaults standardUserDefaults]setObject:self->class_name forKey:@"admin_class_name"];
                  
                  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"admin" bundle:nil];
                  AdminParentsViewController *adminParents = (AdminParentsViewController *)[storyboard instantiateViewControllerWithIdentifier:@"AdminParentsViewController"];
@@ -274,12 +274,12 @@
                      NSString *clas_id = [dict objectForKey:@"class_id"];
                      NSString *clas_name = [dict objectForKey:@"class_name"];
                      
-                     [class_id addObject:clas_id];
-                     [class_name addObject:clas_name];
+                     [self->class_id addObject:clas_id];
+                     [self->class_name addObject:clas_name];
                  }
                  
-                 [[NSUserDefaults standardUserDefaults]setObject:class_id forKey:@"admin_class_id"];
-                 [[NSUserDefaults standardUserDefaults]setObject:class_name forKey:@"admin_class_name"];
+                 [[NSUserDefaults standardUserDefaults]setObject:self->class_id forKey:@"admin_class_id"];
+                 [[NSUserDefaults standardUserDefaults]setObject:self->class_name forKey:@"admin_class_name"];
                  
                  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"admin" bundle:nil];
                  AdminClassesViewController *adminClasses = (AdminClassesViewController *)[storyboard instantiateViewControllerWithIdentifier:@"AdminClassesViewController"];
@@ -335,12 +335,12 @@
                      NSString *clas_id = [dict objectForKey:@"class_id"];
                      NSString *clas_name = [dict objectForKey:@"class_name"];
                      
-                     [class_id addObject:clas_id];
-                     [class_name addObject:clas_name];
+                     [self->class_id addObject:clas_id];
+                     [self->class_name addObject:clas_name];
                  }
                  
-                 [[NSUserDefaults standardUserDefaults]setObject:class_id forKey:@"admin_class_id"];
-                 [[NSUserDefaults standardUserDefaults]setObject:class_name forKey:@"admin_class_name"];
+                 [[NSUserDefaults standardUserDefaults]setObject:self->class_id forKey:@"admin_class_id"];
+                 [[NSUserDefaults standardUserDefaults]setObject:self->class_name forKey:@"admin_class_name"];
                  
                  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"admin" bundle:nil];
                  AdminExamViewController *adminExam = (AdminExamViewController *)[storyboard instantiateViewControllerWithIdentifier:@"AdminExamViewController"];
@@ -394,12 +394,12 @@
                      NSString *clas_id = [dict objectForKey:@"class_id"];
                      NSString *clas_name = [dict objectForKey:@"class_name"];
                      
-                     [class_id addObject:clas_id];
-                     [class_name addObject:clas_name];
+                     [self->class_id addObject:clas_id];
+                     [self->class_name addObject:clas_name];
                  }
                  
-                 [[NSUserDefaults standardUserDefaults]setObject:class_id forKey:@"admin_class_id"];
-                 [[NSUserDefaults standardUserDefaults]setObject:class_name forKey:@"admin_class_name"];
+                 [[NSUserDefaults standardUserDefaults]setObject:self->class_id forKey:@"admin_class_id"];
+                 [[NSUserDefaults standardUserDefaults]setObject:self->class_name forKey:@"admin_class_name"];
                  
                  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"admin" bundle:nil];
                  AdminResultView *adminResultView = (AdminResultView *)[storyboard instantiateViewControllerWithIdentifier:@"AdminResultView"];
@@ -500,11 +500,11 @@
     if ([[UIScreen mainScreen] bounds].size.height == 568)
     {
         
-        return CGSizeMake(150.f, 150.f);
+        return CGSizeMake(171.f, 171.f);
         
     }
     
-    return CGSizeMake(153.f, 153.f);
+    return CGSizeMake(171.f, 171.f);
     
 }
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView

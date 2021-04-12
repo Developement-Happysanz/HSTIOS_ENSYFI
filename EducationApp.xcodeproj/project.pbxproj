@@ -405,6 +405,8 @@
 		6B8193B422BD060F00238D02 /* mail@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B8193A222BD060E00238D02 /* mail@3x.png */; };
 		6B8193B522BD060F00238D02 /* notification@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B8193A322BD060E00238D02 /* notification@1x.png */; };
 		6B8193B622BD060F00238D02 /* sms@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B8193A422BD060F00238D02 /* sms@1x.png */; };
+		6B8282A123339D6600D60258 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B82829F23339D6500D60258 /* UserNotificationsUI.framework */; };
+		6B8282A223339D6600D60258 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B8282A023339D6600D60258 /* UserNotifications.framework */; };
 		6BAEE7AF2029881100D08550 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEE7AD2029881100D08550 /* FMDatabase.m */; };
 		6BAEE7B22029882000D08550 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEE7B12029882000D08550 /* FMDatabaseAdditions.m */; };
 		6BAEE7B52029882B00D08550 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEE7B32029882B00D08550 /* FMResultSet.m */; };
@@ -426,6 +428,19 @@
 		6BDA521522C23A10005728EB /* PEPhotoCropEditor.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6BDA521422C23A10005728EB /* PEPhotoCropEditor.bundle */; };
 		7AAD7B7A2B64911F31B2B256 /* libPods-EducationApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96D0303EA8995E0FA6F69788 /* libPods-EducationApp.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6B82829E23339A7B00D60258 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6801349C1F8F4C42001238EB /* TeacherExamIntExtView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeacherExamIntExtView.h; sourceTree = "<group>"; };
@@ -1007,6 +1022,13 @@
 		6B8193A222BD060E00238D02 /* mail@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mail@3x.png"; sourceTree = "<group>"; };
 		6B8193A322BD060E00238D02 /* notification@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notification@1x.png"; sourceTree = "<group>"; };
 		6B8193A422BD060F00238D02 /* sms@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sms@1x.png"; sourceTree = "<group>"; };
+		6B82828D233398CE00D60258 /* EducationApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EducationApp.entitlements; sourceTree = "<group>"; };
+		6B82829423339A7B00D60258 /* NotificationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
+		6B82829523339A7B00D60258 /* NotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
+		6B82829723339A7B00D60258 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6B82829F23339D6500D60258 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
+		6B8282A023339D6600D60258 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		6B8282A323339F1500D60258 /* NotificationService.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotificationService.entitlements; sourceTree = "<group>"; };
 		6BAEE7AD2029881100D08550 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		6BAEE7AE2029881100D08550 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		6BAEE7B02029882000D08550 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -1045,6 +1067,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B8282A123339D6600D60258 /* UserNotificationsUI.framework in Frameworks */,
+				6B8282A223339D6600D60258 /* UserNotifications.framework in Frameworks */,
 				6828B11A1F0A5156006AF3AF /* libsqlite3.0.tbd in Frameworks */,
 				6804A93B1F07B0380055D0EE /* SystemConfiguration.framework in Frameworks */,
 				68F051F41F03D8B10024C238 /* ImageIO.framework in Frameworks */,
@@ -1373,6 +1397,7 @@
 				6B5E042B22A4DCD100F1A663 /* Images */,
 				688FDD6E1E92376B00762CF4 /* Webservice */,
 				688FDD4D1E922E2900762CF4 /* EducationApp */,
+				6B82829323339A7B00D60258 /* NotificationService */,
 				688FDD4C1E922E2900762CF4 /* Products */,
 				A7EB91322A5636C4A663AC57 /* Pods */,
 				8BF5372D6FDAF9E33A5C67FA /* Frameworks */,
@@ -1390,6 +1415,7 @@
 		688FDD4D1E922E2900762CF4 /* EducationApp */ = {
 			isa = PBXGroup;
 			children = (
+				6B82828D233398CE00D60258 /* EducationApp.entitlements */,
 				6828B11D1F0A54B4006AF3AF /* ParentsModule */,
 				6809DB191F28BB2F00C63789 /* TeachersModule */,
 				68FF15471F1C8C1D001BD881 /* AdminModule */,
@@ -1807,6 +1833,17 @@
 			name = HMSegmentedControl;
 			sourceTree = "<group>";
 		};
+		6B82829323339A7B00D60258 /* NotificationService */ = {
+			isa = PBXGroup;
+			children = (
+				6B8282A323339F1500D60258 /* NotificationService.entitlements */,
+				6B82829423339A7B00D60258 /* NotificationService.h */,
+				6B82829523339A7B00D60258 /* NotificationService.m */,
+				6B82829723339A7B00D60258 /* Info.plist */,
+			);
+			path = NotificationService;
+			sourceTree = "<group>";
+		};
 		6BAEE7AC202987F900D08550 /* FMDB */ = {
 			isa = PBXGroup;
 			children = (
@@ -1843,6 +1880,8 @@
 		8BF5372D6FDAF9E33A5C67FA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6B8282A023339D6600D60258 /* UserNotifications.framework */,
+				6B82829F23339D6500D60258 /* UserNotificationsUI.framework */,
 				6828B1181F0A50F8006AF3AF /* libsqlite3.tbd */,
 				6885ED781F0A49A600DB524E /* libsqlite3.dylib */,
 				6885ED761F0A46D900DB524E /* XCTest.framework */,
@@ -1879,8 +1918,7 @@
 				688FDD471E922E2900762CF4 /* Sources */,
 				688FDD481E922E2900762CF4 /* Frameworks */,
 				688FDD491E922E2900762CF4 /* Resources */,
-				5402C8A7B21549FA258A8CC8 /* [CP] Embed Pods Frameworks */,
-				D6647EBD759023346ABE12E6 /* [CP] Copy Pods Resources */,
+				6B82829E23339A7B00D60258 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -1897,14 +1935,22 @@
 		688FDD431E922E2900762CF4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = "Palpro Tech";
 				TargetAttributes = {
 					688FDD4A1E922E2900762CF4 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 6V986NC4N5;
 						LastSwiftMigration = 1020;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -2156,36 +2202,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5402C8A7B21549FA258A8CC8 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EducationApp/Pods-EducationApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D6647EBD759023346ABE12E6 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EducationApp/Pods-EducationApp-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		DC80BC7E3E149165A1FD96E4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2416,15 +2432,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -2466,15 +2490,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -2508,8 +2540,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_MODULES_AUTOLINK = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_ENTITLEMENTS = EducationApp/EducationApp.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6V986NC4N5;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2519,14 +2552,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Edu.pch;
 				INFOPLIST_FILE = EducationApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.happysanztech.ENSYFI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = ENSYFi_dev;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Extension/EducationApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -2541,8 +2574,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_MODULES_AUTOLINK = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_ENTITLEMENTS = EducationApp/EducationApp.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6V986NC4N5;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2552,14 +2586,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Edu.pch;
 				INFOPLIST_FILE = EducationApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.happysanztech.ENSYFI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = ENSYFI_dis;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Extension/EducationApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VALID_ARCHS = "armv6 armv7 armv7s arm64";

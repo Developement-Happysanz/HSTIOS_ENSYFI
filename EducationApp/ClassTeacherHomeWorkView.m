@@ -51,9 +51,9 @@
          [MBProgressHUD hideHUDForView:self.view animated:YES];
          NSString *msg = [responseObject objectForKey:@"msg"];
          NSArray *hwDates = [responseObject valueForKey:@"hwDates"];
-         [hw_date removeAllObjects];
-         [hw_count removeAllObjects];
-         [ht_count removeAllObjects];
+         [self->hw_date removeAllObjects];
+         [self->hw_count removeAllObjects];
+         [self->ht_count removeAllObjects];
          if ([msg isEqualToString:@"View All Days for Homework"])
          {
              for (int i = 0;i < [hwDates count]; i++)
@@ -63,9 +63,9 @@
                  NSString *strhw_count = [dict objectForKey:@"hw_count"];
                  NSString *strht_count = [dict objectForKey:@"ht_count"];
                 
-                 [hw_date addObject:strhw_date];
-                 [hw_count addObject:strhw_count];
-                 [ht_count addObject:strht_count];
+                 [self->hw_date addObject:strhw_date];
+                 [self->hw_count addObject:strhw_count];
+                 [self->ht_count addObject:strht_count];
 
              }
          }

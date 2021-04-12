@@ -69,60 +69,60 @@
          
          if ([msg isEqualToString:@"View Timetable"])
          {
-             period = [arr_timeTable valueForKey:@"subject_name"];
-             subject_name = [arr_timeTable valueForKey:@"subject_name"];
+             self->period = [arr_timeTable valueForKey:@"subject_name"];
+             self->subject_name = [arr_timeTable valueForKey:@"subject_name"];
              
              @try
              {
-                 self.oneperiodLabel1.text = [subject_name objectAtIndex:0];
-                 self.oneperiodLabel2.text = [subject_name objectAtIndex:1];
-                 self.oneperiodLabe3.text = [subject_name objectAtIndex:2];
-                 self.oneperiodLabel4.text = [subject_name objectAtIndex:3];
-                 self.oneperiodLabel5.text = [subject_name objectAtIndex:4];
-                 self.oneperiodLabel6.text = [subject_name objectAtIndex:5];
-                 self.oneperiodLabel7.text = [subject_name objectAtIndex:6];
-                 self.oneperiodLabel8.text = [subject_name objectAtIndex:7];
-                 self.twoperiodLabel1.text = [subject_name objectAtIndex:8];
-                 self.twoperiodLabel2.text = [subject_name objectAtIndex:9];
-                 self.twoperiodLabel3.text = [subject_name objectAtIndex:10];
-                 self.twoperiodLabel4.text = [subject_name objectAtIndex:11];
-                 self.twoperiodLabel5.text = [subject_name objectAtIndex:12];
-                 self.twoperiodLabel6.text = [subject_name objectAtIndex:13];
-                 self.twoperiodLabel7.text = [subject_name objectAtIndex:14];
-                 self.twoperiodLabel8.text = [subject_name objectAtIndex:15];
-                 self.threperiodLabel1.text = [subject_name objectAtIndex:16];
-                 self.threperiodLabel2.text = [subject_name objectAtIndex:17];
-                 self.threperiodLabel3.text = [subject_name objectAtIndex:18];
-                 self.threperiodLabel4.text = [subject_name objectAtIndex:19];
-                 self.threperiodLabel5.text = [subject_name objectAtIndex:20];
-                 self.threperiodLabel6.text = [subject_name objectAtIndex:21];
-                 self.threperiodLabel7.text = [subject_name objectAtIndex:22];
-                 self.threperiodLabel8.text = [subject_name objectAtIndex:23];
-                 self.fourperiodLabel1.text = [subject_name objectAtIndex:24];
-                 self.fourperiodLabel2.text = [subject_name objectAtIndex:25];
-                 self.fourperiodLabel3.text = [subject_name objectAtIndex:26];
-                 self.fourperiodLabel4.text = [subject_name objectAtIndex:27];
-                 self.fourperiodLabel5.text = [subject_name objectAtIndex:28];
-                 self.fourperiodLabel6.text = [subject_name objectAtIndex:29];
-                 self.fourperiodLabel7.text = [subject_name objectAtIndex:30];
-                 self.fourperiodLabel8.text = [subject_name objectAtIndex:31];
-                 self.fiveperiodLabel1.text = [subject_name objectAtIndex:32];
-                 self.fiveperiodLabel2.text = [subject_name objectAtIndex:33];
-                 self.fiveperiodLabel3.text = [subject_name objectAtIndex:34];
-                 self.fiveperiodLabel4.text = [subject_name objectAtIndex:35];
-                 self.fiveperiodLabel5.text = [subject_name objectAtIndex:36];
-                 self.fiveperiodLabel6.text = [subject_name objectAtIndex:37];
-                 self.fiveperiodLabel7.text = [subject_name objectAtIndex:38];
-                 self.fiveperiodLabel8.text = [subject_name objectAtIndex:39];
+                 self.oneperiodLabel1.text = [self->subject_name objectAtIndex:0];
+                 self.oneperiodLabel2.text = [self->subject_name objectAtIndex:1];
+                 self.oneperiodLabe3.text = [self->subject_name objectAtIndex:2];
+                 self.oneperiodLabel4.text = [self->subject_name objectAtIndex:3];
+                 self.oneperiodLabel5.text = [self->subject_name objectAtIndex:4];
+                 self.oneperiodLabel6.text = [self->subject_name objectAtIndex:5];
+                 self.oneperiodLabel7.text = [self->subject_name objectAtIndex:6];
+                 self.oneperiodLabel8.text = [self->subject_name objectAtIndex:7];
+                 self.twoperiodLabel1.text = [self->subject_name objectAtIndex:8];
+                 self.twoperiodLabel2.text = [self->subject_name objectAtIndex:9];
+                 self.twoperiodLabel3.text = [self->subject_name objectAtIndex:10];
+                 self.twoperiodLabel4.text = [self->subject_name objectAtIndex:11];
+                 self.twoperiodLabel5.text = [self->subject_name objectAtIndex:12];
+                 self.twoperiodLabel6.text = [self->subject_name objectAtIndex:13];
+                 self.twoperiodLabel7.text = [self->subject_name objectAtIndex:14];
+                 self.twoperiodLabel8.text = [self->subject_name objectAtIndex:15];
+                 self.threperiodLabel1.text = [self->subject_name objectAtIndex:16];
+                 self.threperiodLabel2.text = [self->subject_name objectAtIndex:17];
+                 self.threperiodLabel3.text = [self->subject_name objectAtIndex:18];
+                 self.threperiodLabel4.text = [self->subject_name objectAtIndex:19];
+                 self.threperiodLabel5.text = [self->subject_name objectAtIndex:20];
+                 self.threperiodLabel6.text = [self->subject_name objectAtIndex:21];
+                 self.threperiodLabel7.text = [self->subject_name objectAtIndex:22];
+                 self.threperiodLabel8.text = [self->subject_name objectAtIndex:23];
+                 self.fourperiodLabel1.text = [self->subject_name objectAtIndex:24];
+                 self.fourperiodLabel2.text = [self->subject_name objectAtIndex:25];
+                 self.fourperiodLabel3.text = [self->subject_name objectAtIndex:26];
+                 self.fourperiodLabel4.text = [self->subject_name objectAtIndex:27];
+                 self.fourperiodLabel5.text = [self->subject_name objectAtIndex:28];
+                 self.fourperiodLabel6.text = [self->subject_name objectAtIndex:29];
+                 self.fourperiodLabel7.text = [self->subject_name objectAtIndex:30];
+                 self.fourperiodLabel8.text = [self->subject_name objectAtIndex:31];
+                 self.fiveperiodLabel1.text = [self->subject_name objectAtIndex:32];
+                 self.fiveperiodLabel2.text = [self->subject_name objectAtIndex:33];
+                 self.fiveperiodLabel3.text = [self->subject_name objectAtIndex:34];
+                 self.fiveperiodLabel4.text = [self->subject_name objectAtIndex:35];
+                 self.fiveperiodLabel5.text = [self->subject_name objectAtIndex:36];
+                 self.fiveperiodLabel6.text = [self->subject_name objectAtIndex:37];
+                 self.fiveperiodLabel7.text = [self->subject_name objectAtIndex:38];
+                 self.fiveperiodLabel8.text = [self->subject_name objectAtIndex:39];
                  
-                 self.sixperiodLabel1.text = [subject_name objectAtIndex:40];
-                 self.sixperiodLabel2.text = [subject_name objectAtIndex:41];
-                 self.sixperiodLabel3.text = [subject_name objectAtIndex:42];
-                 self.sixperiodLabel4.text = [subject_name objectAtIndex:43];
-                 self.sixperiodLabel5.text = [subject_name objectAtIndex:44];
-                 self.sixperiodLabel6.text = [subject_name objectAtIndex:45];
-                 self.sixperiodLabel7.text = [subject_name objectAtIndex:46];
-                 self.sixperiodLabel8.text = [subject_name objectAtIndex:47];
+                 self.sixperiodLabel1.text = [self->subject_name objectAtIndex:40];
+                 self.sixperiodLabel2.text = [self->subject_name objectAtIndex:41];
+                 self.sixperiodLabel3.text = [self->subject_name objectAtIndex:42];
+                 self.sixperiodLabel4.text = [self->subject_name objectAtIndex:43];
+                 self.sixperiodLabel5.text = [self->subject_name objectAtIndex:44];
+                 self.sixperiodLabel6.text = [self->subject_name objectAtIndex:45];
+                 self.sixperiodLabel7.text = [self->subject_name objectAtIndex:46];
+                 self.sixperiodLabel8.text = [self->subject_name objectAtIndex:47];
 
              }
              @catch (NSException *exception)

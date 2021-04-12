@@ -141,13 +141,13 @@
 //         }
                   if ([msg isEqualToString:@"View Group Messages"])
                   {
-                      [group_title removeAllObjects];
-                      [group_title_id removeAllObjects];
-                      [notification_type removeAllObjects];
-                      [notes removeAllObjects];
-                      [created_at removeAllObjects];
-                      [created_by removeAllObjects];
-                      [name removeAllObjects];
+                      [self->group_title removeAllObjects];
+                      [self->group_title_id removeAllObjects];
+                      [self->notification_type removeAllObjects];
+                      [self->notes removeAllObjects];
+                      [self->created_at removeAllObjects];
+                      [self->created_by removeAllObjects];
+                      [self->name removeAllObjects];
          
                       for (int i = 0; i < [groupmsgDetails count]; i++)
                       {
@@ -167,11 +167,11 @@
                           [dateFormatter setDateFormat:@"dd-MM-yyyy hh:mm a"];
                           NSString *convertedString = [dateFormatter stringFromDate:date];
          
-                          [group_title addObject:strgroup_title];
-                          [group_title_id addObject:strgroup_title_id];
+                          [self->group_title addObject:strgroup_title];
+                          [self->group_title_id addObject:strgroup_title_id];
 //                          [notification_type addObject:strNotification_type];
-                          [notes addObject:strnotes];
-                          [created_at addObject:convertedString];
+                          [self->notes addObject:strnotes];
+                          [self->created_at addObject:convertedString];
 //                          [created_by addObject:strCreated_by];
          
                       }

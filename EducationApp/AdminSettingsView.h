@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface AdminSettingsView : UIViewController<UIGestureRecognizerDelegate,UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UIView *mainView;
 - (IBAction)updateBtn:(id)sender;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollview;
 @property (weak, nonatomic) IBOutlet UITextField *conformPaswrd;

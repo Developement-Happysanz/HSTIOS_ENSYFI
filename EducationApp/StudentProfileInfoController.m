@@ -53,7 +53,9 @@
     
     /* concordanate with baseurl */
     NSString *forStudentProfile = @"/apistudent/showStudentProfile/";
-    NSArray *components = [NSArray arrayWithObjects:baseUrl,appDel.institute_code,forStudentProfile, nil];
+//    NSArray *components = [NSArray arrayWithObjects:baseUrl,appDel.institute_code,forStudentProfile, nil];
+    NSArray *components = [NSArray arrayWithObjects:baseUrl,forStudentProfile, nil];
+
     NSString *api = [NSString pathWithComponents:components];
     
     
@@ -98,9 +100,7 @@
              NSString *status = [studentProfile valueForKey:@"status"];
              NSString *tc = [studentProfile valueForKey:@"transfer_certificate"];
              
-            student_pic  = [studentProfile valueForKey:@"student_pic"];
-             
-             
+             self->student_pic  = [studentProfile valueForKey:@"student_pic"];
              self.admisnDate.text = admDate;
              self.admisonNumber.text = admNo;
              self.admisionYear.text = admYear;
@@ -129,7 +129,6 @@
              self.status.text = status;
              self.tc.text = tc;
              
-             
 //             appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
 //             
 //             if ([student_pic isEqualToString:@""])
@@ -156,7 +155,6 @@
 //
          }
          
-         
          [MBProgressHUD hideHUDForView:self.view animated:YES];
          
      }
@@ -168,26 +166,23 @@
     [MBProgressHUD hideHUDForView:self.view animated:YES];
 
 }
-
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 -(void)viewDidLayoutSubviews
 {
    // self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width,967);
-    
 }
 /*
 #pragma mark - Navigation
-
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
 */
-
 - (IBAction)backBtn:(id)sender
 {
     [self dismissViewControllerAnimated:YES completion:Nil];

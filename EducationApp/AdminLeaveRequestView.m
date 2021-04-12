@@ -173,14 +173,14 @@
          NSString *msg = [responseObject objectForKey:@"msg"];
          NSArray *leaveDetails = [responseObject objectForKey:@"leaveDetails"];
          
-         [name removeAllObjects];
-         [from_leave_date removeAllObjects];
-         [to_leave_date removeAllObjects];
-         [frm_time removeAllObjects];
-         [to_time removeAllObjects];
-         [status removeAllObjects];
-         [leave_title removeAllObjects];
-         [leave_id removeAllObjects];
+         [self->name removeAllObjects];
+         [self->from_leave_date removeAllObjects];
+         [self->to_leave_date removeAllObjects];
+         [self->frm_time removeAllObjects];
+         [self->to_time removeAllObjects];
+         [self->status removeAllObjects];
+         [self->leave_title removeAllObjects];
+         [self->leave_id removeAllObjects];
          
          
          if ([msg isEqualToString:@"leavesfound"])
@@ -198,14 +198,14 @@
                  NSString *strstatus = [leave objectForKey:@"status"];
                  NSString *leaveid = [leave objectForKey:@"leave_id"];
                  
-                 [name addObject:strname];
-                 [from_leave_date addObject:strfrom_leave_date];
-                 [to_leave_date addObject:strto_leave_date];
-                 [frm_time addObject:strfrm_time];
-                 [to_time addObject:strto_time];
-                 [status addObject:strstatus];
-                 [leave_title addObject:strleave_title];
-                 [leave_id addObject:leaveid];
+                 [self->name addObject:strname];
+                 [self->from_leave_date addObject:strfrom_leave_date];
+                 [self->to_leave_date addObject:strto_leave_date];
+                 [self->frm_time addObject:strfrm_time];
+                 [self->to_time addObject:strto_time];
+                 [self->status addObject:strstatus];
+                 [self->leave_title addObject:strleave_title];
+                 [self->leave_id addObject:leaveid];
                  
              }
          }

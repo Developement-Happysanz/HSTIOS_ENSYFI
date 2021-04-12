@@ -334,22 +334,22 @@
                 
                 [manager POST:api parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
                  {
-                     appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                    self->appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
                      NSLog(@"%@",responseObject);
                      [MBProgressHUD hideHUDForView:self.view animated:YES];
                      NSString *msg = [responseObject objectForKey:@"msg"];
                      NSString *status =[responseObject objectForKey:@"status"];
                      NSString *strattendance_id = [responseObject objectForKey:@"last_attendance_id"];
-                     appDel.attendance_id = strattendance_id;
-                     NSLog(@"%@%@%@",msg,status,appDel.attendance_id);
-                     appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
-                     docPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-                     documentsDir = [docPaths objectAtIndex:0];
-                     dbPath = [documentsDir   stringByAppendingPathComponent:@"ENSIFY.db"];
-                     database = [FMDatabase databaseWithPath:dbPath];
-                     [database open];
-                     NSLog(@"%@",appDel.attendance_id);
-                     BOOL isUpdated = [database executeUpdate:@"UPDATE table_create_attendence SET server_at_id = ?,sync_status = ? where _id = ?",appDel.attendance_id,@"S",attendance_lastInserted_id];
+                     self->appDel.attendance_id = strattendance_id;
+                     NSLog(@"%@%@%@",msg,status,self->appDel.attendance_id);
+                     self->appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                     self->docPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                     self->documentsDir = [self->docPaths objectAtIndex:0];
+                     self->dbPath = [self->documentsDir   stringByAppendingPathComponent:@"ENSIFY.db"];
+                     self->database = [FMDatabase databaseWithPath:self->dbPath];
+                     [self->database open];
+                     NSLog(@"%@",self->appDel.attendance_id);
+                     BOOL isUpdated = [self->database executeUpdate:@"UPDATE table_create_attendence SET server_at_id = ?,sync_status = ? where _id = ?",self->appDel.attendance_id,@"S",self->attendance_lastInserted_id];
                      
                      if(isUpdated)
                      {
@@ -359,19 +359,19 @@
                      {
                          NSLog(@"Error occured while Updating");
                      }
-                     [database close];
+                     [self->database close];
                      
                      /*update AttendanceHistory with server*/
                      
-                     docPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-                     documentsDir = [docPaths objectAtIndex:0];
-                     dbPath = [documentsDir   stringByAppendingPathComponent:@"ENSIFY.db"];
-                     database = [FMDatabase databaseWithPath:dbPath];
-                     [database open];
-                     NSLog(@"%@",appDel.attendance_id);
+                     self->docPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                     self->documentsDir = [self->docPaths objectAtIndex:0];
+                     self->dbPath = [self->documentsDir   stringByAppendingPathComponent:@"ENSIFY.db"];
+                     self->database = [FMDatabase databaseWithPath:self->dbPath];
+                     [self->database open];
+                     NSLog(@"%@",self->appDel.attendance_id);
                      NSString *attedncetable_LastinsertedID = [[NSUserDefaults standardUserDefaults]objectForKey:@"create_attendance_table_lastInsertedKey"];
                      
-                     BOOL Updated = [database executeUpdate:@"UPDATE table_create_attendence_history SET server_attend_id = ? where attend_id = ?",appDel.attendance_id,attedncetable_LastinsertedID];
+                     BOOL Updated = [self->database executeUpdate:@"UPDATE table_create_attendence_history SET server_attend_id = ? where attend_id = ?",self->appDel.attendance_id,attedncetable_LastinsertedID];
                      
                      if(Updated)
                      {
@@ -381,7 +381,7 @@
                      {
                          NSLog(@"Error occured while Updating");
                      }
-                     [database close];
+                     [self->database close];
                      [self updateCreateAttendenceTable];
                  }
                       failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
@@ -595,14 +595,14 @@
                 
                 [manager POST:api parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
                  {
-                     appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                     self->appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
                      NSLog(@"%@",responseObject);
                      [MBProgressHUD hideHUDForView:self.view animated:YES];
                      NSString *msg = [responseObject objectForKey:@"msg"];
                      NSString *status =[responseObject objectForKey:@"status"];
                      NSString *strlast_attendance_history_id = [responseObject objectForKey:@"last_attendance_history_id"];
                      NSLog(@"%@%@",msg,status);
-                     appDel.last_attendance_history_id = strlast_attendance_history_id;
+                     self->appDel.last_attendance_history_id = strlast_attendance_history_id;
                      [self updateCreateAttendenceHistoryTable];
                  }
                       failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
@@ -805,7 +805,7 @@
             
             [manager POST:api parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
              {
-                 appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                 self->appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
                  NSLog(@"%@",responseObject);
                  NSString *msg = [responseObject objectForKey:@"msg"];
                  NSString *status = [responseObject objectForKey:@"status"];
@@ -813,13 +813,13 @@
                  {
                      NSString *last_id = [responseObject objectForKey:@"last_id"];
                      // classtest_Homework_lastInserted_id = last_id;
-                     appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
-                     docPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-                     documentsDir = [docPaths objectAtIndex:0];
-                     dbPath = [documentsDir   stringByAppendingPathComponent:@"ENSIFY.db"];
-                     database = [FMDatabase databaseWithPath:dbPath];
-                     [database open];
-                     BOOL isUpdated = [database executeUpdate:@"UPDATE table_create_homework_class_test SET sync_status = ?,server_hw_id = ? where id = ?", @"S",(int)last_id,classtest_Homework_lastInserted_id];
+                     self->appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                     self->docPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                     self->documentsDir = [self->docPaths objectAtIndex:0];
+                     self->dbPath = [self->documentsDir   stringByAppendingPathComponent:@"ENSIFY.db"];
+                     self->database = [FMDatabase databaseWithPath:self->dbPath];
+                     [self->database open];
+                     BOOL isUpdated = [self->database executeUpdate:@"UPDATE table_create_homework_class_test SET sync_status = ?,server_hw_id = ? where id = ?", @"S",(int)last_id,self->classtest_Homework_lastInserted_id];
                      
                      if(isUpdated)
                      {
@@ -845,7 +845,7 @@
                      {
                          NSLog(@"Error occured while Updating");
                      }
-                     [database close];
+                     [self->database close];
                  }
                  [MBProgressHUD hideHUDForView:self.view animated:YES];
              }
@@ -916,7 +916,7 @@
         
         [manager POST:api parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
          {
-             appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
+             self->appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
              NSLog(@"%@",responseObject);
              NSString *msg = [responseObject objectForKey:@"msg"];
              NSString *status = [responseObject objectForKey:@"status"];
@@ -939,16 +939,16 @@
                      NSString *strtest_date = [dict objectForKey:@"test_date"];
                      NSString *strtitle = [dict objectForKey:@"title"];
                      
-                     [classid addObject:strclass_id];
-                     [due_date addObject:strdue_date];
-                     [hw_details addObject:strhw_details];
-                     [hw_id addObject:strhw_id];
-                     [hw_type addObject:strhw_type];
-                     [mark_status addObject:strmark_status];
-                     [subject_id addObject:strsubject_id];
-                     [subject_name addObject:strsubject_name];
-                     [test_date addObject:strtest_date];
-                     [title addObject:strtitle];
+                     [self->classid addObject:strclass_id];
+                     [self->due_date addObject:strdue_date];
+                     [self->hw_details addObject:strhw_details];
+                     [self->hw_id addObject:strhw_id];
+                     [self->hw_type addObject:strhw_type];
+                     [self->mark_status addObject:strmark_status];
+                     [self->subject_id addObject:strsubject_id];
+                     [self->subject_name addObject:strsubject_name];
+                     [self->test_date addObject:strtest_date];
+                     [self->title addObject:strtitle];
 
                  }
                  [self refresh_UpdateValue];
@@ -1123,20 +1123,20 @@
             
             [manager POST:api parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
              {
-                 appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                 self->appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
                  NSLog(@"%@",responseObject);
                  NSString *msg = [responseObject objectForKey:@"msg"];
                  NSString *status = [responseObject objectForKey:@"status"];
                  NSLog(@"%@%@",msg,status);
                  NSString *mark_id = [responseObject objectForKey:@"mark_id"];
                  
-                 appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
-                 docPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-                 documentsDir = [docPaths objectAtIndex:0];
-                 dbPath = [documentsDir   stringByAppendingPathComponent:@"ENSIFY.db"];
-                 database = [FMDatabase databaseWithPath:dbPath];
-                 [database open];
-                 BOOL isUpdated = [database executeUpdate:@"UPDATE table_create_class_test_mark SET sync_status = ?,server_hw_id = ? where _id = ?",@"S",mark_id,str_sync_status];
+                 self->appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                 self->docPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                 self->documentsDir = [self->docPaths objectAtIndex:0];
+                 self->dbPath = [self->documentsDir   stringByAppendingPathComponent:@"ENSIFY.db"];
+                 self->database = [FMDatabase databaseWithPath:self->dbPath];
+                 [self->database open];
+                 BOOL isUpdated = [self->database executeUpdate:@"UPDATE table_create_class_test_mark SET sync_status = ?,server_hw_id = ? where _id = ?",@"S",mark_id,str_sync_status];
                  if(isUpdated)
                  {
                      NSLog(@"Updated Successfully in table_create_class_test_mark");
@@ -1161,7 +1161,7 @@
                  {
                      NSLog(@"Error occured while Updating");
                  }
-                 [database close];
+                 [self->database close];
                  [MBProgressHUD hideHUDForView:self.view animated:YES];
              }
                   failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
@@ -1296,7 +1296,7 @@
                 
                 [manager POST:api parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
                  {
-                     appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                     self->appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
                      NSLog(@"%@",responseObject);
                      NSString *msg = [responseObject objectForKey:@"msg"];
                      NSString *status = [responseObject objectForKey:@"status"];
@@ -1304,12 +1304,12 @@
                      NSLog(@"%@%@",msg,last_id);
                      if ([status isEqualToString:@"success"] || [status isEqualToString:@"AlreadyAdded"])
                      {
-                         docPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-                         documentsDir = [docPaths objectAtIndex:0];
-                         dbPath = [documentsDir   stringByAppendingPathComponent:@"ENSIFY.db"];
-                         database = [FMDatabase databaseWithPath:dbPath];
-                         [database open];
-                         BOOL isUpdated = [database executeUpdate:@"UPDATE table_create_academic_exam_marks SET sync_status = ? where _id = ?",@"S",last_str_id];
+                         self->docPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                         self->documentsDir = [docPaths objectAtIndex:0];
+                         self->dbPath = [self->documentsDir   stringByAppendingPathComponent:@"ENSIFY.db"];
+                         self->database = [FMDatabase databaseWithPath:self->dbPath];
+                         [self->database open];
+                         BOOL isUpdated = [self->database executeUpdate:@"UPDATE table_create_academic_exam_marks SET sync_status = ? where _id = ?",@"S",last_str_id];
                          
                          if(isUpdated)
                          {

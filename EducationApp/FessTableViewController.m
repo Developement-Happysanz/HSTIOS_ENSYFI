@@ -75,10 +75,10 @@
                  NSString *str_due_date_from = [feesDict valueForKey:@"due_date_from"];
                  NSString *str_due_date_to = [feesDict valueForKey:@"due_date_to"];
 
-                 [status addObject:Feestatus];
-                 [term_name addObject:termname];
-                 [due_date_from addObject:str_due_date_from];
-                 [due_date_to addObject:str_due_date_to];
+                 [self->status addObject:Feestatus];
+                 [self->term_name addObject:termname];
+                 [self->due_date_from addObject:str_due_date_from];
+                 [self->due_date_to addObject:str_due_date_to];
 
              }
              [self.tableView reloadData];

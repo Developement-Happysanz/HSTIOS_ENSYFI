@@ -102,12 +102,12 @@
          NSArray *ondutyDetails = [responseObject objectForKey:@"ondutyDetails"];
          if ([msg isEqualToString:@"odviewfound"])
          {
-             [odTitle removeAllObjects];
-             [frmDate removeAllObjects];
-             [toDte removeAllObjects];
-             [odStatus removeAllObjects];
-             [name removeAllObjects];
-             [_id removeAllObjects];
+             [self->odTitle removeAllObjects];
+             [self->frmDate removeAllObjects];
+             [self->toDte removeAllObjects];
+             [self->odStatus removeAllObjects];
+             [self->name removeAllObjects];
+             [self->_id removeAllObjects];
 
              for (int i = 0; i < [ondutyDetails count]; i++)
              {
@@ -119,12 +119,12 @@
                  NSString *strname = [onduty objectForKey:@"name"];
                  NSString *str_id = [onduty objectForKey:@"id"];
 
-                 [odTitle addObject:od_for];
-                 [frmDate addObject:fromDate];
-                 [toDte addObject:toDate];
-                 [odStatus addObject:status];
-                 [name addObject:strname];
-                 [_id addObject:str_id];
+                 [self->odTitle addObject:od_for];
+                 [self->frmDate addObject:fromDate];
+                 [self->toDte addObject:toDate];
+                 [self->odStatus addObject:status];
+                 [self->name addObject:strname];
+                 [self->_id addObject:str_id];
 
              }
              [self.tableView reloadData];
@@ -195,12 +195,12 @@
                  
                  if ([msg isEqualToString:@"odviewfound"])
                  {
-                     [odTitle removeAllObjects];
-                     [frmDate removeAllObjects];
-                     [toDte removeAllObjects];
-                     [odStatus removeAllObjects];
-                     [name removeAllObjects];
-                     [_id removeAllObjects];
+                     [self->odTitle removeAllObjects];
+                     [self->frmDate removeAllObjects];
+                     [self->toDte removeAllObjects];
+                     [self->odStatus removeAllObjects];
+                     [self->name removeAllObjects];
+                     [self->_id removeAllObjects];
 
                      for (int i = 0; i < [ondutyDetails count]; i++)
                      {
@@ -213,12 +213,12 @@
                          NSString *strname = [onduty objectForKey:@"name"];
                          NSString *str_id = [onduty objectForKey:@"id"];
 
-                         [odTitle addObject:od_for];
-                         [frmDate addObject:fromDate];
-                         [toDte addObject:toDate];
-                         [odStatus addObject:status];
-                         [name addObject:strname];
-                         [_id addObject:str_id];
+                         [self->odTitle addObject:od_for];
+                         [self->frmDate addObject:fromDate];
+                         [self->toDte addObject:toDate];
+                         [self->odStatus addObject:status];
+                         [self->name addObject:strname];
+                         [self->_id addObject:str_id];
                      }
                  }
                  [self.tableView reloadData];
@@ -257,12 +257,12 @@
                  if ([msg isEqualToString:@"odviewfound"])
                  {
                      
-                     [odTitle removeAllObjects];
-                     [frmDate removeAllObjects];
-                     [toDte removeAllObjects];
-                     [odStatus removeAllObjects];
-                     [name removeAllObjects];
-                     [_id removeAllObjects];
+                     [self->odTitle removeAllObjects];
+                     [self->frmDate removeAllObjects];
+                     [self->toDte removeAllObjects];
+                     [self->odStatus removeAllObjects];
+                     [self->name removeAllObjects];
+                     [self->_id removeAllObjects];
                      
                      for (int i = 0; i < [ondutyDetails count]; i++)
                      {
@@ -274,12 +274,12 @@
                          NSString *strname = [onduty objectForKey:@"name"];
                          NSString *str_id = [onduty objectForKey:@"id"];
 
-                         [odTitle addObject:od_for];
-                         [frmDate addObject:fromDate];
-                         [toDte addObject:toDate];
-                         [odStatus addObject:status];
-                         [name addObject:strname];
-                         [_id addObject:str_id];
+                         [self->odTitle addObject:od_for];
+                         [self->frmDate addObject:fromDate];
+                         [self->toDte addObject:toDate];
+                         [self->odStatus addObject:status];
+                         [self->name addObject:strname];
+                         [self->_id addObject:str_id];
 
                      }
                      [self.tableView reloadData];
@@ -334,18 +334,23 @@
         cell.statusImg.image = [UIImage imageNamed:@"ensyfi od screen icons-03.png"];
         cell.statusLabel.text = str;
         cell.statusLabel.textColor = [UIColor colorWithRed:8/255.0f green:159/255.0f blue:73/255.0f alpha:1.0];
+        cell.statusView.backgroundColor = [UIColor colorWithRed:8/255.0f green:159/255.0f blue:73/255.0f alpha:1.0];
     }
     else if ([str isEqualToString:@"Rejected"])
     {
         cell.statusImg.image = [UIImage imageNamed:@"ensyfi od screen icons-02.png"];
         cell.statusLabel.text = str;
         cell.statusLabel.textColor = [UIColor colorWithRed:216/255.0f green:91/255.0f blue:74/255.0f alpha:1.0];
+        cell.statusView.backgroundColor = [UIColor colorWithRed:216/255.0f green:91/255.0f blue:74/255.0f alpha:1.0];
+
     }
     else
     {
         cell.statusImg.image = [UIImage imageNamed:@"ensyfi od screen icons-04.png"];
         cell.statusLabel.text = str;
         cell.statusLabel.textColor = [UIColor colorWithRed:190/255.0f green:192/255.0f blue:49/255.0f alpha:1.0];
+        cell.statusView.backgroundColor = [UIColor colorWithRed:190/255.0f green:192/255.0f blue:49/255.0f alpha:1.0];
+
     }
     cell.fromdate.text = [NSString stringWithFormat:@"%@ - %@",[frmDate objectAtIndex:indexPath.row],[toDte objectAtIndex:indexPath.row]];
    // cell.toDate.text = ;

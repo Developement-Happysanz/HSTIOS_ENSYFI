@@ -90,10 +90,10 @@
                  NSString *c_Type = [circularDetails objectForKey:@"circular_type"];
                  
                  
-                 [circular_title addObject:c_title];
-                 [circular_date addObject:c_date];
-                 [circular_details addObject:c_details];
-                 [circular_Type addObject:c_Type];
+                 [self->circular_title addObject:c_title];
+                 [self->circular_date addObject:c_date];
+                 [self->circular_details addObject:c_details];
+                 [self->circular_Type addObject:c_Type];
                  
              }
              
@@ -164,10 +164,10 @@
                      NSString *c_Type = [circularDetails objectForKey:@"circular_type"];
                      
                      
-                     [circular_title addObject:c_title];
-                     [circular_date addObject:c_date];
-                     [circular_details addObject:c_details];
-                     [circular_Type addObject:c_Type];
+                     [self->circular_title addObject:c_title];
+                     [self->circular_date addObject:c_date];
+                     [self->circular_details addObject:c_details];
+                     [self->circular_Type addObject:c_Type];
                      
                  }
                  

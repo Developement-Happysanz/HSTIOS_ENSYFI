@@ -108,7 +108,8 @@
         }
         else
         {
-            NSArray *components = [NSArray arrayWithObjects:baseUrl,appDel.institute_code,student_profile,appDel.user_picture, nil];
+//            NSArray *components = [NSArray arrayWithObjects:baseUrl,appDel.institute_code,student_profile,appDel.user_picture, nil];
+            NSArray *components = [NSArray arrayWithObjects:baseUrl,student_profile,appDel.user_picture, nil];
             NSString *fullpath= [NSString pathWithComponents:components];
             NSURL *url = [NSURL URLWithString:fullpath];
             [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -118,8 +119,8 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     // Update the UI
                     self.imageView.image = [UIImage imageWithData:imageData];
-                    _imageView.layer.cornerRadius = 50.0;
-                    _imageView.clipsToBounds = YES;
+                    self->_imageView.layer.cornerRadius = 50.0;
+                    self->_imageView.clipsToBounds = YES;
                     if (self.imageView.image == nil)
                     {
                         self.imageView.image = [UIImage imageNamed:@"user small-01.png"];
@@ -139,7 +140,9 @@
         }
         else
         {
-            NSArray *components = [NSArray arrayWithObjects:baseUrl,appDel.institute_code,parents_profile,appDel.user_picture, nil];
+//            NSArray *components = [NSArray arrayWithObjects:baseUrl,appDel.institute_code,parents_profile,appDel.user_picture, nil];
+            NSArray *components = [NSArray arrayWithObjects:baseUrl,parents_profile,appDel.user_picture, nil];
+
             NSString *fullpath= [NSString pathWithComponents:components];
             NSURL *url = [NSURL URLWithString:fullpath];
             [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -148,8 +151,8 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     // Update the UI
                     self.imageView.image = [UIImage imageWithData:imageData];
-                    _imageView.layer.cornerRadius = 50.0;
-                    _imageView.clipsToBounds = YES;
+                    self->_imageView.layer.cornerRadius = 50.0;
+                    self->_imageView.clipsToBounds = YES;
                     if (self.imageView.image == nil)
                     {
                         self.imageView.image = [UIImage imageNamed:@"user small-01.png"];
@@ -402,7 +405,8 @@
 {
     NSData *imageData = UIImagePNGRepresentation(chosenImage);
     appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    NSString *url = [NSString stringWithFormat:@"%@%@%@%@/%@",baseUrl,[[NSUserDefaults standardUserDefaults]objectForKey:@"institute_code_Key"],update_profilePicture,appDel.user_id,appDel.user_type];
+//    NSString *url = [NSString stringWithFormat:@"%@%@%@%@/%@",baseUrl,[[NSUserDefaults standardUserDefaults]objectForKey:@"institute_code_Key"],update_profilePicture,appDel.user_id,appDel.user_type];
+    NSString *url = [NSString stringWithFormat:@"%@%@%@/%@",baseUrl,update_profilePicture,appDel.user_id,appDel.user_type];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:url]];
     [request setHTTPMethod:@"POST"];
@@ -431,9 +435,9 @@
                                               NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                                               NSLog(@"%@",result);
                                               NSString *img = result[@"user_picture"];
-                                              appDel.user_picture = img;
+                                              self->appDel.user_picture = img;
                                               [[NSUserDefaults standardUserDefaults]setObject:img forKey:@"user_pic_key"];
-                                              appDel.user_picture = [NSString stringWithFormat:@"%@",data];
+                                              self->appDel.user_picture = [NSString stringWithFormat:@"%@",data];
                                           }
                                       }];
     [dataTask resume];

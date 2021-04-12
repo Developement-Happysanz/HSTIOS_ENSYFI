@@ -79,10 +79,10 @@
                  NSString *strquota_name = [dict objectForKey:@"quota_name"];
                  NSString *strstatus = [dict objectForKey:@"status"];
                  
-                 [name addObject:strName];
-                 [updatedAt addObject:strupdated_at];
-                 [quotaName addObject:strquota_name];
-                 [status addObject:strstatus];
+                 [self->name addObject:strName];
+                 [self->updatedAt addObject:strupdated_at];
+                 [self->quotaName addObject:strquota_name];
+                 [self->status addObject:strstatus];
 
              }
              

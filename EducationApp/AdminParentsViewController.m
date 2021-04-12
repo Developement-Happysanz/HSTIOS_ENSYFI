@@ -172,8 +172,8 @@
              
              NSLog(@"%@",responseObject);
              
-             [sec_id removeAllObjects];
-             [sec_name removeAllObjects];
+             [self->sec_id removeAllObjects];
+             [self->sec_name removeAllObjects];
              
              NSString *msg = [responseObject objectForKey:@"msg"];
              NSArray *data = [responseObject objectForKey:@"data"];
@@ -186,24 +186,24 @@
                      NSString *se_id = [dict objectForKey:@"sec_id"];
                      NSString *se_name = [dict objectForKey:@"sec_name"];
                      
-                     [sec_id addObject:se_id];
-                     [sec_name addObject:se_name];
+                     [self->sec_id addObject:se_id];
+                     [self->sec_name addObject:se_name];
                  }
                  
-                 [[NSUserDefaults standardUserDefaults]setObject:sec_id forKey:@"admin_sec_id"];
-                 [[NSUserDefaults standardUserDefaults]setObject:sec_name forKey:@"admin_sec_name"];
+                 [[NSUserDefaults standardUserDefaults]setObject:self->sec_id forKey:@"admin_sec_id"];
+                 [[NSUserDefaults standardUserDefaults]setObject:self->sec_name forKey:@"admin_sec_name"];
                  
 //                 dropDown = nil;
                  
-                 if(dropDown == nil)
+                 if(self->dropDown == nil)
                  {
                      CGFloat f = 300;
-                     dropDown = [[NIDropDown alloc]showDropDown:sender :&f :sec_name :nil :@"down" :self.view];
-                     dropDown.delegate = self;
+                     self->dropDown = [[NIDropDown alloc]showDropDown:sender :&f :self->sec_name :nil :@"down" :self.view];
+                     self->dropDown.delegate = self;
                      
                  }
                  else {
-                     [dropDown hideDropDown:sender];
+                     [self->dropDown hideDropDown:sender];
                      [[NSUserDefaults standardUserDefaults]setObject:@"hide" forKey:@"dropDownKey"];
                      [self rel];
                  }
@@ -373,16 +373,16 @@
          NSString *msg = [responseObject objectForKey:@"msg"];
          NSArray *data = [responseObject objectForKey:@"data"];
          
-         [admisn_no removeAllObjects];
-         [admisn_year removeAllObjects];
-         [father_name removeAllObjects];
-         [guardn_name removeAllObjects];
-         [mother_name removeAllObjects];
-         [mother_name removeAllObjects];
-         [name removeAllObjects];
-         [parent_id removeAllObjects];
-         [sex removeAllObjects];
-         [student_id removeAllObjects];
+         [self->admisn_no removeAllObjects];
+         [self->admisn_year removeAllObjects];
+         [self->father_name removeAllObjects];
+         [self->guardn_name removeAllObjects];
+         [self->mother_name removeAllObjects];
+         [self->mother_name removeAllObjects];
+         [self->name removeAllObjects];
+         [self->parent_id removeAllObjects];
+         [self->sex removeAllObjects];
+         [self->student_id removeAllObjects];
 
          if ([msg isEqualToString:@"success"])
          {
@@ -404,16 +404,16 @@
                      NSString *strstudent_id = [dict objectForKey:@"student_id"];
                      NSString *strclass_id = [dict objectForKey:@"class_id"];
 
-                     [admisn_no addObject:stradmisn_no];
-                     [admisn_year addObject:stradmisn_year];
-                     [father_name addObject:strfather_name];
-                     [guardn_name addObject:strguardn_name];
-                     [mother_name addObject:strmother_name];
-                     [name addObject:strname];
-                     [parent_id addObject:strparent_id];
-                     [sex addObject:strsex];
-                     [student_id addObject:strstudent_id];
-                     [class_id addObject:strclass_id];
+                     [self->admisn_no addObject:stradmisn_no];
+                     [self->admisn_year addObject:stradmisn_year];
+                     [self->father_name addObject:strfather_name];
+                     [self->guardn_name addObject:strguardn_name];
+                     [self->mother_name addObject:strmother_name];
+                     [self->name addObject:strname];
+                     [self->parent_id addObject:strparent_id];
+                     [self->sex addObject:strsex];
+                     [self->student_id addObject:strstudent_id];
+                     [self->class_id addObject:strclass_id];
 
                  }
                  @catch (NSException *exception)
@@ -452,7 +452,7 @@
              [alert addAction:ok];
              [self presentViewController:alert animated:YES completion:nil];
          }
-         dropDown = nil;
+         self->dropDown = nil;
 
          [MBProgressHUD hideHUDForView:self.view animated:YES];
          

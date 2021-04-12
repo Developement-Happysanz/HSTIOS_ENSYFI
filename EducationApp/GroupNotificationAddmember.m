@@ -78,10 +78,10 @@
          [MBProgressHUD hideHUDForView:self.view animated:YES];
          NSString *msg = [responseObject objectForKey:@"msg"];
          
-         [role_id removeAllObjects];
-         [staff_status removeAllObjects];
-         [status removeAllObjects];
-         [user_type_name removeAllObjects];
+         [self->role_id removeAllObjects];
+         [self->staff_status removeAllObjects];
+         [self->status removeAllObjects];
+         [self->user_type_name removeAllObjects];
          
          if ([msg isEqualToString:@"Role List"])
          {
@@ -94,14 +94,14 @@
                  NSString *strStatus = [Data valueForKey:@"status"];
                  NSString *strUser_type_name = [Data valueForKey:@"user_type_name"];
                  
-                 [role_id addObject:strRole_id];
-                 [staff_status addObject:strStaff_status];
-                 [status addObject:strStatus];
-                 [user_type_name addObject:strUser_type_name];
+                 [self->role_id addObject:strRole_id];
+                 [self->staff_status addObject:strStaff_status];
+                 [self->status addObject:strStatus];
+                 [self->user_type_name addObject:strUser_type_name];
              }
-                 [user_type_name insertObject:@"Select the Role" atIndex:0];
-                 [role_id insertObject:@"Select the Role" atIndex:0];
-                 [pickerView reloadComponent:0];
+                 [self->user_type_name insertObject:@"Select the Role" atIndex:0];
+                 [self->role_id insertObject:@"Select the Role" atIndex:0];
+                 [self->pickerView reloadComponent:0];
 
          }
      }
@@ -175,10 +175,10 @@
              [MBProgressHUD hideHUDForView:self.view animated:YES];
              NSString *msg = [responseObject objectForKey:@"msg"];
              
-             [name removeAllObjects];
-             [user_id removeAllObjects];
-             [status removeAllObjects];
-             [Selected_ids removeAllObjects];
+             [self->name removeAllObjects];
+             [self->user_id removeAllObjects];
+             [self->status removeAllObjects];
+             [self->Selected_ids removeAllObjects];
              
              if ([msg isEqualToString:@"Records Found"])
              {
@@ -190,18 +190,18 @@
                      NSString *strUser_id = [Data valueForKey:@"user_id"];
                      NSString *strStatus = [Data valueForKey:@"Status"];
                      
-                     [name addObject:strName];
-                     [user_id addObject:strUser_id];
-                     [status addObject:strStatus];
+                     [self->name addObject:strName];
+                     [self->user_id addObject:strUser_id];
+                     [self->status addObject:strStatus];
                  }
-                     [pickerView reloadComponent:0];
-                     if ([status containsObject:@"0"])
+                     [self->pickerView reloadComponent:0];
+                     if ([self->status containsObject:@"0"])
                      {
                          [self.checkBoxOutlet setEnabled:YES];
                          [self.checkBoxOutlet setTintColor: [UIColor whiteColor]];
                          UIImage *image = [UIImage imageNamed:@"select_all deselect.png"];
-                         [_checkBoxOutlet setImage:image];
-                         checkBoxFlag = @"YES";
+                         [self->_checkBoxOutlet setImage:image];
+                         self->checkBoxFlag = @"YES";
 //                         selectAllFlag = @"NO";
                      }
                      else
@@ -209,8 +209,8 @@
                          [self.checkBoxOutlet setEnabled:YES];
                          [self.checkBoxOutlet setTintColor: [UIColor whiteColor]];
                          UIImage *image = [UIImage imageNamed:@"select_all"];
-                         [_checkBoxOutlet setImage:image];
-                         checkBoxFlag = @"NO";
+                         [self->_checkBoxOutlet setImage:image];
+                         self->checkBoxFlag = @"NO";
 //                         selectAllFlag = @"YES";
                         
                      }
@@ -271,10 +271,10 @@
              [MBProgressHUD hideHUDForView:self.view animated:YES];
              NSString *msg = [responseObject objectForKey:@"msg"];
              
-             [name removeAllObjects];
-             [user_id removeAllObjects];
-             [status removeAllObjects];
-             [Selected_ids removeAllObjects];
+             [self->name removeAllObjects];
+             [self->user_id removeAllObjects];
+             [self->status removeAllObjects];
+             [self->Selected_ids removeAllObjects];
 
              if ([msg isEqualToString:@"Records Found"])
              {
@@ -286,18 +286,18 @@
                      NSString *strUser_id = [Data valueForKey:@"user_id"];
                      NSString *strStatus = [Data valueForKey:@"Status"];
 
-                     [name addObject:strName];
-                     [user_id addObject:strUser_id];
-                     [status addObject:strStatus];
+                     [self->name addObject:strName];
+                     [self->user_id addObject:strUser_id];
+                     [self->status addObject:strStatus];
                  }
-                 [pickerView reloadComponent:0];
-                     if ([status containsObject:@"0"])
+                 [self->pickerView reloadComponent:0];
+                     if ([self->status containsObject:@"0"])
                      {
                          [self.checkBoxOutlet setEnabled:YES];
                          [self.checkBoxOutlet setTintColor: [UIColor whiteColor]];
                          UIImage *image = [UIImage imageNamed:@"select_all deselect.png"];
-                         [_checkBoxOutlet setImage:image];
-                         checkBoxFlag = @"YES";
+                         [self->_checkBoxOutlet setImage:image];
+                         self->checkBoxFlag = @"YES";
 //                         selectAllFlag = @"NO";
                          
                      }
@@ -306,8 +306,8 @@
                          [self.checkBoxOutlet setEnabled:YES];
                          [self.checkBoxOutlet setTintColor: [UIColor whiteColor]];
                          UIImage *image = [UIImage imageNamed:@"select_all"];
-                         [_checkBoxOutlet setImage:image];
-                         checkBoxFlag = @"NO";
+                         [self->_checkBoxOutlet setImage:image];
+                         self->checkBoxFlag = @"NO";
 //                         selectAllFlag = @"YES";
                          
                          
@@ -367,8 +367,8 @@
              [MBProgressHUD hideHUDForView:self.view animated:YES];
              NSString *msg = [responseObject objectForKey:@"msg"];
              
-             [class_sec_id removeAllObjects];
-             [class_section removeAllObjects];
+             [self->class_sec_id removeAllObjects];
+             [self->class_section removeAllObjects];
              if ([msg isEqualToString:@"Class and Sections"])
              {
                  NSArray *dataArray = [responseObject valueForKey:@"listClasssection"];
@@ -378,13 +378,13 @@
                      NSString *strClass_sec_id = [Data valueForKey:@"class_sec_id"];
                      NSString *strClass_section = [Data valueForKey:@"class_section"];
                      
-                     [class_sec_id addObject:strClass_sec_id];
-                     [class_section addObject:strClass_section];
+                     [self->class_sec_id addObject:strClass_sec_id];
+                     [self->class_section addObject:strClass_section];
                  }
                      self.studentTxtField.text =@"Class";
-                     [class_section insertObject:@"Select Your Class" atIndex:0];
-                     [class_sec_id insertObject:@"extraValue" atIndex:0];
-                     [pickerView reloadComponent:0];
+                     [self->class_section insertObject:@"Select Your Class" atIndex:0];
+                     [self->class_sec_id insertObject:@"extraValue" atIndex:0];
+                     [self->pickerView reloadComponent:0];
                  
              }
              else
@@ -435,8 +435,8 @@
              NSLog(@"%@",responseObject);
              [MBProgressHUD hideHUDForView:self.view animated:YES];
              NSString *msg = [responseObject objectForKey:@"msg"];
-             [class_sec_id removeAllObjects];
-             [class_section removeAllObjects];
+             [self->class_sec_id removeAllObjects];
+             [self->class_section removeAllObjects];
              if ([msg isEqualToString:@"Class and Sections"])
              {
                  NSArray *dataArray = [responseObject valueForKey:@"listClasssection"];
@@ -446,13 +446,13 @@
                      NSString *strClass_sec_id = [Data valueForKey:@"class_sec_id"];
                      NSString *strClass_section = [Data valueForKey:@"class_section"];
                      
-                     [class_sec_id addObject:strClass_sec_id];
-                     [class_section addObject:strClass_section];
+                     [self->class_sec_id addObject:strClass_sec_id];
+                     [self->class_section addObject:strClass_section];
                  }
                  self.studentTxtField.text =@"Class";
-                 [class_section insertObject:@"Select Your Class" atIndex:0];
-                 [class_sec_id insertObject:@"extraValue" atIndex:0];
-                 [pickerView reloadComponent:0];
+                 [self->class_section insertObject:@"Select Your Class" atIndex:0];
+                 [self->class_sec_id insertObject:@"extraValue" atIndex:0];
+                 [self->pickerView reloadComponent:0];
 
              }
              else
@@ -513,10 +513,10 @@
              [MBProgressHUD hideHUDForView:self.view animated:YES];
              NSString *msg = [responseObject objectForKey:@"msg"];
              
-             [name removeAllObjects];
-             [user_id removeAllObjects];
-             [status removeAllObjects];
-             [Selected_ids removeAllObjects];
+             [self->name removeAllObjects];
+             [self->user_id removeAllObjects];
+             [self->status removeAllObjects];
+             [self->Selected_ids removeAllObjects];
 
              if ([msg isEqualToString:@"Records Found"])
              {
@@ -528,22 +528,22 @@
                      NSString *strUser_id = [Data valueForKey:@"user_id"];
                      NSString *strStatus = [Data valueForKey:@"Status"];
 
-                     [name addObject:strname];
-                     [user_id addObject:strUser_id];
-                     [status addObject:strStatus];
+                     [self->name addObject:strname];
+                     [self->user_id addObject:strUser_id];
+                     [self->status addObject:strStatus];
                      
                  }
-                 [pickerView reloadComponent:0];
+                 [self->pickerView reloadComponent:0];
                  
-                 for (int i = 0; i <[status count]; i++)
+                 for (int i = 0; i <[self->status count]; i++)
                  {
-                     if ([status containsObject:@"0"])
+                     if ([self->status containsObject:@"0"])
                      {
                          [self.checkBoxOutlet setEnabled:YES];
                          [self.checkBoxOutlet setTintColor: [UIColor whiteColor]];
                          UIImage *image = [UIImage imageNamed:@"select_all deselect.png"];
-                         [_checkBoxOutlet setImage:image];
-                         checkBoxFlag = @"YES";
+                         [self->_checkBoxOutlet setImage:image];
+                         self->checkBoxFlag = @"YES";
 //                         selectAllFlag = @"NO";
                      }
                      else
@@ -551,8 +551,8 @@
                          [self.checkBoxOutlet setEnabled:YES];
                          [self.checkBoxOutlet setTintColor: [UIColor whiteColor]];
                          UIImage *image = [UIImage imageNamed:@"select_all"];
-                         [_checkBoxOutlet setImage:image];
-                         checkBoxFlag = @"NO";
+                         [self->_checkBoxOutlet setImage:image];
+                         self->checkBoxFlag = @"NO";
 //                         selectAllFlag = @"YES";
                      }
                  }

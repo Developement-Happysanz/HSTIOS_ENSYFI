@@ -73,15 +73,15 @@
          if ([msg isEqualToString:@"View Class Test"] && [status isEqualToString:@"success"])
          {
              NSArray *ctestmarkDetails = [responseObject objectForKey:@"ctestmarkDetails"];
-             [marks insertObject:@"Select" atIndex:0];
-             [name insertObject:@"Select" atIndex:0];
+             [self->marks insertObject:@"Select" atIndex:0];
+             [self->name insertObject:@"Select" atIndex:0];
              for (int i =0 ; i < [ctestmarkDetails count]; i++)
              {
                  NSDictionary *dict = [ctestmarkDetails objectAtIndex:i];
                  NSString *strMarks = [dict objectForKey:@"marks"];
                  NSString *strName = [dict objectForKey:@"name"];
-                 [marks addObject:strMarks];
-                 [name addObject:strName];
+                 [self->marks addObject:strMarks];
+                 [self->name addObject:strName];
              }
              self.tableView.hidden = NO;
              [self.tableView reloadData];

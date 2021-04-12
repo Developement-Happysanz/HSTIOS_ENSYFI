@@ -7,7 +7,6 @@
 //
 
 
-
 #import "LoginViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -23,6 +22,7 @@
     NSMutableArray *sec_name;
     
     NSString *eyeImgeispressed;
+    NSString *instituteCode;
 }
 @property(strong) Reachability * googleReach;
 @property(strong) Reachability * localWiFiReach;
@@ -42,7 +42,8 @@
     sec_name = [[NSMutableArray alloc]init];
     
     eyeImgeispressed = @"YES";
-
+    NSLog(@"%@",appDel.institute_code);
+    NSLog(@"test123");
 //    _username.layer.borderColor = [UIColor colorWithRed:102/255.0f green:51/255.0f blue:102/255.0f alpha:1.0].CGColor;
 //    _username.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
 //    _username.layer.borderWidth = 1.0f;
@@ -55,7 +56,7 @@
     
     _mainView.layer.cornerRadius = 8.0f;
     _mainView.clipsToBounds = YES;
-    
+
     _mainView.layer.shadowRadius  = 5.5f;
     _mainView.layer.shadowColor   = UIColor.grayColor.CGColor;
     _mainView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
@@ -218,10 +219,12 @@
     }
     else
     {
-
-        NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
+//        NSString *deviceToken = [[NSUserDefaults standardUserDefaults]objectForKey:@"deviceToken_Key"];
+         NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
         [parameters setObject:self.username.text forKey:@"username"];
         [parameters setObject:self.password.text forKey:@"password"];
+        [parameters setObject:@"dhksjdhfkdjhfksdjh" forKey:@"gcm_key"];
+        [parameters setObject:@"2" forKey:@"mobile_type"];
         
         [[NSUserDefaults standardUserDefaults]setObject:self.username.text forKey:@"username_key"];
         [[NSUserDefaults standardUserDefaults]setObject:self.password.text forKey:@"paswrd_key"];
@@ -230,17 +233,20 @@
         manager.requestSerializer = [AFJSONRequestSerializer serializer];
         [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
-        
-        
-        NSString *institute_code = [[NSUserDefaults standardUserDefaults]objectForKey:@"institute_code_Key"];
+     
+//        NSString *institute_code = [[NSUserDefaults standardUserDefaults]objectForKey:@"institute_code_Key"];
         /* concordanate with baseurl */
         
-        NSArray *components = [NSArray arrayWithObjects:baseUrl,institute_code,user_Login_Api, nil];
+        //NSArray *components = [NSArray  arrayWithObjects:baseUrl,institute_code,user_Login_Api, nil];
+        self->instituteCode = [[NSUserDefaults standardUserDefaults]objectForKey:@"institute_code_Key"];
+        NSLog(@"%@",self->instituteCode);
+        
+        NSArray *components = [NSArray arrayWithObjects:baseUrl,self->instituteCode,user_Login_Api, nil];
         NSString *api = [NSString pathWithComponents:components];
         
         /* concordanate with baseurl */
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        
+         
         [manager POST:api parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
          {
              NSLog(@"%@",responseObject);
@@ -257,7 +263,7 @@
 
              
              NSLog(@"%@%@%@",msg,status,teacherProfile);
-             
+             [MBProgressHUD hideHUDForView:self.view animated:YES];
              if ([msg isEqualToString:@"User loggedIn successfully"])
              {
                  /*userdata*/
@@ -284,15 +290,15 @@
                      [[NSUserDefaults standardUserDefaults]setObject:user_type_name forKey:@"user_type_name_key"];
                      
                      
-                     appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                     self->appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
                      
-                     appDel.user_id = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_id_key"];
-                     appDel.user_type = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_type_key"];
-                     appDel.user_type_name = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_type_name_key"];
-                     appDel.user_name = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_name_key"];
-                     appDel.user_password = [[NSUserDefaults standardUserDefaults]objectForKey:@"password_status_key"];
-                     appDel.user_picture = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_pic_key"];
-                     appDel.name = [[NSUserDefaults standardUserDefaults]objectForKey:@"name_key"];
+                     self->appDel.user_id = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_id_key"];
+                     self->appDel.user_type = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_type_key"];
+                     self->appDel.user_type_name = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_type_name_key"];
+                     self->appDel.user_name = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_name_key"];
+                     self->appDel.user_password = [[NSUserDefaults standardUserDefaults]objectForKey:@"password_status_key"];
+                     self->appDel.user_picture = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_pic_key"];
+                     self->appDel.name = [[NSUserDefaults standardUserDefaults]objectForKey:@"name_key"];
                      
                      /*fatherProfile*/
                      
@@ -383,21 +389,21 @@
                          NSString *strregistered_id = [dictionary_Enrollment objectForKey:@"registered_id"];
                          NSString *strsec_name = [dictionary_Enrollment objectForKey:@"sec_name"];
                          
-                         [admission_id addObject:stradmission_id];
-                         [admission_no addObject:stradmission_no];
-                         [class_id addObject:strclass_id];
-                         [class_name addObject:strclass_name];
-                         [studentname addObject:strstudentname];
-                         [registered_id addObject:strregistered_id];
-                         [sec_name addObject:strsec_name];
+                         [self->admission_id addObject:stradmission_id];
+                         [self->admission_no addObject:stradmission_no];
+                         [self->class_id addObject:strclass_id];
+                         [self->class_name addObject:strclass_name];
+                         [self->studentname addObject:strstudentname];
+                         [self->registered_id addObject:strregistered_id];
+                         [self->sec_name addObject:strsec_name];
                          
-                         [[NSUserDefaults standardUserDefaults]setObject:admission_id forKey:@"admission_id_arr"];
-                         [[NSUserDefaults standardUserDefaults]setObject:admission_no forKey:@"admission_no_arr"];
-                         [[NSUserDefaults standardUserDefaults]setObject:class_id forKey:@"class_id_arr"];
-                         [[NSUserDefaults standardUserDefaults]setObject:class_name forKey:@"classname_arr"];
-                         [[NSUserDefaults standardUserDefaults]setObject:studentname forKey:@"studentname_arr"];
-                         [[NSUserDefaults standardUserDefaults]setObject:registered_id forKey:@"registered_id_arr"];
-                         [[NSUserDefaults standardUserDefaults]setObject:sec_name forKey:@"sec_name_arr"];
+                         [[NSUserDefaults standardUserDefaults]setObject:self->admission_id forKey:@"admission_id_arr"];
+                         [[NSUserDefaults standardUserDefaults]setObject:self->admission_no forKey:@"admission_no_arr"];
+                         [[NSUserDefaults standardUserDefaults]setObject:self->class_id forKey:@"class_id_arr"];
+                         [[NSUserDefaults standardUserDefaults]setObject:self->class_name forKey:@"classname_arr"];
+                         [[NSUserDefaults standardUserDefaults]setObject:self->studentname forKey:@"studentname_arr"];
+                         [[NSUserDefaults standardUserDefaults]setObject:self->registered_id forKey:@"registered_id_arr"];
+                         [[NSUserDefaults standardUserDefaults]setObject:self->sec_name forKey:@"sec_name_arr"];
                          
                      }
                      
@@ -419,15 +425,15 @@
                      [[NSUserDefaults standardUserDefaults]setObject:user_type_name forKey:@"user_type_name_key"];
                      
                      
-                     appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                     self->appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
                      
-                     appDel.user_id = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_id_key"];
-                     appDel.user_type = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_type_key"];
-                     appDel.user_type_name = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_type_name_key"];
-                     appDel.user_name = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_name_key"];
-                     appDel.user_password = [[NSUserDefaults standardUserDefaults]objectForKey:@"password_status_key"];
-                     appDel.user_picture = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_pic_key"];
-                     appDel.name = [[NSUserDefaults standardUserDefaults]objectForKey:@"name_key"];
+                     self->appDel.user_id = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_id_key"];
+                     self->appDel.user_type = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_type_key"];
+                     self->appDel.user_type_name = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_type_name_key"];
+                     self->appDel.user_name = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_name_key"];
+                     self->appDel.user_password = [[NSUserDefaults standardUserDefaults]objectForKey:@"password_status_key"];
+                     self->appDel.user_picture = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_pic_key"];
+                     self->appDel.name = [[NSUserDefaults standardUserDefaults]objectForKey:@"name_key"];
                      
                      /*fatherProfile*/
                      
@@ -520,22 +526,21 @@
                          NSString *strregistered_id = [dictionary_Enrollment objectForKey:@"registered_id"];
                          NSString *strsec_name = [dictionary_Enrollment objectForKey:@"sec_name"];
                          
-                         [admission_id addObject:stradmission_id];
-                         [admission_no addObject:stradmission_no];
-                         [class_id addObject:strclass_id];
-                         [class_name addObject:strclass_name];
-                         [studentname addObject:strstudentname];
-                         [registered_id addObject:strregistered_id];
-                         [sec_name addObject:strsec_name];
+                         [self->admission_id addObject:stradmission_id];
+                         [self->admission_no addObject:stradmission_no];
+                         [self->class_id addObject:strclass_id];
+                         [self->class_name addObject:strclass_name];
+                         [self->studentname addObject:strstudentname];
+                         [self->registered_id addObject:strregistered_id];
+                         [self->sec_name addObject:strsec_name];
                          
-                         [[NSUserDefaults standardUserDefaults]setObject:admission_id forKey:@"admission_id_arr"];
-                         [[NSUserDefaults standardUserDefaults]setObject:admission_no forKey:@"admission_no_arr"];
-                         [[NSUserDefaults standardUserDefaults]setObject:class_id forKey:@"class_id_arr"];
-                         [[NSUserDefaults standardUserDefaults]setObject:class_name forKey:@"classname_arr"];
-                         [[NSUserDefaults standardUserDefaults]setObject:studentname forKey:@"studentname_arr"];
-                         [[NSUserDefaults standardUserDefaults]setObject:registered_id forKey:@"registered_id_arr"];
-                         [[NSUserDefaults standardUserDefaults]setObject:sec_name forKey:@"sec_name_arr"];
-                         
+                         [[NSUserDefaults standardUserDefaults]setObject:self->admission_id forKey:@"admission_id_arr"];
+                         [[NSUserDefaults standardUserDefaults]setObject:self->admission_no forKey:@"admission_no_arr"];
+                         [[NSUserDefaults standardUserDefaults]setObject:self->class_id forKey:@"class_id_arr"];
+                         [[NSUserDefaults standardUserDefaults]setObject:self->class_name forKey:@"classname_arr"];
+                         [[NSUserDefaults standardUserDefaults]setObject:self->studentname forKey:@"studentname_arr"];
+                         [[NSUserDefaults standardUserDefaults]setObject:self->registered_id forKey:@"registered_id_arr"];
+                         [[NSUserDefaults standardUserDefaults]setObject:self->sec_name forKey:@"sec_name_arr"];
                          
                      }
                  
@@ -563,14 +568,14 @@
                      [[NSUserDefaults standardUserDefaults]setObject:user_type forKey:@"user_type_key"];
                      [[NSUserDefaults standardUserDefaults]setObject:user_type_name forKey:@"user_type_name_key"];
                      
-                     appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
-                     appDel.user_id = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_id_key"];
-                     appDel.user_type = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_type_key"];
-                     appDel.user_type_name = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_type_name_key"];
-                     appDel.user_name = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_name_key"];
-                     appDel.user_password = [[NSUserDefaults standardUserDefaults]objectForKey:@"password_status_key"];
-                     appDel.user_picture = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_pic_key"];
-                     appDel.name = [[NSUserDefaults standardUserDefaults]objectForKey:@"name_key"];
+                     self->appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                     self->appDel.user_id = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_id_key"];
+                     self->appDel.user_type = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_type_key"];
+                     self->appDel.user_type_name = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_type_name_key"];
+                     self->appDel.user_name = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_name_key"];
+                     self->appDel.user_password = [[NSUserDefaults standardUserDefaults]objectForKey:@"password_status_key"];
+                     self->appDel.user_picture = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_pic_key"];
+                     self->appDel.name = [[NSUserDefaults standardUserDefaults]objectForKey:@"name_key"];
                      
                      UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"admin" bundle:nil];
                      SWRevealViewController *exam = (SWRevealViewController *)[storyboard instantiateViewControllerWithIdentifier:@"SWRevealViewControllerAdmin"];
@@ -645,14 +650,14 @@
                      [[NSUserDefaults standardUserDefaults]setObject:user_type forKey:@"user_type_key"];
                      [[NSUserDefaults standardUserDefaults]setObject:user_type_name forKey:@"user_type_name_key"];
                      
-                     appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
-                     appDel.user_name = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_name_key"];
-                     appDel.user_id = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_id_key"];
-                     appDel.user_type = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_type_key"];
-                     appDel.user_type_name = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_type_name_key"];
-                     appDel.user_password = [[NSUserDefaults standardUserDefaults]objectForKey:@"password_status_key"];
-                     appDel.user_picture = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_pic_key"];
-                     appDel.name = [[NSUserDefaults standardUserDefaults]objectForKey:@"name_key"];
+                     self->appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                     self->appDel.user_name = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_name_key"];
+                     self->appDel.user_id = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_id_key"];
+                     self->appDel.user_type = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_type_key"];
+                     self->appDel.user_type_name = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_type_name_key"];
+                     self->appDel.user_password = [[NSUserDefaults standardUserDefaults]objectForKey:@"password_status_key"];
+                     self->appDel.user_picture = [[NSUserDefaults standardUserDefaults]objectForKey:@"user_pic_key"];
+                     self->appDel.name = [[NSUserDefaults standardUserDefaults]objectForKey:@"name_key"];
                      
                      NSArray *exam = [responseObject objectForKey:@"Exams"];
                      NSArray *data = [exam valueForKey:@"data"];
@@ -774,7 +779,7 @@
                          NSString *strteacher_id = [dict objectForKey:@"teacher_id"];
                          
                          [[NSUserDefaults standardUserDefaults]setObject:strteacher_id forKey:@"strteacher_id_key"];
-                         appDel.classTeacher_id = [[NSUserDefaults standardUserDefaults]objectForKey:@"strteacher_id_key"];
+                         self->appDel.classTeacher_id = [[NSUserDefaults standardUserDefaults]objectForKey:@"strteacher_id_key"];
                          [[NSUserDefaults standardUserDefaults]setObject:strteacher_id forKey:@"admin_teacherid"];
                          
                          NSArray *docPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

@@ -66,15 +66,15 @@
                  NSString *strname = [dict objectForKey:@"name"];
                  NSString *stra_status = [dict objectForKey:@"a_status"];
                 
-                 [enroll_id addObject:strenroll_id];
-                 [name addObject:strname];
-                 [a_status addObject:stra_status];
+                 [self->enroll_id addObject:strenroll_id];
+                 [self->name addObject:strname];
+                 [self->a_status addObject:stra_status];
 
              }
              
-             [enroll_id insertObject:@"select" atIndex:0];
-             [name insertObject:@"select" atIndex:0];
-             [a_status insertObject:@"select" atIndex:0];
+             [self->enroll_id insertObject:@"select" atIndex:0];
+             [self->name insertObject:@"select" atIndex:0];
+             [self->a_status insertObject:@"select" atIndex:0];
          }
                 [self.tableView reloadData];
      }

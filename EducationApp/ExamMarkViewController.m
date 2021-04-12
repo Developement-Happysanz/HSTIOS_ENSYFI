@@ -83,17 +83,17 @@
              
              NSLog(@"%@",responseObject);
              
-             totalMarks = [responseObject objectForKey:@"totalMarks"];
+             self->totalMarks = [responseObject objectForKey:@"totalMarks"];
              NSString *msg = [responseObject objectForKey:@"msg"];
              if ([msg isEqualToString:@"View Marks Details"])
              {
-                 [subject_name insertObject:@"name" atIndex:0];
-                 [internal_mark insertObject:@"name" atIndex:0];
-                 [internal_grade insertObject:@"name" atIndex:0];
-                 [external_mark insertObject:@"name" atIndex:0];
-                 [external_grade insertObject:@"name" atIndex:0];
-                 [total_marks insertObject:@"name" atIndex:0];
-                 [total_grade insertObject:@"name" atIndex:0];
+                 [self->subject_name insertObject:@"name" atIndex:0];
+                 [self->internal_mark insertObject:@"name" atIndex:0];
+                 [self->internal_grade insertObject:@"name" atIndex:0];
+                 [self->external_mark insertObject:@"name" atIndex:0];
+                 [self->external_grade insertObject:@"name" atIndex:0];
+                 [self->total_marks insertObject:@"name" atIndex:0];
+                 [self->total_grade insertObject:@"name" atIndex:0];
                  
                  NSArray *marksDetails = [responseObject objectForKey:@"marksDetails"];
                  
@@ -110,13 +110,13 @@
                      NSString *tot_marks = [dictionary_Enrollment valueForKey:@"total_marks"];
                      NSString *tot_grade = [dictionary_Enrollment valueForKey:@"total_grade"];
                      
-                     [subject_name addObject:name];
-                     [internal_mark addObject:inte_mark];
-                     [internal_grade addObject:inte_grade];
-                     [external_mark addObject:exte_mark];
-                     [external_grade addObject:exte_grade];
-                     [total_marks addObject:tot_marks];
-                     [total_grade addObject:tot_grade];
+                     [self->subject_name addObject:name];
+                     [self->internal_mark addObject:inte_mark];
+                     [self->internal_grade addObject:inte_grade];
+                     [self->external_mark addObject:exte_mark];
+                     [self->external_grade addObject:exte_grade];
+                     [self->total_marks addObject:tot_marks];
+                     [self->total_grade addObject:tot_grade];
                      
                  }
                  
@@ -184,17 +184,17 @@
              
              NSLog(@"%@",responseObject);
              
-             totalMarks = [responseObject objectForKey:@"totalMarks"];
+             self->totalMarks = [responseObject objectForKey:@"totalMarks"];
              NSString *msg = [responseObject objectForKey:@"msg"];
              if ([msg isEqualToString:@"View Marks Details"])
              {
-                 [subject_name insertObject:@"name" atIndex:0];
-                 [internal_mark insertObject:@"name" atIndex:0];
-                 [internal_grade insertObject:@"name" atIndex:0];
-                 [external_mark insertObject:@"name" atIndex:0];
-                 [external_grade insertObject:@"name" atIndex:0];
-                 [total_marks insertObject:@"name" atIndex:0];
-                 [total_grade insertObject:@"name" atIndex:0];
+                 [self->subject_name insertObject:@"name" atIndex:0];
+                 [self->internal_mark insertObject:@"name" atIndex:0];
+                 [self->internal_grade insertObject:@"name" atIndex:0];
+                 [self->external_mark insertObject:@"name" atIndex:0];
+                 [self->external_grade insertObject:@"name" atIndex:0];
+                 [self->total_marks insertObject:@"name" atIndex:0];
+                 [self->total_grade insertObject:@"name" atIndex:0];
                  
                  NSArray *marksDetails = [responseObject objectForKey:@"marksDetails"];
                  
@@ -212,59 +212,59 @@
                      
                      if (sub_name.length == 0)
                      {
-                         [subject_name addObject:@""];
+                         [self->subject_name addObject:@""];
                      }
                      else
                      {
-                         [subject_name addObject:sub_name];
+                         [self->subject_name addObject:sub_name];
                      }
                      if (inte_mark.length == 0)
                      {
-                         [internal_mark addObject:@""];
+                         [self->internal_mark addObject:@""];
                      }
                      else
                      {
-                         [internal_mark addObject:inte_mark];
+                         [self->internal_mark addObject:inte_mark];
                      }
                      if (inte_grade.length == 0)
                      {
-                         [internal_grade addObject:@""];
+                         [self->internal_grade addObject:@""];
                      }
                      else
                      {
-                         [internal_grade addObject:inte_grade];
+                         [self->internal_grade addObject:inte_grade];
                      }
                      if (exte_mark.length == 0)
                      {
-                         [external_mark addObject:@""];
+                         [self->external_mark addObject:@""];
                      }
                      else
                      {
-                         [external_mark addObject:exte_mark];
+                         [self->external_mark addObject:exte_mark];
                      }
                      if (exte_grade.length == 0)
                      {
-                         [external_grade addObject:@""];
+                         [self->external_grade addObject:@""];
                      }
                      else
                      {
-                         [external_grade addObject:exte_grade];
+                         [self->external_grade addObject:exte_grade];
                      }
                      if (tot_marks.length == 0)
                      {
-                         [total_marks addObject:@""];
+                         [self->total_marks addObject:@""];
                      }
                      else
                      {
-                         [total_marks addObject:tot_marks];
+                         [self->total_marks addObject:tot_marks];
                      }
                      if (tot_grade.length == 0)
                      {
-                         [total_grade addObject:@""];
+                         [self->total_grade addObject:@""];
                      }
                      else
                      {
-                         [total_grade addObject:tot_grade];
+                         [self->total_grade addObject:tot_grade];
                      }
                      
                  }

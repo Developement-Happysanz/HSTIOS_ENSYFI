@@ -173,17 +173,17 @@
          NSLog(@"%@",responseObject);
          NSArray *arr_Attendance = [responseObject objectForKey:@"attendenceDetails"];
          NSString *msg = [responseObject objectForKey:@"msg"];
-         [attendenceHistory removeAllObjects];
+         [self->attendenceHistory removeAllObjects];
          if ([msg isEqualToString:@"View Attendence"])
          {
              
-             attendenceHistory = [responseObject objectForKey:@"attendenceHistory"];
-             NSLog(@"%@",attendenceHistory);
-             NSString *absent_days = [attendenceHistory valueForKey:@"absent_days"];
-             NSString *leave_days = [attendenceHistory valueForKey:@"leave_days"];
-             NSString *od_days = [attendenceHistory valueForKey:@"od_days"];
-             NSString *present_days = [attendenceHistory valueForKey:@"present_days"];
-             NSString *total_working_days = [attendenceHistory valueForKey:@"total_working_days"];
+             self->attendenceHistory = [responseObject objectForKey:@"attendenceHistory"];
+             NSLog(@"%@",self->attendenceHistory);
+             NSString *absent_days = [self->attendenceHistory valueForKey:@"absent_days"];
+             NSString *leave_days = [self->attendenceHistory valueForKey:@"leave_days"];
+             NSString *od_days = [self->attendenceHistory valueForKey:@"od_days"];
+             NSString *present_days = [self->attendenceHistory valueForKey:@"present_days"];
+             NSString *total_working_days = [self->attendenceHistory valueForKey:@"total_working_days"];
              
              NSString *total_working_Days = [NSString stringWithFormat:@"%@",total_working_days];
              NSString *absentDays= [NSString stringWithFormat:@"%@",absent_days];
@@ -232,7 +232,7 @@
                  self.leaveDays.text = [NSString stringWithFormat:@"%@ %@",leaveDays,@"Days"];
              }
              
-             [ab_date removeAllObjects];
+             [self->ab_date removeAllObjects];
              
              for (int i = 0; i < [arr_Attendance count]; i++)
              {
@@ -240,10 +240,10 @@
                  NSLog(@"%@",dict);
                  
                  NSString *abDate= [dict valueForKey:@"abs_date"];
-                 [ab_date addObject:abDate];
+                 [self->ab_date addObject:abDate];
              }
              
-             NSArray *abs_date = [NSArray arrayWithArray:ab_date];
+             NSArray *abs_date = [NSArray arrayWithArray:self->ab_date];
              [[NSUserDefaults standardUserDefaults] setObject:abs_date forKey:@"abs_date_Key"];
              [[NSUserDefaults standardUserDefaults] setObject:absent_days forKey:@"absent_days_Key"];
              [[NSUserDefaults standardUserDefaults] setObject:leave_days forKey:@"leave_days_Key"];

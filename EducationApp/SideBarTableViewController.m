@@ -86,7 +86,9 @@
         if ([appDel.user_type isEqualToString:@"3"])
         {
             
-            NSArray *components = [NSArray arrayWithObjects:baseUrl,appDel.institute_code,student_profile,appDel.user_picture, nil];
+//            NSArray *components = [NSArray arrayWithObjects:baseUrl,appDel.institute_code,student_profile,appDel.user_picture, nil];
+            NSArray *components = [NSArray arrayWithObjects:baseUrl,student_profile,appDel.user_picture, nil];
+
             NSString *fullpath= [NSString pathWithComponents:components];
 //          [[NSUserDefaults standardUserDefaults]setObject:fullpath forKey:@"stucentImg_fullpath"];
             NSURL *url = [NSURL URLWithString:fullpath];
@@ -112,7 +114,8 @@
         {
             appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
             // customization
-            NSArray *components = [NSArray arrayWithObjects:baseUrl,appDel.institute_code,parents_profile,appDel.user_picture, nil];
+//          NSArray *components = [NSArray arrayWithObjects:baseUrl,appDel.institute_code,parents_profile,appDel.user_picture, nil];
+            NSArray *components = [NSArray arrayWithObjects:baseUrl,parents_profile,appDel.user_picture, nil];
             NSString *fullpath= [NSString pathWithComponents:components];
 //            [[NSUserDefaults standardUserDefaults]setObject:fullpath forKey:@"fatherPic_FullPath"];
             NSURL *url = [NSURL URLWithString:fullpath];

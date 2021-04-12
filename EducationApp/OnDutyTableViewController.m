@@ -100,10 +100,10 @@
              if ([msg isEqualToString:@"View Onduty"])
              {
                  
-                 [odTitle removeAllObjects];
-                 [frmDate removeAllObjects];
-                 [toDte removeAllObjects];
-                 [odStatus removeAllObjects];
+                 [self->odTitle removeAllObjects];
+                 [self->frmDate removeAllObjects];
+                 [self->toDte removeAllObjects];
+                 [self->odStatus removeAllObjects];
                  
                  
                  for (int i = 0; i < [ondutyDetails count]; i++)
@@ -115,10 +115,10 @@
                      NSString *toDate = [onduty objectForKey:@"to_date"];
                      NSString *status = [onduty objectForKey:@"status"];
                      
-                     [odTitle addObject:od_for];
-                     [frmDate addObject:fromDate];
-                     [toDte addObject:toDate];
-                     [odStatus addObject:status];
+                     [self->odTitle addObject:od_for];
+                     [self->frmDate addObject:fromDate];
+                     [self->toDte addObject:toDate];
+                     [self->odStatus addObject:status];
                  }
              }
              else
@@ -165,10 +165,10 @@
              if ([msg isEqualToString:@"View Onduty"])
              {
                  
-                 [odTitle removeAllObjects];
-                 [frmDate removeAllObjects];
-                 [toDte removeAllObjects];
-                 [odStatus removeAllObjects];
+                 [self->odTitle removeAllObjects];
+                 [self->frmDate removeAllObjects];
+                 [self->toDte removeAllObjects];
+                 [self->odStatus removeAllObjects];
                  
                  
                  for (int i = 0; i < [ondutyDetails count]; i++)
@@ -180,10 +180,10 @@
                      NSString *toDate = [onduty objectForKey:@"to_date"];
                      NSString *status = [onduty objectForKey:@"status"];
                      
-                     [odTitle addObject:od_for];
-                     [frmDate addObject:fromDate];
-                     [toDte addObject:toDate];
-                     [odStatus addObject:status];
+                     [self->odTitle addObject:od_for];
+                     [self->frmDate addObject:fromDate];
+                     [self->toDte addObject:toDate];
+                     [self->odStatus addObject:status];
                  }
              }
              else
@@ -229,10 +229,10 @@
              if ([msg isEqualToString:@"View Onduty"])
              {
                  
-                 [odTitle removeAllObjects];
-                 [frmDate removeAllObjects];
-                 [toDte removeAllObjects];
-                 [odStatus removeAllObjects];
+                 [self->odTitle removeAllObjects];
+                 [self->frmDate removeAllObjects];
+                 [self->toDte removeAllObjects];
+                 [self->odStatus removeAllObjects];
                  
                  
                  for (int i = 0; i < [ondutyDetails count]; i++)
@@ -244,10 +244,10 @@
                      NSString *toDate = [onduty objectForKey:@"to_date"];
                      NSString *status = [onduty objectForKey:@"status"];
                      
-                     [odTitle addObject:od_for];
-                     [frmDate addObject:fromDate];
-                     [toDte addObject:toDate];
-                     [odStatus addObject:status];
+                     [self->odTitle addObject:od_for];
+                     [self->frmDate addObject:fromDate];
+                     [self->toDte addObject:toDate];
+                     [self->odStatus addObject:status];
                  }
              }
              else
@@ -293,10 +293,10 @@
              if ([msg isEqualToString:@"View Onduty"])
              {
                  
-                 [odTitle removeAllObjects];
-                 [frmDate removeAllObjects];
-                 [toDte removeAllObjects];
-                 [odStatus removeAllObjects];
+                 [self->odTitle removeAllObjects];
+                 [self->frmDate removeAllObjects];
+                 [self->toDte removeAllObjects];
+                 [self->odStatus removeAllObjects];
                  
                  
                  for (int i = 0; i < [ondutyDetails count]; i++)
@@ -308,10 +308,10 @@
                      NSString *toDate = [onduty objectForKey:@"to_date"];
                      NSString *status = [onduty objectForKey:@"status"];
                      
-                     [odTitle addObject:od_for];
-                     [frmDate addObject:fromDate];
-                     [toDte addObject:toDate];
-                     [odStatus addObject:status];
+                     [self->odTitle addObject:od_for];
+                     [self->frmDate addObject:fromDate];
+                     [self->toDte addObject:toDate];
+                     [self->odStatus addObject:status];
                  }
              }
              else

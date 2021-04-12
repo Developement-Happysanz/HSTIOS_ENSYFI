@@ -89,7 +89,9 @@
         NSString *CellIdentifier = [staticMenu objectAtIndex:indexPath.row];
         AdminTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         // customization
-        NSArray *components = [NSArray arrayWithObjects:baseUrl,[[NSUserDefaults standardUserDefaults]objectForKey:@"institute_code_Key"],admin_profile,[[NSUserDefaults standardUserDefaults]objectForKey:@"user_pic_key"], nil];
+//        NSArray *components = [NSArray arrayWithObjects:baseUrl,[[NSUserDefaults standardUserDefaults]objectForKey:@"institute_code_Key"],admin_profile,[[NSUserDefaults standardUserDefaults]objectForKey:@"user_pic_key"], nil];
+        
+        NSArray *components = [NSArray arrayWithObjects:baseUrl,admin_profile,[[NSUserDefaults standardUserDefaults]objectForKey:@"user_pic_key"], nil];
         
         NSString *institute_logo_url = [NSString pathWithComponents:components];
         //NSString *fullpath=[[NSUserDefaults standardUserDefaults]objectForKey:@"institute_logo_url"];
@@ -173,8 +175,8 @@
              NSString *msg = [responseObject objectForKey:@"msg"];
              NSArray *data = [responseObject objectForKey:@"data"];
              
-             [class_id removeAllObjects];
-             [class_name removeAllObjects];
+             [self->class_id removeAllObjects];
+             [self->class_name removeAllObjects];
              
              if ([msg isEqualToString:@"success"])
              {
@@ -184,12 +186,12 @@
                      NSString *clas_id = [dict objectForKey:@"class_id"];
                      NSString *clas_name = [dict objectForKey:@"class_name"];
                      
-                     [class_id addObject:clas_id];
-                     [class_name addObject:clas_name];
+                     [self->class_id addObject:clas_id];
+                     [self->class_name addObject:clas_name];
                  }
                  
-                 [[NSUserDefaults standardUserDefaults]setObject:class_id forKey:@"admin_class_id"];
-                 [[NSUserDefaults standardUserDefaults]setObject:class_name forKey:@"admin_class_name"];
+                 [[NSUserDefaults standardUserDefaults]setObject:self->class_id forKey:@"admin_class_id"];
+                 [[NSUserDefaults standardUserDefaults]setObject:self->class_name forKey:@"admin_class_name"];
                  
 //                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"admin" bundle:nil];
 //                 AdminStudentViewController *adminStudent = (AdminStudentViewController *)[storyboard instantiateViewControllerWithIdentifier:@"AdminStudentViewController"];
@@ -270,8 +272,8 @@
              NSString *msg = [responseObject objectForKey:@"msg"];
              NSArray *data = [responseObject objectForKey:@"data"];
              
-             [class_id removeAllObjects];
-             [class_name removeAllObjects];
+             [self->class_id removeAllObjects];
+             [self->class_name removeAllObjects];
              
              if ([msg isEqualToString:@"success"])
              {
@@ -281,12 +283,12 @@
                      NSString *clas_id = [dict objectForKey:@"class_id"];
                      NSString *clas_name = [dict objectForKey:@"class_name"];
                      
-                     [class_id addObject:clas_id];
-                     [class_name addObject:clas_name];
+                     [self->class_id addObject:clas_id];
+                     [self->class_name addObject:clas_name];
                  }
                  
-                 [[NSUserDefaults standardUserDefaults]setObject:class_id forKey:@"admin_class_id"];
-                 [[NSUserDefaults standardUserDefaults]setObject:class_name forKey:@"admin_class_name"];
+                 [[NSUserDefaults standardUserDefaults]setObject:self->class_id forKey:@"admin_class_id"];
+                 [[NSUserDefaults standardUserDefaults]setObject:self->class_name forKey:@"admin_class_name"];
                  
                  UINavigationController *navController = segue.destinationViewController;
                  AdminClassesViewController *adminClassView = [navController childViewControllers].firstObject;
@@ -333,8 +335,8 @@
              NSString *msg = [responseObject objectForKey:@"msg"];
              NSArray *data = [responseObject objectForKey:@"data"];
              
-             [class_id removeAllObjects];
-             [class_name removeAllObjects];
+             [self->class_id removeAllObjects];
+             [self->class_name removeAllObjects];
              
              if ([msg isEqualToString:@"success"])
              {
@@ -344,12 +346,12 @@
                      NSString *clas_id = [dict objectForKey:@"class_id"];
                      NSString *clas_name = [dict objectForKey:@"class_name"];
                      
-                     [class_id addObject:clas_id];
-                     [class_name addObject:clas_name];
+                     [self->class_id addObject:clas_id];
+                     [self->class_name addObject:clas_name];
                  }
                  
-                 [[NSUserDefaults standardUserDefaults]setObject:class_id forKey:@"admin_class_id"];
-                 [[NSUserDefaults standardUserDefaults]setObject:class_name forKey:@"admin_class_name"];
+                 [[NSUserDefaults standardUserDefaults]setObject:self->class_id forKey:@"admin_class_id"];
+                 [[NSUserDefaults standardUserDefaults]setObject:self->class_name forKey:@"admin_class_name"];
                  
                  UINavigationController *navController = segue.destinationViewController;
                  AdminExamViewController *adminExamView = [navController childViewControllers].firstObject;
@@ -390,8 +392,8 @@
              NSString *msg = [responseObject objectForKey:@"msg"];
              NSArray *data = [responseObject objectForKey:@"data"];
              
-             [class_id removeAllObjects];
-             [class_name removeAllObjects];
+             [self->class_id removeAllObjects];
+             [self->class_name removeAllObjects];
              
              if ([msg isEqualToString:@"success"])
              {
@@ -401,11 +403,11 @@
                      NSString *clas_id = [dict objectForKey:@"class_id"];
                      NSString *clas_name = [dict objectForKey:@"class_name"];
                 
-                     [class_id addObject:clas_id];
-                     [class_name addObject:clas_name];
+                     [self->class_id addObject:clas_id];
+                     [self->class_name addObject:clas_name];
                  }
-                 [[NSUserDefaults standardUserDefaults]setObject:class_id forKey:@"admin_class_id"];
-                 [[NSUserDefaults standardUserDefaults]setObject:class_name forKey:@"admin_class_name"];
+                 [[NSUserDefaults standardUserDefaults]setObject:self->class_id forKey:@"admin_class_id"];
+                 [[NSUserDefaults standardUserDefaults]setObject:self->class_name forKey:@"admin_class_name"];
                  UINavigationController *navController = segue.destinationViewController;
                  AdminResultView *adminResultView = [navController childViewControllers].firstObject;
                  NSLog(@"%@",adminResultView);
@@ -452,8 +454,8 @@
              NSString *msg = [responseObject objectForKey:@"msg"];
              NSArray *data = [responseObject objectForKey:@"data"];
              
-             [class_id removeAllObjects];
-             [class_name removeAllObjects];
+             [self->class_id removeAllObjects];
+             [self->class_name removeAllObjects];
              
              if ([msg isEqualToString:@"success"])
              {
@@ -463,12 +465,12 @@
                      NSString *clas_id = [dict objectForKey:@"class_id"];
                      NSString *clas_name = [dict objectForKey:@"class_name"];
                      
-                     [class_id addObject:clas_id];
-                     [class_name addObject:clas_name];
+                     [self->class_id addObject:clas_id];
+                     [self->class_name addObject:clas_name];
                  }
                  
-                 [[NSUserDefaults standardUserDefaults]setObject:class_id forKey:@"admin_class_id"];
-                 [[NSUserDefaults standardUserDefaults]setObject:class_name forKey:@"admin_class_name"];
+                 [[NSUserDefaults standardUserDefaults]setObject:self->class_id forKey:@"admin_class_id"];
+                 [[NSUserDefaults standardUserDefaults]setObject:self->class_name forKey:@"admin_class_name"];
                  
                  UINavigationController *navController = segue.destinationViewController;
                  AdminParentsViewController *adminParentsView = [navController childViewControllers].firstObject;
@@ -545,8 +547,8 @@
              NSString *msg = [responseObject objectForKey:@"msg"];
              NSArray *data = [responseObject objectForKey:@"data"];
              
-             [class_id removeAllObjects];
-             [class_name removeAllObjects];
+             [self->class_id removeAllObjects];
+             [self->class_name removeAllObjects];
              
              if ([msg isEqualToString:@"success"])
              {
@@ -556,12 +558,12 @@
                      NSString *clas_id = [dict objectForKey:@"class_id"];
                      NSString *clas_name = [dict objectForKey:@"class_name"];
                      
-                     [class_id addObject:clas_id];
-                     [class_name addObject:clas_name];
+                     [self->class_id addObject:clas_id];
+                     [self->class_name addObject:clas_name];
                  }
                  
-                 [[NSUserDefaults standardUserDefaults]setObject:class_id forKey:@"admin_class_id"];
-                 [[NSUserDefaults standardUserDefaults]setObject:class_name forKey:@"admin_class_name"];
+                 [[NSUserDefaults standardUserDefaults]setObject:self->class_id forKey:@"admin_class_id"];
+                 [[NSUserDefaults standardUserDefaults]setObject:self->class_name forKey:@"admin_class_name"];
                  
                  UINavigationController *navController = segue.destinationViewController;
                  AdminHolidayCalenderViewController *adminEventView = [navController childViewControllers].firstObject;
@@ -610,8 +612,8 @@
              NSString *msg = [responseObject objectForKey:@"msg"];
              NSArray *data = [responseObject objectForKey:@"data"];
              
-             [class_id removeAllObjects];
-             [class_name removeAllObjects];
+             [self->class_id removeAllObjects];
+             [self->class_name removeAllObjects];
              
              if ([msg isEqualToString:@"success"])
              {
@@ -621,12 +623,12 @@
                      NSString *clas_id = [dict objectForKey:@"class_id"];
                      NSString *clas_name = [dict objectForKey:@"class_name"];
                      
-                     [class_id addObject:clas_id];
-                     [class_name addObject:clas_name];
+                     [self->class_id addObject:clas_id];
+                     [self->class_name addObject:clas_name];
                  }
                  
-                 [[NSUserDefaults standardUserDefaults]setObject:class_id forKey:@"admin_class_id"];
-                 [[NSUserDefaults standardUserDefaults]setObject:class_name forKey:@"admin_class_name"];
+                 [[NSUserDefaults standardUserDefaults]setObject:self->class_id forKey:@"admin_class_id"];
+                 [[NSUserDefaults standardUserDefaults]setObject:self->class_name forKey:@"admin_class_name"];
                  
                  UINavigationController *navController = segue.destinationViewController;
                  AdminFeeViewController *adminFeeView = [navController childViewControllers].firstObject;

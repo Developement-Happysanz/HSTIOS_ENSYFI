@@ -314,27 +314,27 @@
                                       style:UIAlertActionStyleDefault
                                       handler:^(UIAlertAction * action)
                                       {
-                                          if ([appDel.user_type isEqualToString:@"1"])
+                                          if ([self->appDel.user_type isEqualToString:@"1"])
                                           {
                                               
                                               UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"admin" bundle:nil];
                                               SWRevealViewController *reveal = (SWRevealViewController *)[storyboard instantiateViewControllerWithIdentifier:@"SWRevealViewControllerAdmin"];
                                               [self.navigationController presentViewController:reveal animated:YES completion:nil];
                                           }
-                                          else if ([appDel.user_type isEqualToString:@"2"])
+                                          else if ([self->appDel.user_type isEqualToString:@"2"])
                                           {
                                           
                                               UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"teachers" bundle:nil];
                                               SWRevealViewController *reveal = (SWRevealViewController *)[storyboard instantiateViewControllerWithIdentifier:@"SWRevealViewControllerTeacher"];
                                               [self.navigationController presentViewController:reveal animated:YES completion:nil];
                                           }
-                                          else if ([appDel.user_type isEqualToString:@"3"])
+                                          else if ([self->appDel.user_type isEqualToString:@"3"])
                                           {
                                               UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                                               SWRevealViewController *reveal = (SWRevealViewController *)[storyboard instantiateViewControllerWithIdentifier:@"SWRevealViewController"];
                                               [self.navigationController presentViewController:reveal animated:YES completion:nil];
                                           }
-                                          else if ([appDel.user_type isEqualToString:@"4"])
+                                          else if ([self->appDel.user_type isEqualToString:@"4"])
                                           {
                                               UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                                               SWRevealViewController *reveal = (SWRevealViewController *)[storyboard instantiateViewControllerWithIdentifier:@"SWRevealViewController"];

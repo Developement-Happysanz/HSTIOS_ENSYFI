@@ -198,11 +198,11 @@
                  if ([msg isEqualToString:@"View Leaves"])
                  {
                      NSArray *dataArray = [responseObject objectForKey:@"leaveDetails"];
-                     [leaveTitle removeAllObjects];
-                     [leaveDate removeAllObjects];
-                     [leaveReson removeAllObjects];
-                     [leaveDays removeAllObjects];
-                     [leaveImages removeAllObjects];
+                     [self->leaveTitle removeAllObjects];
+                     [self->leaveDate removeAllObjects];
+                     [self->leaveReson removeAllObjects];
+                     [self->leaveDays removeAllObjects];
+                     [self->leaveImages removeAllObjects];
                      for (int i = 0; i < [dataArray count];i++)
                      {
                          NSArray *Data = [dataArray objectAtIndex:i];
@@ -228,9 +228,9 @@
                          
                          NSString *Daydate = [NSString stringWithFormat:@"%@ (%@)",strDay,newDate];
                          
-                         [leaveTitle addObject:strLeaveTitle];
-                         [leaveDate addObject:Daydate];
-                         [leaveReson addObject:strdescrption];
+                         [self->leaveTitle addObject:strLeaveTitle];
+                         [self->leaveDate addObject:Daydate];
+                         [self->leaveReson addObject:strdescrption];
                      }
                      self.tableView.hidden = NO;
                      [self.tableView reloadData];
@@ -330,11 +330,11 @@
                  if ([msg isEqualToString:@"View Leaves"])
                  {
                      NSArray *dataArray = [responseObject objectForKey:@"upcomingleavesDetails"];
-                     [leaveTitle removeAllObjects];
-                     [leaveDate removeAllObjects];
-                     [leaveReson removeAllObjects];
-                     [leaveDays removeAllObjects];
-                     [leaveImages removeAllObjects];
+                     [self->leaveTitle removeAllObjects];
+                     [self->leaveDate removeAllObjects];
+                     [self->leaveReson removeAllObjects];
+                     [self->leaveDays removeAllObjects];
+                     [self->leaveImages removeAllObjects];
                      for (int i = 0; i < [dataArray count];i++)
                      {
                          NSArray *Data = [dataArray objectAtIndex:i];
@@ -360,9 +360,9 @@
                          
                          NSString *Daydate = [NSString stringWithFormat:@"%@ (%@)",strDay,newDate];
                          
-                         [leaveTitle addObject:strLeaveTitle];
-                         [leaveDate addObject:Daydate];
-                         [leaveReson addObject:strdescrption];
+                         [self->leaveTitle addObject:strLeaveTitle];
+                         [self->leaveDate addObject:Daydate];
+                         [self->leaveReson addObject:strdescrption];
                      }
                      self.tableView.hidden = NO;
                      [self.tableView reloadData];

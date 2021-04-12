@@ -28,15 +28,20 @@
     _declineOutlet.layer.cornerRadius = 8.0;
     _declineOutlet.clipsToBounds = YES;
     
-    self.decrptionTxtView.layer.cornerRadius = 8.0f;
+    self.decrptionTxtView.layer.cornerRadius = 5.0f;
     self.decrptionTxtView.clipsToBounds = YES;
+    self.decrptionTxtView.backgroundColor = UIColor.whiteColor;
+    self.decrptionTxtView.layer.borderWidth = 1.0;
+    self.decrptionTxtView.layer.borderColor = UIColor.grayColor.CGColor;
+    self.decrptionTxtView.layer.masksToBounds = YES;
+
     
 //    _decrptionTxtView.layer.shadowRadius  = 5.5f;
 //    _decrptionTxtView.layer.shadowColor   = UIColor.grayColor.CGColor;
 //    _decrptionTxtView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
 //    _decrptionTxtView.layer.shadowOpacity = 0.6f;
 //    _decrptionTxtView.layer.masksToBounds = NO;
-//    
+//
 //    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
 //    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(_decrptionTxtView.bounds, shadowInsets)];
 //    _decrptionTxtView.layer.shadowPath    = shadowPath.CGPath;

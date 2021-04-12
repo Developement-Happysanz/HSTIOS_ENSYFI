@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
     SWRevealViewController *revealViewController = self.revealViewController;
@@ -44,6 +44,7 @@
 
     ab_date = [[NSMutableArray alloc]init];
     
+    self.collectionView.backgroundColor = [UIColor whiteColor];
     menuImages = [NSArray arrayWithObjects:@"attendance.png",@"exam.png",@"result.png",@"timetable.png",@"event.png",@"circular.png",nil];
     menuTitles= [NSArray arrayWithObjects:@"ATTENDANCE",@"CLASS TEST & HOMEWORK",@"EXAM & RESULT",@"TIME TABLE",@"EVENTS",@"CIRCULAR", nil];
     
@@ -55,13 +56,15 @@
 {
     self.mainView.layer.cornerRadius = 8.0f;
     self.mainView.clipsToBounds = YES;
-    
+    _mainView.layer.backgroundColor = UIColor.whiteColor.CGColor;
     _mainView.layer.shadowRadius  = 5.5f;
-    _mainView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    _mainView.layer.shadowColor   = UIColor.redColor.CGColor;
     _mainView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
     _mainView.layer.shadowOpacity = 0.6f;
     _mainView.layer.masksToBounds = NO;
+    self.collectionView.backgroundColor = [UIColor whiteColor];
     
+   
     UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
     UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(_mainView.bounds, shadowInsets)];
     _mainView.layer.shadowPath    = shadowPath.CGPath;
@@ -77,7 +80,7 @@
         flowLayout.sectionInset = UIEdgeInsetsMake(60, 30, 60, 30);
     } else
     {
-//        flowLayout.itemSize = CGSizeMake(192.f, 192.f);
+        flowLayout.itemSize = CGSizeMake(192.f, 192.f);
     }
     
     [flowLayout invalidateLayout]; //force the elements to get laid out again with the new size
@@ -90,14 +93,14 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     MainCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-//    if ([[UIScreen mainScreen] bounds].size.height == 568)
-//    {
-//        [cell.imageview setFrame:CGRectMake(38, 25, 130, 130)];
-//
-//    }
-//    cell.cellview.layer.borderWidth = 1.0f;
-//    cell.cellview.layer.borderColor = [UIColor grayColor].CGColor;
-//    cell.cellview.layer.cornerRadius = 10.0f;
+    if ([[UIScreen mainScreen] bounds].size.height == 568)
+    {
+        [cell.imageview setFrame:CGRectMake(38, 25, 130, 130)];
+
+    }
+    cell.cellview.layer.borderWidth = 1.0f;
+    cell.cellview.layer.borderColor = [UIColor grayColor].CGColor;
+    cell.cellview.layer.cornerRadius = 10.0f;
     cell.imageview.image = [UIImage imageNamed:menuImages[indexPath.row]];
     cell.menuTitles.text = [menuTitles objectAtIndex:indexPath.row];
     
@@ -111,61 +114,60 @@
     {
         [[NSUserDefaults standardUserDefaults]setObject:@"mainMenu" forKey:@"view_selection"];
 
-//        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//        appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
-//        
-//        NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
-//        [parameters setObject:appDel.class_id forKey:@"class_id"];
-//        [parameters setObject:appDel.student_id forKey:@"stud_id"];
-//        
-//        AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-//        manager.requestSerializer = [AFJSONRequestSerializer serializer];
-//        [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-//        manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
-//        
-//        
-//        /* concordanate with baseurl */
-//        NSString *forAttendance = @"/apistudent/disp_Attendence/";
-//        NSArray *components = [NSArray arrayWithObjects:baseUrl,appDel.institute_code,forAttendance, nil];
-//        NSString *api = [NSString pathWithComponents:components];
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        
+        NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
+        [parameters setObject:appDel.class_id forKey:@"class_id"];
+        [parameters setObject:appDel.student_id forKey:@"stud_id"];
+        
+        AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+        
+        /* concordanate with baseurl */
+        NSString *forAttendance = @"/apistudent/disp_Attendence/";
+        NSArray *components = [NSArray arrayWithObjects:baseUrl,appDel.institute_code,forAttendance, nil];
+        NSString *api = [NSString pathWithComponents:components];
 //        
          [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//        
-//        [manager POST:api parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-//         {
-//             
-//             NSLog(@"%@",responseObject);
-//             
-//             NSArray *arr_Attendance = [responseObject objectForKey:@"attendenceDetails"];
-//             NSString *msg = [responseObject objectForKey:@"msg"];
-//             
-//             if ([msg isEqualToString:@"View Attendence"])
-//             {
-//                 
-//                 NSArray *attendenceHistory = [responseObject objectForKey:@"attendenceHistory"];
-//                 NSString *absent_days = [attendenceHistory valueForKey:@"absent_days"];
-//                 NSString *leave_days = [attendenceHistory valueForKey:@"leave_days"];
-//                 NSString *od_days = [attendenceHistory valueForKey:@"od_days"];
-//                 NSString *present_days = [attendenceHistory valueForKey:@"present_days"];
-//                 NSString *total_working_days = [attendenceHistory valueForKey:@"total_working_days"];
-//                 
-//                 
-//                 for (int i = 0; i < [arr_Attendance count]; i++)
-//                 {
-//                     NSDictionary *dict = [arr_Attendance objectAtIndex:i];
-//                     NSString *abDate= [dict valueForKey:@"abs_date"];
-//                     [ab_date addObject:abDate];
-//                     
-//                 }
-//
-//                 NSArray *abs_date = [NSArray arrayWithArray:ab_date];
-//
-//                 [[NSUserDefaults standardUserDefaults] setObject:abs_date forKey:@"abs_date_Key"];
-//                 [[NSUserDefaults standardUserDefaults] setObject:absent_days forKey:@"absent_days_Key"];
-//                 [[NSUserDefaults standardUserDefaults] setObject:leave_days forKey:@"leave_days_Key"];
-//                 [[NSUserDefaults standardUserDefaults] setObject:od_days forKey:@"od_days_Key"];
-//                 [[NSUserDefaults standardUserDefaults] setObject:present_days forKey:@"present_days_Key"];
-//                 [[NSUserDefaults standardUserDefaults] setObject:total_working_days forKey:@"total_working_days_Key"];
+        
+        [manager POST:api parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+         {
+             
+             NSLog(@"%@",responseObject);
+             
+             NSArray *arr_Attendance = [responseObject objectForKey:@"attendenceDetails"];
+             NSString *msg = [responseObject objectForKey:@"msg"];
+             
+             if ([msg isEqualToString:@"View Attendence"])
+             {
+                 
+                 NSArray *attendenceHistory = [responseObject objectForKey:@"attendenceHistory"];
+                 NSString *absent_days = [attendenceHistory valueForKey:@"absent_days"];
+                 NSString *leave_days = [attendenceHistory valueForKey:@"leave_days"];
+                 NSString *od_days = [attendenceHistory valueForKey:@"od_days"];
+                 NSString *present_days = [attendenceHistory valueForKey:@"present_days"];
+                 NSString *total_working_days = [attendenceHistory valueForKey:@"total_working_days"];
+                 
+                 
+                 for (int i = 0; i < [arr_Attendance count]; i++)
+                 {
+                     NSDictionary *dict = [arr_Attendance objectAtIndex:i];
+                     NSString *abDate= [dict valueForKey:@"abs_date"];
+                     [ab_date addObject:abDate];
+                     
+                 }
+
+                 NSArray *abs_date = [NSArray arrayWithArray:ab_date];
+
+                 [[NSUserDefaults standardUserDefaults] setObject:abs_date forKey:@"abs_date_Key"];
+                 [[NSUserDefaults standardUserDefaults] setObject:absent_days forKey:@"absent_days_Key"];
+                 [[NSUserDefaults standardUserDefaults] setObject:leave_days forKey:@"leave_days_Key"];
+                 [[NSUserDefaults standardUserDefaults] setObject:od_days forKey:@"od_days_Key"];
+                 [[NSUserDefaults standardUserDefaults] setObject:present_days forKey:@"present_days_Key"];
+                 [[NSUserDefaults standardUserDefaults] setObject:total_working_days forKey:@"total_working_days_Key"];
         
 
                  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -174,25 +176,25 @@
                  
                  [MBProgressHUD hideHUDForView:self.view animated:YES];
                  
-//             }
-//             else
-//             {
-//                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//                 AttendanceViewController *attendance = (AttendanceViewController *)[storyboard instantiateViewControllerWithIdentifier:@"AttendanceViewController"];
-//                 [self.navigationController pushViewController:attendance animated:YES];
-//                 
-//                 [MBProgressHUD hideHUDForView:self.view animated:YES];
-//                 
-//             }
-//             
-//             [[NSUserDefaults standardUserDefaults] setObject:msg forKey:@"msg_attendance_Key"];
-//
-//             
-//         }
-//              failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-//         {
-//             NSLog(@"error: %@", error);
-//         }];
+             }
+             else
+             {
+                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                 AttendanceViewController *attendance = (AttendanceViewController *)[storyboard instantiateViewControllerWithIdentifier:@"AttendanceViewController"];
+                 [self.navigationController pushViewController:attendance animated:YES];
+                 
+                 [MBProgressHUD hideHUDForView:self.view animated:YES];
+                 
+             }
+             
+             [[NSUserDefaults standardUserDefaults] setObject:msg forKey:@"msg_attendance_Key"];
+
+             
+         }
+              failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+         {
+             NSLog(@"error: %@", error);
+         }];
 
     }
     else if (indexPath.row == 1)
@@ -290,7 +292,7 @@
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+  
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
         // The device is an iPad running iOS 3.2 or later.

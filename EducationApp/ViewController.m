@@ -14,7 +14,6 @@
     AppDelegate *appDel;
 }
 
-
 @property(strong) Reachability * googleReach;
 @property(strong) Reachability * localWiFiReach;
 @property(strong) Reachability * internetConnectionReach;
@@ -35,9 +34,10 @@
 //    _idTextfield.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.10f];
 //    _idTextfield.layer.borderWidth = 1.0f;
 //    [_idTextfield.layer setCornerRadius:10.0f];
-    
+    [self performSegueWithIdentifier:@"toLoginview" sender:self];
     _frwdBtnOtlet.layer.cornerRadius = 2.0f;
     _frwdBtnOtlet.clipsToBounds = YES;
+    
 
     [self.navigationController setNavigationBarHidden:YES];
     
@@ -126,7 +126,7 @@
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
     [parameters setObject:@"chkInstid" forKey:@"func_name"];
     [parameters setObject:self.idTextfield.text forKey:@"InstituteID"];
-    
+
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -135,34 +135,34 @@
     [manager POST:appBaseUrl parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
     {
         NSLog(@"%@",responseObject);
-        
+
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
         NSString *msg = [responseObject objectForKey:@"msg"];
         NSString *status = [responseObject objectForKey:@"status"];
         NSDictionary *dictionary = [responseObject objectForKey:@"userData"];
         NSLog(@"%@%@",dictionary,status);
-        
+
         if ([msg isEqualToString:@"Institute code is valid."])
         {
             /*implemet to store valus in nsobject Class */
-            
+
             NSString *institute_name = [dictionary objectForKey:@"institute_name"];
             NSString *institute_id = [dictionary objectForKey:@"institute_id"];
             NSString *institute_code = [dictionary objectForKey:@"institute_code"];
             NSString *institute_logo = [dictionary objectForKey:@"institute_logo"];
-            
-            
+
+
             [[NSUserDefaults standardUserDefaults]setObject:institute_name forKey:@"institute_name_Key"];
             [[NSUserDefaults standardUserDefaults]setObject:institute_id forKey:@"institute_id_Key"];
             [[NSUserDefaults standardUserDefaults]setObject:institute_code forKey:@"institute_code_Key"];
-            
-            appDel =  (AppDelegate *)[UIApplication sharedApplication].delegate;
-            
-            appDel.institute_code = [[NSUserDefaults standardUserDefaults]objectForKey:@"institute_code_Key"];
-            NSLog(@"%@",appDel.institute_code);
+
+            self->appDel =  (AppDelegate *)[UIApplication sharedApplication].delegate;
+
+            self->appDel.institute_code = [[NSUserDefaults standardUserDefaults]objectForKey:@"institute_code_Key"];
+            NSLog(@"%@",self->appDel.institute_code);
             /* concordanate the imagepath and baseurl */
-            
+
             NSArray *components = [NSArray arrayWithObjects:baseUrl,@"institute_logo/",institute_logo, nil];
             NSString *institute_logo_url = [NSString pathWithComponents:components];
             NSLog(@"%@",institute_logo_url);
@@ -171,7 +171,7 @@
 
             [self performSegueWithIdentifier:@"toLoginview" sender:self];
             [MBProgressHUD hideHUDForView:self.view animated:YES];
-            
+
         }
         else
         {
@@ -180,7 +180,7 @@
                                        alertControllerWithTitle:@"ENSYFI"
                                        message:@"Institute Id cannot be empty"
                                        preferredStyle:UIAlertControllerStyleAlert];
-            
+
             UIAlertAction* ok = [UIAlertAction
                                  actionWithTitle:@"OK"
                                  style:UIAlertActionStyleDefault
@@ -189,7 +189,7 @@
                                      [MBProgressHUD hideHUDForView:self.view animated:YES];
 
                                  }];
-            
+
             [alert addAction:ok];
             [self presentViewController:alert animated:YES completion:nil];
             self.idTextfield.text= @"";
@@ -200,7 +200,7 @@
     {
         NSLog(@"error: %@", error);
     }];
-    
+
     
 }
 
@@ -242,3 +242,9 @@
     [self.idTextfield resignFirstResponder];
 }
 @end
+
+
+
+
+//SWRevealViewControllerSeguePushController
+//signout

@@ -76,8 +76,8 @@
          NSLog(@"%@",responseObject);
          [MBProgressHUD hideHUDForView:self.view animated:YES];
          NSString *msg = [responseObject objectForKey:@"msg"];
-         [name removeAllObjects];
-         [user_id removeAllObjects];
+         [self->name removeAllObjects];
+         [self->user_id removeAllObjects];
          if ([msg isEqualToString:@"Teacher Details"])
          {
              NSArray *dataArray = [responseObject valueForKey:@"teacherList"];
@@ -87,8 +87,8 @@
                  NSString *strName = [Data valueForKey:@"name"];
                  NSString *strUser_id = [Data valueForKey:@"user_id"];
                  
-                 [name addObject:strName];
-                 [user_id addObject:strUser_id];
+                 [self->name addObject:strName];
+                 [self->user_id addObject:strUser_id];
              }
          }
      }

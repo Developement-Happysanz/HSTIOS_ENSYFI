@@ -82,8 +82,8 @@
          {
              NSArray *arr_Event_organiser = [responseObject objectForKey:@"subeventDetails"];
              
-             name = [arr_Event_organiser valueForKey:@"name"];
-             sub_event_name = [arr_Event_organiser valueForKey:@"sub_event_name"];
+             self->name = [arr_Event_organiser valueForKey:@"name"];
+             self->sub_event_name = [arr_Event_organiser valueForKey:@"sub_event_name"];
              
              
              [self.tableView reloadData];

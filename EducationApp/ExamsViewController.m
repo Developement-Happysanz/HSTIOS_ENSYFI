@@ -118,14 +118,14 @@
          
          for (int i = 0; i < [arr_Exams count]; i++)
          {
-             examID = [arr_Exams valueForKey:@"exam_id"];
-             examDetails = [arr_Exams valueForKey:@"exam_name"];
-             MarkStatus = [arr_Exams valueForKey:@"MarkStatus"];
+             self->examID = [arr_Exams valueForKey:@"exam_id"];
+             self->examDetails = [arr_Exams valueForKey:@"exam_name"];
+             self->MarkStatus = [arr_Exams valueForKey:@"MarkStatus"];
              
              
-             Fromdate = [arr_Exams valueForKey:@"Fromdate"];
-             Todate = [arr_Exams valueForKey:@"Todate"];
-             internal_external = [arr_Exams valueForKey:@"is_internal_external"];
+             self->Fromdate = [arr_Exams valueForKey:@"Fromdate"];
+             self->Todate = [arr_Exams valueForKey:@"Todate"];
+             self->internal_external = [arr_Exams valueForKey:@"is_internal_external"];
              
 //             [examID addObject:str_examID];
 //             [examDetails addObject:str_examDetails];

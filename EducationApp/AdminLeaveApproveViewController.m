@@ -29,6 +29,33 @@
     self.subView.layer.cornerRadius = 5.0;
     self.subView.clipsToBounds = YES;
     
+    _subView.layer.shadowRadius  = 5.5f;
+    _subView.layer.shadowColor   = UIColor.grayColor.CGColor;
+    _subView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+    _subView.layer.shadowOpacity = 0.6f;
+    _subView.layer.masksToBounds = NO;
+    
+    UIEdgeInsets shadowInsets_     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+    UIBezierPath *shadowPath_      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(_subView.bounds, shadowInsets_)];
+    _subView.layer.shadowPath    = shadowPath_.CGPath;
+    
+    self.textView.layer.cornerRadius = 5.0f;
+    self.textView.clipsToBounds = YES;
+    self.textView.backgroundColor = UIColor.whiteColor;
+    self.textView.layer.borderColor =  UIColor.grayColor.CGColor;
+    self.textView.layer.borderWidth = 1.0;
+    self.textView.layer.masksToBounds = YES;
+    
+//    _textView.layer.shadowRadius  = 5.5f;
+//    _textView.layer.shadowColor   = UIColor.grayColor.CGColor;
+//    _textView.layer.shadowOffset  = CGSizeMake(0.0f, 0.0f);
+//    _textView.layer.shadowOpacity = 0.6f;
+//    _textView.layer.masksToBounds = NO;
+//
+//    UIEdgeInsets shadowInsets     = UIEdgeInsetsMake(0, 0, -1.5f, 0);
+//    UIBezierPath *shadowPath      = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(_textView.bounds, shadowInsets)];
+//    _textView.layer.shadowPath    = shadowPath.CGPath;
+    
     self.nameLabel.text = [[NSUserDefaults standardUserDefaults]objectForKey:@"adminLeave_Name"];
     self.dateLabel.text = [[NSUserDefaults standardUserDefaults]objectForKey:@"adminLeave_date"];
     self.textView.text = [[NSUserDefaults standardUserDefaults]objectForKey:@"adminLeave_Title"];

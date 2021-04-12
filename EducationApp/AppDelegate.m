@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "FMDatabase.h"
 
+#define SYSTEM_VERSION_GRATERTHAN_OR_EQUALTO(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+
 @interface AppDelegate ()
 
 @end
@@ -20,7 +22,32 @@
     // Override point for customization after application launch.
     
     [Util copyFile:@"ENSIFY.db"];
-    
+    if(SYSTEM_VERSION_LESS_THAN( @"10.0" ) ) {
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound |    UIUserNotificationTypeAlert | UIUserNotificationTypeBadge |  UNAuthorizationOptionProvidesAppNotificationSettings) categories:nil]];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+        
+        //        if(optind != nil)
+        //        {
+        //            NSLog( @"registerForPushWithOptions:" );
+        //        }
+    }
+    else {
+        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+        center.delegate = self;
+        [center requestAuthorizationWithOptions:(UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionBadge) completionHandler:^(BOOL granted, NSError * _Nullable error) {
+            if( !error ) {
+                // required to get the app to do anything at all about push notifications
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [[UIApplication sharedApplication] registerForRemoteNotifications];
+                });
+                NSLog( @"Push registration success." );
+            } else {
+                NSLog( @"Push registration FAILED" );
+                NSLog( @"ERROR: %@ - %@", error.localizedFailureReason, error.localizedDescription );
+                NSLog( @"SUGGESTIONS: %@ - %@", error.localizedRecoveryOptions, error.localizedRecoverySuggestion );
+            }
+        }];
+    }
     NSString *str = [[NSUserDefaults standardUserDefaults]objectForKey:@"forgotPasswordKey"];
 //    NSString *loginStatus = [[NSUserDefaults standardUserDefaults]objectForKey:@"Login_Status"];
     
@@ -41,6 +68,64 @@
     }
     return YES;
 }
+
+-(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    NSString * token = [NSString stringWithFormat:@"%@", deviceToken];
+    //Format token as per need:
+    token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
+    token = [token stringByReplacingOccurrencesOfString:@">" withString:@""];
+    token = [token stringByReplacingOccurrencesOfString:@"<" withString:@""];
+    NSLog(@"Device Token is \n%@",token);
+    [[NSUserDefaults standardUserDefaults]setObject:token forKey:@"deviceToken_Key"];
+    
+}
+
+-(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+    NSLog(@"Error:%@",error);
+}
+
+-(void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void(^)(UIBackgroundFetchResult))completionHandler {
+    // iOS 10 will handle notifications through other methods
+    
+    if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO( @"10.0" ) )
+    {
+        NSLog( @"iOS version >= 10. Let NotificationCenter handle this one." );
+        // set a member variable to tell the new delegate that this is background
+        return;
+    }
+    NSLog( @"HANDLE PUSH, didReceiveRemoteNotification: %@", userInfo );
+    // custom code to handle notification content
+    if( [UIApplication sharedApplication].applicationState == UIApplicationStateInactive )
+    {
+        NSLog( @"INACTIVE" );
+        completionHandler( UIBackgroundFetchResultNewData );
+    }
+    else if( [UIApplication sharedApplication].applicationState == UIApplicationStateBackground )
+    {
+        NSLog( @"BACKGROUND" );
+        completionHandler( UIBackgroundFetchResultNewData );
+    }
+    else
+    {
+        NSLog( @"FOREGROUND" );
+        completionHandler(UIBackgroundFetchResultNewData);
+    }
+}
+
+-(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler{
+    NSLog(@"User Info : %@",notification.request.content.userInfo);
+    completionHandler(UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionBadge);
+    
+}
+
+//Called to let your app know which action was selected by the user for a given notification.
+-(void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void(^)(void))completionHandler
+{
+    NSLog(@"User Info : %@",response.notification.request.content.userInfo);
+    completionHandler();
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {    
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

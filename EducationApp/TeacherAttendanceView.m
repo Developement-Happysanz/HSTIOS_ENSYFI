@@ -215,8 +215,8 @@
                  
                  NSArray *attendenceDetails = [responseObject objectForKey:@"attendenceDetails"];
                  
-                 [a_status removeAllObjects];
-                 [name removeAllObjects];
+                 [self->a_status removeAllObjects];
+                 [self->name removeAllObjects];
                  
                  for (int i =0; i < [attendenceDetails count]; i++)
                  {
@@ -224,8 +224,8 @@
                      NSString *str_a_status = [dict objectForKey:@"a_status"];
                      NSString *str_name = [dict objectForKey:@"name"];
                      
-                     [a_status addObject:str_a_status];
-                     [name addObject:str_name];
+                     [self->a_status addObject:str_a_status];
+                     [self->name addObject:str_name];
                  }
                  
                  [[NSUserDefaults standardUserDefaults]setObject:@"day" forKey:@"view_type"];
@@ -615,11 +615,11 @@
              {
                  NSArray *attendenceDetails = [responseObject objectForKey:@"attendenceDetails"];
                  
-                 [montha_status removeAllObjects];
-                 [Month_leavedates removeAllObjects];
-                 [month_leaves removeAllObjects];
-                 [Month_name removeAllObjects];
-                 [month_enroll_id removeAllObjects];
+                 [self->montha_status removeAllObjects];
+                 [self->Month_leavedates removeAllObjects];
+                 [self->month_leaves removeAllObjects];
+                 [self->Month_name removeAllObjects];
+                 [self->month_enroll_id removeAllObjects];
                  
                  for (int i = 0; i < [attendenceDetails count]; i++)
                  {
@@ -630,11 +630,11 @@
                      NSString *strMonth_name = [month_dict objectForKey:@"name"];
                      NSString *strMonth_enroll_id = [month_dict objectForKey:@"enroll_id"];
                      
-                     [montha_status addObject:strMonth_a_status];
-                     [Month_leavedates addObject:strMonth_abs_date];
-                     [month_leaves addObject:strMonth_leaves];
-                     [Month_name addObject:strMonth_name];
-                     [month_enroll_id addObject:strMonth_enroll_id];
+                     [self->montha_status addObject:strMonth_a_status];
+                     [self->Month_leavedates addObject:strMonth_abs_date];
+                     [self->month_leaves addObject:strMonth_leaves];
+                     [self->Month_name addObject:strMonth_name];
+                     [self->month_enroll_id addObject:strMonth_enroll_id];
                      
                  }
                  [[NSUserDefaults standardUserDefaults]setObject:@"month" forKey:@"view_type"];

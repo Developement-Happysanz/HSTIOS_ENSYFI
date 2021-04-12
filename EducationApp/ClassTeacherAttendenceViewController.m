@@ -58,13 +58,13 @@
          [MBProgressHUD hideHUDForView:self.view animated:YES];
          NSString *msg = [responseObject objectForKey:@"msg"];
          NSArray *ct_attendance_history = [responseObject valueForKey:@"ct_attendance_history"];
-         [class_total removeAllObjects];
-         [no_of_present removeAllObjects];
-         [no_of_absent removeAllObjects];
-         [created_at removeAllObjects];
-         [sent_status removeAllObjects];
-         [name removeAllObjects];
-         [at_id removeAllObjects];
+         [self->class_total removeAllObjects];
+         [self->no_of_present removeAllObjects];
+         [self->no_of_absent removeAllObjects];
+         [self->created_at removeAllObjects];
+         [self->sent_status removeAllObjects];
+         [self->name removeAllObjects];
+         [self->at_id removeAllObjects];
          if ([msg isEqualToString:@"Class Teacher Attendance History"])
          {
              for (int i = 0;i < [ct_attendance_history count]; i++)
@@ -78,14 +78,14 @@
                  NSString *strName = [dict objectForKey:@"name"];
                  NSString *strat_id = [dict objectForKey:@"at_id"];
 
-                 [class_total addObject:strclass_total];
-                 [created_at addObject:strcreated_at];
-                 [no_of_present addObject:strno_of_present];
-                 [no_of_absent addObject:strno_of_absent];
-                 [sent_status addObject:strsent_status];
-                 [sent_status addObject:strsent_status];
-                 [name addObject:strName];
-                 [at_id addObject:strat_id];
+                 [self->class_total addObject:strclass_total];
+                 [self->created_at addObject:strcreated_at];
+                 [self->no_of_present addObject:strno_of_present];
+                 [self->no_of_absent addObject:strno_of_absent];
+                 [self->sent_status addObject:strsent_status];
+                 [self->sent_status addObject:strsent_status];
+                 [self->name addObject:strName];
+                 [self->at_id addObject:strat_id];
 
              }
          }

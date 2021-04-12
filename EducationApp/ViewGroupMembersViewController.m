@@ -56,9 +56,9 @@
          if ([msg isEqualToString:@"Group Member Details"])
          {
              
-             [_id removeAllObjects];
-             [user_type_name removeAllObjects];
-             [name removeAllObjects];
+             [self->_id removeAllObjects];
+             [self->user_type_name removeAllObjects];
+             [self->name removeAllObjects];
              
              for (int i = 0;i < [dataArray count]; i++)
              {
@@ -67,9 +67,9 @@
                  NSString *strUser_type_name = [Data valueForKey:@"user_type_name"];
                  NSString *strId = [Data valueForKey:@"id"];
 
-                 [_id addObject:strId];
-                 [user_type_name addObject:strUser_type_name];
-                 [name addObject:strName];
+                 [self->_id addObject:strId];
+                 [self->user_type_name addObject:strUser_type_name];
+                 [self->name addObject:strName];
 
              }
              

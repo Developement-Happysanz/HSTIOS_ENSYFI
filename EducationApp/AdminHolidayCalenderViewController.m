@@ -201,11 +201,11 @@
                  if ([msg isEqualToString:@"View Leaves"])
                  {
                      NSArray *dataArray = [responseObject objectForKey:@"leaveDetails"];
-                     [leaveTitle removeAllObjects];
-                     [leaveDate removeAllObjects];
-                     [leaveReson removeAllObjects];
-                     [leaveDays removeAllObjects];
-                     [leaveImages removeAllObjects];
+                     [self->leaveTitle removeAllObjects];
+                     [self->leaveDate removeAllObjects];
+                     [self->leaveReson removeAllObjects];
+                     [self->leaveDays removeAllObjects];
+                     [self->leaveImages removeAllObjects];
                      for (int i = 0; i < [dataArray count];i++)
                      {
                          NSArray *Data = [dataArray objectAtIndex:i];
@@ -231,9 +231,9 @@
                          
                          NSString *Daydate = [NSString stringWithFormat:@"%@ (%@)",strDay,newDate];
                          
-                         [leaveTitle addObject:strLeaveTitle];
-                         [leaveDate addObject:Daydate];
-                         [leaveReson addObject:strdescrption];
+                         [self->leaveTitle addObject:strLeaveTitle];
+                         [self->leaveDate addObject:Daydate];
+                         [self->leaveReson addObject:strdescrption];
                      }
                      self.tableView.hidden = NO;
                      [self.tableView reloadData];
@@ -337,11 +337,11 @@
                  if ([msg isEqualToString:@"View Leaves"])
                  {
                      NSArray *dataArray = [responseObject objectForKey:@"upcomingleavesDetails"];
-                     [leaveTitle removeAllObjects];
-                     [leaveDate removeAllObjects];
-                     [leaveReson removeAllObjects];
-                     [leaveDays removeAllObjects];
-                     [leaveImages removeAllObjects];
+                     [self->leaveTitle removeAllObjects];
+                     [self->leaveDate removeAllObjects];
+                     [self->leaveReson removeAllObjects];
+                     [self->leaveDays removeAllObjects];
+                     [self->leaveImages removeAllObjects];
                      for (int i = 0; i < [dataArray count];i++)
                      {
                          NSArray *Data = [dataArray objectAtIndex:i];
@@ -367,9 +367,9 @@
                          
                          NSString *Daydate = [NSString stringWithFormat:@"%@ (%@)",strDay,newDate];
                          
-                         [leaveTitle addObject:strLeaveTitle];
-                         [leaveDate addObject:Daydate];
-                         [leaveReson addObject:strdescrption];
+                         [self->leaveTitle addObject:strLeaveTitle];
+                         [self->leaveDate addObject:Daydate];
+                         [self->leaveReson addObject:strdescrption];
                      }
                      self.tableView.hidden = NO;
                      [self.tableView reloadData];
@@ -463,8 +463,8 @@
          {
              
              NSLog(@"%@",responseObject);
-             [sec_id removeAllObjects];
-             [sec_name removeAllObjects];
+             [self->sec_id removeAllObjects];
+             [self->sec_name removeAllObjects];
              
              NSString *msg = [responseObject objectForKey:@"msg"];
              NSArray *data = [responseObject objectForKey:@"data"];
@@ -477,15 +477,15 @@
                      NSString *se_id = [dict objectForKey:@"sec_id"];
                      NSString *se_name = [dict objectForKey:@"sec_name"];
                      
-                     [sec_id addObject:se_id];
-                     [sec_name addObject:se_name];
+                     [self->sec_id addObject:se_id];
+                     [self->sec_name addObject:se_name];
                  }
-                 [[NSUserDefaults standardUserDefaults]setObject:sec_id forKey:@"admin_sec_id"];
-                 [[NSUserDefaults standardUserDefaults]setObject:sec_name forKey:@"admin_sec_name"];
-                 if(dropDown == nil)
+                 [[NSUserDefaults standardUserDefaults]setObject:self->sec_id forKey:@"admin_sec_id"];
+                 [[NSUserDefaults standardUserDefaults]setObject:self->sec_name forKey:@"admin_sec_name"];
+                 if(self->dropDown == nil)
                  {
                      CGFloat f;
-                     if (sec_name.count < 3)
+                     if (self->sec_name.count < 3)
                      {
                          f = 130;
                      }
@@ -493,12 +493,12 @@
                      {
                          f = 130;
                      }
-                     dropDown = [[NIDropDown alloc]showDropDown:sender :&f :sec_name :nil :@"down" :self.view];
+                     self->dropDown = [[NIDropDown alloc]showDropDown:sender :&f :sec_name :nil :@"down" :self.view];
                      [[NSUserDefaults standardUserDefaults]setObject:@"Section" forKey:@"sec_class"];
-                     dropDown.delegate = self;
+                     self->dropDown.delegate = self;
                  }
                  else {
-                     [dropDown hideDropDown:sender];
+                     [self->dropDown hideDropDown:sender];
                      [self rel];
                  }
             }

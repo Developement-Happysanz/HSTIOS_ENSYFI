@@ -101,10 +101,10 @@
                  NSString *strNotification_id = [dict objectForKey:@"id"];
                  NSString *strnotes = [dict objectForKey:@"notes"];
                  
-                 [group_title addObject:strgroup_title];
-                 [group_title_id addObject:strgroup_title_id];
-                 [notification_id addObject:strNotification_id];
-                 [notes addObject:strnotes];
+                 [self->group_title addObject:strgroup_title];
+                 [self->group_title_id addObject:strgroup_title_id];
+                 [self->notification_id addObject:strNotification_id];
+                 [self->notes addObject:strnotes];
 
              }
              
@@ -278,13 +278,13 @@
                  NSString *strgroupView_title = [dict objectForKey:@"group_title"];
                  NSString *strgropuDetailView_id = [dict objectForKey:@"id"];
                  
-                 [groupView_title addObject:strgroupView_title];
-                 [gropuDetailView_id addObject:strgropuDetailView_id];
+                 [self->groupView_title addObject:strgroupView_title];
+                 [self->gropuDetailView_id addObject:strgropuDetailView_id];
                  
              }
             
-             [[NSUserDefaults standardUserDefaults]setObject:groupView_title forKey:@"groupTitle_key"];
-             [[NSUserDefaults standardUserDefaults]setObject:gropuDetailView_id forKey:@"groupid_key"];
+             [[NSUserDefaults standardUserDefaults]setObject:self->groupView_title forKey:@"groupTitle_key"];
+             [[NSUserDefaults standardUserDefaults]setObject:self->gropuDetailView_id forKey:@"groupid_key"];
 
              
              UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"teachers" bundle:nil];

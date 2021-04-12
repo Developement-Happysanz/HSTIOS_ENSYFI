@@ -116,14 +116,14 @@
          NSString *msg = [responseObject objectForKey:@"msg"];
          if ([msg isEqualToString:@"View Homework Details"])
          {
-             subject_name = [array_homeworkDetails valueForKey:@"subject_name"];
-             title = [array_homeworkDetails valueForKey:@"title"];
-             date = [array_homeworkDetails valueForKey:@"test_date"];
-             hw_id = [array_homeworkDetails valueForKey:@"hw_id"];
-             hw_type = [array_homeworkDetails valueForKey:@"hw_type"];
-             hw_details = [array_homeworkDetails valueForKey:@"hw_details"];
-             mark_status = [array_homeworkDetails valueForKey:@"mark_status"];
-             NSLog(@"%@%@%@",subject_name,title,date);
+             self->subject_name = [array_homeworkDetails valueForKey:@"subject_name"];
+             self->title = [array_homeworkDetails valueForKey:@"title"];
+             self->date = [array_homeworkDetails valueForKey:@"test_date"];
+             self->hw_id = [array_homeworkDetails valueForKey:@"hw_id"];
+             self->hw_type = [array_homeworkDetails valueForKey:@"hw_type"];
+             self->hw_details = [array_homeworkDetails valueForKey:@"hw_details"];
+             self->mark_status = [array_homeworkDetails valueForKey:@"mark_status"];
+             NSLog(@"%@%@%@",self->subject_name,self->title,self->date);
              [[NSUserDefaults standardUserDefaults]setObject:@"ct" forKey:@"key"];
 
              [self.tableview reloadData];
@@ -326,18 +326,18 @@
              NSString *msg = [responseObject objectForKey:@"msg"];
              if ([msg isEqualToString:@"View Homework Details"])
              {
-                 subject_name = [array_homeworkDetails valueForKey:@"subject_name"];
-                 title = [array_homeworkDetails valueForKey:@"title"];
-                 date = [array_homeworkDetails valueForKey:@"test_date"];
-                 hw_id = [array_homeworkDetails valueForKey:@"hw_id"];
-                 hw_type = [array_homeworkDetails valueForKey:@"hw_type"];
-                 hw_details = [array_homeworkDetails valueForKey:@"hw_details"];
-                 mark_status = [array_homeworkDetails valueForKey:@"mark_status"];
-                 NSLog(@"%@%@%@",subject_name,title,date);
+                 self->subject_name = [array_homeworkDetails valueForKey:@"subject_name"];
+                 self->title = [array_homeworkDetails valueForKey:@"title"];
+                 self->date = [array_homeworkDetails valueForKey:@"test_date"];
+                 self->hw_id = [array_homeworkDetails valueForKey:@"hw_id"];
+                 self->hw_type = [array_homeworkDetails valueForKey:@"hw_type"];
+                 self->hw_details = [array_homeworkDetails valueForKey:@"hw_details"];
+                 self->mark_status = [array_homeworkDetails valueForKey:@"mark_status"];
+                 NSLog(@"%@%@%@",self->subject_name,self->title,self->date);
                  [[NSUserDefaults standardUserDefaults]setObject:@"ct" forKey:@"key"];
                  [self.tableview reloadData];
                  [[NSUserDefaults standardUserDefaults]setObject:@"HT" forKey:@"hw_type_Key"];
-                 [[NSUserDefaults standardUserDefaults]setObject:hw_id forKey:@"hw_id_Key"];
+                 [[NSUserDefaults standardUserDefaults]setObject:self->hw_id forKey:@"hw_id_Key"];
 
                  [MBProgressHUD hideHUDForView:self.view animated:YES];
              }
@@ -355,7 +355,7 @@
                                       style:UIAlertActionStyleDefault
                                       handler:^(UIAlertAction * action)
                                       {
-                                          [_segmentControl setSelectedSegmentIndex:1];
+                                          [self->_segmentControl setSelectedSegmentIndex:1];
                                       }];
                  
                  [alert addAction:ok];
@@ -371,6 +371,7 @@
     else
     {
         static NSString *simpleTableIdentifier = @"ClassTestTableViewCell";
+        
         
 //        ClassTestTableViewCell *cell = [self.tableview dequeueReusableCellWithIdentifier:simpleTableIdentifier];
 //        
@@ -399,14 +400,14 @@
              NSString *msg = [responseObject objectForKey:@"msg"];
              if ([msg isEqualToString:@"View Homework Details"])
              {
-                 subject_name = [array_homeworkDetails valueForKey:@"subject_name"];
-                 title = [array_homeworkDetails valueForKey:@"title"];
-                 date = [array_homeworkDetails valueForKey:@"due_date"];
-                 hw_id = [array_homeworkDetails valueForKey:@"hw_id"];
-                 hw_type = [array_homeworkDetails valueForKey:@"hw_type"];
-                 hw_details = [array_homeworkDetails valueForKey:@"hw_details"];
-                 mark_status = [array_homeworkDetails valueForKey:@"mark_status"];
-                 NSLog(@"%@%@%@",subject_name,title,date);
+                 self->subject_name = [array_homeworkDetails valueForKey:@"subject_name"];
+                 self->title = [array_homeworkDetails valueForKey:@"title"];
+                 self->date = [array_homeworkDetails valueForKey:@"due_date"];
+                 self->hw_id = [array_homeworkDetails valueForKey:@"hw_id"];
+                 self->hw_type = [array_homeworkDetails valueForKey:@"hw_type"];
+                 self->hw_details = [array_homeworkDetails valueForKey:@"hw_details"];
+                 self->mark_status = [array_homeworkDetails valueForKey:@"mark_status"];
+                 NSLog(@"%@%@%@",self->subject_name,self->title,self->date);
                  [[NSUserDefaults standardUserDefaults]setObject:@"hw" forKey:@"key"];
                  [self.tableview reloadData];
                  [[NSUserDefaults standardUserDefaults]setObject:@"HW" forKey:@"hw_type_Key"];
@@ -424,7 +425,7 @@
                                       style:UIAlertActionStyleDefault
                                       handler:^(UIAlertAction * action)
                                       {
-                                          [_segmentControl setSelectedSegmentIndex:0];
+                                          [self->_segmentControl setSelectedSegmentIndex:0];
                                       }];
                  [alert addAction:ok];
                  [self presentViewController:alert animated:YES completion:nil];

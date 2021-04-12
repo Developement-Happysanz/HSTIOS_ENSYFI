@@ -61,19 +61,19 @@
          {
              
              NSLog(@"%@",responseObject);
-             totalMarksStr = [responseObject objectForKey:@"totalMarks"];
+            self->totalMarksStr = [responseObject objectForKey:@"totalMarks"];
              NSString *msg = [responseObject objectForKey:@"msg"];
              if ([msg isEqualToString:@"View Marks Details"])
              {
-                 [subject_name removeAllObjects];
-                 [total_marks removeAllObjects];
-                 [total_grade removeAllObjects];
-                 [stud_name removeAllObjects];
+                 [self->subject_name removeAllObjects];
+                 [self->total_marks removeAllObjects];
+                 [self->total_grade removeAllObjects];
+                 [self->stud_name removeAllObjects];
 
-                 [subject_name insertObject:@"name" atIndex:0];
-                 [total_marks insertObject:@"name" atIndex:0];
-                 [total_grade insertObject:@"name" atIndex:0];
-                 [stud_name insertObject:@"name" atIndex:0];
+                 [self->subject_name insertObject:@"name" atIndex:0];
+                 [self->total_marks insertObject:@"name" atIndex:0];
+                 [self->total_grade insertObject:@"name" atIndex:0];
+                 [self->stud_name insertObject:@"name" atIndex:0];
 
                  NSArray *marksDetails = [responseObject objectForKey:@"marksDetails"];
                  for (int i = 0; i < [marksDetails count]; i++)
@@ -85,10 +85,10 @@
                      NSString *tot_marks = [dictionary_Enrollment valueForKey:@"total_marks"];
                      NSString *tot_grade = [dictionary_Enrollment valueForKey:@"total_grade"];
                      
-                    [subject_name addObject:sub_name];
-                    [stud_name addObject:strstud_name];
-                    [total_marks addObject:tot_marks];
-                    [total_grade addObject:tot_grade];
+                     [self->subject_name addObject:sub_name];
+                     [self->stud_name addObject:strstud_name];
+                     [self->total_marks addObject:tot_marks];
+                     [self->total_grade addObject:tot_grade];
                  }
                  
                     self.subview.hidden = YES;
@@ -142,17 +142,17 @@
          {
              
              NSLog(@"%@",responseObject);
-             totalMarksStr = [responseObject objectForKey:@"totalMarks"];
+            self->totalMarksStr = [responseObject objectForKey:@"totalMarks"];
              NSString *msg = [responseObject objectForKey:@"msg"];
              if ([msg isEqualToString:@"View Marks Details"])
              {
-                 [subject_name removeAllObjects];
-                 [total_marks removeAllObjects];
-                 [total_grade removeAllObjects];
+                 [self->subject_name removeAllObjects];
+                 [self->total_marks removeAllObjects];
+                 [self->total_grade removeAllObjects];
                  
-                 [subject_name insertObject:@"name" atIndex:0];
-                 [total_marks insertObject:@"name" atIndex:0];
-                 [total_grade insertObject:@"name" atIndex:0];
+                 [self->subject_name insertObject:@"name" atIndex:0];
+                 [self->total_marks insertObject:@"name" atIndex:0];
+                 [self->total_grade insertObject:@"name" atIndex:0];
                  
                  NSArray *marksDetails = [responseObject objectForKey:@"marksDetails"];
                  
@@ -165,27 +165,27 @@
                      
                      if (sub_name.length == 0)
                      {
-                         [subject_name addObject:@""];
+                         [self->subject_name addObject:@""];
                      }
                      else
                      {
-                         [subject_name addObject:sub_name];
+                         [self->subject_name addObject:sub_name];
                      }
                      if (tot_marks.length == 0)
                      {
-                         [total_marks addObject:@""];
+                         [self->total_marks addObject:@""];
                      }
                      else
                      {
-                         [total_marks addObject:tot_marks];
+                         [self->total_marks addObject:tot_marks];
                      }
                      if (tot_grade.length == 0)
                      {
-                         [total_grade addObject:@""];
+                         [self->total_grade addObject:@""];
                      }
                      else
                      {
-                         [total_grade addObject:tot_grade];
+                         [self->total_grade addObject:tot_grade];
                      }
                  }
                      self.subview.hidden = NO;

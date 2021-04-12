@@ -124,16 +124,16 @@
              
              [[NSUserDefaults standardUserDefaults]setObject:teacherTimeTable forKey:@"ad_teacher_timeTable_key"];
              
-             [class_id removeAllObjects];
-             [class_name removeAllObjects];
-             [day removeAllObjects];
-             [name_arr removeAllObjects];
-             [period removeAllObjects];
-             [sec_name removeAllObjects];
-             [subject_id removeAllObjects];
-             [subject_name removeAllObjects];
-             [table_id removeAllObjects];
-             [teacher_id_arr removeAllObjects];
+             [self->class_id removeAllObjects];
+             [self->class_name removeAllObjects];
+             [self->day removeAllObjects];
+             [self->name_arr removeAllObjects];
+             [self->period removeAllObjects];
+             [self->sec_name removeAllObjects];
+             [self->subject_id removeAllObjects];
+             [self->subject_name removeAllObjects];
+             [self->table_id removeAllObjects];
+             [self->teacher_id_arr removeAllObjects];
 
              
              for (int i = 0; i < [teacherTimeTable count]; i++)
@@ -151,16 +151,16 @@
                  NSString *strtable_id = [dictTimeTable objectForKey:@"table_id"];
                  NSString *strteacher_id = [dictTimeTable objectForKey:@"teacher_id"];
                  
-                 [class_id addObject:strclass_id];
-                 [class_name addObject:strclass_name];
-                 [day addObject:strday];
-                 [name_arr addObject:strname];
-                 [period addObject:strperiod];
-                 [sec_name addObject:strsec_name];
-                 [subject_id addObject:strsubject_id];
-                 [subject_name addObject:strsubject_name];
-                 [table_id addObject:strtable_id];
-                 [teacher_id_arr addObject:strteacher_id];
+                 [self->class_id addObject:strclass_id];
+                 [self->class_name addObject:strclass_name];
+                 [self->day addObject:strday];
+                 [self->name_arr addObject:strname];
+                 [self->period addObject:strperiod];
+                 [self->sec_name addObject:strsec_name];
+                 [self->subject_id addObject:strsubject_id];
+                 [self->subject_name addObject:strsubject_name];
+                 [self->table_id addObject:strtable_id];
+                 [self->teacher_id_arr addObject:strteacher_id];
 
              }
          }

@@ -84,13 +84,12 @@
     if (UIInterfaceOrientationIsLandscape(UIApplication.sharedApplication.statusBarOrientation))
     {
         flowLayout.itemSize = CGSizeMake(500.f, 500.f);
-        
         flowLayout.sectionInset = UIEdgeInsetsMake(60, 30, 60, 30);
-    } else
-    {
-        //        flowLayout.itemSize = CGSizeMake(192.f, 192.f);
     }
-    
+    else
+    {
+      //flowLayout.itemSize = CGSizeMake(192.f, 192.f);
+    }
     [flowLayout invalidateLayout]; //force the elements to get laid out again with the new size
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -107,11 +106,10 @@
         [cell.imageView setFrame:CGRectMake(38, 25, 130, 130)];
         
     }
-//    cell.cellView.layer.borderWidth = 1.0f;
-//    cell.cellView.layer.borderColor = [UIColor grayColor].CGColor;
-//    cell.cellView.layer.cornerRadius = 10.0f;
+//  cell.cellView.layer.borderWidth = 1.0f;
+//  cell.cellView.layer.borderColor = [UIColor grayColor].CGColor;
+//  cell.cellView.layer.cornerRadius = 10.0f;
     cell.imageView.image = [UIImage imageNamed:menuImages[indexPath.row]];
-    
     cell.title.text = [menuTitles objectAtIndex:indexPath.row];
     
     return cell;
@@ -119,17 +117,14 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [collectionView deselectItemAtIndexPath:indexPath animated:NO];
-    
     if (indexPath.row == 0)
     {
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        
         [[NSUserDefaults standardUserDefaults]setObject:@"mainMenu" forKey:@"view_selection"];
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"teachers" bundle:nil];
         TeacherAttendanceView *teacherAttendanceView = (TeacherAttendanceView *)[storyboard instantiateViewControllerWithIdentifier:@"TeacherAttendanceView"];
         [self.navigationController pushViewController:teacherAttendanceView animated:YES];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
-        
     }
     else if (indexPath.row == 1)
     {
@@ -144,16 +139,13 @@
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"teachers" bundle:nil];
          TeacherExamViewController *teacherExamViewController = (TeacherExamViewController *)[storyboard instantiateViewControllerWithIdentifier:@"TeacherExamViewController"];
         [self.navigationController pushViewController:teacherExamViewController animated:YES];
-        
     }
     else if (indexPath.row == 3)
     {
-        
         [[NSUserDefaults standardUserDefaults]setObject:@"mainMenu" forKey:@"view_selection"];
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"teachers" bundle:nil];
         TeachersTimeTableView *teachersTimeTableView = (TeachersTimeTableView *)[storyboard instantiateViewControllerWithIdentifier:@"TeachersTimeTableView"];
         [self.navigationController pushViewController:teachersTimeTableView animated:YES];
-        
     }
     else if (indexPath.row == 4)
     {
@@ -161,7 +153,6 @@
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"teachers" bundle:nil];
         TeacherEventViewController *teacherEventViewController = (TeacherEventViewController *)[storyboard instantiateViewControllerWithIdentifier:@"TeacherEventViewController"];
         [self.navigationController pushViewController:teacherEventViewController animated:YES];
-        
     }
     else if (indexPath.row == 5)
     {
@@ -169,7 +160,6 @@
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"teachers" bundle:nil];
         TeacherCirularTableViewController *teacherCirularTableViewController = (TeacherCirularTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"TeacherCirularTableViewController"];
         [self.navigationController pushViewController:teacherCirularTableViewController animated:YES];
-        
     }
 }
 

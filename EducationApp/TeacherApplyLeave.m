@@ -109,10 +109,10 @@
          if ([msg isEqualToString:@"View Leaves"])
          {
              
-             [LeaveTitle removeAllObjects];
-             [frmDate removeAllObjects];
-             [toDte removeAllObjects];
-             [LeaveStatus removeAllObjects];
+             [self->LeaveTitle removeAllObjects];
+             [self->frmDate removeAllObjects];
+             [self->toDte removeAllObjects];
+             [self->LeaveStatus removeAllObjects];
              
              
              for (int i = 0; i < [leaveDetails count]; i++)
@@ -124,10 +124,10 @@
                  NSString *Strfrom_leave_date = [onduty objectForKey:@"from_leave_date"];
                  NSString *strto_leave_date = [onduty objectForKey:@"to_leave_date"];
                  
-                 [LeaveTitle addObject:Strleave_title];
-                 [frmDate addObject:Strfrom_leave_date];
-                 [toDte addObject:strto_leave_date];
-                 [LeaveStatus addObject:strstatus];
+                 [self->LeaveTitle addObject:Strleave_title];
+                 [self->frmDate addObject:Strfrom_leave_date];
+                 [self->toDte addObject:strto_leave_date];
+                 [self->LeaveStatus addObject:strstatus];
              }
              
              [self.tableView reloadData];
@@ -290,9 +290,9 @@
          if ([msg isEqualToString:@"View Leave Types"] && [status isEqualToString:@"success"])
          {
              
-             [LeaveTitle_view removeAllObjects];
-             [leave_id removeAllObjects];
-             [leave_type removeAllObjects];
+             [self->LeaveTitle_view removeAllObjects];
+             [self->leave_id removeAllObjects];
+             [self->leave_type removeAllObjects];
              
              for (int i = 0; i < [leaveDetails count]; i++)
              {
@@ -302,13 +302,13 @@
                  NSString *Strleave_title = [onduty objectForKey:@"leave_title"];
                  NSString *Strleave_type = [onduty objectForKey:@"leave_type"];
                  
-                 [leave_id addObject:strleave_id];
-                 [LeaveTitle_view addObject:Strleave_title];
-                 [leave_type addObject:Strleave_type];
+                 [self->leave_id addObject:strleave_id];
+                 [self->LeaveTitle_view addObject:Strleave_title];
+                 [self->leave_type addObject:Strleave_type];
              }
              
-             [[NSUserDefaults standardUserDefaults]setObject:LeaveTitle_view forKey:@"leaveTitle_key"];
-             [[NSUserDefaults standardUserDefaults]setObject:leave_id forKey:@"leave_id_key"];
+             [[NSUserDefaults standardUserDefaults]setObject:self->LeaveTitle_view forKey:@"leaveTitle_key"];
+             [[NSUserDefaults standardUserDefaults]setObject:self->leave_id forKey:@"leave_id_key"];
 
              UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"teachers" bundle:nil];
              TeacherApplyLeaveViewController *teacherApplyLeaveViewController = (TeacherApplyLeaveViewController *)[storyboard instantiateViewControllerWithIdentifier:@"TeacherApplyLeaveViewController"];
